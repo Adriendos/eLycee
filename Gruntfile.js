@@ -83,25 +83,27 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-        gruntfile: {
-          files: ['css/README.md','Gruntfile.js'],
-          //tasks: ['recess','shell']
-          tasks: ['default']
-        },                  
-        stylesheets: {
-        	//add more files here
-          files: ['public/src/assets/less/*.less'],
-          //tasks: ['recess','shell']
-          tasks: ['less', 'concat:css', 'autoprefixer','cssmin'],
-          options: {
-            spawn: false,
-            // livereload: true
-          }
-        },
-        scripts: {
-          files: ['public/src/assets/js/*.js'],
-          tasks: ['concat:js', 'uglify']
-        },          
+      options: {
+        spawn: false,
+        livereload: {
+          port: 9000
+        }
+      },
+      gruntfile: {
+        files: ['css/README.md','Gruntfile.js'],
+        //tasks: ['recess','shell']
+        tasks: ['default']
+      },                  
+      stylesheets: {
+      	//add more files here
+        files: ['public/src/assets/less/*.less'],
+        //tasks: ['recess','shell']
+        tasks: ['less', 'concat:css', 'autoprefixer','cssmin']
+      },
+      scripts: {
+        files: ['public/src/assets/js/*.js'],
+        tasks: ['concat:js', 'uglify']
+      },          
     }   
 
   });
