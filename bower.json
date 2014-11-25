@@ -1,6 +1,7 @@
 {
   "name": "eLycee",
   "dependencies": {
-    "bootstrap": "~3.3.1"
+    "bootstrap": "~3.3.1",
+  	"semantic-ui": "1.0.0"
   }
 }
