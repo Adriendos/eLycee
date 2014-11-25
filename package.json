@@ -2,6 +2,10 @@
   "name": "eLycee",
   "version": "1.0.0",
   "description": "Ecole Multimédia final project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clementp57/eLycee.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
