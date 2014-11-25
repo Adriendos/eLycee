@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['public/src/assets/js/*.js'],
-        dest: 'public/src/assets/js/app.concat.js'
+        dest: 'public/dist/assets/js/app.concat.js'
       }
     },
     uglify: {
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'public/dist/assets/js/app.min.js': ['<%= concat.dist.dest %>'],
-          src: ['public/src/assets/js/app.concat.js'],
+          src: ['public/dist/assets/js/app.concat.js'],
           dest: 'public/dist/assets/js/<%= pkg.name %>.js'
         }
       }
@@ -64,7 +64,14 @@ module.exports = function(grunt) {
             files: ['public/src/assets/less/*.less'],
             //tasks: ['recess','shell']
             tasks: ['styles']
-        }           
+        },
+        scripts: {
+          files: ['**/*.js'],
+          tasks: ['concat', 'uglify'],
+          options: {
+            spawn: false,
+          },
+        },          
     }   
 
   });
