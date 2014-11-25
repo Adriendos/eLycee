@@ -17,7 +17,9 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>'],
+          src: ['src/**/*.js'],
+          dest: 'dist/<%= pkg.name %>.js'
         }
       }
     },
@@ -50,7 +52,7 @@ module.exports = function(grunt) {
     watch: {
         options: {
             spawn: false,
-            livereload: true,
+            // livereload: true,
         },
         gruntfile: {
             files: ['css/README.md','Gruntfile.js'],
