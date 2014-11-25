@@ -3,7 +3,11 @@ var app;
 app = angular.module('eLycee', ['ngRoute']);
 
 app.controller('MainController', function() {
-	this.test = "TEST ANGULAR";
+	var test = 'test';
+});
+
+app.controller('NewsController', function() {
+
 });
 
 app.config(['$routeProvider',
@@ -11,5 +15,8 @@ app.config(['$routeProvider',
     $routeProvider.when('/', {
         controller: 'MainController',
         templateUrl: 'src/assets/partials/test.html'
+    }).when('/news', {
+        controller: 'NewsController',
+        templateUrl: 'src/assets/partials/news.html'
     });
  }]);
