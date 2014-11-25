@@ -4,10 +4,7 @@
 	<meta charset="UTF-8">
 	<title>eLycee</title>
 	<link rel="stylesheet" href="../bower_components/semantic-ui/dist/semantic.min.css">
-	<link rel="stylesheet" href="dist/assets/css/app.css">	
-</head>
-<body>
-	<div class="ui large menu">
+	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
 </head>
 <body>
 	<div class="ui large menu fixed">
@@ -33,9 +30,6 @@
 	</div>
 
 	<header>
-		<h1 id="logo">
-			
-		</h1>
 		<div class="nav-bar-top nav">
 			<nav>
 				<ul>
@@ -56,16 +50,15 @@
 		</div>
 	</header>
 
-	<div class="app">
-		<div ng-view></div>
-	</div>
+	<main class="app" ng-view>
+	</main>
 
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/semantic-ui/dist/semantic.min.js"></script>
 	<script type="text/javascript" src="src/assets/js/classie.js"></script>
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
-	<script type="text/javascript" src="src/assets/js/app.js"></script>
+	<script type="text/javascript" src="dist/assets/js/app.min.js"></script>
 
 	<script type="text/javascript">
 		function init() {
