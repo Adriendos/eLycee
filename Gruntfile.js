@@ -7,8 +7,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['src/**/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src: ['public/src/assets/js/*.js'],
+        dest: 'public/src/assets/js/app.concat.js'
       }
     },
     uglify: {
@@ -17,9 +17,9 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>'],
-          src: ['src/**/*.js'],
-          dest: 'dist/<%= pkg.name %>.js'
+          'public/dist/assets/js/app.min.js': ['<%= concat.dist.dest %>'],
+          src: ['public/src/assets/js/app.concat.js'],
+          dest: 'public/dist/assets/js/<%= pkg.name %>.js'
         }
       }
     },
@@ -39,11 +39,11 @@ module.exports = function(grunt) {
 	      files: [
 	        {
 	          expand: true,
-	          cwd: 'public/assets/less',
+	          cwd: 'public/src/assets/less/',
 	          // Compile each LESS component excluding "bootstrap.less", 
 	          // "mixins.less" and "variables.less" 
 	          src: ['*.less', '!{boot,var,mix}*.less'],
-	          dest: 'public/assets/css/',
+	          dest: 'public/dist/assets/css/',
 	          ext: '.css'
 	        }
 	      ]
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         },                  
         stylesheets: {
         	//add more files here
-            files: ['public/assets/less/*.less'],
+            files: ['public/src/assets/less/*.less'],
             //tasks: ['recess','shell']
             tasks: ['styles']
         }           
