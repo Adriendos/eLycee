@@ -75,7 +75,7 @@ module.exports = function(grunt) {
     watch: {
         options: {
             spawn: false,
-            // livereload: true,
+            livereload: true,
         },
         gruntfile: {
             files: ['css/README.md','Gruntfile.js'],
@@ -86,14 +86,11 @@ module.exports = function(grunt) {
         	//add more files here
             files: ['public/src/assets/less/*.less'],
             //tasks: ['recess','shell']
-            tasks: ['styles']
+            tasks: ['less', 'concat:css', 'cssmin']
         },
         scripts: {
           files: ['public/src/assets/js/*.js'],
-          tasks: ['concat', 'uglify'],
-          options: {
-            spawn: false,
-          },
+          tasks: ['concat:js', 'uglify']
         },          
     }   
 
@@ -104,8 +101,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-
-  grunt.registerTask('styles', ['less', 'concat', 'cssmin']);
 
   grunt.registerTask('default', ['watch']);
 
