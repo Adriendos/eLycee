@@ -23,6 +23,10 @@ app.config(['$routeProvider',
     });
  }]);
 ;/*!
+=======
+
+/*!
+>>>>>>> 97f6e0cae685a18180cc60d277ca56a65b76625b
  * classie v1.0.0
  * class helper functions
  * from bonzo https://github.com/ded/bonzo
