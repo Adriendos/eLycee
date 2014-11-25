@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       },
       css: {
         src: 'public/src/assets/css/*.css',
-        dest: 'public/dist/assets/css/app.concat.css'
+        dest: 'public/src/assets/css/app.concat.css'
       }
     },
     uglify: {
@@ -53,12 +53,22 @@ module.exports = function(grunt) {
 	      ]
 	    }
 	  },
+    autoprefixer: {
+      // prefix the specified file
+      single_file: {
+        options: {
+          map: true
+        },
+        src:  'public/src/assets/css/app.concat.css',
+        dest: 'public/src/assets/css/app.concat.autoprefixed.css'
+      }
+    },
     cssmin: {
       minification: {
         files: [{
           expand: true,
           cwd: 'public/src/assets/css/',
-          src: ['*.css', '!*.min.css'],
+          src: ['*.concat.autoprefixed.css', '!*.min.css'],
           dest: 'public/dist/assets/css/',
           ext: '.min.css'
         }]
@@ -73,20 +83,20 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-        options: {
-            spawn: false,
-            livereload: true,
-        },
         gruntfile: {
-            files: ['css/README.md','Gruntfile.js'],
-            //tasks: ['recess','shell']
-            tasks: ['default']
+          files: ['css/README.md','Gruntfile.js'],
+          //tasks: ['recess','shell']
+          tasks: ['default']
         },                  
         stylesheets: {
         	//add more files here
-            files: ['public/src/assets/less/*.less'],
-            //tasks: ['recess','shell']
-            tasks: ['less', 'concat:css', 'cssmin']
+          files: ['public/src/assets/less/*.less'],
+          //tasks: ['recess','shell']
+          tasks: ['less', 'concat:css', 'autoprefixer','cssmin'],
+          options: {
+            spawn: false,
+            // livereload: true
+          }
         },
         scripts: {
           files: ['public/src/assets/js/*.js'],
@@ -100,6 +110,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.registerTask('default', ['watch']);

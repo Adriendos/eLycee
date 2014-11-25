@@ -4,13 +4,9 @@ header {
   overflow: hidden;
   position: fixed;
   top: 40px;
-  left: 0;
+  left: 200px;
   z-index: 999;
   background-color: #FFFFFF;
-  -webkit-transition: height 0.3s;
-  -moz-transition: height 0.3s;
-  -ms-transition: height 0.3s;
-  -o-transition: height 0.3s;
   transition: height 0.3s;
   border-top: solid 1px rgba(200, 200, 200, 0.3);
   border-bottom: solid 1px rgba(200, 200, 200, 0.3);
@@ -25,10 +21,6 @@ header h1#logo {
   font-size: 25px;
   color: #787878;
   font-weight: 400;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 header nav,
@@ -48,10 +40,6 @@ header .nav-bar-top a {
   color: #787878;
   font-weight: 700;
   font-size: 18px;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 header .nav-bar-top a:hover {
