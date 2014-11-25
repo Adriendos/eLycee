@@ -3,10 +3,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      options: {
-        // separator: ';'
-      },
       js: {
+        options: {
+          separator: ';'
+        },
         src: ['public/src/assets/js/*.js'],
         dest: 'public/dist/assets/js/app.concat.js'
       },
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         gruntfile: {
             files: ['css/README.md','Gruntfile.js'],
             //tasks: ['recess','shell']
-            tasks: ['less','shell']
+            tasks: ['default']
         },                  
         stylesheets: {
         	//add more files here
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('styles', ['less', 'cssmin']);
+  grunt.registerTask('styles', ['less', 'concat', 'cssmin']);
 
   grunt.registerTask('default', ['watch']);
 
