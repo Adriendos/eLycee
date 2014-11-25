@@ -22,15 +22,49 @@ module.exports = function(grunt) {
       }
     },
     less: {
-	  development: {
-	    options: {
-	      paths: ["public/assets/css"]
-	    },
-	    files: {
-	      "public/assets/css/app.css": "public/assets/less/app.less"
+	    // Compile all targeted LESS files individually
+	    components: {
+	      options: {
+	        imports: {
+	          // Use the new "reference" directive, e.g.
+	          // @import (reference) "variables.less";
+	          //reference: [
+	          //  "bootstrap/mixins.less", 
+	          //  "bootstrap/variables.less" 
+	          //]
+	        }
+	      },
+	      files: [
+	        {
+	          expand: true,
+	          cwd: 'public/assets/less',
+	          // Compile each LESS component excluding "bootstrap.less", 
+	          // "mixins.less" and "variables.less" 
+	          src: ['*.less', '!{boot,var,mix}*.less'],
+	          dest: 'public/assets/css/',
+	          ext: '.css'
+	        }
+	      ]
 	    }
-	  }
-	}
+	  },
+    watch: {
+        options: {
+            spawn: false,
+            livereload: true,
+        },
+        gruntfile: {
+            files: ['css/README.md','Gruntfile.js'],
+            //tasks: ['recess','shell']
+            tasks: ['less','shell']
+        },                  
+        stylesheets: {
+        	//add more files here
+            files: ['public/assets/less/*.less'],
+            //tasks: ['recess','shell']
+            tasks: ['styles']
+        }           
+    }   
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
