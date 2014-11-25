@@ -22,7 +22,7 @@ app.config(['$routeProvider',
         templateUrl: 'src/assets/partials/news.html'
     });
  }]);
-
+ 
 /*!
  * classie v1.0.0
  * class helper functions
