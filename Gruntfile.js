@@ -4,11 +4,15 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       options: {
-        separator: ';'
+        // separator: ';'
       },
-      dist: {
+      js: {
         src: ['public/src/assets/js/*.js'],
         dest: 'public/dist/assets/js/app.concat.js'
+      },
+      css: {
+        src: 'public/src/assets/css/*.css',
+        dest: 'public/dist/assets/css/app.concat.css'
       }
     },
     uglify: {
@@ -17,9 +21,9 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'public/dist/assets/js/app.min.js': ['<%= concat.dist.dest %>'],
-          src: ['public/dist/assets/js/app.concat.js'],
-          dest: 'public/dist/assets/js/<%= pkg.name %>.js'
+          'public/dist/assets/js/app.min.js': ['<%= concat.js.dest %>'],
+          src: ['public/dist/assets/js/app.concat.js']
+          // dest: 'public/dist/assets/js/<%= pkg.name %>.js'
         }
       }
     },
@@ -43,7 +47,7 @@ module.exports = function(grunt) {
 	          // Compile each LESS component excluding "bootstrap.less", 
 	          // "mixins.less" and "variables.less" 
 	          src: ['*.less', '!{boot,var,mix}*.less'],
-	          dest: 'public/dist/assets/css/',
+	          dest: 'public/src/assets/css/',
 	          ext: '.css'
 	        }
 	      ]
@@ -66,7 +70,7 @@ module.exports = function(grunt) {
             tasks: ['styles']
         },
         scripts: {
-          files: ['**/*.js'],
+          files: ['public/src/assets/js/*.js'],
           tasks: ['concat', 'uglify'],
           options: {
             spawn: false,
@@ -76,13 +80,14 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.registerTask('styles', ['less']);
 
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['watch']);
 
 };

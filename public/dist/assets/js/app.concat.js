@@ -20,7 +20,9 @@ app.config(['$routeProvider',
       otherwise({
         redirectTo: '/'
       });
-  }]);;/*!
+  }]);
+
+console.log('test');;/*!
  * classie v1.0.0
  * class helper functions
  * from bonzo https://github.com/ded/bonzo
@@ -102,9 +104,3 @@ if ( typeof define === 'function' && define.amd ) {
 }
 
 })( window );
-;(function(window) {
-	function tester() {
-		console.log('test');
-	}
-	tester();
-})(window);

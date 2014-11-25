@@ -8,6 +8,7 @@ composer.lock
 Thumbs.db
 /node_modules/
 /bower_components/
+/public/dist/
 
 lib-cov
 *.seed
