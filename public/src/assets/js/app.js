@@ -6,6 +6,8 @@ app.controller('MainController', function() {
 	this.test = "TEST ANGULAR";
 });
 
+// TROP CASSE COUILLE GRUNT !
+
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

@@ -53,6 +53,25 @@ module.exports = function(grunt) {
 	      ]
 	    }
 	  },
+    cssmin: {
+      minification: {
+        files: [{
+          expand: true,
+          cwd: 'public/src/assets/css/',
+          src: ['*.css', '!*.min.css'],
+          dest: 'public/dist/assets/css/',
+          ext: '.min.css'
+        }]
+      },
+      add_banner: {
+        options: {
+          banner: '/*! <%= pkg.name || pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        },
+        files: {
+          'public/dist/assets/css/app.min.css': ['public/src/assets/css/*.css']
+        }
+      }
+    },
     watch: {
         options: {
             spawn: false,
@@ -86,7 +105,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('styles', ['less']);
+  grunt.registerTask('styles', ['less', 'cssmin']);
 
   grunt.registerTask('default', ['watch']);
 
