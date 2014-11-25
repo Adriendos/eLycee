@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bower_components/semantic-ui/dist/semantic.min.css">
+	<style type="text/css">
+		header {
+		    width: 100%;
+		    height: 150px;
+		    overflow: hidden;
+		    position: fixed;
+		    top: 40px;
+		    left: 0;
+		    z-index: 999;
+		    background-color: #FFFFFF;
+		    -webkit-transition: height 0.3s;
+		    -moz-transition: height 0.3s;
+		    -ms-transition: height 0.3s;
+		    -o-transition: height 0.3s;
+		    transition: height 0.3s;
+		    border-top: solid 1px rgba(200,200,200,0.3);
+		    border-bottom: solid 1px rgba(200,200,200,0.3);
+		}
+
+		header h1#logo {
+		    display: inline-block;
+		    height: 150px;
+		    line-height: 150px;
+		    float: left;
+		    font-family: "Oswald", sans-serif;
+		    font-size: 60px;
+		    color: rgb(120,120,120);
+		    font-weight: 400;
+		    -webkit-transition: all 0.3s;
+		    -moz-transition: all 0.3s;
+		    -ms-transition: all 0.3s;
+		    -o-transition: all 0.3s;
+		    transition: all 0.3s;
+		}
+
+		header .nav-bar-top{
+		    display: inline-block;
+		    float: right;
+		}
+		header nav a {
+		    line-height: 150px;
+		    margin-left: 20px;
+		    color: rgb(120,120,120);
+		    font-weight: 700;
+		    font-size: 18px;
+		    -webkit-transition: all 0.3s;
+		    -moz-transition: all 0.3s;
+		    -ms-transition: all 0.3s;
+		    -o-transition: all 0.3s;
+		    transition: all 0.3s;
+		}
+		header nav a:hover {
+		    color: black;
+		}
+		header.smaller {
+		    height: 75px;
+		    top: 0;
+		}
+		header.smaller h1#logo {
+		    height: 35px;
+		    line-height: 35px;
+		    font-size: 30px;
+		}
+		header.smaller nav a {
+		    line-height: 75px;
+		}
+
+		header.smaller nav ul{
+			padding: 0;
+			margin: 0;
+		}
+
+		nav ul li{
+			display: inline-block;
+		}
+
+		nav, .search{
+			display: inline-block;
+		}
+
+		body{
+			height: 2000px;
+		}
+	</style>
+</head>
+<body>
+	<div class="ui large menu">
+	  <a class="active item">
+	    <i class="home icon"></i> Home
+	  </a>
+	  <div class="right menu">
+	  	<div class="item">
+	    	<div class="ui positive vertical animated button" id="connexion">
+			  <div class="visible content">Connexion</div>
+			  <div class="hidden content">
+			    <i class="sign in icon"></i>
+			  </div>
+			</div>
+	  	</div>
+	    <a class="item">
+	    	<i class="facebook icon"></i>
+	    </a>
+	    <a class="item">
+	    	<i class="twitter icon"></i>
+	    </a>
+	  </div>
+	</div>
+
+	<header>
+		<div class="container clearfix">
+			<h1 id="logo">
+				LOGO HERE
+			</h1>
+			<div class="nav-bar-top nav">
+				<nav>
+					<ul>
+						<li><a href="">HOME</a></li>
+						<li><a href="">ACTUALITES</a></li>
+						<li><a href="">QCM</a></li>
+					</ul>	
+				</nav>
+				<div class="search">
+					<div class="ui category search">
+					  <div class="ui icon input">
+					    <input class="prompt" type="text" placeholder="Search ...">
+					    <i class="search icon"></i>
+					  </div>
+					  <div class="results"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bower_components/semantic-ui/dist/semantic.min.js"></script>
+	<script type="text/javascript"> 
+		/*!
+		 * classie v1.0.0
+		 * class helper functions
+		 * from bonzo https://github.com/ded/bonzo
+		 * MIT license
+		 * 
+		 * classie.has( elem, 'my-class' ) -> true/false
+		 * classie.add( elem, 'my-new-class' )
+		 * classie.remove( elem, 'my-unwanted-class' )
+		 * classie.toggle( elem, 'my-class' )
+		 */
+
+		/*jshint browser: true, strict: true, undef: true, unused: true */
+		/*global define: false */
+
+		( function( window ) {
+
+		'use strict';
+
+		// class helper functions from bonzo https://github.com/ded/bonzo
+
+		function classReg( className ) {
+		  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+		}
+
+		// classList support for class management
+		// altho to be fair, the api sucks because it won't accept multiple classes at once
+		var hasClass, addClass, removeClass;
+
+		if ( 'classList' in document.documentElement ) {
+		  hasClass = function( elem, c ) {
+		    return elem.classList.contains( c );
+		  };
+		  addClass = function( elem, c ) {
+		    elem.classList.add( c );
+		  };
+		  removeClass = function( elem, c ) {
+		    elem.classList.remove( c );
+		  };
+		}
+		else {
+		  hasClass = function( elem, c ) {
+		    return classReg( c ).test( elem.className );
+		  };
+		  addClass = function( elem, c ) {
+		    if ( !hasClass( elem, c ) ) {
+		      elem.className = elem.className + ' ' + c;
+		    }
+		  };
+		  removeClass = function( elem, c ) {
+		    elem.className = elem.className.replace( classReg( c ), ' ' );
+		  };
+		}
+
+		function toggleClass( elem, c ) {
+		  var fn = hasClass( elem, c ) ? removeClass : addClass;
+		  fn( elem, c );
+		}
+
+		var classie = {
+		  // full names
+		  hasClass: hasClass,
+		  addClass: addClass,
+		  removeClass: removeClass,
+		  toggleClass: toggleClass,
+		  // short names
+		  has: hasClass,
+		  add: addClass,
+		  remove: removeClass,
+		  toggle: toggleClass
+		};
+
+		// transport
+		if ( typeof define === 'function' && define.amd ) {
+		  // AMD
+		  define( classie );
+		} else {
+		  // browser global
+		  window.classie = classie;
+		}
+
+		})( window );
+	</script>
+	<script type="text/javascript">
+		function init() {
+		    window.addEventListener('scroll', function(e){
+		        var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+		            shrinkOn = 300,
+		            header = document.querySelector("header");
+		        if (distanceY > shrinkOn) {
+		            classie.add(header,"smaller");
+		        } else {
+		            if (classie.has(header,"smaller")) {
+		                classie.remove(header,"smaller");
+		            }
+		        }
+		    });
+		}
+		window.onload = init();
+	</script>
+</body>
+</html>
