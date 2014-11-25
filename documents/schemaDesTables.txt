@@ -1,5 +1,5 @@
 USERS 
-id
+id 				--> primary key unsigned
 username
 password
 role	(teacher / first_class / final_class)
