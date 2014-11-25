@@ -1,6 +1,6 @@
 var app;
 
-app = angular.module('eLycee', ['MainController']);
+app = angular.module('eLycee', ['ngRoute']);
 
 app.controller('MainController', function() {
 	this.test = "TEST ANGULAR";
@@ -21,5 +21,3 @@ app.config(['$routeProvider',
         redirectTo: '/'
       });
   }]);
-
-console.log('test');
