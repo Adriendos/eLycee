@@ -1,0 +1,42 @@
+USERS 
+id
+username
+password
+role	(teacher / first_class / final_class)
+
+POSTS
+id
+user_id
+title
+abstract
+content
+url_thumbnail
+date
+status
+
+COMMENTS 
+id
+title
+content
+date
+status
+
+QUESTIONS
+id
+title
+content
+class_level (terminale / premiere)
+status (publish / unpublish)
+
+CHOICES
+id
+question_id
+content
+status (yes / no)
+
+SCORES 
+id
+user_id
+question_id
+status_question (fait / pas fait)
+note
