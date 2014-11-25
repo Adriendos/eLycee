@@ -22,3 +22,4 @@ app.config(['$routeProvider',
         templateUrl: 'src/assets/partials/news.html'
     });
  }]);
+ 
