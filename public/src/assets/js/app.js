@@ -21,3 +21,5 @@ app.config(['$routeProvider',
         redirectTo: '/'
       });
   }]);
+
+console.log('test');
