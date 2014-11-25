@@ -4,7 +4,7 @@ body{
  
 header {
     width: 100%;
-    height: 150px;
+    height: 100px;
     overflow: hidden;
     position: fixed;
     top: 40px;
@@ -18,14 +18,15 @@ header {
     transition: height 0.3s;
     border-top: solid 1px rgba(200,200,200,0.3);
     border-bottom: solid 1px rgba(200,200,200,0.3);
+    text-align: center;
 
     h1#logo {
 	    display: inline-block;
-	    height: 150px;
-	    line-height: 150px;
+	    height: 100px;
+	    line-height: 100px;
 	    float: left;
 	    font-family: "Oswald", sans-serif;
-	    font-size: 60px;
+	    font-size: 25px;
 	    color: rgb(120,120,120);
 	    font-weight: 400;
 	    -webkit-transition: all 0.3s;
@@ -41,14 +42,14 @@ header {
 
     .nav-bar-top{
     	display: inline-block;
-   		float: right;
+   		text-align: center;
 
    		nav ul li{
    			display: inline-block;
    		}
 
    		a {
-		    line-height: 150px;
+		    line-height: 100px;
 		    margin-left: 20px;
 		    color: rgb(120,120,120);
 		    font-weight: 700;
@@ -69,6 +70,7 @@ header {
 header.smaller {
     height: 75px;
     top: 0;
+    text-align: right;
 
     h1#logo {
 	    height: 35px;
