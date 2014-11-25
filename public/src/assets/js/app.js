@@ -10,7 +10,7 @@ app.controller('NewsController', function() {
 
 });
 
-// TROP CASSE COUILLE GRUNT !
+// TROP CASSE COUILLE GRUNT ! => AHAHA
 
 app.config(['$routeProvider',
   function($routeProvider) {
