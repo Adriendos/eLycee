@@ -2,6 +2,20 @@
 
 class QuestionController extends \BaseController {
 
+//	/**
+//	 * Display a listing of the resource.
+//	 *
+//	 * @return Response
+//	 */
+//	public function index()
+//	{
+//		$questions = Question::All();
+//        return Response::json([
+//            'questions' => $questions->toArray()
+//        ]);
+//	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
