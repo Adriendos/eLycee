@@ -9,9 +9,9 @@ app.controller('NavController', function($scope, $location) {
 });
 
 app.controller('HomeController', function($http, $location, $scope) {
-    $http.get('api/v1/posts/1').
+    $http.get('api/v1/posts').
       success(function(data, status, headers, config) {
-        $scope.firstPost = data;
+        $scope.allPosts = data;
         console.log(data);
       }).
       error(function(data, status, headers, config) {
