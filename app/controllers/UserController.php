@@ -9,10 +9,10 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users=User::All();
-		foreach ($users as $u) {
-			echo $u;
-		}
+		$users = User::All();
+        return Response::json([
+            'users' => $users->toArray()
+        ]);
 	}
 
 

@@ -9,7 +9,10 @@ class ChoiceController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$choices = Choice::All();
+        return Response::json([
+            'choices' => $choices->toArray()
+        ]);
 	}
 
 

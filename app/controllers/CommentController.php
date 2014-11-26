@@ -9,7 +9,10 @@ class CommentController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$comments = Comment::All();
+        return Response::json([
+            'comments' => $comments->toArray()
+        ]);
 	}
 
 
