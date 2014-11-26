@@ -21,7 +21,8 @@
 <div class="six wide column">
 	<div class="ui relaxed divided items">
 		<!-- START LOOP -->
-		<div class="item">
+		<div class="item" ng-repeat="post in allPosts.posts">
+			{{ post.title }}
 			<div class="ui small image">
 				<img src="http://lorempixel.com/300/200/sports	">
 			</div>
@@ -128,5 +129,5 @@
 	</div>
 </div>
 <div class="degeu">
-	{{ allPosts}}
+	{{ allPosts }}
 </div>
