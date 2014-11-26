@@ -80,5 +80,3 @@ if ( typeof define === 'function' && define.amd ) {
 }
 
 })( window );
-
-console.log('test');

@@ -1,5 +1,4 @@
 header {
-    width: 100%; height: 100px;
     overflow: hidden;
     position: fixed;
     top: 40px;
@@ -71,4 +70,8 @@ header.smaller {
 			line-height: 75px;
 		}
     }
+}
+
+main.app {
+	margin-top: 300px;
 }

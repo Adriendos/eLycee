@@ -9,7 +9,6 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     package = require('./package.json');
 
-
 var banner = [
   '/*!\n' +
   ' * <%= package.name %>\n' +
