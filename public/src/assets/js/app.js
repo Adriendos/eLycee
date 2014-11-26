@@ -9,7 +9,7 @@ app.controller('NavController', function($scope, $location) {
 });
 
 app.controller('HomeController', function($http, $location) {
-    $http.get('/Ecole%20Multimédia/projet/eLycee/public/api/v1/questions').
+    $http.get('api/v1/questions').
       success(function(data, status, headers, config) {
         console.log(data);
         console.log(status);
