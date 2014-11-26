@@ -62,8 +62,6 @@ class BaseController extends Controller {
 
 		$elem = new $ctrl();
 
-        
-
         $exp->save();
         return Redirect::to('admin');
     }
