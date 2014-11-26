@@ -21,8 +21,16 @@ app.controller('HomeController', function($http, $location, $scope) {
 });
 
 
-app.controller('NewsController', function($scope) {
-
+app.controller('NewsController', function($http, $location, $scope) {
+   $http.get('api/v1/posts').
+  success(function(data, status, headers, config) {
+    $scope.allPosts = data;
+    console.log(data);
+  }).
+  error(function(data, status, headers, config) {
+    console.info('error => '+ status);
+    console.log(config);
+  });
 });
 
 app.controller('ContactController', function($scope) {
