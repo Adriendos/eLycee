@@ -11,18 +11,23 @@
 |
 */
 
-Route::get('/', function()
+Route::group(array('prefix' => 'v1'), function() // TODO AUTH sytem , 'before' => 'auth.basic'
 {
-	return View::make('hello');
+  Route::resource('url', 'UrlController');
 });
 
-Route::get('/teub', function() {
-	return View::make('hello');
-});
 
-Route::resource('users', 'UserController');
-Route::resource('posts', 'PostController');
-Route::resource('comments', 'CommentController');
-Route::resource('questions', 'QuestionController');
-Route::resource('choices', 'ChoiceController');
-Route::resource('scores', 'ScoreController');
+
+
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
+
+
+// Route::resource('users', 'UserController');
+// Route::resource('posts', 'PostController');
+// Route::resource('comments', 'CommentController');
+// Route::resource('questions', 'QuestionController');
+// Route::resource('choices', 'ChoiceController');
+// Route::resource('scores', 'ScoreController');
