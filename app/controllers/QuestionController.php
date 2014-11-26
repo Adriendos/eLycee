@@ -9,7 +9,10 @@ class QuestionController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$questions = Question::All();
+        return Response::json([
+            'questions' => $questions->toArray()
+        ]);
 	}
 
 

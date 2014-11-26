@@ -9,7 +9,10 @@ class ScoreController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$scores = Score::All();
+        return Response::json([
+            'scores' => $scores->toArray()
+        ]);
 	}
 
 
