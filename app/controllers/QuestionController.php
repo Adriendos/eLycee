@@ -82,7 +82,9 @@ class QuestionController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$questions = Question::find($id);
+        $questions->delete();
+        return Redirect::to('admin');
 	}
 
 

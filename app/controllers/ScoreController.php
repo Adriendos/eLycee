@@ -82,7 +82,9 @@ class ScoreController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$score = Score::find($id);
+        $score->delete();
+        return Redirect::to('admin');
 	}
 
 
