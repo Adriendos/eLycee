@@ -1,6 +1,6 @@
 // __  Angular
-
-var app = angular.module('eLycee', ['ngRoute']);
+var app;
+app = angular.module('eLycee', ['ngRoute']);
 
 app.controller('NavController', function($scope, $location) {
     $scope.isActive = function (viewLocation) { 
@@ -8,16 +8,17 @@ app.controller('NavController', function($scope, $location) {
     };
 });
 
-app.controller('HomeController', function($http, $location) {
-    $http.get('api/v1/posts').
+app.controller('HomeController', function($http, $location, $scope) {
+    $http.get('api/v1/posts/1').
       success(function(data, status, headers, config) {
+        $scope.firstPost = data;
         console.log(data);
       }).
       error(function(data, status, headers, config) {
         console.log(config);
-      });
-
+    });
 });
+
 
 app.controller('NewsController', function($scope) {
 

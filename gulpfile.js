@@ -35,7 +35,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('js',function(){
-  gulp.src('public/src/assets/js/app.js')
+  gulp.src('public/src/assets/js/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .pipe(header(banner, { package : package }))
