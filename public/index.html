@@ -3,34 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>eLycee - </title>
+	<meta name="description" content="">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
+	<link rel="stylesheet" href="dist/assets/css/amin.css">	
+</head>
 </head>
 <body>
 	<!-- HEADER -->
-	<header>
-		<div class="nav-bar-top nav">
-			<nav>
-				<ul>
-					<li><a href="#/">HOME</a></li>
-					<li><a href="#news">ACTUALITES</a></li>
-					<li><a href="">QCM</a></li>
-				</ul>	
-			</nav>
-			<div class="search">
-				<div class="ui category search">
-				  <div class="ui icon input">
-				    <input class="prompt" type="text" placeholder="Search ...">
-				    <i class="search icon"></i>
-				  </div>
-				  <div class="results"></div>
-				</div>
+	<!-- TODO: shrink navbar with classie.js -->
+	<nav class="ui menu fixed navbar">
+		<a href="" class="brand item">Project Name</a>
+		<a href="#/" class="active item">Home</a>
+		<a href="#/news" class="item">News</a>
+		<a href="" class="item">About</a>
+		<a class="ui dropdown item">Dropdown
+			<i class="dropdown icon"></i>
+			<div class="menu">
+			<div class="item">Action</div>
+			<div class="item">Another action</div>
+			<div class="item">Something else here</div>
+			<div class="ui horizontal divider"></div>
+			<div class="item">Seperated link</div>
+			<div class="item">One more seperated link</div>
 			</div>
-		</div>
-	</header>
+		</a>
+	</nav> <!-- end nav -->
 	
-	<!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS) -->
-	<main class="app ui grid" ng-view></main>
+	<!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+	<main class="app ui page grid" ng-view></main>
 
 	<!-- FOOTER -->
 
@@ -39,7 +41,6 @@
 	<!-- SCRIPTS -->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.min.js"></script>
-	<script type="text/javascript" src="src/assets/js/classie.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 
