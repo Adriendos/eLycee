@@ -10,7 +10,7 @@ Thumbs.db
 /public/bower_components/
 /public/dist/
 /.sass-cache/
-/bootstrap/start.php
+/bootstrap/
 /app/config/local/database.php
 
 lib-cov

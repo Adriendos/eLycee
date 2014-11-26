@@ -47,7 +47,6 @@ class BaseController extends Controller {
 		$ctrl    = str_replace('Controller@create', '', $request['controller']);
 
 		return View::make('admin.create'.$ctrl,[]);
-
 	}
 
 	/**
@@ -55,15 +54,29 @@ class BaseController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function test()
 	{
+		echo 'toto';
+    }
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store($id)
+	{
+		return $id;
+
+		// dd($id);
+
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@store', '', $request['controller']);
 
 		$elem = new $ctrl();
 
-        $exp->save();
-        return Redirect::to('admin');
+        // $exp->save();
+        // return Redirect::to('admin');
     }
 
 	 /**
