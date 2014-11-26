@@ -11,7 +11,7 @@ Thumbs.db
 /public/dist/
 /.sass-cache/
 /bootstrap/start.php
-/app/config/
+/app/config/local/database.php
 
 lib-cov
 *.seed
