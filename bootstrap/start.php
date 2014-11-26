@@ -25,13 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-
-<<<<<<< HEAD
 	'local' => 'PC-ADRIEN',
-=======
-	'local' => array('MacBook-Pro-de-Jeremie.local'),
->>>>>>> 96956a5373d6a4e46647f72938ecbc465c364290
-
 ));
 
 /*
