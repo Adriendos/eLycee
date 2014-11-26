@@ -49,7 +49,10 @@ gulp.task('js',function(){
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         server: {
-            baseDir: "public"
+            baseDir: 'public',
+            routes: {
+                '/bower_components': '../bower_components'
+            }
         }
     });
 });

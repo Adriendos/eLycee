@@ -7,7 +7,7 @@ composer.lock
 .DS_Store
 Thumbs.db
 /node_modules/
-/bower_components/
+/public/bower_components/
 /public/dist/
 
 lib-cov
