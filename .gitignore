@@ -6,9 +6,9 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-/node_modules/
-/public/bower_components/
-/public/dist/
+/node_modules
+/public/bower_components
+/public/dist
 
 lib-cov
 *.seed
