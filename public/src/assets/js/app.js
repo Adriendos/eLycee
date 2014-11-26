@@ -16,7 +16,7 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
         controller: 'MainController',
-        templateUrl: 'src/assets/partials/test.html'
+        templateUrl: 'src/assets/partials/home.html'
     }).when('/news', {
         controller: 'NewsController',
         templateUrl: 'src/assets/partials/news.html'
