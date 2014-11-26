@@ -23,14 +23,20 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
+<<<<<<< HEAD
 			'database'  => 'elycee',
 			'username'  => 'root',
 			'password'  => '',
+=======
+			'database'  => 'Elycee',
+			'username'  => 'root',
+			'password'  => 'root',
+>>>>>>> 96956a5373d6a4e46647f72938ecbc465c364290
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-
+		
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
@@ -45,3 +51,4 @@ return array(
 	),
 
 );
+
