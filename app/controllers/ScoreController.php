@@ -2,18 +2,18 @@
 
 class ScoreController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$scores = Score::All();
-        return Response::json([
-            'scores' => $scores->toArray()
-        ]);
-	}
+//	/**
+//	 * Display a listing of the resource.
+//	 *
+//	 * @return Response
+//	 */
+//	public function index()
+//	{
+//		$scores = Score::All();
+//        return Response::json([
+//            'scores' => $scores->toArray()
+//        ]);
+//	}
 
 
 	/**

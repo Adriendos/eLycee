@@ -2,18 +2,18 @@
 
 class UserController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$users = User::All();
-        return Response::json([
-            'users' => $users->toArray()
-        ]);
-	}
+//	/**
+//	 * Display a listing of the resource.
+//	 *
+//	 * @return Response
+//	 */
+//	public function index()
+//	{
+//		$users = User::All();
+//        return Response::json([
+//            'users' => $users->toArray()
+//        ]);
+//	}
 
 
 	/**

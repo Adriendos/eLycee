@@ -2,18 +2,18 @@
 
 class CommentController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$comments = Comment::All();
-        return Response::json([
-            'comments' => $comments->toArray()
-        ]);
-	}
+//	/**
+//	 * Display a listing of the resource.
+//	 *
+//	 * @return Response
+//	 */
+//	public function index()
+//	{
+//		$comments = Comment::All();
+//        return Response::json([
+//            'comments' => $comments->toArray()
+//        ]);
+//	}
 
 
 	/**
