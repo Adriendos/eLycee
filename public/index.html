@@ -4,46 +4,67 @@
 	<meta charset="UTF-8">
 	<title>eLycee - </title>
 	<meta name="description" content="">
-	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-	<link rel="stylesheet" href="dist/assets/css/amin.css">	
+	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
 </head>
 </head>
 <body>
-	<!-- HEADER -->
-	<!-- TODO: shrink navbar with classie.js -->
-	<nav class="ui menu fixed navbar">
-		<a href="" class="brand item">Project Name</a>
-		<a href="#/" class="active item">Home</a>
-		<a href="#/news" class="item">News</a>
-		<a href="" class="item">About</a>
-		<a class="ui dropdown item">Dropdown
-			<i class="dropdown icon"></i>
-			<div class="menu">
-			<div class="item">Action</div>
-			<div class="item">Another action</div>
-			<div class="item">Something else here</div>
-			<div class="ui horizontal divider"></div>
-			<div class="item">Seperated link</div>
-			<div class="item">One more seperated link</div>
-			</div>
-		</a>
-	</nav> <!-- end nav -->
+	<!-- BODY -->
+	<div class="ui page grid">
 	
-	<!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-	<main class="app ui page grid" ng-view></main>
+		<!-- HEADER -->
+		<!-- TODO: shrink navbar with classie.js -->
+        <div class="row">
+            <div class="ui menu navbar">
+                <a href="#/" class="brand item">eLycee</a>
+                <a href="#/" class="item" ng-class="getClass('/')">Home</a>
+                <a href="#/news" class="item" ng-class="getClass('/news')">News</a>
+                <!-- <a class="ui dropdown item">Dropdown
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item">Action</div>
+                    <div class="item">Another action</div>
+                    <div class="item">Something else here</div>
+                    <div class="ui divider"></div>
+                    <div class="item">Seperated link</div>
+                    <div class="item">One more seperated link</div>
+                  </div>
+                </a> -->
+                <div class="right menu">
+                    <a href="" class="item">
+                    	<i class="icon user"></i> Connexion
+                    </a>
+                    <a href="" class="item">
+						<i class="facebook icon"></i>
+                    </a>
+                    <a href="" class="item">
+						<i class="twitter icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+        <main class="app row" ng-view></main>
+
+        <!-- TODO: footer --> 
+           
+	</div>
+	
+	
 
 	<!-- FOOTER -->
 
 
 
 	<!-- SCRIPTS -->
+	<!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSE -->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-
 	<script type="text/javascript" src="src/assets/js/app.js"></script>
 </body>
 </html>
