@@ -56,10 +56,7 @@ module.exports = function(grunt) {
     autoprefixer: {
       // prefix the specified file
       single_file: {
-        options: {
-          map: true
-        },
-        src:  'public/src/assets/css/app.concat.css',
+        src: ['public/src/assets/css/*.concat.css', '!*.concat.autoprefixed.css'], 
         dest: 'public/src/assets/css/app.concat.autoprefixed.css'
       }
     },
@@ -85,9 +82,9 @@ module.exports = function(grunt) {
     watch: {
       options: {
         spawn: false,
-        livereload: {
-          port: 9000
-        }
+        // livereload: {
+        //   port: 9000
+        // }
       },
       gruntfile: {
         files: ['css/README.md','Gruntfile.js'],
@@ -98,7 +95,7 @@ module.exports = function(grunt) {
       	//add more files here
         files: ['public/src/assets/less/*.less'],
         //tasks: ['recess','shell']
-        tasks: ['less', 'concat:css', 'autoprefixer','cssmin']
+        tasks: ['less', 'concat:css', 'autoprefixer', 'cssmin']
       },
       scripts: {
         files: ['public/src/assets/js/*.js'],
