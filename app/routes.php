@@ -11,16 +11,22 @@
 |
 */
 
-Route::group(array('prefix' => 'v1'), function() // TODO AUTH sytem , 'before' => 'auth.basic'
+Route::group(array('prefix' => 'v1', 'before' => 'auth.basic'), function() 
 {
-  Route::resource('url', 'UrlController');
-  Route::resource('users', 'UserController');
-  Route::resource('posts', 'PostController');
-  Route::resource('comments', 'CommentController');
-  Route::resource('questions', 'QuestionController');
-  Route::resource('choices', 'ChoiceController');
-  Route::resource('scores', 'ScoreController');
+    Route::resource('url', 'UrlController');
 });
+
+Route::group(array('prefix' => 'v1'), function() 
+{
+	Route::resource('users', 'UserController');
+	Route::resource('posts', 'PostController');
+	Route::resource('comments', 'CommentController');
+	Route::resource('questions', 'QuestionController');
+	Route::resource('choices', 'ChoiceController');
+	Route::resource('scores', 'ScoreController');
+});
+
+
 
 
 
