@@ -15,3 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::resource('users', 'UserController');
+Route::resource('posts', 'PostController');
+Route::resource('comments', 'CommentController');
+Route::resource('questions', 'QuestionController');
+Route::resource('choices', 'ChoiceController');
+Route::resource('scores', 'ScoreController');

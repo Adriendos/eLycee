@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
     browserSync = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
@@ -23,7 +23,8 @@ var banner = [
 
 gulp.task('css', function () {
     return gulp.src('public/src/assets/scss/app.scss')
-    .pipe(sass({errLogToConsole: true}))
+    .pipe(sass({sourcemap: true, sourcemapPath: 'public/dist/assets/css/'}))
+      .on('error', function (err) { console.log(err.message); })    
     .pipe(autoprefixer('last 4 version'))
     .pipe(gulp.dest('public/dist/assets/css/'))
     .pipe(minifyCSS())
