@@ -1,6 +1,6 @@
 <?php
 
-class ScoreController extends BaseController {
+class ScoreController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.

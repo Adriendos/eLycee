@@ -1,6 +1,6 @@
 <?php
 
-class ChoiceController extends BaseController {
+class ChoiceController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.

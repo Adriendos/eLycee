@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends BaseController {
+class PostController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class PostController extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		echo "Miniverge";
 	}
 
 

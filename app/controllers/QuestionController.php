@@ -1,6 +1,6 @@
 <?php
 
-class QuestionController extends BaseController {
+class QuestionController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
