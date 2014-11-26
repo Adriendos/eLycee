@@ -82,7 +82,9 @@ class ChoiceController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$choice = Choice::find($id);
+        $choice->delete();
+        return Redirect::to('admin');
 	}
 
 

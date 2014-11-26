@@ -18,19 +18,10 @@
         <div class="row">
             <div class="ui menu navbar" ng-controller="NavController">
                 <a href="#/" class="brand item">eLycee</a>
-                <a href="#/" class="item" ng-class="{ active: isActive('/')}">Home</a>
-                <a href="#/news" class="item" ng-class="{ active: isActive('/news')}">News</a>
-                <!-- <a class="ui dropdown item">Dropdown
-                  <i class="dropdown icon"></i>
-                  <div class="menu">
-                    <div class="item">Action</div>
-                    <div class="item">Another action</div>
-                    <div class="item">Something else here</div>
-                    <div class="ui divider"></div>
-                    <div class="item">Seperated link</div>
-                    <div class="item">One more seperated link</div>
-                  </div>
-                </a> -->
+                <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Home</a>
+                <a href="#/news" class="item" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>News</a>
+                <a href="#/contact" class="item" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
+                
                 <div class="right menu">
                     <a href="" class="item">
                     	<i class="icon user"></i> Connexion

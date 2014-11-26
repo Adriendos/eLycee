@@ -82,7 +82,9 @@ class CommentController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$comment = Comment::find($id);
+        $comment->delete();
+        return Redirect::to('admin');
 	}
 
 

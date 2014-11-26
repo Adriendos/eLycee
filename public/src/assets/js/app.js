@@ -13,6 +13,11 @@ app.controller('HomeController', function() {
 });
 
 app.controller('NewsController', function($scope) {
+
+});
+
+app.controller('ContactController', function($scope) {
+
 });
 
 
@@ -25,6 +30,9 @@ app.config(['$routeProvider',
     }).when('/news', {
         controller: 'NewsController',
         templateUrl: 'src/assets/partials/news.html'
+    }).when('/contact', {
+        controller: 'ContactController',
+        templateUrl: 'src/assets/partials/contact.html'
     });
  }]);
 
