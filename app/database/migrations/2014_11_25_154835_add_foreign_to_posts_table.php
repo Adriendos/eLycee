@@ -28,7 +28,7 @@ class AddForeignToPostsTable extends Migration {
 	{
 		Schema::table('posts', function($table)
 		{
-		$table->dropColumn('user_id');
+			$table->dropColumn('user_id');
 		});
 	}
 
