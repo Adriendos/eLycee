@@ -1,5 +1,4 @@
-
-// __ test nG CLem
+// __  Angular
 var app;
 
 app = angular.module('eLycee', ['ngRoute']);

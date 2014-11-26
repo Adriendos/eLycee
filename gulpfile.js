@@ -9,7 +9,6 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     package = require('./package.json');
 
-
 var banner = [
   '/*!\n' +
   ' * <%= package.name %>\n' +
@@ -54,6 +53,7 @@ gulp.task('browser-sync', function() {
         }
     });
 });
+
 gulp.task('bs-reload', function () {
     browserSync.reload();
 });
