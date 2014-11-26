@@ -5,6 +5,7 @@
 	<title>eLycee - </title>
 	<meta name="description" content="">
 	<meta name="mobile-web-app-capable" content="yes">
+    <!-- STYLESHEETS -->
 	<link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
 	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
 </head>
@@ -40,7 +41,7 @@
          <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-view></main>
 		
-		<!-- LOGIN POPUP-MODAL -->
+		<!-- LOGIN MODAL -->
         <div class="ui basic modal" id="connexionPopUp">
         	<i class="close icon"></i>
         	<div class="header">
@@ -90,13 +91,13 @@
 	</div>
 	
 	<!-- SCRIPTS -->
-	<!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSE -->
+	<!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSES -->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
-	<script type="text/javascript" src="src/assets/js/app.js"></script>
+	<script type="text/javascript" src="src/app/app.js"></script>
 	<script type="text/javascript" src="src/assets/js/behavior.js"></script>
 </body>
 </html>

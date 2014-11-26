@@ -24,20 +24,20 @@ app.controller('AdminController', function($scope) {
 });
 
 
-// ROUTING ANGULAR
-app.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.when('/', {
-        controller: 'HomeController',
-        templateUrl: 'src/assets/partials/home.html'
-    }).when('/news', {
-        controller: 'NewsController',
-        templateUrl: 'src/assets/partials/news.html'
-    }).when('/contact', {
-        controller: 'ContactController',
-        templateUrl: 'src/assets/partials/contact.html'
-    });
- }]);
+// // ROUTING ANGULAR
+// app.config(['$routeProvider',
+//   function($routeProvider) {
+//     $routeProvider.when('/', {
+//         controller: 'HomeController',
+//         templateUrl: 'src/assets/partials/home.html'
+//     }).when('/news', {
+//         controller: 'NewsController',
+//         templateUrl: 'src/assets/partials/news.html'
+//     }).when('/contact', {
+//         controller: 'ContactController',
+//         templateUrl: 'src/assets/partials/contact.html'
+//     });
+//  }]);
 
 
 // // __init header sticky

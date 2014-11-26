@@ -34,13 +34,13 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
         controller: 'HomeController',
-        templateUrl: 'src/assets/partials/home.html'
+        templateUrl: 'src/app/views/home.html'
     }).when('/news', {
         controller: 'NewsController',
-        templateUrl: 'src/assets/partials/news.html'
+        templateUrl: 'src/app/views/news.html'
     }).when('/contact', {
         controller: 'ContactController',
-        templateUrl: 'src/assets/partials/contact.html'
+        templateUrl: 'src/app/views/contact.html'
     });
  }]);
 
@@ -62,7 +62,7 @@ app.factory('ajaxSpinnerInterceptor', function ($q, $window) {
 
 //registering it into httpProvider service
 app.config(["$httpProvider", function ($httpProvider) {
-  $httpProvider.responseInterceptors.push('ajaxSpinnerInterceptor');
+  $httpProvider.interceptors.push('ajaxSpinnerInterceptor');
 
   var spinnerFunction = function spinnerFunction(data, headersGetter) {
     $("#spinner").show();
