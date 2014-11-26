@@ -2,33 +2,12 @@
 <html lang="fr" ng-app="eLycee">
 <head>
 	<meta charset="UTF-8">
-	<title>eLycee test</title>
+	<title>eLycee - </title>
 	<link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
 	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
 </head>
 <body>
-	<div class="ui large menu">
-	  <a class="active item">
-	    eLycee
-	  </a>
-	  <div class="right menu">
-	  	<div class="item">
-	    	<div class="ui positive vertical animated button" id="connexion">
-			  <div class="visible content">Connexion</div>
-			  <div class="hidden content">
-			    <i class="sign in icon"></i>
-			  </div>
-			</div>
-	  	</div>
-	    <a class="item">
-	    	<i class="facebook icon"></i>
-	    </a>
-	    <a class="item">
-	    	<i class="twitter icon"></i>
-	    </a>
-	  </div>
-	</div>
-
+	<!-- HEADER -->
 	<header>
 		<div class="nav-bar-top nav">
 			<nav>
@@ -49,14 +28,21 @@
 			</div>
 		</div>
 	</header>
+	
+	<!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS) -->
+	<main class="app ui grid" ng-view></main>
 
-	<main class="app" ng-view></main>
+	<!-- FOOTER -->
 
+
+
+	<!-- SCRIPTS -->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.min.js"></script>
 	<script type="text/javascript" src="src/assets/js/classie.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-	<script type="text/javascript" src="dist/assets/js/app.min.js"></script>
+
+	<script type="text/javascript" src="src/assets/js/app.js"></script>
 </body>
 </html>
