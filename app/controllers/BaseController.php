@@ -36,4 +36,43 @@ class BaseController extends Controller {
 		));
 	}
 
+	 /**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$request = Route::getCurrentRoute()->getAction();
+		$ctrl    = str_replace('Controller@show', '', $request['controller']);
+		
+		$elem = $ctrl::find($id);
+		
+		$returnName = strtolower($ctrl);
+		
+		return Response::json(array(
+			'error'     => false,
+			$returnName => $elem,
+			200
+		));;
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$request = Route::getCurrentRoute()->getAction();
+		$ctrl    = str_replace('Controller@index', '', $request['controller']);
+
+        $elem = $ctrl::find($id);
+        $elem->delete();
+
+        return Redirect::to('admin');
+	}
+
 }
