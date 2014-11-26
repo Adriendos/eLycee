@@ -21,7 +21,7 @@ app.controller('HomeController', function($http, $location) {
 
 app.controller('NewsController', function($scope) {
 
-});
+}); 
 
 app.controller('ContactController', function($scope) {
 
