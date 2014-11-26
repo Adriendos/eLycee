@@ -2,15 +2,15 @@
 
 class QuestionController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+	// /**
+	//  * Display a listing of the resource.
+	//  *
+	//  * @return Response
+	//  */
+	// public function index()
+	// {
+	// 	//
+	// }
 
 
 	/**

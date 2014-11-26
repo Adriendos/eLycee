@@ -2,15 +2,21 @@
 
 class PostController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		echo "Miniverge";
-	}
+	// /**
+	//  * Display a listing of the resource.
+	//  *
+	//  * @return Response
+	//  */
+	// public function index()
+	// {
+	// 	$posts = Post::all();
+ 
+	// 	return Response::json(array(
+	// 		'error' => false,
+	// 		'posts' => $posts,
+	// 		200
+	// 	));
+	// }
 
 
 	/**

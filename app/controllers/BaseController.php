@@ -15,4 +15,24 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$request = Route::getCurrentRoute()->getAction();
+		$ctrl    = str_replace('Controller@index', '', $request['controller']);
+
+		$return = $ctrl::all();
+
+		$returnName = strtolower($ctrl . 's');
+ 
+		return Response::json(array(
+			'error'     => false,
+			$returnName => $return,
+			200
+		));
+	}
 }
