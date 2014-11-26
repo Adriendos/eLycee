@@ -1,6 +1,6 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource"]);
+app = angular.module('eLycee', ["ngRoute","ngResource","ngMap"]);
 
 app.controller('NavController', function($scope, $location) {
   $scope.isActive = function (viewLocation) { 
@@ -26,7 +26,9 @@ app.controller('NewsController', function($scope) {
 });
 
 app.controller('ContactController', function($scope) {
-
+  $scope.$on('mapInitialized', function(event, map) {
+    console.log('ready');
+    });
 });
 
 
