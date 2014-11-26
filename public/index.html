@@ -16,10 +16,10 @@
 		<!-- HEADER -->
 		<!-- TODO: shrink navbar with classie.js -->
         <div class="row">
-            <div class="ui menu navbar">
+            <div class="ui menu navbar" ng-controller="NavController">
                 <a href="#/" class="brand item">eLycee</a>
-                <a href="#/" class="item" ng-class="getClass('/')">Home</a>
-                <a href="#/news" class="item" ng-class="getClass('/news')">News</a>
+                <a href="#/" class="item" ng-class="{ active: isActive('/')}">Home</a>
+                <a href="#/news" class="item" ng-class="{ active: isActive('/news')}">News</a>
                 <!-- <a class="ui dropdown item">Dropdown
                   <i class="dropdown icon"></i>
                   <div class="menu">

@@ -1,22 +1,22 @@
 // __  Angular
-var app;
 
-app = angular.module('eLycee', ['ngRoute']);
+var app = angular.module('eLycee', ['ngRoute']);
+
+app.controller('NavController', function($scope, $location) {
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+});
 
 app.controller('HomeController', function() {
 
 });
 
 app.controller('NewsController', function($scope) {
-    $scope.getClass = function(path) {
-    if ($location.path().substr(0, path.length) == path) {
-      return "active"
-    } else {
-      return ""
-    }
-}
 });
 
+
+// ROUTING ANGULAR
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
