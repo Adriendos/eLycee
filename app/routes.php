@@ -14,6 +14,12 @@
 Route::group(array('prefix' => 'v1'), function() // TODO AUTH sytem , 'before' => 'auth.basic'
 {
   Route::resource('url', 'UrlController');
+  Route::resource('users', 'UserController');
+  Route::resource('posts', 'PostController');
+  Route::resource('comments', 'CommentController');
+  Route::resource('questions', 'QuestionController');
+  Route::resource('choices', 'ChoiceController');
+  Route::resource('scores', 'ScoreController');
 });
 
 
@@ -25,9 +31,4 @@ Route::group(array('prefix' => 'v1'), function() // TODO AUTH sytem , 'before' =
 // });
 
 
-// Route::resource('users', 'UserController');
-// Route::resource('posts', 'PostController');
-// Route::resource('comments', 'CommentController');
-// Route::resource('questions', 'QuestionController');
-// Route::resource('choices', 'ChoiceController');
-// Route::resource('scores', 'ScoreController');
+
