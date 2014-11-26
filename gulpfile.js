@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
+    sass = require('gulp-ruby-sass'),
     browserSync = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
@@ -25,14 +24,13 @@ var banner = [
 
 gulp.task('css', function () {
     return gulp.src('public/src/assets/scss/app.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass({errLogToConsole: true}))
+    .pipe(sass({sourcemap: true, sourcemapPath: 'public/dist/assets/css/'}))
+      .on('error', function (err) { console.log(err.message); })    
     .pipe(autoprefixer('last 4 version'))
     .pipe(gulp.dest('public/dist/assets/css/'))
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write('/'))
-    // .pipe(header(banner, { package : package }))
+    .pipe(header(banner, { package : package }))
     .pipe(gulp.dest('public/dist/assets/css/'))
     .pipe(browserSync.reload({stream:true}));
 });
