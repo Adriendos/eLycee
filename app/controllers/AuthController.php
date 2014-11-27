@@ -1,6 +1,6 @@
 <?php
 
-class AuthController extends \BaseController {
+class AuthController extends BaseController {
 
 	public function login() 
 	{	
@@ -9,14 +9,14 @@ class AuthController extends \BaseController {
 		var_dump($_POST);
 		die();
 
-		if(Auth::attempt(['username' => $username, 'password' => $password])
-		{
+		// if(Auth::attempt(['username' => $username, 'password' => $password])
+		// {
 
-		}
-		else 
-		{
-			
-		}
+		// }
+		// else 
+		// {
+
+		// }
 
 		// return 'end login method';
 	}
