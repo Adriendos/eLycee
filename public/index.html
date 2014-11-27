@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bower_components/angular-growl-2/build/angular-growl.css">
     <link rel="stylesheet" href="dist/assets/css/app.min.css">  
 </head>
-<body ng-controller="MainController as main">
+<body ng-controller="MainController as main" ng-class="{pushable : isAdmin()}">
     
     <!-- SIDEBAR ADMIN -->
     <div ng-include src="'src/app/admin/views/sidebar.html'" ng-show="isAdmin()"></div>

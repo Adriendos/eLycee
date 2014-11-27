@@ -1,4 +1,4 @@
-app.factory('auth', function($http) {
+app.factory('AuthFactory', function($http) {
 
   var userInfos,
   urlBase = 'api/v1/auth',
@@ -14,6 +14,7 @@ app.factory('auth', function($http) {
     return $http(request)
     .success(
       function(data, status, headers, config) {
+        // __ [TODO]
         // response = user obj
       })
     .error(

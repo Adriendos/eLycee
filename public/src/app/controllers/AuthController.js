@@ -1,9 +1,8 @@
-app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) {
+app.controller('ConnexionController', ['$scope', 'AuthFactory', function($scope, AuthFactory) {
 
   $scope.login = function() {
-    auth.login($scope.userInfos);
+    AuthFactory.login($scope.userInfos);
   };
-
 }]);
 
 
