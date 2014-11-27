@@ -88,13 +88,10 @@ app.factory('auth', function($http, $q, $window) {
 
 app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) {
 
-  $scope.userConnexion = function() {
-    console.log('connext');
+  $scope.userConnection = function() {
+    console.log($scope.user);
   };
-
-  $scope.$watch('user', function (u) {
-      console.log(u);
-  });
+  
 }]);
 
 

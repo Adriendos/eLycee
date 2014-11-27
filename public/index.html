@@ -59,8 +59,8 @@
         <main class="app row" ng-view></main>
 
         <!-- LOGIN MODAL -->
-        <div ng-controller="ConnexionController">
-            <form class="ui basic modal" id="connexionPopUp" ng-submit="userConnection()">
+        <div >
+            <form class="ui basic modal" id="connexionPopUp" ng-controller="ConnexionController">
                 <i class="close icon"></i>
                 <div class="header">
                     Connectez-vous !
@@ -75,7 +75,7 @@
                                 <div class="required field">
                                     <label class="popupLabel">Adresse email : </label>
                                     <div class="ui icon input">
-                                        <input type="text" name="email" ng-model="user.email" placeholder="Email">
+                                        <input type="email" name="email" ng-model="user.email" placeholder="Email">
                                         <i class="user icon"></i>
                                     </div>
                                 </div>
@@ -86,19 +86,18 @@
                                         <i class="lock icon"></i>
                                     </div>
                                 </div>
-
-                                 <p style="color: white;">debug user={{user | json}}</p>
+                                <p style="color: white;">debug user={{user | json}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="actions">
                     <div class="two fluid ui inverted buttons">
-                        <div class="ui red basic inverted button">
+                        <button type="reset" class="ui red basic inverted button">
                             <i class="remove icon"></i>
                             Reset
-                        </div>
-                        <button type="submit" class="ui green basic inverted button">
+                        </button>
+                        <button type="submit" id="submit" ng-click="userConnection()" class="ui green basic inverted button">
                             <i class="checkmark icon"></i>
                             Connexion
                         </button>
