@@ -8,6 +8,20 @@ app.controller('NavController', function($scope, $location) {
   };
 });
 
+app.factory(('Posts'), function() {
+  posts.query = function() {
+    $http.get('api/v1/posts').
+    success(function(data, status, headers, config) {
+      return data.posts;
+      console.log(data); //debug
+    }).
+    error(function(data, status, headers, config) {
+      console.info('error => '+ status);
+      console.log(config); //debug
+    });
+  }
+});
+
 app.controller('HomeController', function($http, $location, $scope) {
   $http.get('api/v1/posts').
   success(function(data, status, headers, config) {
