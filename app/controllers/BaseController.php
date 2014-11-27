@@ -41,9 +41,7 @@ class BaseController extends Controller {
 		$returnName = strtolower($ctrl . 's');
  
 		return Response::json(array(
-			'error'     => false,
 			$returnName => $return,
-			200
 		));
 	}
 
@@ -102,9 +100,7 @@ class BaseController extends Controller {
 		
 		$returnName = strtolower($ctrl);
 		return Response::json([
-				'error'     => false,
 				$returnName => $elem,
-				200
 			]
 		);
 	}
