@@ -87,15 +87,6 @@ class BaseController extends Controller {
 	 */
 	public function show($id)
 	{	
-		var_dump($id);
-		if( !is_int($id) ) 
-		{
-			return Response::json([
-					'error'     => true,
-					404
-				]
-			);
-		}
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
