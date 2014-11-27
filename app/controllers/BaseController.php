@@ -3,42 +3,13 @@
 class BaseController extends Controller {
 
 	/**
-	 * TODO 
-	 * facto : 
-	 * $request = Route::getCurrentRoute()->getAction();
-	 * $ctrl    = str_replace('Controller@index', '', $request['controller']);
-	 *
-	 * By =>
-	   'method' => __FUNCTION__, get method name
-	   'rq' => $request,
-	   'ctrl-model'=>$ctrl,
-	 */	
-
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	protected function setupLayout()
-	{
-		if ( ! is_null($this->layout))
-		{
-			$this->layout = View::make($this->layout);
-		}
-	}
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		// $request = Route::getCurrentRoute()->getAction();
-		// $ctrl    = str_replace('Controller@index', '', $request['controller']);
-
-		extract( $this->getModelName(__FUNCTION__) );
-
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$ressources = $model::all();
  
 		return Response::json(array(
@@ -48,15 +19,16 @@ class BaseController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * [TODO]
+	 * 
+	 [TODO]
 	 * @return View
 	 */
 	public function create()
 	{
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@create', '', $request['controller']);
+		// $request = Route::getCurrentRoute()->getAction();
+		// $ctrl    = str_replace('Controller@create', '', $request['controller']);
 
-		return View::make('admin.create'.$ctrl,[]);
+		// return View::make('admin.create'.$ctrl,[]);
 	}
 
 	/**
@@ -65,11 +37,10 @@ class BaseController extends Controller {
 	 * @return Response
 	 */
 	public function store()
-	{
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@store', '', $request['controller']);
-
-		$model = new $ctrl();
+	{	
+		// [TODO] check if everything ok after refacto + validate value
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$model = new $model();
 
 		foreach ($_POST as $key => $value) 
 		{
@@ -94,14 +65,11 @@ class BaseController extends Controller {
 	 */
 	public function show($id)
 	{	
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@show', '', $request['controller']);
-		
-		$elem = $ctrl::findOrFail($id);
-		
-		$returnName = strtolower($ctrl);
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$elem = $model::findOrFail($id);
+
 		return Response::json([
-				$returnName => $elem,
+				$vars => $elem,
 			]
 		);
 	}
@@ -137,22 +105,22 @@ class BaseController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@destroy', '', $request['controller']);
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 
-        $elem = $ctrl::findOrFail($id);
+        $elem = $model::findOrFail($id);
         $elem->delete();
 
-        return Redirect::to('admin');
+        // [TODO = > send ok or not]
+        // return Redirect::to('admin');
 	}
 
 	/**
-	 * get model name
+	 * [HELPER] => get model name and vars return name
 	 * 
 	 * @param str methodName
-	 * @return str modelName
+	 * @return array modelNameand vars 
 	 */
-	private function getModelName($methodName) 
+	private function getModelNameAndVarsName($methodName) 
 	{
 		$request   = Route::getCurrentRoute()->getAction();
 		$model = str_replace('Controller@' . $methodName, '', $request['controller']);
