@@ -16,7 +16,7 @@
 
     <div class="ui page grid" ng-class="{pusher : isAdmin()}">
         
-        <!-- HEADER/NAV -->
+        <!-- NAV -->
         <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
         
         <!-- NAV ADMIN --> 
@@ -27,6 +27,16 @@
 
        <!-- LOGIN MODAL -->
        <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
+
+       <!-- LOADING SPINNER -->
+       <div spinner class="loader-section">
+        <div class="loader-wrapper">
+            <span class="loader-quart-1 loader"></span>
+            <span class="loader loader-quart-2"></span>
+            <span class="loader loader-quart-3"></span>
+            <span class="loader loader-quart-4"></span>
+        </div>
+       </div>
 
        <!-- FOOTER -->
    
@@ -52,6 +62,7 @@
     <script type="text/javascript" src="src/app/factories/PostsFactory.js"></script>
     <script type="text/javascript" src="src/app/controllers/ContactController.js"></script>
     <script type="text/javascript" src="src/app/admin/controllers/AdminController.js"></script>
+    <script type="text/javascript" src="src/app/directives/directives.js"></script>
     
     <!-- Behaviours -->
     <script type="text/javascript" src="src/assets/js/behavior.js"></script>

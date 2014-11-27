@@ -23,21 +23,129 @@
 	} 
 }
 
-.ui {
-	&.menu {
-		.menu {
-			margin-top: 3px; 
-		}
-	}
+    /*.ui {
+    	&.menu {
+    		.menu {
+    			margin-top: 3px; 
+    		}
+    	}
 
-	.modal & { // connexion utilisateur
-		&.form {
-			.field>label {
-				color: white;
-			}
-		}
-	}
+    	.modal & { // connexion utilisateur
+    		&.form {
+    			.field>label {
+    				color: white;
+    			}
+    		}
+    	}
+    }
+
+*/
+
+// __Loader
+.loader-section{
+    background-color:rgba(0,0,0,0.4);
+    height: 100px;
+    line-height: 100px;
+    width:100px;
+    border-radius: 100px;
+    z-index: 100;
+    position: absolute;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+
+    .loader-wrapper {
+        text-align:center;
+        position: relative;
+
+        .loader{
+            display: inline-block;
+            vertical-align: middle;
+            position: absolute;
+            margin:0 auto;
+            left:0;
+            right:0;
+            box-sizing:border-box;
+        }
+
+        .loader-quart-1:after {
+            content: '';
+            width:50px;
+            position: absolute;
+            margin:0 auto;
+            left:0;right:0; top:25px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-bottom-color:white;
+            border-top-color:white;
+            border-radius: 50px;
+            -webkit-animation:spin 1s linear 1s infinite;
+        }
+
+        .loader-quart-2:after {
+            content: '';
+            width:40px;
+            position: absolute;
+             margin:0 auto;
+            left:0;right:0;
+            top:30px;
+            height:40px;
+            border: 4px solid transparent;
+            border-bottom-color:white;
+            border-top-color:white;
+            border-radius: 40px;
+            -webkit-animation:spin 1s linear 0s infinite;
+             -webkit-animation:spinreverse 2s linear 0.5s infinite;
+        }
+
+        .loader-quart-3:after {
+            content: '';
+            width:30px;
+            position: absolute;
+             margin:0 auto;
+            left:0;right:0;
+            top:35px;
+            height:30px;
+            border: 4px solid transparent;
+            border-bottom-color:white;
+            border-top-color:white;
+            border-radius: 30px;
+            -webkit-animation:spin 1s linear 0s infinite;
+        }
+
+        .loader-quart-4:after {
+            content: '';
+            width:20px;
+            position: absolute;
+             margin:0 auto;
+            left:0;right:0;
+            top:40px;
+            height:20px;
+            border: 4px solid transparent;
+            border-top-color:white;
+            border-bottom-color:white;
+            border-radius: 20px;
+            -webkit-animation:spin 1s linear 0s infinite;
+             -webkit-animation:spinreverse 1s linear 0.5s infinite;
+        }
+
+
+    }
+
 }
+
+@-webkit-keyframes spin {
+    0%{ -webkit-transform:rotate(0deg);}
+    100%{ -webkit-transform:rotate(-360deg);}
+}
+
+@-webkit-keyframes spinreverse {
+    0%{ -webkit-transform:rotate(0deg);}
+    100%{ -webkit-transform:rotate(360deg);}
+}
+
 
 
 
