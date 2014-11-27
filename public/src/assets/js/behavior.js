@@ -12,4 +12,9 @@ $(window).on("scroll", function () {
 	} else {
 		$('#navbar').removeClass('sticked');
 	}
+<<<<<<< HEAD
 }); 
+=======
+});
+
+>>>>>>> 9e8dc765e946f6268a4ecc39e6111d621e4b3ac6
