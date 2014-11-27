@@ -8,32 +8,31 @@ app.controller('NavController', ['$scope', '$location', function($scope, $locati
   };
 }]);
 
-app.factory('Posts', function($http) {
-  var posts = {};
-  posts.query = function() {
-    $http.get('api/v1/posts').
-    success(function(data, status, headers, config) {
-      console.log('ok'); //debug
-      return data.posts;
-    }).
-    error(function(data, status, headers, config) {
-      console.info('error => '+ status);
-      console.log(config); //debug
-    });
-  };
-  return posts;
-});
+app.factory('postsFactory', ['$http', function($http) {
+  var urlBase = 'api/v1/posts';
+  var postsFactory = {};
 
-app.controller('HomeController', ['$location', '$scope', 'Posts', function(Posts, $location, $scope) {
-  // $http.get('api/v1/posts').
-  // success(function(data, status, headers, config) {
-  //   $scope.allPosts = data;
-  //   console.log(data);
-  // }).
-  // error(function(data, status, headers, config) {
-  //   console.info('error => '+ status);
-  //   console.log(config);
-  // });
+  postsFactory.getPosts = function () {
+    return $http.get(urlBase);
+  };
+
+  return postsFactory;
+}]);
+
+app.controller('HomeController',['postsFactory', '$scope', function(postsFactory, $scope) {
+    $scope.posts;
+
+    getPosts();
+
+    function getPosts() {
+      postsFactory.getPosts()
+          .success(function (posts) {
+              $scope.posts = posts;
+          })
+          .error(function (error) {
+              $scope.status = 'Unable to load post data: ' + error.message;
+          });
+    }
 }]);
 
 
