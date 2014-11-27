@@ -83,7 +83,6 @@ class BaseController extends Controller {
 	 */
 	public function show($id)
 	{	
-<<<<<<< HEAD
 		var_dump($id);
 		if( !is_int($id) ) 
 		{
@@ -93,23 +92,16 @@ class BaseController extends Controller {
 				]
 			);
 		}
-
-=======
->>>>>>> e66a44967a97d724dd380a9ce097d9f47e84b58e
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
 		$elem = $ctrl::findOrFail($id);
 		
 		$returnName = strtolower($ctrl);
-		
 		return Response::json([
 				'error'     => false,
 				$returnName => $elem,
-<<<<<<< HEAD
-=======
 				'method' => method_get_name(),
->>>>>>> e66a44967a97d724dd380a9ce097d9f47e84b58e
 				200
 			]
 		);
