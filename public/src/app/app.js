@@ -40,6 +40,18 @@ app.controller('ContactController', function($scope) {
 });
 
 
+
+// ************* JEREMIE => connexion user 
+
+app.controller('ConnexionController', function($scope) {
+  // $scope.$on('mapInitialized', function(event, map) {
+  //   console.log('ready');
+  //   });
+});
+
+
+
+
 // ROUTING ANGULAR
 app.config(['$routeProvider',
   function($routeProvider) {

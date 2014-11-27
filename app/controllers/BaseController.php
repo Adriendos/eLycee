@@ -3,7 +3,15 @@
 class BaseController extends Controller {
 
 	/**
-	 * 
+	 * TODO 
+	 * facto : 
+	 * $request = Route::getCurrentRoute()->getAction();
+	 * $ctrl    = str_replace('Controller@index', '', $request['controller']);
+	 *
+	 * By =>
+	   'method' => __FUNCTION__, get method name
+	   'rq' => $request,
+	   'ctrl-model'=>$ctrl,
 	 */	
 
 	/**
@@ -41,7 +49,7 @@ class BaseController extends Controller {
 
 	/**
 	 * Show the form for creating a new resource.
-	 *
+	 * [TODO]
 	 * @return View
 	 */
 	public function create()
@@ -97,9 +105,6 @@ class BaseController extends Controller {
 		return Response::json([
 				'error'     => false,
 				$returnName => $elem,
-				'method' => __FUNCTION__,
-				'rq' => $request,
-				'ctrl-model'=>$ctrl,
 				200
 			]
 		);
@@ -107,21 +112,25 @@ class BaseController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 *
+	 * [TODO]
 	 * @param  int  $id
 	 * @return View
 	 */
 	public function edit($id)
 	{
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@show', '', $request['controller']);
+		// $request = Route::getCurrentRoute()->getAction();
+		// $ctrl    = str_replace('Controller@edit', '', $request['controller']);
 
-        $elem = $ctrl::findOrFail($id);
+  //       $elem = $ctrl::findOrFail($id);
 
-        $returnName = strtolower($ctrl);
+  //       $returnName = strtolower($ctrl);
 
-        return View::make('admin.edit'.$ctrl,[
-                'returnName' => $eleme]);
+  //       return Response::json([
+		// 		'error'     => false,
+		// 		$returnName => $elem,
+		// 		200
+		// 	]
+		// );
 	}
 
 	/**
