@@ -11,10 +11,13 @@
 </head>
 <body>
     <!-- BODY -->
-    <div class="ui page grid" ng-controller="MainController as main">
+    <div ng-include src="'src/app/admin/views/sidebar.html'" class="row" ng-hide="!isActive('/admin')"></div>
+
+    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : isActive('/admin')}">
 
         <!-- HEADER/NAV -->
         <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isActive('/admin')"></div>
+        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-hide="! isActive('/admin')"></div>
 
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-view></main>
