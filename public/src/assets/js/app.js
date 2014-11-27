@@ -25,7 +25,7 @@ app.controller('NewsController', function($scope) {
 }); 
 
 app.controller('ContactController', function($scope) {
-
+ 
 });
 
 
