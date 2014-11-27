@@ -1,4 +1,4 @@
-app.controller('HomeController',['postsFactory', '$scope', function(postsFactory, $scope) {
+app.controller('HomeController',['postsFactory', '$scope', 'growl', function(postsFactory, $scope, growl) {
     $scope.posts;
 
     getAllPosts();
@@ -8,7 +8,8 @@ app.controller('HomeController',['postsFactory', '$scope', function(postsFactory
         .success(function (posts) {
             $scope.posts = posts;
         })
-        .error(function (error) {
+        .error(function (error) {   
+            $scope.notify('test notifications, remettre bonne url dans factory','error');
             $scope.status = 'Unable to load post data: ' + error.message;
         });
     }
