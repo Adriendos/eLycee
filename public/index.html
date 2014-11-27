@@ -17,13 +17,19 @@
         <!-- HEADER -->
         <!-- TODO: shrink navbar with classie.js -->
         <div class="row">
-        <div id="navbar" class="ui menu navbar" ng-controller="NavController">
+        <div id="navbar" class="ui secondary pointing menu navbar" ng-controller="NavController">
                 <a href="#/" class="brand item">eLycee</a>
                 <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
                 <a href="#/news" class="item" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
                 <a href="#/contact" class="item" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
 
                 <div class="right menu">
+                    <div class="item">
+                        <div class="ui icon input">
+                            <input type="text" placeholder="Search...">
+                            <i class="search link icon"></i>
+                        </div>
+                    </div>
                     <a href="" class="item" id="connexion">
                         <div class="ui animated button positive">
                           <div class="visible content">Connexion</div>
