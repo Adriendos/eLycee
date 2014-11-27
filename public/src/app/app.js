@@ -8,16 +8,32 @@ app.controller('NavController', ['$scope', '$location', function($scope, $locati
   };
 }]);
 
-app.controller('HomeController', ['$http', '$location', '$scope', function($http, $location, $scope) {
-  $http.get('api/v1/posts').
-  success(function(data, status, headers, config) {
-    $scope.allPosts = data;
-    console.log(data);
-  }).
-  error(function(data, status, headers, config) {
-    console.info('error => '+ status);
-    console.log(config);
-  });
+app.factory('Posts', function($http) {
+  var posts = {};
+  posts.query = function() {
+    $http.get('api/v1/posts').
+    success(function(data, status, headers, config) {
+      console.log('ok'); //debug
+      return data.posts;
+    }).
+    error(function(data, status, headers, config) {
+      console.info('error => '+ status);
+      console.log(config); //debug
+    });
+  };
+  return posts;
+});
+
+app.controller('HomeController', ['$location', '$scope', 'Posts', function(Posts, $location, $scope) {
+  // $http.get('api/v1/posts').
+  // success(function(data, status, headers, config) {
+  //   $scope.allPosts = data;
+  //   console.log(data);
+  // }).
+  // error(function(data, status, headers, config) {
+  //   console.info('error => '+ status);
+  //   console.log(config);
+  // });
 }]);
 
 
