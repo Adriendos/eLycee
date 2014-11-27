@@ -188,6 +188,11 @@
 
 	.ui.table.celled{
         border-radius: 0; 
+
+        td,th{
+            text-align:center;
+            padding:.5em;
+        }
     }
 
     .ten.wide.column{
@@ -215,4 +220,4 @@
     &.pusher.grid{
     	padding:0;
     }
- }
+ } 
