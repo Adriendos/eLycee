@@ -78,15 +78,19 @@ class BaseController extends Controller {
 		// // La validation et le filtrage sont indispensables !!!
 		// // Vraiment, je suis impardonnable de laisser ça comme ça...
 
-		// $url->save();
-		var_dump($model);
-		die();
+		foreach ($_POST as $key => $value) 
+		{
+			if($key == '_method') { continue; }
+			$model->$key = $value;
+		}
 
-		// return Response::json(array(
-		//   'error' => false,
-		//   'urls' => '$urls->toArray())',
-		//   200
-		// ));
+		$model->save(); 
+
+		return Response::json([
+				'insert' => 'true',
+				200
+			]
+		);
 
         // $exp->save();
         // return Redirect::to('admin');
