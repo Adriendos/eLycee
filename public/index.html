@@ -13,22 +13,18 @@
     <!-- BODY -->
     
     <!-- SIDEBAR ADMIN -->
-    <div ng-include src="'src/app/admin/views/sidebar.html'" ng-hide="!isAdmin()"></div>
+    <div ng-include src="'src/app/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
 
-    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : !isAdmin()}">
+    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : isAdmin()}">
         
         <!-- HEADER/NAV -->
         <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
         
         <!-- NAV ADMIN --> 
-        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-hide="!isAdmin()"></div>
-        <div class="ui black big launch right attached fixed button" data-transition="overlay" data-direction="left" ng-hide="!isAdmin()">
-          <i class="content icon"></i>
-          <span class="text">Menu</span>
-        </div>
+        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
 
        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-       <main class="app row" ng-class="{admin-app : !isAdmin()}" ng-view></main>
+       <main class="app row" ng-class="{admin : isAdmin()}" ng-view></main>
 
        <!-- LOGIN MODAL -->
        <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
@@ -56,6 +52,7 @@
     <script type="text/javascript" src="src/app/controllers/MainController.js"></script>
     <script type="text/javascript" src="src/app/factories/PostsFactory.js"></script>
     <script type="text/javascript" src="src/app/controllers/ContactController.js"></script>
+
     <script type="text/javascript" src="src/app/admin/controllers/AdminController.js"></script>
     
     <!-- Behaviours -->

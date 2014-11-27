@@ -55,6 +55,8 @@
         	&.button{
             	position: absolute;
             	top: 70px;
+            	z-index:10;
+
         	}
         }
 
@@ -72,7 +74,7 @@
 	    }
     }
 
-    .app-admin.row{
+    .app.admin.row{
             text-align: center;
     }
 
@@ -93,5 +95,9 @@
    		display:none;
    		z-index:10;
    		padding-top:75px;
+    }
+
+    &.pusher.grid{
+    	padding:0;
     }
  }
