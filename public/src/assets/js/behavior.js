@@ -12,5 +12,4 @@ $(window).on("scroll", function () {
 	} else {
 		$('#navbar').removeClass('sticked');
 	}
-}); 
-
+});

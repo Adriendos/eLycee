@@ -24,7 +24,6 @@ class BaseController extends Controller {
 	{
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@index', '', $request['controller']);
-
 		$return = $ctrl::all();
 
 		$returnName = strtolower($ctrl . 's');
@@ -66,15 +65,12 @@ class BaseController extends Controller {
 	 */
 	public function store()
 	{
+		$request = Route::getCurrentRoute()->getAction();
+		$ctrl    = str_replace('Controller@store', '', $request['controller']);
 
-		// $request = Route::getCurrentRoute()->getAction();
-		// $ctrl    = str_replace('Controller@store', '', $request['controller']);
-
-		// $elem = new $ctrl();
-
-		// return 'testStore';
-
-		// $url = new Url;
+		$model = new $ctrl();
+		
+		
 		// $url->url = Request::get('url');
 		// $url->description = Request::get('description');
 		// $url->user_id = Auth::user()->id;
@@ -83,7 +79,7 @@ class BaseController extends Controller {
 		// // Vraiment, je suis impardonnable de laisser ça comme ça...
 
 		// $url->save();
-		var_dump($_POST);
+		var_dump($model);
 		die();
 
 		// return Response::json(array(
@@ -104,6 +100,13 @@ class BaseController extends Controller {
 	 */
 	public function show($id)
 	{
+		// if( !is_int($id) ) 
+		// {
+		// 	return Response::json(array(
+		// 		'error' => true,
+		// 		200
+		// 	));
+		// }
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
