@@ -22,7 +22,11 @@
         
         <!-- NAV ADMIN --> 
         <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-hide="!isAdmin()"></div>
-       
+        <div class="ui black big launch right attached fixed button" data-transition="overlay" data-direction="left" ng-hide="!isAdmin()">
+          <i class="content icon"></i>
+          <span class="text">Menu</span>
+        </div>
+
        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
        <main class="app row" ng-class="{admin-app : !isAdmin()}" ng-view></main>
 
