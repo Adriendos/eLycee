@@ -1,0 +1,33 @@
+<div id="navbar" class="ui secondary pointing menu navbar">
+    <a href="#/" class="brand item">eLycee</a>
+    <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
+    <a href="#/news" class="item" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
+    <a href="#/contact" class="item" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
+
+    <div class="right menu">
+        <div class="item">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        <a href="" class="item" id="connexion">
+            <div class="ui animated button positive">
+                <div class="visible content">Connexion</div>
+                <div class="hidden content">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+        </a>
+        <a href="" class="item">
+            <div class="ui circular facebook icon button">
+                <i class="facebook icon"></i>
+            </div>
+        </a>
+        <a href="" class="item">
+            <div class="ui circular twitter icon button">
+                <i class="twitter icon"></i>
+            </div>
+        </a>
+    </div>
+</div>

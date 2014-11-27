@@ -14,6 +14,9 @@ app.config(['$routeProvider',
     }).when('/contact', {
       controller: 'ContactController',
       templateUrl: 'src/app/views/contact.html'
+    }).when('/admin', {
+        controller : 'AdminController',
+        templateUrl : 'src/app/admin/views/admin.html'
     }).otherwise({
       redirectTo: '/'
     });
