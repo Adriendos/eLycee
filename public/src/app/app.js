@@ -2,66 +2,73 @@
 var app;
 app = angular.module('eLycee', ["ngRoute","ngResource","ngMap"]);
 
-app.controller('NavController', function($scope, $location) {
+app.controller('NavController', ['$scope', '$location', function($scope, $location) {
   $scope.isActive = function (viewLocation) { 
     return viewLocation === $location.path();
   };
-});
+}]);
 
-app.factory(('Posts'), function() {
+app.factory('Posts', function($http) {
+  var posts = {};
   posts.query = function() {
     $http.get('api/v1/posts').
     success(function(data, status, headers, config) {
+      console.log('ok'); //debug
       return data.posts;
-      console.log(data); //debug
     }).
     error(function(data, status, headers, config) {
       console.info('error => '+ status);
       console.log(config); //debug
     });
-  }
+  };
+  return posts;
 });
 
-app.controller('HomeController', function($http, $location, $scope) {
+app.controller('HomeController', ['$location', '$scope', 'Posts', function(Posts, $location, $scope) {
+  // $http.get('api/v1/posts').
+  // success(function(data, status, headers, config) {
+  //   $scope.allPosts = data;
+  //   console.log(data);
+  // }).
+  // error(function(data, status, headers, config) {
+  //   console.info('error => '+ status);
+  //   console.log(config);
+  // });
+}]);
+
+
+app.controller('NewsController', ['$http', '$location', '$scope', function($http, $location, $scope) {
   $http.get('api/v1/posts').
-  success(function(data, status, headers, config) {
-    $scope.allPosts = data;
-    console.log(data);
-  }).
-  error(function(data, status, headers, config) {
-    console.info('error => '+ status);
-    console.log(config);
-  });
-});
+    success(function(data, status, headers, config) {
+      $scope.allPosts = data;
+      console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+      console.info('error => '+ status);
+      console.log(config);
+    });
+}]);
 
-
-app.controller('NewsController', function($http, $location, $scope) {
-   $http.get('api/v1/posts').
-  success(function(data, status, headers, config) {
-    $scope.allPosts = data;
-    console.log(data);
-  }).
-  error(function(data, status, headers, config) {
-    console.info('error => '+ status);
-    console.log(config);
-  });
-});
-
-app.controller('ContactController', function($scope) {
+app.controller('ContactController', ['$scope', function($scope) {
   $scope.$on('mapInitialized', function(event, map) {
     console.log('ready');
     });
-});
+}]);
 
 
 
 // ************* JEREMIE => connexion user 
 
-app.controller('ConnexionController', function($scope) {
+app.controller('ConnexionController', ['$scope', function($scope) {
   // $scope.$on('mapInitialized', function(event, map) {
   //   console.log('ready');
   //   });
-});
+  $scope.update = function(user) {
+    // $scope.master = angular.copy(user);
+    console.log($scope.user);
+  };
+  
+}]);
 
 
 

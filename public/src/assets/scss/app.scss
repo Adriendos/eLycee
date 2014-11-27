@@ -23,8 +23,22 @@
 	} 
 }
 
-.ui.menu .menu {
-	margin-top: 3px; 
+.ui {
+	&.menu {
+		.menu {
+			margin-top: 3px; 
+		}
+	}
+
+	.modal & { // connexion utilisateur
+		&.form {
+			.field>label {
+				color: white;
+			}
+		}
+	}
 }
+
+
 
 
