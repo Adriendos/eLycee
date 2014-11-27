@@ -63,12 +63,15 @@
 				'_method': $('[name="_method"]').val() 
 			};
 
-			console.log(fakePutParams);
-
 			$.post( "api/v1/posts", fakePutParams)
 			.done(function( data ) {
 		    	console.log( "Data Loaded: " + data );
 		  	});	
+		  	
+			// $.get( "api/v1/posts", fakePutParams)
+			// .done(function( data ) {
+		 //    	console.log( "Data Loaded: " + data );
+		 //  	});
 		});
 	</script>
 </body>
