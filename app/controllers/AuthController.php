@@ -6,6 +6,9 @@ class AuthController extends \BaseController {
 	{	
 		// extract($_POST);
 
+		echo 'caca';
+		die();
+
 		if(Auth::attempt(['username' => $username, 'password' => $password])
 		{
 			var_dump($_POST);
