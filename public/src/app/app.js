@@ -1,6 +1,6 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource","ngMap"]);
+app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate"]);
 
 // ROUTING ANGULAR
 app.config(['$routeProvider',
