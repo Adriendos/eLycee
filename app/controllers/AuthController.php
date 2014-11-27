@@ -4,16 +4,21 @@ class AuthController extends \BaseController {
 
 	public function login() 
 	{	
-		extract($_POST);
+		// extract($_POST);
 
-		if (Auth::attempt(['email' => $email, 'password' => $password)])
+		var_dump($_POST);
+		die();
+
+		if(Auth::attempt(['username' => $username, 'password' => $password])
 		{
-		    echo 'yes';
-		} 
+
+		}
 		else 
 		{
-			echo 'no';
+			
 		}
+
+		// return 'end login method';
 	}
 
 	public function logout() 

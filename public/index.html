@@ -73,16 +73,16 @@
                         <div class="ui form">
                             <div class="two fields">
                                 <div class="required field">
-                                    <label class="popupLabel">Adresse email : </label>
+                                    <label class="popupLabel">Login : </label>
                                     <div class="ui icon input">
-                                        <input type="email" name="email" ng-model="user.email" placeholder="Email">
+                                        <input type="text" name="username" ng-model="userInfos.username" placeholder="Votre identifiant">
                                         <i class="user icon"></i>
                                     </div>
                                 </div>
                                 <div class="required field">
                                     <label class="popupLabel">Mot de passe : </label>
                                     <div class="ui icon input">
-                                        <input type="password" name="password" ng-model="user.password" placeholder="Password">
+                                        <input type="password" name="password" ng-model="userInfos.password" placeholder="Password">
                                         <i class="lock icon"></i>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                             <i class="remove icon"></i>
                             Reset
                         </button>
-                        <button type="submit" id="submit" ng-click="userConnection()" class="ui green basic inverted button">
+                        <button type="submit" id="submit" ng-click="login()" class="ui green basic inverted button">
                             <i class="checkmark icon"></i>
                             Connexion
                         </button>
