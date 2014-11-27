@@ -17,6 +17,5 @@ $(function() {
 });
 
 // sidebar admin : 
-
 $('.left.vertical.sidebar').first().sidebar('attach events', '.launch.button', 'show');
 

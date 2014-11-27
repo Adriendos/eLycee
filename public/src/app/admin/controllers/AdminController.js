@@ -1,4 +1,4 @@
-app.controller('AdminController', function($scope) {
+app.controller('AdminController', function($scope, $http) {
   $http.get('api/v1/posts').
   success(function(data, status, headers, config) {
     $scope.allPosts = data;
