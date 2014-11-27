@@ -22,15 +22,15 @@ app.controller('HomeController', ['$http', '$location', '$scope', function($http
 
 
 app.controller('NewsController', ['$http', '$location', '$scope', function($http, $location, $scope) {
-   $http.get('api/v1/posts').
-  success(function(data, status, headers, config) {
-    $scope.allPosts = data;
-    console.log(data);
-  }).
-  error(function(data, status, headers, config) {
-    console.info('error => '+ status);
-    console.log(config);
-  });
+  $http.get('api/v1/posts').
+    success(function(data, status, headers, config) {
+      $scope.allPosts = data;
+      console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+      console.info('error => '+ status);
+      console.log(config);
+    });
 }]);
 
 app.controller('ContactController', ['$scope', function($scope) {
@@ -47,6 +47,11 @@ app.controller('ConnexionController', ['$scope', function($scope) {
   // $scope.$on('mapInitialized', function(event, map) {
   //   console.log('ready');
   //   });
+  $scope.update = function(user) {
+    // $scope.master = angular.copy(user);
+    console.log($scope.user);
+  };
+  
 }]);
 
 
