@@ -21,7 +21,8 @@ app.factory('auth', function($http) {
 app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) {
 
   $scope.login = function() {
-    auth.login($scope.user);
+    auth.login($scope.userInfos);
+    console.log($scope.userInfos);
   };
 
 }]);

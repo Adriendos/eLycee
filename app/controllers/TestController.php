@@ -1,6 +1,6 @@
 <?php
 
-class AuthController extends BaseController {
+class TestController extends \BaseController {
 
 	public function login() 
 	{	
@@ -19,10 +19,5 @@ class AuthController extends BaseController {
 		// }
 
 		// return 'end login method';
-	}
-
-	public function logout() 
-	{
-		
 	}
 }
