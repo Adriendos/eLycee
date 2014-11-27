@@ -3,6 +3,10 @@
 class BaseController extends Controller {
 
 	/**
+	 * 
+	 */	
+
+	/**
 	 * Setup the layout used by the controller.
 	 *
 	 * @return void
@@ -101,7 +105,9 @@ class BaseController extends Controller {
 		return Response::json([
 				'error'     => false,
 				$returnName => $elem,
-				'method' => method_get_name(),
+				'method' => __FUNCTION__,
+				'rq' => $request,
+				'ctrl-model'=>$ctrl,
 				200
 			]
 		);
