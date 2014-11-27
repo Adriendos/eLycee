@@ -75,13 +75,11 @@ app.factory('auth', function($http) {
   urlBase = 'api/v1/users',
   auth    = {};
 
-<<<<<<< HEAD
 app.controller('ConnexionController', function($scope) {
   // $scope.$on('mapInitialized', function(event, map) {
   //   console.log('ready');
   //   });
 });
-=======
   auth.getUsers = function() {
     return $http.get(urlBase);
   };
@@ -129,7 +127,6 @@ app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) 
   };
 
 }]);
->>>>>>> 14ac2eb2abd91e6939248ef0578a632fb8c961c9
 
 
 
