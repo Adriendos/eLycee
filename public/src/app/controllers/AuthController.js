@@ -5,11 +5,12 @@ app.factory('auth', function($http) {
   auth    = {};
 
   auth.login = function(userInfos) {
+    console.log(userInfos);
     var request = {
       method: 'POST', 
       url: urlBase+'/login', 
-      data: userInfos, 
-      headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+      data: userInfos 
+      // headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
     };
 
     return $http(request).success(
@@ -29,7 +30,6 @@ app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) 
   $scope.login = function() {
 
     auth.login($scope.userInfos);
-    console.log($scope.userInfos);
   };
 
 }]);
