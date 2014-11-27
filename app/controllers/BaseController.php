@@ -37,13 +37,12 @@ class BaseController extends Controller {
 		// $request = Route::getCurrentRoute()->getAction();
 		// $ctrl    = str_replace('Controller@index', '', $request['controller']);
 
-		$model = $this->getModelName(__FUNCTION__);
-		$return = $model::all();
+		extract( $this->getModelName(__FUNCTION__) );
 
-		$returnName = strtolower($model . 's');
+		$ressources = $model::all();
  
 		return Response::json(array(
-			$returnName => $return,
+			$vars => $ressources,
 		));
 	}
 
@@ -156,9 +155,14 @@ class BaseController extends Controller {
 	private function getModelName($methodName) 
 	{
 		$request   = Route::getCurrentRoute()->getAction();
-		$modelName = str_replace('Controller@' . $methodName, '', $request['controller']);
+		$model = str_replace('Controller@' . $methodName, '', $request['controller']);
 
-		return $modelName;
+		$modelAndVarsName = [
+			'model' => $model,
+			'vars'  => strtolower($model . 's'),
+		];
+
+		return $modelAndVarsName;
 	}
 
 }
