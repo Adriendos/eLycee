@@ -56,17 +56,44 @@ app.controller('ContactController', ['$scope', function($scope) {
 
 
 
-// ************* JEREMIE => connexion user 
-
-app.controller('ConnexionController', ['$scope', function($scope) {
-  // $scope.$on('mapInitialized', function(event, map) {
-  //   console.log('ready');
-  //   });
-  $scope.update = function(user) {
-    // $scope.master = angular.copy(user);
-    console.log($scope.user);
+// ************* JEREMIE => Authenticate user url laravel = api/v1/auth/login api/v1/auth/logout
+app.factory('auth', function($http, $q, $window) {
+  var userInfos;
+ 
+  function login(userName, password) {
+    var deferred = $q.defer();
+ 
+    $http.post('/api/login', {
+      userName: userName,
+      password: password
+    }).then(function(result) {
+      userInfo = {
+        accessToken: result.data.access_token,
+        userName: result.data.userName
+      };
+      $window.sessionStorage['userInfos'] = JSON.stringify(userInfo);
+      deferred.resolve(userInfo);
+    }, function(error) {
+      deferred.reject(error);
+    });
+ 
+    return deferred.promise;
+  }
+ 
+  return {
+    login: login
   };
-  
+});
+
+app.controller('ConnexionController', ['$scope', 'auth', function($scope, auth) {
+
+  $scope.userConnexion = function() {
+    console.log('connext');
+  };
+
+  $scope.$watch('user', function (u) {
+      console.log(u);
+  });
 }]);
 
 
