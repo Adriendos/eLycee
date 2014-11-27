@@ -44,13 +44,7 @@ app.controller('ContactController', ['$scope', function($scope) {
 // ************* JEREMIE => connexion user 
 
 app.controller('ConnexionController', ['$scope', function($scope) {
-  // $scope.$on('mapInitialized', function(event, map) {
-  //   console.log('ready');
-  //   });
-  $scope.update = function(user) {
-    // $scope.master = angular.copy(user);
-    console.log($scope.user);
-  };
+  
   
 }]);
 
