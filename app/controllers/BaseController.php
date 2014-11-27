@@ -53,16 +53,6 @@ class BaseController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function test()
-	{
-		echo 'toto';
-    }
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
 		$request = Route::getCurrentRoute()->getAction();
@@ -93,6 +83,7 @@ class BaseController extends Controller {
 	 */
 	public function show($id)
 	{	
+<<<<<<< HEAD
 		var_dump($id);
 		if( !is_int($id) ) 
 		{
@@ -103,6 +94,8 @@ class BaseController extends Controller {
 			);
 		}
 
+=======
+>>>>>>> e66a44967a97d724dd380a9ce097d9f47e84b58e
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
@@ -113,6 +106,10 @@ class BaseController extends Controller {
 		return Response::json([
 				'error'     => false,
 				$returnName => $elem,
+<<<<<<< HEAD
+=======
+				'method' => method_get_name(),
+>>>>>>> e66a44967a97d724dd380a9ce097d9f47e84b58e
 				200
 			]
 		);
