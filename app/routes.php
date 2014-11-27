@@ -11,6 +11,26 @@
 |
 */
 
+Route::pattern('id','[1-9][0-9]*');
+
+//404 Json response
+App::error(function(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+   return Response::json([
+			'error'     => true,
+			404
+		]
+	);
+});
+
+App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+   return Response::json([
+			'error'     => true,
+			404
+		]
+	);
+});
+
+// globals routes
 Route::group(array('prefix' => 'v1', 'before' => 'auth.basic'), function() 
 {
     Route::resource('url', 'UrlController');
@@ -25,16 +45,6 @@ Route::group(array('prefix' => 'v1'), function()
 	Route::resource('choices', 'ChoiceController');
 	Route::resource('scores', 'ScoreController');
 });
-
-
-
-
-
-
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
 
 
 

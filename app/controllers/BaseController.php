@@ -3,6 +3,10 @@
 class BaseController extends Controller {
 
 	/**
+	 * 
+	 */	
+
+	/**
 	 * Setup the layout used by the controller.
 	 *
 	 * @return void
@@ -53,43 +57,26 @@ class BaseController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function test()
-	{
-		echo 'toto';
-    }
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@store', '', $request['controller']);
 
 		$model = new $ctrl();
-		
-		
-		// $url->url = Request::get('url');
-		// $url->description = Request::get('description');
-		// $url->user_id = Auth::user()->id;
 
-		// // La validation et le filtrage sont indispensables !!!
-		// // Vraiment, je suis impardonnable de laisser ça comme ça...
+		foreach ($_POST as $key => $value) 
+		{
+			if($key == '_method') { continue; }
+			$model->$key = $value;
+		}
 
-		// $url->save();
-		var_dump($model);
-		die();
+		$model->save(); 
 
-		// return Response::json(array(
-		//   'error' => false,
-		//   'urls' => '$urls->toArray())',
-		//   200
-		// ));
-
-        // $exp->save();
-        // return Redirect::to('admin');
+		return Response::json([
+				'insert' => 'true',
+				200
+			]
+		);
     }
 
 	 /**
@@ -99,26 +86,22 @@ class BaseController extends Controller {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-		// if( !is_int($id) ) 
-		// {
-		// 	return Response::json(array(
-		// 		'error' => true,
-		// 		200
-		// 	));
-		// }
+	{	
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
 		$elem = $ctrl::findOrFail($id);
 		
 		$returnName = strtolower($ctrl);
-		
-		return Response::json(array(
-			'error'     => false,
-			$returnName => $elem,
-			200
-		));;
+		return Response::json([
+				'error'     => false,
+				$returnName => $elem,
+				'method' => __FUNCTION__,
+				'rq' => $request,
+				'ctrl-model'=>$ctrl,
+				200
+			]
+		);
 	}
 
 	/**
