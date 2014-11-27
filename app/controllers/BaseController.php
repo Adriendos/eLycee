@@ -69,14 +69,6 @@ class BaseController extends Controller {
 		$ctrl    = str_replace('Controller@store', '', $request['controller']);
 
 		$model = new $ctrl();
-		
-		
-		// $url->url = Request::get('url');
-		// $url->description = Request::get('description');
-		// $url->user_id = Auth::user()->id;
-
-		// // La validation et le filtrage sont indispensables !!!
-		// // Vraiment, je suis impardonnable de laisser ça comme ça...
 
 		foreach ($_POST as $key => $value) 
 		{
@@ -91,9 +83,6 @@ class BaseController extends Controller {
 				200
 			]
 		);
-
-        // $exp->save();
-        // return Redirect::to('admin');
     }
 
 	 /**
@@ -103,14 +92,17 @@ class BaseController extends Controller {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-		// if( !is_int($id) ) 
-		// {
-		// 	return Response::json(array(
-		// 		'error' => true,
-		// 		200
-		// 	));
-		// }
+	{	
+		var_dump($id);
+		if( !is_int($id) ) 
+		{
+			return Response::json([
+					'error'     => true,
+					404
+				]
+			);
+		}
+
 		$request = Route::getCurrentRoute()->getAction();
 		$ctrl    = str_replace('Controller@show', '', $request['controller']);
 		
@@ -118,11 +110,12 @@ class BaseController extends Controller {
 		
 		$returnName = strtolower($ctrl);
 		
-		return Response::json(array(
-			'error'     => false,
-			$returnName => $elem,
-			200
-		));;
+		return Response::json([
+				'error'     => false,
+				$returnName => $elem,
+				200
+			]
+		);
 	}
 
 	/**
