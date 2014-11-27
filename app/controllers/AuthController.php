@@ -9,16 +9,16 @@ class AuthController extends \BaseController {
 		echo 'caca';
 		die();
 
-		if(Auth::attempt(['username' => $username, 'password' => $password])
-		{
-			var_dump($_POST);
-		}
-		else 
-		{
-			echo 'shit';
-		}
+		// if(Auth::attempt(['username' => $username, 'password' => $password])
+		// {
+		// 	var_dump($_POST);
+		// }
+		// else 
+		// {
+		// 	echo 'shit';
+		// }
 
-		echo 'end login method';
+		// echo 'end login method';
 	}
 
 	public function logout() 
