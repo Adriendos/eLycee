@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
     <link rel="stylesheet" href="dist/assets/css/app.min.css">  
 </head>
-<body>
-    <!-- BODY -->
+<body ng-controller="MainController as main">
     
     <!-- SIDEBAR ADMIN -->
     <div ng-include src="'src/app/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
 
-    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : isAdmin()}">
+    <div class="ui page grid" ng-class="{pusher : isAdmin()}">
         
         <!-- HEADER/NAV -->
         <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
