@@ -2,13 +2,13 @@
 var app;
 app = angular.module('eLycee', ["ngRoute","ngResource","ngMap"]);
 
-app.controller('NavController', function($scope, $location) {
+app.controller('NavController', ['$scope', '$location', function($scope, $location) {
   $scope.isActive = function (viewLocation) { 
     return viewLocation === $location.path();
   };
-});
+}]);
 
-app.controller('HomeController', function($http, $location, $scope) {
+app.controller('HomeController', ['$http', '$location', '$scope', function($http, $location, $scope) {
   $http.get('api/v1/posts').
   success(function(data, status, headers, config) {
     $scope.allPosts = data;
@@ -18,10 +18,10 @@ app.controller('HomeController', function($http, $location, $scope) {
     console.info('error => '+ status);
     console.log(config);
   });
-});
+}]);
 
 
-app.controller('NewsController', function($http, $location, $scope) {
+app.controller('NewsController', ['$http', '$location', '$scope', function($http, $location, $scope) {
    $http.get('api/v1/posts').
   success(function(data, status, headers, config) {
     $scope.allPosts = data;
@@ -31,23 +31,23 @@ app.controller('NewsController', function($http, $location, $scope) {
     console.info('error => '+ status);
     console.log(config);
   });
-});
+}]);
 
-app.controller('ContactController', function($scope) {
+app.controller('ContactController', ['$scope', function($scope) {
   $scope.$on('mapInitialized', function(event, map) {
     console.log('ready');
     });
-});
+}]);
 
 
 
 // ************* JEREMIE => connexion user 
 
-app.controller('ConnexionController', function($scope) {
+app.controller('ConnexionController', ['$scope', function($scope) {
   // $scope.$on('mapInitialized', function(event, map) {
   //   console.log('ready');
   //   });
-});
+}]);
 
 
 
