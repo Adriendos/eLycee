@@ -14,13 +14,13 @@
     <div class="ui page grid" ng-controller="MainController as main">
 
         <!-- HEADER/NAV -->
-        <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isActive('/admin')"></div>
+        <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
 
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-view></main>
 
         <!-- LOGIN MODAL -->
-        <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isActive('/admin')"></div>
+        <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
 
         <!-- FOOTER -->
 
