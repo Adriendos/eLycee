@@ -64,6 +64,8 @@ app.config(['$routeProvider',
     }).when('/contact', {
       controller: 'ContactController',
       templateUrl: 'src/app/views/contact.html'
+    }).otherwise({
+      redirectTo: '/'
     });
   }]);
 

@@ -101,7 +101,6 @@ class BaseController extends Controller {
 		$elem = $ctrl::findOrFail($id);
 		
 		$returnName = strtolower($ctrl);
-		
 		return Response::json([
 				'error'     => false,
 				$returnName => $elem,
