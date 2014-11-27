@@ -31,9 +31,9 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 });
 
 // globals routes
-Route::group(array('prefix' => 'v1', 'before' => 'auth.basic'), function() 
+Route::group(array('prefix' => 'v1', 'before' => 'auth'), function() 
 {
-    Route::resource('url', 'UrlController');
+    Route::resource('auth', 'AuthController');
 });
 
 Route::group(array('prefix' => 'v1'), function() 
