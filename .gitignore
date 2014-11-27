@@ -1,4 +1,4 @@
-/bootstrap/compiled.php
+/bootstrap/*.php
 /vendor
 composer.phar
 composer.lock
@@ -12,6 +12,7 @@ Thumbs.db
 /.sass-cache/
 /bootstrap/start.php
 /app/config/local/database.php
+/app/config/database.php
 
 lib-cov
 *.seed

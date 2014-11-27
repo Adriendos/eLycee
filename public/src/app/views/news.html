@@ -1,29 +1,12 @@
-<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE HOME TEUB</h1></div>
+<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE NEWS</h1></div>
+
 <div class="ui divider"></div>
-<div class="six wide column">
-	<div class="ui fluid card">
-		<div class="image">
-			<img src="http://lorempixel.com/g/300/200/">
-		</div>
-		<div class="content">
-			<div class="header">Actualité de merde</div>
-			<div class="meta">
-				<a class="group">Put meta here</a>
-			</div>
-			<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
-		</div>
-		<div class="extra content">
-			<a class="right floated created">Author</a>
-			<a class="friends">Comments or other shit</a>
-		</div>
-	</div>
-</div>
-<div class="six wide column">
+<div class="twelve wide column">
 	<div class="ui relaxed divided items">
 		<!-- START LOOP -->
-		<div class="item">
+		<div class="item" ng-repeat="post in allPosts.posts | limitTo:3">
 			<div class="ui small image">
-				<img src="http://lorempixel.com/300/200/sports	">
+				<img src="http://lorempixel.com/300/200/nightlife">
 			</div>
 			<div class="content">
 				<a class="header">Content Header</a>
@@ -40,6 +23,7 @@
 			</div>
 		</div>
 		<!-- END LOOP -->
+<<<<<<< HEAD:public/src/assets/partials/home.html
 
 		<div class="item">
 			<div class="ui small image">
@@ -61,22 +45,24 @@
 		</div>
 		<div class="item">
 			<div class="ui small image">
+=======
+	</div>
+	<div class="ui hidden divider"></div>
+	<div class="ui divided items">
+		<!-- START LOOP -->
+		<div class="link item" ng-repeat="post in allPosts.posts | limitTo:3">
+			<div class="ui tiny image">
+>>>>>>> d010f796785c1f86ec809e35b28b4712fbec29ac:public/src/app/views/news.html
 				<img src="http://lorempixel.com/300/200/sports">
 			</div>
 			<div class="content">
 				<a class="header">Content Header</a>
-				<div class="meta">
-					<a>Date</a>
-					<a>Category</a>
-				</div>
 				<div class="description">
 					A description which may flow for several lines and give context to the content.
 				</div>
-				<div class="extra">
-					<img src="/images/wireframe/square-image.png" class="ui circular avatar"> Username
-				</div>
 			</div>
 		</div>
+		<!-- END LOOP -->
 	</div>
 </div>
 <div class="four wide column">
@@ -128,5 +114,5 @@
 	</div>
 </div>
 <div class="degeu">
-	{{ allPosts}}
+	{{ allPosts }}
 </div>

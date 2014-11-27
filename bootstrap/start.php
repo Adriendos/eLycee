@@ -25,7 +25,11 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
+<<<<<<< HEAD
 	'local' => array('PC-ADRIEN'),
+=======
+	'local' => array('jeremiedev.local'),
+>>>>>>> d010f796785c1f86ec809e35b28b4712fbec29ac
 ));
 
 /*

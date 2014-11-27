@@ -1,101 +1,117 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="eLycee">
 <head>
-	<meta charset="UTF-8">
-	<title>eLycee - </title>
-	<meta name="description" content="">
-	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-	<link rel="stylesheet" href="dist/assets/css/app.min.css">	
+    <meta charset="UTF-8">
+    <title>eLycee - </title>
+    <meta name="description" content="">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="dist/assets/css/app.min.css">	
 </head>
 </head>
 <body>
-	<!-- BODY -->
-	<div class="ui page grid">
-	
-		<!-- HEADER -->
-		<!-- TODO: shrink navbar with classie.js -->
+    <!-- BODY -->
+    <div class="ui page grid">
+
+        <!-- HEADER -->
+        <!-- TODO: shrink navbar with classie.js -->
         <div class="row">
-            <div class="ui menu navbar" ng-controller="NavController">
+        <div id="navbar" class="ui menu navbar" ng-controller="NavController">
                 <a href="#/" class="brand item">eLycee</a>
-                <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Home</a>
-                <a href="#/news" class="item" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>News</a>
+                <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
+                <a href="#/news" class="item" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
                 <a href="#/contact" class="item" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-                
+
                 <div class="right menu">
                     <a href="" class="item" id="connexion">
-                    	<i class="icon user"></i> Connexion
+                        <div class="ui animated button positive">
+                          <div class="visible content">Connexion</div>
+                          <div class="hidden content">
+                            <i class="user icon"></i>
+                          </div>
+                        </div>
                     </a>
                     <a href="" class="item">
-						<i class="facebook icon"></i>
+                        <div class="ui circular facebook icon button">
+                            <i class="facebook icon"></i>
+                        </div>
                     </a>
                     <a href="" class="item">
-						<i class="twitter icon"></i>
+                        <div class="ui circular twitter icon button">
+                            <i class="twitter icon"></i>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
 
 
-         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+
+
+
+        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-view></main>
-		
-		<!-- LOGIN POPUP-MODAL -->
+
+        <!-- LOGIN MODAL -->
         <div class="ui basic modal" id="connexionPopUp">
-        	<i class="close icon"></i>
-        	<div class="header">
-        		Connectez-vous !
-        	</div>
-        	<div class="content">
-        		<div class="image">
-        			<i class="users icon"></i>
-        		</div>
-        		<div class="description">
-    				<div class="ui form">
-	        			<div class="two fields">
-						    <div class="required field">
-						      <label class="popupLabel">Username</label>
-						      <div class="ui icon input">
-						        <input type="text" placeholder="Username">
-						        <i class="user icon"></i>
-						      </div>
-						    </div>
-						    <div class="required field">
-						      <label class="popupLabel">Password</label>
-						      <div class="ui icon input">
-						        <input type="password">
-						        <i class="lock icon"></i>
-						      </div>
-						    </div>
-					  	</div>
-				  	</div>
-        		</div>
-        	</div>
-        	<div class="actions">
-        		<div class="two fluid ui inverted buttons">
-        			<div class="ui red basic inverted button">
-        				<i class="remove icon"></i>
-        				Annuler
-        			</div>
-        			<div class="ui green basic inverted button">
-        				<i class="checkmark icon"></i>
-        				Connexion
-        			</div>
-        		</div>
-        	</div>
+            <i class="close icon"></i>
+            <div class="header">
+                Connectez-vous !
+            </div>
+            <div class="content">
+                <div class="image">
+                    <i class="users icon"></i>
+                </div>
+                <div class="description">
+                    <div class="ui form">
+                        <div class="two fields">
+                            <div class="required field">
+                                <label class="popupLabel">Username</label>
+                                <div class="ui icon input">
+                                    <input type="text" placeholder="Username">
+                                    <i class="user icon"></i>
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <label class="popupLabel">Password</label>
+                                <div class="ui icon input">
+                                    <input type="password">
+                                    <i class="lock icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="two fluid ui inverted buttons">
+                    <div class="ui red basic inverted button">
+                        <i class="remove icon"></i>
+                        Annuler
+                    </div>
+                    <div class="ui green basic inverted button">
+                        <i class="checkmark icon"></i>
+                        Connexion
+                    </div>
+                </div>
+            </div>
         </div>
 
-    <!-- FOOTER -->
+        <!-- FOOTER -->
 
-	</div>
-	
-	<!-- SCRIPTS -->
-	<!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSE -->
-	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
-	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-	<script type="text/javascript" src="src/assets/js/app.js"></script>
-	<script type="text/javascript" src="src/assets/js/behavior.js"></script>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSES -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
+    <script type="text/javascript" src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script type="text/javascript" src="src/app/app.js"></script>
+    <script type="text/javascript" src="src/assets/js/behavior.js"></script>
 </body>
 </html>
