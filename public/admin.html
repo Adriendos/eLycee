@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="adminELycee">
+<head>
+    <meta charset="UTF-8">
+    <title>eLycee - </title>
+    <meta name="description" content="">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="dist/assets/css/app.min.css">	
+    <style type="text/css">
+        .page-admin .big.launch{
+            margin-top: 20px;
+        }
+        .big.launch .text{
+            display: none;
+        }
+        .big.launch:hover .text{
+            display: inline-block;
+        }
+
+        .ui.page.page-admin.grid{
+            padding: 0;
+        }
+
+        .big.launch.button{
+            position: absolute;
+            top: 70px;
+        }
+
+        .ui.block.header{
+            border-radius: 0;
+            border:none;
+        }
+
+        .ui.block.header h3{
+            margin:0;
+            text-align: center;
+        }
+        .ui.table.celled{
+            border-radius: 0;
+        }
+
+        .ten.wide.column.celled{
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- BODY -->
+    <div class="ui vertical inverted thin sidebar menu left push labeled icon" id="menu" style="display:none;z-index:10;padding-top:75px;" ng-controller="Nav2Controller">
+        <a href="#/" class="item"><i class="dashboard icon"></i> Dashboard </a>
+        <a href="#/posts" class="item"><i class="ticket icon"></i> Articles </a>
+        <a href="#/questions" class="item"><i class="help icon"></i> Questions </a>
+        <a href="#/eleves" class="item"><i class="users icon"></i> Eleves </a>
+        <a href="#/messages" class="item"><i class="mail icon"></i> Messages </a>
+    </div>
+    <div class="ui page-admin page grid pusher">
+
+        <!-- HEADER -->
+        <!-- TODO: shrink navbar with classie.js -->
+        <div class="row">
+            <div id="navbar" class="ui secondary pointing menu navbar-admin" ng-controller="NavController">
+                <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil du site</a>
+                <div class="right menu">
+                    <a href="" class="item" id="deconnexion">
+                        <div class="ui animated button positive">
+                          <div class="visible content">se deconnecter</div>
+                          <div class="hidden content">
+                            <i class="sign out icon"></i>
+                          </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui black big launch right attached fixed button" data-transition="overlay" data-direction="left">
+          <i class="content icon"></i>
+          <span class="text">Menu</span>
+        </div>
+        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (VIEWS/...) -->
+        <main class="app row">
+            <div class="sixteen wide column ui grey block header"><h3>Administration des articles</h3></div>
+            <table class="ten wide column ui celled table" style="">
+                <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Status</th>
+                      <th>Notes</th>
+                      <th>Status</th>
+                      <th>Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>John</td>
+                      <td>Approved</td>
+                      <td>None</td>
+                    </tr>
+                    <tr>
+                      <td>Jamie</td>
+                      <td>Approved</td>
+                      <td>Requires call</td>
+                    </tr>
+                    <tr>
+                      <td>Jill</td>
+                      <td>Denied</td>
+                      <td>None</td>
+                    </tr>
+                  </tbody>
+            </table>
+
+        </main>
+
+        <!-- FOOTER -->
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSES -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
+    <script type="text/javascript" src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script type="text/javascript" src="src/admin/admin.js"></script>
+    <script type="text/javascript" src="src/assets/js/behavior.js"></script>
+    
+    <!-- A METTRE DANS BEHAVIOR-->
+    <script type="text/javascript">
+        $('.left.vertical.sidebar').first().sidebar('attach events', '.launch.button', 'show');
+    </script>
+</body>
+</html>
