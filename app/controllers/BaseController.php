@@ -34,11 +34,13 @@ class BaseController extends Controller {
 	 */
 	public function index()
 	{
-		$request = Route::getCurrentRoute()->getAction();
-		$ctrl    = str_replace('Controller@index', '', $request['controller']);
-		$return = $ctrl::all();
+		// $request = Route::getCurrentRoute()->getAction();
+		// $ctrl    = str_replace('Controller@index', '', $request['controller']);
 
-		$returnName = strtolower($ctrl . 's');
+		$model = $this->getModelName(__FUNCTION__);
+		$return = $model::all();
+
+		$returnName = strtolower($model . 's');
  
 		return Response::json(array(
 			$returnName => $return,
@@ -143,6 +145,20 @@ class BaseController extends Controller {
         $elem->delete();
 
         return Redirect::to('admin');
+	}
+
+	/**
+	 * get model name
+	 * 
+	 * @param str methodName
+	 * @return str modelName
+	 */
+	private function getModelName($methodName) 
+	{
+		$request   = Route::getCurrentRoute()->getAction();
+		$modelName = str_replace('Controller@' . $methodName, '', $request['controller']);
+
+		return $modelName;
 	}
 
 }
