@@ -42,3 +42,56 @@
 
 
 
+// __ Admin 
+
+.page{
+ 	.big.launch{
+            margin-top: 20px;
+
+            .text{
+            	display: none;
+        	}
+        	
+        	&.button{
+            	position: absolute;
+            	top: 70px;
+        	}
+        }
+
+    .big.launch:hover .text{
+        display: inline-block;
+    }
+
+    .ui.block.header{
+        border-radius: 0;
+        border:none;
+    	
+    	h3{
+	        margin:0;
+	        text-align: center;
+	    }
+    }
+
+    .app-admin.row{
+            text-align: center;
+    }
+
+	.ui.table.celled{
+        border-radius: 0;
+    }
+
+    .ten.wide.column.celled{
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .ui.inverted.button{
+        padding: 0.5em;
+    }
+
+    .sidebar.label.icon{
+   		display:none;
+   		z-index:10;
+   		padding-top:75px;
+    }
+ }

@@ -7,27 +7,32 @@
     <meta name="mobile-web-app-capable" content="yes">
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-    <link rel="stylesheet" href="dist/assets/css/app.min.css">	
+    <link rel="stylesheet" href="dist/assets/css/app.min.css">  
 </head>
 <body>
     <!-- BODY -->
-    <div ng-include src="'src/app/admin/views/sidebar.html'" class="row" ng-hide="!isActive('/admin')"></div>
+    
+    <!-- SIDEBAR ADMIN -->
+    <div ng-include src="'src/app/admin/views/sidebar.html'" ng-hide="!isAdmin()"></div>
 
-    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : isActive('/admin')}">
-
+    <div class="ui page grid" ng-controller="MainController as main" ng-class="{pusher : !isAdmin()}">
+        
         <!-- HEADER/NAV -->
-        <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isActive('/admin')"></div>
-        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-hide="! isActive('/admin')"></div>
+        <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
+        
+        <!-- NAV ADMIN --> 
+        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-hide="!isAdmin()"></div>
+       
+       <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+       <main class="app row" ng-class="{admin-app : !isAdmin()}" ng-view></main>
 
-        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main class="app row" ng-view></main>
+       <!-- LOGIN MODAL -->
+       <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
 
-        <!-- LOGIN MODAL -->
-        <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isActive('/admin')"></div>
+       <!-- FOOTER -->
+   
+   </div>
 
-        <!-- FOOTER -->
-
-    </div>
 
     <!-- SCRIPTS -->
     <!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSES -->
