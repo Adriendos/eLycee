@@ -33,4 +33,31 @@ app.config(['growlProvider', function(growlProvider) {
   });
 }]);
 
+// __ Fonction notify accessible depuis n'importe quel $scope
+app.run(['$rootScope','growl',function($rootScope, growl) {
+    $rootScope.notify = function(message, level) {
+      switch(level) {
+        case 'error':
+          growl.error(message, {title: message});
+        break;
+
+        case 'success':
+          growl.success(message, {title: message});
+        break;
+
+        case 'info':
+          growl.info(message, {title: message});
+        break;
+
+        case 'warning':
+          growl.warning(message, {title: message});
+        break;
+
+        default:
+          growl.info(message, {title: message});
+        ;
+      }
+  };
+}]);
+
 
