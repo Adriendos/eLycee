@@ -24,7 +24,7 @@ class AuthController extends \BaseController {
 		return 'logged out';	
 	}
 
-	public function token()
+	public function getToken()
 	{
 		return csrf_token();
 	}

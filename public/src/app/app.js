@@ -1,6 +1,10 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"]);
+app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"])
+    // => APP CONFIG CONSTANT
+    .constant('CONFIG', {
+        'BASE_API_URL': 'api/v1'
+    });
 
 // ROUTING ANGULAR
 app.config(['$routeProvider',
