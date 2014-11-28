@@ -1,4 +1,3 @@
-
 app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
 
   var userInfos,

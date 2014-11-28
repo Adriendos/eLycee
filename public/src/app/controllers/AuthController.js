@@ -8,7 +8,7 @@ app.controller('AuthController', ['$scope', '$sanitize', 'AuthFactory', function
   	$scope.userInfos._token = '(sthdkl,dqmlsdqmq)';
   	console.log($scope.userInfos);
 
-    // AuthFactory.login($scope.userInfos);
+    //AuthFactory.login($scope.userInfos);
   };
 }]);
 
