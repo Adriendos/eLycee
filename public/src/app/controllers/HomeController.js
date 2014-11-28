@@ -1,4 +1,4 @@
-app.controller('HomeController',['postsFactory', '$scope', 'growl', function(postsFactory, $scope, growl) {
+app.controller('HomeController',['postsFactory', '$scope', function(postsFactory, $scope) {
     $scope.posts;
 
     getAllPosts();
