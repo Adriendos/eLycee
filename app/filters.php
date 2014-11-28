@@ -48,6 +48,14 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('auth.json', function() // nG app
+{
+	if (!Auth::check())
+	{
+		return Response::json(['flash', 'Please log in'], 401); 
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {
@@ -80,6 +88,14 @@ Route::filter('guest', function()
 | session does not match the one given in this request, we'll bail.
 |
 */
+
+Route::filter('csrf.json', function() // nG app
+{
+	if (Session::token() !== Input::json('_token'))
+	{
+		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
 
 Route::filter('csrf', function()
 {

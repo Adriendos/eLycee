@@ -1,37 +1,37 @@
-app.factory('AuthFactory', function($http) {
+app.factory('AuthFactory', ['$scope', '$http', function($scope, $http) {
 
   var userInfos,
   urlBase = 'api/v1/auth',
   auth    = {};
 
-  auth.login = function(userInfos) {
+  AuthFactory.login = function(userInfos) {
+    // console.parse(userInfos);
     var request = {
       method: 'POST', 
       url: urlBase+'/login', 
       data: userInfos 
     };
-
-    return $http(request)
-    .success(
+    // debugger();
+    return $http(request).success(
       function(data, status, headers, config) {
         // __ [TODO]
         // response = user obj
-      })
-    .error(
+      }).error(
       function(data, status, headers, config) {
-        console.log(headers);
+        $scope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
+        // console.log(headers);
       });
   };
 
   // __ [TODO]
-  auth.logout = function() {
+  AuthFactory.logout = function() {
 
   };
 
   // __ [TODO]
-  auth.checkUser = function() {
+  AuthFactory.checkUser = function() {
     
   }
 
-  return auth;
-});
+  return AuthFactory;
+}]);
