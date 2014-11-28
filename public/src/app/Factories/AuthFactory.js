@@ -1,8 +1,8 @@
-app.factory('AuthFactory', ['$scope', '$http', function($scope, $http) {
+app.factory('AuthFactory', ['$http', function($http) {
 
   var userInfos,
-  urlBase = 'api/v1/auth',
-  auth    = {};
+  urlBase     = 'api/v1/auth',
+  AuthFactory = {};
 
   AuthFactory.login = function(userInfos) {
     // console.parse(userInfos);
@@ -18,7 +18,6 @@ app.factory('AuthFactory', ['$scope', '$http', function($scope, $http) {
         // response = user obj
       }).error(
       function(data, status, headers, config) {
-        $//scope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
         console.log('erreur d\' identifiants')
         // console.log(headers);
       });

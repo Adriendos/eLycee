@@ -15,12 +15,12 @@
 Route::pattern('id','[1-9][0-9]*');
 
 //404 Json response [TODO] => clear 404
-$arrayResp404 = [ 'error' => true, 404 ];
+
 App::error(function(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
-   return Response::json( $arrayResp404 );
+   return Response::json( [ 'test'=>'test', 404 ] );
 });
 App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
-   return Response::json( $arrayResp404 );
+   return Response::json( [ 'test'=>'test', 404 ] );
 });
 
 
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1/auth'], function()
 	Route::post('login', 'AuthController@login');
 	//[TODO] logout
 });
-Route::group(['prefix' => 'admin', 'before' => 'auth']), function() 
+Route::group(['prefix' => 'admin', 'before' => 'auth'], function() 
 {
 
 });
