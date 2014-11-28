@@ -1,5 +1,5 @@
 app.factory('postsFactory', ['$http', function($http) {
-  var urlBase = 'api1/posts';
+  var urlBase = 'api/v1/posts';
   var postsFactory = {};
 
   postsFactory.getAllPosts = function () {

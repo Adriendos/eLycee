@@ -32,16 +32,16 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 // });
 
 // globals routes
-Route::group(['prefix' => 'v1/auth'], function() // auth = userConnection
+Route::group(['prefix' => 'v1/auth'], function() 
 { 
 	Route::post('login', 'AuthController@login');
 	//[TODO] logout
 });
-Route::group(['prefix' => 'admin', 'before' => 'auth']), function() // admin
+Route::group(['prefix' => 'admin', 'before' => 'auth']), function() 
 {
 
 });
-Route::group(array('prefix' => 'v1'), function() // rest
+Route::group(array('prefix' => 'v1'), function() 
 {	
 	Route::resource('users', 'UserController');
 	Route::resource('posts', 'PostController');

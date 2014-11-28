@@ -1,4 +1,4 @@
-app.directive('spinner', ['$rootScope', function($rootScope) {
+app.directive('spinner', ['$rootScope', '$http', function($rootScope, $http) {
 	return {
 		link: function(scope, element, attrs) {
 			$(element).hide();
@@ -13,6 +13,19 @@ app.directive('spinner', ['$rootScope', function($rootScope) {
 				$(element).fadeOut('slow');
 				console.log('hide spinner');
 			});
+
+			scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+
+            scope.$watch(scope.isLoading, function (v)
+            {
+                if(v){
+                    $(element).fadeIn();
+                }else{
+                    $(element).fadeOut('slow');
+                }
+            });
 		}
 	}
 }]);

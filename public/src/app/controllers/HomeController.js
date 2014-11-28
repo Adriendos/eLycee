@@ -9,7 +9,7 @@ app.controller('HomeController',['postsFactory', '$scope', 'growl', function(pos
             $scope.posts = posts;
         })
         .error(function (error) {   
-            $scope.notify('test notifications, remettre bonne url dans factory','error');
+            $scope.notify('La requête vers le serveur a échoué... Réessayez.','error');
             $scope.status = 'Unable to load post data: ' + error.message;
         });
     }

@@ -23,3 +23,14 @@ app.config(['$routeProvider',
   }]);
 
 
+// __ Config des notifications
+app.config(['growlProvider', function(growlProvider) {
+  growlProvider.globalTimeToLive({
+    success: 1000, 
+    error: 2000, 
+    warning: 3000, 
+    info: 4000
+  });
+}]);
+
+

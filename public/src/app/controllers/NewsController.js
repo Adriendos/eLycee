@@ -5,7 +5,7 @@ app.controller('NewsController', ['$http', '$location', '$scope', function($http
       console.log(data);
     }).
     error(function(data, status, headers, config) {
-      console.info('error => '+ status);
+      $scope.notify('La requête vers le serveur a échoué... Réessayez.', 'error');
       console.log(config);
     });
 }]);
