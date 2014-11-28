@@ -10,10 +10,11 @@ class AuthController extends \BaseController {
 		}
 		else
 		{
-			return Response::json([
-					'error'     => 'Invalid credentials',
-				]
-			);
+			// return Response::json([
+			// 		'error'     => 'Invalid credentials',
+			// 	]
+			// );
+			return false;
 		}
 	}
 
