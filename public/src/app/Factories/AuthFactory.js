@@ -8,7 +8,6 @@ app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
 
   AuthFactory.login = function(userInfos) {
     
-    console.parse(userInfos);
     var request = {
       method: 'POST', 
       url: urlBase+'/login', 
@@ -22,6 +21,7 @@ app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
       }).error(
       function(data, status, headers, config) {
         $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
+        console.log("ca a planté");
         // console.log(headers);
       });
   };
