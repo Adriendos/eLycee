@@ -1,12 +1,13 @@
 
-app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
+app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', function($http, $rootScope, $sanitize) {
 
   var userInfos,
   urlBase = 'api/v1/auth',
   AuthFactory = {};
 
   AuthFactory.login = function(userInfos) {
-    // console.parse(userInfos);
+    
+    console.parse(userInfos);
     var request = {
       method: 'POST', 
       url: urlBase+'/login', 
@@ -22,6 +23,10 @@ app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
         $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
         // console.log(headers);
       });
+  };
+
+  AuthFactory.sanitizeCredentialsAndAddCsrf = function(userInfos) {
+
   };
 
   // __ [TODO]

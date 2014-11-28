@@ -1,5 +1,4 @@
-// app.controller('AuthController', ['$scope', 'AuthFactory', '$sanitize', function($scope, AuthFactory, $sanitize) {
-app.controller('AuthController', ['$scope', '$sanitize', 'AuthFactory', function($scope, $sanitize, AuthFactory) {
+app.controller('AuthController', ['$scope', 'AuthFactory', function($scope, AuthFactory) {
  
   $scope.authenticate = function() {
 

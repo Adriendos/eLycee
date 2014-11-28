@@ -24,4 +24,9 @@ class AuthController extends \BaseController {
 		Auth::logout();
 		return 'logged out';	
 	}
+
+	public function token()
+	{
+		return csrf_token();
+	}
 }

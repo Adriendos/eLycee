@@ -9,7 +9,7 @@
 	&.navbar {
 		margin-top:30px;
 
-		&.sticked {
+		&.sticky {
 			margin-top: 0px;
 			width:100%;
 			background: rgba(250,250,250,0.85);
@@ -23,23 +23,15 @@
 	} 
 }
 
-    /*.ui {
-    	&.menu {
-    		.menu {
-    			margin-top: 3px; 
-    		}
-    	}
-
-    	.modal & { // connexion utilisateur
-    		&.form {
-    			.field>label {
-    				color: white;
-    			}
-    		}
-    	}
-    }
-
-*/
+#connexionPopUp {
+    .ui {
+        &.form {
+            .field>label {
+                color: white;
+            }
+        }
+    } 
+}
 
 // __Loader
 .loader-section{
@@ -81,7 +73,8 @@
             border-bottom-color:white;
             border-top-color:white;
             border-radius: 50px;
-            -webkit-animation:spin 1s linear 1s infinite;
+
+            animation:spin 1s linear 1s infinite;
         }
 
         .loader-quart-2:after {
@@ -96,8 +89,9 @@
             border-bottom-color:white;
             border-top-color:white;
             border-radius: 40px;
-            -webkit-animation:spin 1s linear 0s infinite;
-             -webkit-animation:spinreverse 2s linear 0.5s infinite;
+
+            animation: spin 1s linear 0s infinite;
+            animation: spinreverse 2s linear 0.5s infinite;
         }
 
         .loader-quart-3:after {
@@ -112,7 +106,8 @@
             border-bottom-color:white;
             border-top-color:white;
             border-radius: 30px;
-            -webkit-animation:spin 1s linear 0s infinite;
+
+            animation:spin 1s linear 0s infinite;
         }
 
         .loader-quart-4:after {
@@ -127,8 +122,9 @@
             border-top-color:white;
             border-bottom-color:white;
             border-radius: 20px;
-            -webkit-animation:spin 1s linear 0s infinite;
-             -webkit-animation:spinreverse 1s linear 0.5s infinite;
+
+            animation:spin 1s linear 0s infinite;
+            animation:spinreverse 1s linear 0.5s infinite;
         }
 
 
@@ -136,14 +132,14 @@
 
 }
 
-@-webkit-keyframes spin {
-    0%{ -webkit-transform:rotate(0deg);}
-    100%{ -webkit-transform:rotate(-360deg);}
+@keyframes spin {
+    0%{ transform:rotate(0deg);}
+    100%{ transform:rotate(-360deg);}
 }
 
-@-webkit-keyframes spinreverse {
-    0%{ -webkit-transform:rotate(0deg);}
-    100%{ -webkit-transform:rotate(360deg);}
+@keyframes spinreverse {
+    0%{ transform:rotate(0deg);}
+    100%{ transform:rotate(360deg);}
 }
 
 

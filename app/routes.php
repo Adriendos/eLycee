@@ -35,7 +35,7 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 Route::group(['prefix' => 'v1/auth'], function() 
 { 
 	Route::post('login', 'AuthController@login');
-	//[TODO] logout
+	Route::get('token', 'AuthController@token');
 });
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function() 
 {
