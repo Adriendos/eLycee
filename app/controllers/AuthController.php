@@ -6,8 +6,6 @@ class AuthController extends \BaseController {
 	{	
 		if(Auth::attempt(Input::only('username','password')))
 		{
-			var_dump(Auth::user());
-			die();
 			return Auth::user();
 		}
 		else
