@@ -52,7 +52,7 @@ Route::filter('auth.json', function() // nG app
 {
 	if (!Auth::check())
 	{
-		return Response::json(['flash', 'Please log in'], 401); 
+		return Response::json('error', 401); 
 	}
 });
 

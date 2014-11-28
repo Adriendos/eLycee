@@ -1,62 +1,45 @@
 // [TODO = implement sanitize to clean user inputs ]
-// app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', function($http, $rootScope, $sanitize) {
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', 'CONFIG', function($http, $rootScope, $sanitize, CONFIG) {
+app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',function($http, $rootScope, $sanitize, $location) {
 
   var userInfos,
-  urlAuth = CONFIG.BASE_API_URL + '/auth',
+  urlAuth = 'api/v1/auth',
   AuthFactory = {};
 
   AuthFactory.login = function(userInfos) {
-
-    // __treatment userInfos + add token
-    // postInfos = this.sanitizeCredentialsAndAddCsrf(userInfos);
-    
-    var request = { // __request users
-      method: 'POST', 
-      url: urlAuth + '/login', 
-      data: userInfos 
-    };
-
-    return $http(request).success(
-      function(data, status, headers, config) {
-        $rootScope.notify('Vous vous etes correctement identifié.','success');
-        // __ stock user in local_storage
-      }).error(
-      function(data, status, headers, config) {
-        $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
-      });
-  };
-
-  AuthFactory.sanitizeCredentialsAndAddCsrf = function(userInfos) {
-    // get csrf token and inject it
-
-    $http.get(urlAuth + '/token').success(
-      function(data, status, headers, config) {
-        return {
+    $http.get(urlAuth + '/token').then(function(response) { // sanitize + token
+      var request = { // __request users
+        method : 'POST', 
+        url    : urlAuth + '/login', 
+        data   : {
           username : $sanitize( userInfos.username ),
           password : $sanitize( userInfos.password ),
-          _token   : data
-        };
-      }).error(
-      function(data, status, headers, config) {
-        $rootScope.notify('Erreur token','error');
-        return {
-          username : $sanitize( userInfos.username ),
-          password : $sanitize( userInfos.password ),
-          _token   : data
-        };
-      });
+          _token   : response.data
+        } 
+      };
+
+      return $http(request)
+        .success( function(data, status, headers, config) {
+          $rootScope.notify('Vous vous etes correctement identifié.','success');
+          // __ [TODO] == stock user in local_storage
+          console.log(data);
+        }).error( function(data, status, headers, config) {
+          $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
+          console.log(data);
+        });
+    });
   };
 
-  // __ [TODO]
   AuthFactory.logout = function() {
-
+    $http.get(urlAuth + '/logout').then(function(response) {
+      console.log(response);
+      $rootScope.notify('Vous vous etes correctement deconnecté.','success');
+    });
   };
 
   // __ [TODO]
   AuthFactory.checkUser = function() {
     
-  }
+  };
 
   return AuthFactory;
 }]);

@@ -1,13 +1,11 @@
 app.controller('AuthController', ['$scope', 'AuthFactory', function($scope, AuthFactory) {
  
-  $scope.authenticate = function() {
-
-  	console.log($scope.userInfos);
-  	console.log(AuthFactory.sanitizeCredentialsAndAddCsrf($scope.userInfos));
-
-    AuthFactory.login(AuthFactory.sanitizeCredentialsAndAddCsrf($scope.userInfos));
+  $scope.login = function() {
+    AuthFactory.login($scope.userInfos);
   };
-
+  $scope.logout = function() {
+    AuthFactory.logout();
+  };
 }]);
 
 

@@ -24,7 +24,6 @@
                             <i class="lock icon"></i>
                         </div>
                     </div>
-                    <p style="color: white;">debug user={{userInfos | json}}</p>
                 </div>
             </div>
         </div>
@@ -35,9 +34,15 @@
                 <i class="remove icon"></i>
                 Reset
             </button>
-            <button type="submit" id="submit" ng-click="authenticate()" class="ui green basic inverted button">
+            <button type="submit" id="submit" ng-click="login()" class="ui green basic inverted button">
                 <i class="checkmark icon"></i>
                 Connexion
+            </button>
+        </div>
+        <div class="one fluid ui inverted buttons" ng-click="logout()" ng-show="isAdmin()">
+            <button type="reset" class="ui red basic inverted button">
+                <i class="remove icon"></i>
+                Logout 
             </button>
         </div>
     </div>

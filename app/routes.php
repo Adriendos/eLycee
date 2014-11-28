@@ -36,8 +36,9 @@ Route::group(['prefix' => 'v1/auth'], function()
 { 
 	Route::post('login', ['before' => 'csrf.json', 'uses' => 'AuthController@login']);
 	Route::get('token', 'AuthController@getToken');
+	Route::get('logout', 'AuthController@logout');
 });
-Route::group(['prefix' => 'admin', 'before' => 'auth'], function() 
+Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function() 
 {
 
 });

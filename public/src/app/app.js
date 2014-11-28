@@ -1,10 +1,6 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"])
-    // => APP CONFIG CONSTANT
-    .constant('CONFIG', {
-        'BASE_API_URL': 'api/v1'
-    });
+app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"]);
 
 // ROUTING ANGULAR
 app.config(['$routeProvider',
@@ -38,30 +34,32 @@ app.config(['growlProvider', function(growlProvider) {
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope
-app.run(['$rootScope','growl',function($rootScope, growl) {
-    $rootScope.notify = function(message, level) {
-      switch(level) {
-        case 'error':
-          growl.error(message, {title: message});
-        break;
+app.run(['$rootScope','growl', '$http', function($rootScope, growl, $http) {
+  $rootScope.notify = function(message, level) {
+    switch(level) {
+      case 'error':
+        growl.error(message, {title: message});
+      break;
 
-        case 'success':
-          growl.success(message, {title: message});
-        break;
+      case 'success':
+        growl.success(message, {title: message});
+      break;
 
-        case 'info':
-          growl.info(message, {title: message});
-        break;
+      case 'info':
+        growl.info(message, {title: message});
+      break;
 
-        case 'warning':
-          growl.warning(message, {title: message});
-        break;
+      case 'warning':
+        growl.warning(message, {title: message});
+      break;
 
-        default:
-          growl.info(message, {title: message});
-        ;
-      }
+      default:
+        growl.info(message, {title: message});
+      ;
+    }
   };
 }]);
+
+
 
 
