@@ -4,7 +4,7 @@ class AuthController extends \BaseController {
 
 	public function login() 
 	{	
-		if(Auth::attempt(Input::only('username','password')))
+		if( Auth::attempt(Input::only('username','password')) )
 		{
 			return Auth::user();
 		}
