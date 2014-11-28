@@ -47,29 +47,40 @@
    </div>
 
 
-    <!-- SCRIPTS -->
-    <!-- PUT NOT MINIFIED SCRIPT WHILE DEVELOPPEMENT FOR DEBUGGING PURPOSES -->
+    <!-- SCRIPTS [TODO] require.js /!\ autoload js -->
+
+    <!-- Libs -->
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
+    
+    <!-- Gmap -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
+
+    <!-- Angularz ... -->
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
     <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
     <script type="text/javascript" src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-growl-2/build/angular-growl.js"></script>
 
     <!-- App -->
     <script type="text/javascript" src="src/app/app.js"></script>
+
+    <!-- Controllers -->
     <script type="text/javascript" src="src/app/controllers/AuthController.js"></script>
     <script type="text/javascript" src="src/app/controllers/HomeController.js"></script>
     <script type="text/javascript" src="src/app/controllers/NewsController.js"></script>
     <script type="text/javascript" src="src/app/controllers/MainController.js"></script>
-    <script type="text/javascript" src="src/app/factories/PostsFactory.js"></script>
-    <script type="text/javascript" src="src/app/factories/AuthFactory.js"></script>
     <script type="text/javascript" src="src/app/controllers/ContactController.js"></script>
     <script type="text/javascript" src="src/app/admin/controllers/AdminController.js"></script>
+
+    <!-- Factories -->
+    <script type="text/javascript" src="src/app/factories/PostsFactory.js"></script>
+    <script type="text/javascript" src="src/app/factories/AuthFactory.js"></script>
+
+    <!-- Directives -->
     <script type="text/javascript" src="src/app/directives/directives.js"></script>
     
     <!-- Behaviours -->
