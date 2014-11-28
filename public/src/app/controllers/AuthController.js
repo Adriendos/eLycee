@@ -4,7 +4,7 @@ app.controller('AuthController', ['$scope', 'AuthFactory', function($scope, Auth
 
   	console.log($scope.userInfos);
 
-    //AuthFactory.login($scope.userInfos);
+    // AuthFactory.login($scope.userInfos);
   };
 }]);
 
