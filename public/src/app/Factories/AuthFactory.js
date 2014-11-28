@@ -1,5 +1,6 @@
-
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', function($http, $rootScope, $sanitize) {
+// [TODO = implement sanitize to clean user inputs ]
+// app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', function($http, $rootScope, $sanitize) {
+app.factory('AuthFactory', ['$http', '$rootScope', function($http, $rootScope) {
 
   var userInfos,
   urlBase = 'api/v1/auth',
