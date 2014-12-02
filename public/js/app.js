@@ -7,16 +7,16 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
       controller: 'HomeController',
-      templateUrl: 'src/app/views/home.html'
+      templateUrl: 'js/views/home.html'
     }).when('/news', {
       controller: 'NewsController',
-      templateUrl: 'src/app/views/news.html'
+      templateUrl: 'js/views/news.html'
     }).when('/contact', {
       controller: 'ContactController',
-      templateUrl: 'src/app/views/contact.html'
+      templateUrl: 'js/views/contact.html'
     }).when('/admin', {
         controller : 'AdminController',
-        templateUrl : 'src/app/admin/views/admin.html'
+        templateUrl : 'js/admin/views/admin.html'
     }).otherwise({
       redirectTo: '/'
     });
