@@ -1,14 +1,14 @@
-var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
-    browserSync = require('browser-sync'),
-    autoprefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint'),
-    header  = require('gulp-header'),
-    rename = require('gulp-rename'),
-    minifyCSS = require('gulp-minify-css'),
-    concat = require('gulp-concat'),
-    package = require('./package.json');
+var gulp     = require('gulp'),
+sass         = require('gulp-ruby-sass'),
+browserSync  = require('browser-sync'),
+autoprefixer = require('gulp-autoprefixer'),
+uglify       = require('gulp-uglify'),
+jshint       = require('gulp-jshint'),
+header       = require('gulp-header'),
+rename       = require('gulp-rename'),
+minifyCSS    = require('gulp-minify-css'),
+concat       = require('gulp-concat'),
+package      = require('./package.json');
 
 var banner = [
   '/*!\n' +
