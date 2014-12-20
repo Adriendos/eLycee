@@ -17,11 +17,10 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
             _token   : response.data
           } 
         };
-        console.log(request);
+
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
-            console.log(data);
             // __ [TODO] == stock user in local_storage
 
             // __ redirect user to appropriate role page
