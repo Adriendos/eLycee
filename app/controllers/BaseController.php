@@ -11,10 +11,7 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$ressources = $model::all();
- 
-		return Response::json(array(
-			$vars => $ressources,
-		));
+		return Response::json($ressources);
 	}
 
 	/**
@@ -66,12 +63,14 @@ class BaseController extends Controller {
 	public function show($id)
 	{	
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$elem = $model::findOrFail($id);
+		$elem = $model::findOrFail($id)->toArray();
 
-		return Response::json([
-				$vars => $elem,
-			]
-		);
+		// return Response::json([
+		// 		$vars => $elem,
+		// 	]
+		// );
+
+		return Response::json([$elem]);
 	}
 
 	/**
@@ -124,13 +123,10 @@ class BaseController extends Controller {
 	{
 		$request   = Route::getCurrentRoute()->getAction();
 		$model = str_replace('Controller@' . $methodName, '', $request['controller']);
-
-		$modelAndVarsName = [
+		return [
 			'model' => $model,
 			'vars'  => strtolower($model . 's'),
 		];
-
-		return $modelAndVarsName;
 	}
 
 }
