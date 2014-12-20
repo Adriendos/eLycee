@@ -1,28 +1,50 @@
-<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE NEWS</h1></div>
+<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE SINGLE</h1></div>
 
 <div class="ui divider"></div>
 <div class="twelve wide column">
-	<div class="ui relaxed divided items">
-		<!-- START LOOP -->
-		<div class="item" ng-repeat="post in allPosts.posts | limitTo:3">
-			<div class="ui small image">
-				<img src="http://lorempixel.com/300/200/nightlife">
+	<div class="ui segment">
+		<a class="ui ribbon label red">Ribbon</a>
+		<div class="header-img" style="background-image: url('http://lorempixel.com/g/300/200/');">
+
+		</div>
+
+		<h1>SINGLE POST TITLE</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates adipisci laborum nihil dolorum voluptas quaerat. Aperiam soluta, incidunt quos debitis. Ratione numquam qui aliquam consectetur quas non doloribus fugit commodi.</p>
+	</div>
+
+	<div class="ui four cards">
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/">
 			</div>
-			<div class="content">
-				<a class="header">Content Header</a>
-				<div class="meta">
-					<a>Date</a>
-					<a>Category</a>
-				</div>
-				<div class="description">
-					A description which may flow for several lines and give context to the content.
-				</div>
-				<div class="extra">
-					<img src="/images/wireframe/square-image.png" class="ui circular avatar"> Username
-				</div>
+			<div class="extra">
+				Titre du post
 			</div>
 		</div>
-		<!-- END LOOP -->
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/nature">
+			</div>
+			<div class="extra">
+				<div data-rating="2" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon"></i><i class="icon"></i></div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/sports">
+			</div>
+			<div class="extra">
+				<div data-rating="3" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon"></i></div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/nightlife">
+			</div>
+			<div class="extra">
+				<div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- SIDEBAR -->
