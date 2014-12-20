@@ -17,6 +17,9 @@ app.config(['$routeProvider',
     }).when('/admin', {
         controller : 'AdminController',
         templateUrl : 'js/admin/views/admin.html'
+    }).when('/post/:id', {
+        controller : 'NewsController',
+        templateUrl : 'js/views/post/single.html'
     }).otherwise({
       redirectTo: '/'
     });
@@ -27,7 +30,7 @@ app.config(['$routeProvider',
 app.config(['growlProvider', function(growlProvider) {
   growlProvider.globalTimeToLive({
     success: 1000, 
-    error: 2000, 
+    error: 1000, 
     warning: 3000, 
     info: 4000
   });
