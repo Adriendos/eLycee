@@ -1,3 +1,5 @@
-app.controller('SidebarController', ['$scope', function($scope) {
+app.controller('SideBarController', ['$scope', function($scope) {
+	$scope.tweets;
 
+	
 }]);
