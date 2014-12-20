@@ -21,6 +21,9 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',func
         .success( function(data, status, headers, config) {
           $rootScope.notify('Vous vous etes correctement identifié.','success');
           // __ [TODO] == stock user in local_storage
+
+          // __ redirect user to appropriate role page
+          
           console.log(data);
         }).error( function(data, status, headers, config) {
           $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
