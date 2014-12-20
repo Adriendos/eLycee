@@ -54,11 +54,12 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/angular-route/angular-route.min.js',
         'public/bower_components/angular-animate/angular-animate.min.js',
         'public/bower_components/semantic-ui/dist/semantic.min.js',
-        'public/bower_components/angular-growl-2/build/angular-growl.min.js',
+        'public/bower_components/angular-growl-2/build/angular-growl.js',
         'public/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         'public/bower_components/angular-resource/angular-resource.min.js',
         'public/bower_components/angular-sanitize/angular-sanitize.min.js',
 		'public/bower_components/ngmap/build/scripts/ng-map.min.js',
+        'public/bower_components/angular-toastr/dist/angular-toastr.js'
 		//Add future bower dependencies here ;)
 	]).pipe(concat('vendors.js'))
 	.pipe(gulp.dest('public/dist/vendors'))

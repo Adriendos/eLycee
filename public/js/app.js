@@ -3,7 +3,7 @@ var app;
 
 app = angular.module('eLycee', [
   "ngRoute","ngResource","ngMap","angular-growl",
-  "ngAnimate","ngSanitize","LocalStorageModule"
+  "ngAnimate","ngSanitize","LocalStorageModule", "toastr"
 ]);
 
 // ROUTING ANGULAR
@@ -29,16 +29,6 @@ app.config(['$routeProvider',
     });
   }]);
 
-// __ Config des notifications
-app.config(['growlProvider', function(growlProvider) {
-  growlProvider.globalTimeToLive({
-    success: 1000, 
-    error: 1000, 
-    warning: 3000, 
-    info: 4000
-  });
-}]);
-
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
   localStorageServiceProvider
@@ -47,27 +37,27 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope
-app.run(['$rootScope','growl', '$http', function($rootScope, growl, $http) {
+app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, $http) {
   $rootScope.notify = function(message, level) {
     switch(level) {
       case 'error':
-        growl.error(message, {title: message});
+        toastr.error(message,'Erreur');
       break;
 
       case 'success':
-        growl.success(message, {title: message});
+        toastr.success(message);
       break;
 
       case 'info':
-        growl.info(message, {title: message});
+        toastr.success(message);
       break;
 
       case 'warning':
-        growl.warning(message, {title: message});
+        toastr.success(message, 'Attention');
       break;
 
       default:
-        growl.info(message, {title: message});
+        toastr.info(message)
       ;
     }
   };

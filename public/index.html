@@ -6,9 +6,9 @@
     <meta name="description" content="">
     <meta name="mobile-web-app-capable" content="yes">
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-    <link rel="stylesheet" href="bower_components/angular-growl-2/build/angular-growl.css">
     <link rel="stylesheet" href="dist/css/app.min.css">  
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
 </head>
 <body ng-controller="MainController as main" ng-class="{pushable : isAdmin()}">
 
@@ -24,7 +24,7 @@
         <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
 
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main class="app row" ng-class="{admin : isAdmin()}" ng-view></main>
+        <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:80px;"></main>
 
         <!-- LOGIN MODAL -->
         <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
@@ -40,7 +40,7 @@
         </div>
 
         <!-- NOTIFICATION DIRECTIVE -->
-        <div growl></div>
+        <toast></toast>
     </div>
 
     <!-- FOOTER -->
