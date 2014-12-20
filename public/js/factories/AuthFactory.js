@@ -1,4 +1,5 @@
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', '$resource', 'localStorageService', 
+app.factory('AuthFactory', 
+  ['$http', '$rootScope', '$sanitize', '$location', '$resource', 'localStorageService', 
   function($http, $rootScope, $sanitize, $location, $resource, localStorageService) {
 
     var userInfos,
@@ -33,26 +34,38 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', '$r
     AuthFactory.logout = function() {
       $http.get(urlAuth + '/logout').then(function(response) {
         $rootScope.notify('Vous vous etes correctement deconnecté.','success');
-        $location.path('/');
+        return AuthFactory.redirectNotMember();
       });
     };
 
     // check if user has right
-    AuthFactory.checkUser = function() {
-      
+    AuthFactory.checkSession = function() {
+      var credLocalStorage = localStorageService.get('credentials');
+      if(!credLocalStorage) {
+        return AuthFactory.redirectNotMember();      
+      }
+
+      var sessionToken = credLocalStorage.token;
+      var request = {
+        method: "GET",
+        url: urlAuth + '/token', 
+        params: {auth_token: sessionToken}
+      };
+      $http(request)
+          .success( function(data, status, headers, config) {
+            return;
+          })
+          .error( function(data, status, headers, config) {
+            return AuthFactory.redirectNotMember();  
+          });
+    };
+
+    // private method
+    AuthFactory.redirectNotMember = function() {
+      $location.path('/');
+      localStorageService.clearAll();
+      $rootScope.notify('Veuillez vous connecter à l\' aide de vos infos', 'error');
     };
 
     return AuthFactory;
-}]);
-
-app.factory('postsFactory', ['$http', '$resource', function($http, $resource) {
-  return $resource(
-        "api/v1/posts/:id",
-        {id: "@id" },
-        {
-          query: {method: 'GET', isArray: true},
-          get: {method: 'GET', params:{id:'@id'}, isArray: true},
-          save: {method: 'POST', isArray: true}
-        }
-    );
 }]);
