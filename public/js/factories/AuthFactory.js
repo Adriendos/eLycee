@@ -20,7 +20,6 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', 'lo
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
-            // __ [TODO] == stock user in local_storage
             localStorageService.set('credentials', data);
             $location.path('/admin');
             // __ redirect user to appropriate role page
