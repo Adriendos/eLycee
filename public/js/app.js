@@ -1,6 +1,6 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"]);
+app = angular.module('eLycee', ["ngRoute", "ngResource", "ngMap","angular-growl","ngAnimate", "ngSanitize"]);
 
 // ROUTING ANGULAR
 app.config(['$routeProvider',
@@ -16,7 +16,7 @@ app.config(['$routeProvider',
       templateUrl: 'js/views/contact.html'
     }).when('/admin', {
         controller : 'AdminController',
-        templateUrl : 'js/admin/views/admin.html'
+        templateUrl : 'js/admin/views/dashboard.html'
     }).when('/post/:id', {
         controller : 'NewsController',
         templateUrl : 'js/views/post/single.html'
