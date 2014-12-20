@@ -1,5 +1,6 @@
 // [TODO = implement sanitize to clean user inputs ]
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',function($http, $rootScope, $sanitize, $location) {
+app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
+  function($http, $rootScope, $sanitize, $location) {
 
   var userInfos,
   urlAuth = 'api/v1/auth',
