@@ -4,15 +4,15 @@ app.controller('HomeController',['postsFactory', '$scope', function(postsFactory
     getAllPosts();
 
     function getAllPosts() {
-      postsFactory.query(
-        function(posts) {
-            $scope.posts = posts;
-            alert('couilles');
-        },
-        function(error) {   
-            $scope.notify('La requête vers le serveur a échoué... Réessayez.','error');
-            $scope.status = 'Unable to load post data: ' + error.message;
-        }
-      );
+        postsFactory.query().$promise.then(
+          //success
+          function(results) {
+            $scope.posts = results[0];
+          },
+          //error
+          function(err) {
+            console.error(err);
+          }
+        );
     }
 }]);
