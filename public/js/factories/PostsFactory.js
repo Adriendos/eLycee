@@ -3,8 +3,9 @@ app.factory('postsFactory', ['$http', '$resource', function($http, $resource) {
         "api/v1/posts/:id",
         {id: "@id" },
         {
-            "update": {method: "PUT"},
-            "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true}
+           query: {method: 'GET', isArray: true},
+           get: {method: 'GET', params:{id:'@id'}, isArray: true},
+           save: {method: 'POST', isArray: true}
         }
     );
 }]);

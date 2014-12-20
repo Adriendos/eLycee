@@ -13,7 +13,7 @@ class BaseController extends Controller {
 		$ressources = $model::all();
  
 		return Response::json(array(
-			$vars => $ressources,	
+			$ressources	
 		));
 	}
 

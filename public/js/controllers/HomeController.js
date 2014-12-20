@@ -7,6 +7,7 @@ app.controller('HomeController',['postsFactory', '$scope', function(postsFactory
       postsFactory.query(
         function(posts) {
             $scope.posts = posts;
+            alert('couilles');
         },
         function(error) {   
             $scope.notify('La requête vers le serveur a échoué... Réessayez.','error');
