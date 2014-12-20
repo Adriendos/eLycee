@@ -5,7 +5,6 @@ app.factory('postsFactory', ['$http', '$resource', function($http, $resource) {
         {
             "update": {method: "PUT"},
             "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true}
-        });
-
-
+        }
+    );
 }]);
