@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Tappleby\AuthToken\AuthTokenServiceProvider',
 
 		'Way\Generators\GeneratorsServiceProvider'
 	),
@@ -190,6 +191,8 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 
+		'AuthToken'		    => 'Tappleby\Support\Facades\AuthToken',
+		'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'
 	),
 
 );

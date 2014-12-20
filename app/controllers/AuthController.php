@@ -6,15 +6,19 @@ class AuthController extends \BaseController {
 	{	
 		if( Auth::attempt(Input::only('username','password')) )
 		{
-			return Auth::user();
+			return Response::json([
+					'auth'     => Auth::user(),
+					'session'  => Session::all()
+				]
+			);
 		}
 		else
 		{
-			// return Response::json([
-			// 		'error'     => 'Invalid credentials',
-			// 	]
-			// );
-			return false;
+			return Response::json([
+					'error'     => 'Invalid credentials',
+				]
+			);
+			// return false;
 		}
 	}
 
