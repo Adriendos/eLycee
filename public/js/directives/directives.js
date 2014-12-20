@@ -17,9 +17,10 @@ app.directive('spinner', ['$rootScope', '$http', function($rootScope, $http) {
 	}
 }]);
 
-app.directive('twitter', ['$rootScope', '$http', function($rootScope, $http) {
+app.directive('twitter', ['$location', function($location) {
     return {
-        templateUrl: 'template/twitter-widget.html'
-    }
+        restrict: 'E',
+        templateUrl: 'js/directives/template/twitter-widget.html'
+    };
 }]);
 
