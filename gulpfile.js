@@ -40,7 +40,7 @@ gulp.task('compress-app', function(){
         .pipe(concat('eLycee.js'))
         .pipe(gulp.dest('public/dist/js'))
         .pipe(rename('eLycee.js'))
-        .pipe(uglify({ outSourceMap: true }))
+        .pipe(uglify())
         .pipe(header(banner, { package : package }))
     	.pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/dist/js'));

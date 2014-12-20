@@ -17,6 +17,7 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
             _token   : response.data
           } 
         };
+        console.log(request);
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
@@ -28,9 +29,6 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
           .error( function(data, status, headers, config) {
             $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
             console.log(data);
-            console.log(headers);
-            console.log(status);
-            console.log(config);
           });
       });
     };
