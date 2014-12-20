@@ -2,7 +2,7 @@
 var app;
 
 app = angular.module('eLycee', [
-  "ngRoute","ngResource","ngMap","angular-growl",
+  "ngRoute","ngResource","ngMap",
   "ngAnimate","ngSanitize","LocalStorageModule", "toastr"
 ]);
 
