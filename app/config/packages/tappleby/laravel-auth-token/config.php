@@ -8,9 +8,10 @@ return array(
 	 */
 
 	'format_credentials' => function ($username, $password) {
-		return array(
-			'email' => $username,
-			'password' => $password
-		);
+	    return [
+	        'username' => $username,
+	        'password' => $password,
+	        'active' => true
+	    ];
 	}
 );

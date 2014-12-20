@@ -16,19 +16,23 @@ Route::pattern('id','[1-9][0-9]*');
 
 //404 Json response [TODO] => clear 404
 
-App::error(function(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
-   return Response::json( [ 'test'=>'test', 404 ] );
-});
-App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
-   return Response::json( [ 'test'=>'test', 404 ] );
-});
+// App::error(function(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+//    return Response::json( [ 'test'=>'test', 404 ] );
+// });
+// App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+//    return Response::json( [ 'test'=>'test', 404 ] );
+// });
 
 // globals routes
 Route::group(['prefix' => 'v1/auth'], function() 
 { 
 	Route::post('login', ['before' => 'csrf.json', 'uses' => 'AuthController@login']);
-	Route::get('token', 'AuthController@getToken');
+	Route::get('token1', 'AuthController@getToken');
 	Route::get('logout', 'AuthController@logout');
+
+	Route::get('token', 'Tappleby\AuthToken\AuthTokenController@index');
+	Route::post('token', 'Tappleby\AuthToken\AuthTokenController@store');
+	Route::delete('token', 'Tappleby\AuthToken\AuthTokenController@destroy');
 });
 Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function() 
 {

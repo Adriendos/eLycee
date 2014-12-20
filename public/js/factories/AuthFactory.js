@@ -7,17 +7,16 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
     AuthFactory = {};
 
     AuthFactory.login = function(userInfos) {
-      $http.get(urlAuth + '/token').then(function(response) { // sanitize + token
+      $http.get(urlAuth + '/token1').then(function(response) { // sanitize + token
         var request = { // __request users
           method : 'POST', 
-          url    : urlAuth + '/login', 
+          url    : urlAuth + '/token', 
           data   : {
             username : $sanitize( userInfos.username ),
             password : $sanitize( userInfos.password ),
             _token   : response.data
           } 
         };
-
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
@@ -29,6 +28,9 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
           .error( function(data, status, headers, config) {
             $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
             console.log(data);
+            console.log(headers);
+            console.log(status);
+            console.log(config);
           });
       });
     };
