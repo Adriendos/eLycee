@@ -31,7 +31,11 @@ Route::group(['prefix' => 'v1/auth'], function()
 	Route::get('logout', 'AuthController@logout');
 
 	Route::get('token', 'Tappleby\AuthToken\AuthTokenController@index');
-	Route::post('token', 'Tappleby\AuthToken\AuthTokenController@store');
+	// Route::post('token', 'Tappleby\AuthToken\AuthTokenController@store');
+	Route::post('token', [
+		'before' => 'csrf.json', 
+		'uses' => 'Tappleby\AuthToken\AuthTokenController@store'
+	]);
 	Route::delete('token', 'Tappleby\AuthToken\AuthTokenController@destroy');
 });
 Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function() 
