@@ -18,7 +18,7 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-    if($request->ajax()) $response = ")]}',\n".$response;
+    // if($request->ajax()) $response = "test".$response;
 });
 
 /*
@@ -102,4 +102,21 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+/*
+|--------------------------------------------------------------------------
+| JSON Protection Filter
+|--------------------------------------------------------------------------
+|
+| Json 
+|
+*/
+
+Route::filter('json.protect',function($route,$request,$response = null)
+{
+    if($response instanceof \Illuminate\Http\JsonResponse) {
+        $json = ")]}',\n" . $response->getContent();
+        return $response->setContent($json);
+    }
 });

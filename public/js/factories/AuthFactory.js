@@ -42,6 +42,7 @@ app.factory('AuthFactory',
     AuthFactory.checkSession = function() {
       var credLocalStorage = localStorageService.get('credentials');
       if(!credLocalStorage) {
+        $rootScope.notify('Veuillez vous connecter à l\' aide de vos infos', 'error');
         return AuthFactory.redirectNotMember();      
       }
 
@@ -64,7 +65,6 @@ app.factory('AuthFactory',
     AuthFactory.redirectNotMember = function() {
       $location.path('/');
       localStorageService.clearAll();
-      $rootScope.notify('Veuillez vous connecter à l\' aide de vos infos', 'error');
     };
 
     return AuthFactory;

@@ -44,15 +44,16 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function()
 
 });
 
-Route::group(array('prefix' => 'v1'), function() 
-{	
-	Route::resource('users', 'UserController');
-	Route::resource('posts', 'PostController');
-	Route::resource('comments', 'CommentController');
-	Route::resource('questions', 'QuestionController');
-	Route::resource('choices', 'ChoiceController');
-	Route::resource('scores', 'ScoreController');
-});
+Route::group(
+	['prefix' => 'v1', 'after' =>'json.protect'], 
+	function() {	
+		Route::resource('users', 'UserController');
+		Route::resource('posts', 'PostController');
+		Route::resource('comments', 'CommentController');
+		Route::resource('questions', 'QuestionController');
+		Route::resource('choices', 'ChoiceController');
+		Route::resource('scores', 'ScoreController');
+	});
 
 
 
