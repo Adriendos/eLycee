@@ -5,7 +5,7 @@ app.controller('MainController', ['$scope', '$location', 'AuthFactory',
   	};
 
     $scope.showAdminSidebar = function() {
-      $('.left.vertical.sidebar').first().sidebar('attach events', '.launch.button', 'show');
+      $('.left.vertical.sidebar').first().sidebar('toggle');
     };
   	
     $scope.isActive = function (viewLocation) { 

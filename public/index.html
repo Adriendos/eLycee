@@ -11,17 +11,17 @@
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
 </head>
 <body ng-controller="MainController as main" ng-class="{pushable : isAdmin()}">
-
+    
     <!-- SIDEBAR ADMIN -->
     <div ng-include src="'js/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
-    
+
+    <!-- NAV ADMIN --> 
+    <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
+        
     <!-- NAV -->
     <div ng-include src="'js/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
     
     <div class="ui page grid" ng-class="{pusher : isAdmin()}">
-
-        <!-- NAV ADMIN --> 
-        <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
 
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:80px;"></main>
