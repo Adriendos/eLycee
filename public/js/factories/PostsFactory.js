@@ -1,12 +1,11 @@
 app.factory('postsFactory', ['$http', function($http) {
-  var urlBase = 'api/v1/posts';
-  var postsFactory = {};
-
-  postsFactory.getAllPosts = function () {
-    return $http.get(urlBase);
-  };
-
-  //put other useful methods here
-
-  return postsFactory;
+  return $resource(
+        "/api/v1/posts/:id",
+        {id: "@id" },
+        {
+            "update": {method: "PUT"},
+            "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true}
+ 
+        }
+    );
 }]);

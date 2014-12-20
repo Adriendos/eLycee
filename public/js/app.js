@@ -25,7 +25,6 @@ app.config(['$routeProvider',
     });
   }]);
 
-
 // __ Config des notifications
 app.config(['growlProvider', function(growlProvider) {
   growlProvider.globalTimeToLive({
@@ -34,6 +33,12 @@ app.config(['growlProvider', function(growlProvider) {
     warning: 3000, 
     info: 4000
   });
+}]);
+
+// __ Config du localStorage
+app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('eLycee');
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope

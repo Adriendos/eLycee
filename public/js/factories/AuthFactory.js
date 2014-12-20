@@ -22,7 +22,7 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
             // __ [TODO] == stock user in local_storage
-
+            console.log(data);
             // __ redirect user to appropriate role page
           })
           .error( function(data, status, headers, config) {
