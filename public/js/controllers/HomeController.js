@@ -4,14 +4,14 @@ app.controller('HomeController',['postsFactory', '$scope', function(postsFactory
     getAllPosts();
 
     function getAllPosts() {
-      postsFactory.query().success(function (posts) {
+      postsFactory.query(
+        function(posts) {
             $scope.posts = posts;
-        })
-        .error(function (error) {   
+        },
+        function(error) {   
             $scope.notify('La requête vers le serveur a échoué... Réessayez.','error');
             $scope.status = 'Unable to load post data: ' + error.message;
-        });;
-      postsFactory.getAllPosts()
-        
+        }
+      );
     }
 }]);
