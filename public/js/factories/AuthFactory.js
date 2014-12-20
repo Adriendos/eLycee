@@ -1,5 +1,5 @@
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
-  function($http, $rootScope, $sanitize, $location) {
+app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', 'localStorageService',
+  function($http, $rootScope, $sanitize, $location, localStorageService) {
 
     var userInfos,
     urlAuth = 'api/v1/auth',
@@ -16,12 +16,12 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
             _token   : response.data
           } 
         };
-        
+
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
             // __ [TODO] == stock user in local_storage
-            console.log(data);
+            localStorageService.set('credentials', data);
             // __ redirect user to appropriate role page
           })
           .error( function(data, status, headers, config) {

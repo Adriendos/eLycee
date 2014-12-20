@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function()
 {
 
 });
+
 Route::group(array('prefix' => 'v1'), function() 
 {	
 	Route::resource('users', 'UserController');
