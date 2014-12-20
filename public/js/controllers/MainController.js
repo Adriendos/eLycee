@@ -1,5 +1,5 @@
-app.controller('MainController', ['$scope', '$location', 'growl', 'AuthFactory',  
-  function($scope, $location, growl, AuthFactory) {
+app.controller('MainController', ['$scope', '$location', 'AuthFactory',  
+  function($scope, $location, AuthFactory) {
   	$scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
   	};
