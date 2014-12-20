@@ -1,4 +1,4 @@
-app.factory('postsFactory', ['$http', function($http) {
+app.factory('postsFactory', ['$http', '$resource', function($http, $resource) {
   return $resource(
         "/api/v1/posts/:id",
         {id: "@id" },
