@@ -1,5 +1,5 @@
 app.controller('AdminController', ['$scope', 'AuthFactory', 
 	function($scope, AuthFactory) {
-		// @@@@ [todo]
+		// check user rights
 		AuthFactory.checkSession();
 }]);

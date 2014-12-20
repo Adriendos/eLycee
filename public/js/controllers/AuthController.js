@@ -7,5 +7,3 @@ app.controller('AuthController', ['$scope', 'AuthFactory', function($scope, Auth
   //   AuthFactory.logout();
   // };
 }]);
-
-
