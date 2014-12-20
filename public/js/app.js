@@ -1,6 +1,9 @@
 // __  Angular
 var app;
-app = angular.module('eLycee', ["ngRoute","ngResource","ngMap","angular-growl","ngAnimate", "ngSanitize"]);
+app = angular.module('eLycee', [
+  "ngRoute","ngResource","ngMap","angular-growl",
+  "ngAnimate", "ngSanitize", "localStorageServiceProvider"
+]);
 
 // ROUTING ANGULAR
 app.config(['$routeProvider',
@@ -38,7 +41,7 @@ app.config(['growlProvider', function(growlProvider) {
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
   localStorageServiceProvider
-    .setPrefix('eLycee');
+    .setPrefix('eLycee'); 
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope
