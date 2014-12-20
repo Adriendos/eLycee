@@ -16,10 +16,9 @@ App::before(function($request)
 	//
 });
 
-
 App::after(function($request, $response)
 {
-	//
+    if($request->ajax()) $response = ")]}',\n".$response;
 });
 
 /*
