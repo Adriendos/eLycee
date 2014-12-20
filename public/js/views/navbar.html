@@ -1,25 +1,42 @@
-<div id="navbar" class="ui pointing menu navbar">
+<!-- <div id="navbar" class="ui pointing menu navbar">
     <a href="#/" class="brand item">eLycee</a>
     <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
     <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
     <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-    <div class="right menu">
-        <div class="item">
-            <div class="ui icon input">
-                <input type="text" placeholder="Rechercher..">
-                <i class="search link icon"></i>
+    
+</div> -->
+
+ <div class="ui grid">
+    <div class="computer tablet only row">
+        <div class="ui inverted fixed menu navbar page grid">
+            <a href="#/" class="brand item">eLycee v0.0.0.0.1</a>
+            <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
+            <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
+            <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
+            <a class="ui dropdown item">Dropdown
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item">Action</div>
+                <div class="item">Another action</div>
+                <div class="item">Something else here</div>
+                <div class="ui divider"></div>
+                <div class="item">Seperated link</div>
+                <div class="item">One more seperated link</div>
+              </div>
+            </a>
+            <div class="right menu">
+                <div class="item" id="connexion-btn" ng-click="showConnectModal()">
+                   <div class="ui positive button">
+                        <i class="icon user"></i>Log-in
+                    </div>
+                </div>
+                <a target="_blank" class="item" href="https://www.facebook.com/pages/Cpdev08elycee/744260765642204?ref=bookmarks">
+                    <i class="facebook icon"></i>
+                </a>
+                <a class="item">
+                    <i class="twitter icon"></i>
+                </a>
             </div>
         </div>
-        <div class="item" id="connexion-btn" ng-click="showConnectModal()">
-           <div class="ui positive button">
-                <i class="icon user"></i>Log-in
-            </div>
-        </div>
-        <a target="_blank" class="item" href="https://www.facebook.com/pages/Cpdev08elycee/744260765642204?ref=bookmarks">
-            <i class="facebook icon"></i>
-        </a>
-        <a class="item">
-            <i class="twitter icon"></i>
-        </a>
     </div>
 </div>

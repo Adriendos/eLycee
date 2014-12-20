@@ -1,17 +1,18 @@
-app.controller('NewsController', ['$http', '$location', '$scope', function($http, $location, $scope) {
-  // $scope.posts;
+app.controller('NewsController', ['postsFactory', '$scope', function(postsFactory, $scope) {
+  $scope.posts;
 
-  //   getAllPosts();
+    getAllPosts();
 
-  //   function getAllPosts() {
-  //     postsFactory.query().success(function (posts) {
-  //           $scope.posts = posts;
-  //       })
-  //       .error(function (error) {   
-  //           $scope.notify('La requête vers le serveur a échoué... Réessayez.','error');
-  //           $scope.status = 'Unable to load post data: ' + error.message;
-  //       });;
-  //     postsFactory.getAllPosts()
-        
-  //   }
+    function getAllPosts() {
+        postsFactory.query().$promise.then(
+          //success
+          function(results) {
+            $scope.posts = results[0];
+          },
+          //error
+          function(err) {
+            console.error(err);
+          }
+        );
+    }
 }]);
