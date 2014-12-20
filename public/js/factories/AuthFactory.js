@@ -6,7 +6,7 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
     AuthFactory = {};
 
     AuthFactory.login = function(userInfos) {
-      $http.get(urlAuth + '/token1').then(function(response) { // sanitize + token
+      $http.get(urlAuth + '/csrfToken').then(function(response) { // sanitize + token
         var request = { // __request users
           method : 'POST', 
           url    : urlAuth + '/token', 
@@ -16,7 +16,7 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location',
             _token   : response.data
           } 
         };
-
+        
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.','success');
