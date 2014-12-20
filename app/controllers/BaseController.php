@@ -24,7 +24,6 @@ class BaseController extends Controller {
 	{
 		// $request = Route::getCurrentRoute()->getAction();
 		// $ctrl    = str_replace('Controller@create', '', $request['controller']);
-
 		// return View::make('admin.create'.$ctrl,[]);
 	}
 
