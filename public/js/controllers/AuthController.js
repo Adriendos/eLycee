@@ -3,9 +3,9 @@ app.controller('AuthController', ['$scope', 'AuthFactory', function($scope, Auth
   $scope.login = function() {
     AuthFactory.login($scope.userInfos);
   };
-  $scope.logout = function() {
-    AuthFactory.logout();
-  };
+  // $scope.logout = function() {
+  //   AuthFactory.logout();
+  // };
 }]);
 
 

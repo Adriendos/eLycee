@@ -2,9 +2,9 @@
     <div id="navbar" class="ui secondary pointing menu navbar-admin">
         <a href="#/" class="item" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil du site</a>
         <div class="right menu">
-            <a href="" class="item" id="deconnexion">
+            <a href="" class="item" id="deconnexion" ng-click="logout()">
                 <div class="ui animated button positive">
-                  <div class="visible content" ng-click="logout()">se deconnecter</div>
+                  <div class="visible content">se deconnecter</div>
                   <div class="hidden content">
                     <i class="sign out icon"></i>
                   </div>

@@ -1,5 +1,5 @@
-app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', 'localStorageService',
-  function($http, $rootScope, $sanitize, $location, localStorageService) {
+app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', '$resource', 'localStorageService', 
+  function($http, $rootScope, $sanitize, $location, $resource, localStorageService) {
 
     var userInfos,
     urlAuth = 'api/v1/auth',
@@ -26,7 +26,6 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', 'lo
           })
           .error( function(data, status, headers, config) {
             $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.','error');
-            console.log(data);
           });
       });
     };
@@ -34,14 +33,26 @@ app.factory('AuthFactory', ['$http', '$rootScope', '$sanitize', '$location', 'lo
     AuthFactory.logout = function() {
       $http.get(urlAuth + '/logout').then(function(response) {
         $rootScope.notify('Vous vous etes correctement deconnecté.','success');
-        console.log(response);
+        $location.path('/');
       });
     };
 
-    // __ [TODO]
+    // check if user has right
     AuthFactory.checkUser = function() {
       
     };
 
     return AuthFactory;
+}]);
+
+app.factory('postsFactory', ['$http', '$resource', function($http, $resource) {
+  return $resource(
+        "api/v1/posts/:id",
+        {id: "@id" },
+        {
+          query: {method: 'GET', isArray: true},
+          get: {method: 'GET', params:{id:'@id'}, isArray: true},
+          save: {method: 'POST', isArray: true}
+        }
+    );
 }]);
