@@ -40,7 +40,7 @@ gulp.task('compress-app', function(){
         .pipe(concat('eLycee.js'))
         .pipe(gulp.dest('public/dist/js'))
         .pipe(rename('eLycee.js'))
-        .pipe(uglify())
+        .pipe(uglify({ outSourceMap: true }))
         .pipe(header(banner, { package : package }))
     	.pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/dist/js'));
@@ -49,15 +49,15 @@ gulp.task('compress-app', function(){
 //Keep Updated with new libs
 gulp.task('compress-vendors', function() {
 	return gulp.src([
-		'public/bower_components/angular/angular.min.js',
-		'public/bower_components/angular-route/angular-route.min.js',
-		'public/bower_components/angular-animate/angular-animate.min.js',
-		'public/bower_components/semantic-ui/dist/semantic.min.js',
-		'public/bower_components/angular-growl-2/build/angular-growl.min.js',
-		'public/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-		'public/bower_components/angular-resource/angular-resource.min.js',
-		'public/bower_components/angular-sanitize/angular-sanitize.min.js',
 		'public/bower_components/jquery/dist/jquery.min.js',
+        'public/bower_components/angular/angular.min.js',
+        'public/bower_components/angular-route/angular-route.min.js',
+        'public/bower_components/angular-animate/angular-animate.min.js',
+        'public/bower_components/semantic-ui/dist/semantic.min.js',
+        'public/bower_components/angular-growl-2/build/angular-growl.min.js',
+        'public/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+        'public/bower_components/angular-resource/angular-resource.min.js',
+        'public/bower_components/angular-sanitize/angular-sanitize.min.js',
 		'public/bower_components/ngmap/build/scripts/ng-map.min.js',
 		//Add future bower dependencies here ;)
 	]).pipe(concat('vendors.js'))
