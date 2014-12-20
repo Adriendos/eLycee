@@ -13,7 +13,11 @@ app.controller('MainController', ['$scope', '$location', 'AuthFactory',
     };
 
     $scope.isAdmin = function() {
-    	return ($location.path() == '/admin' || $location.path() == '/admin/*');
+      if($location.path().indexOf('/admin') >= 0) {
+        return true;
+      } else {
+        return false; 
+      }
     };
 
     $scope.logout = function(){

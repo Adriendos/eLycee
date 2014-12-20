@@ -18,13 +18,21 @@ app.config(['$routeProvider',
     }).when('/contact', {
       controller: 'ContactController',
       templateUrl: 'js/views/contact.html'
-    }).when('/admin', {
-        controller : 'AdminController',
-        templateUrl : 'js/admin/views/dashboard.html'
     }).when('/post/:id', {
         controller : 'NewsController',
         templateUrl : 'js/views/post/single.html'
-    }).otherwise({
+    })
+
+    // __admin views
+    .when('/admin', {
+        controller : 'AdminController',
+        templateUrl : 'js/admin/views/dashboard.html'
+    })
+    .when('/admin/articles', {
+        controller : 'AdminArticlesController',
+        templateUrl : 'js/admin/views/articles.html'
+    })
+    .otherwise({
       redirectTo: '/'
     });
   }]);

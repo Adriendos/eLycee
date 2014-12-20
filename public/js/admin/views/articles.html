@@ -2,47 +2,143 @@
 <div class="ui divider"></div>
 <div class="six wide column">
     <div class="ui fluid card">
-        <div class="image">
-            <img src="http://lorempixel.com/g/300/200/">
-        </div>
-        <div class="content">
-            <div class="header">Actualité de merde</div>
-            <div class="meta">
-                <a class="group">Put meta here</a>
-            </div>
-            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
-        </div>
-        <div class="extra content">
-            <a class="right floated created">Author</a>
-            <a class="friends">Comments or other shit</a>
-        </div>
-    </div>
+        
+<div class="ten wide column ui grey block header"><h3>Administration des articles</h3></div>
+<div class="ten wide column add">
+    <button class="ui blue button">créer un nouvel article</button>
 </div>
-<div class="six wide column only computer tablet">
-	<div class="ui relaxed divided items">
-		<!-- START LOOP -->
-		<div class="item" ng-repeat="post in allPosts.posts | limitTo:3">
-			<div class="ui small image">
-				<img src="http://lorempixel.com/300/200/sports">
-			</div>
-			<div class="content">
-				<a class="header">{{ post.title }}</a>
-				<div class="meta">
-					<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
-					<a>Category</a>
-				</div>
-				<div class="description">
-					{{ post.excerpt | limitTo:25}}
-				</div>
-				<div class="extra">
-					<img src="/images/wireframe/square-image.png" class="ui circular avatar"> Username
-				</div>
-			</div>
-		</div>
-		<!-- END LOOP -->
-	</div>
+<table class="ten wide column ui celled table" style="">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>titre</th>
+      <th>excerpt</th>
+      <th>content</th>
+      <th>user</th>
+      <th>editer</th>
+      <th>supprimer</th>
+      <th>voir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>Approved</td>
+      <td>None</td>
+      <td>Approved</td>
+      <td>None</td>
+      <td>
+        <div class="ui vertical animated blue button">
+          <div class="visible content">editer</div>
+          <div class="hidden content">
+            <i class="edit icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated red button">
+          <div class="visible content">supprimer</div>
+          <div class="hidden content">
+            <i class="trash icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated green button">
+          <div class="visible content">voir</div>
+          <div class="hidden content">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Jamie</td>
+      <td>Approved</td>
+      <td>Requires call</td>
+      <td>Approved</td>
+      <td>Approved</td>
+      <td>
+        <div class="ui vertical animated blue button">
+          <div class="visible content">editer</div>
+          <div class="hidden content">
+            <i class="edit icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated red button">
+          <div class="visible content">supprimer</div>
+          <div class="hidden content">
+            <i class="trash icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated green button">
+          <div class="visible content">voir</div>
+          <div class="hidden content">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Denied</td>
+      <td>None</td>
+      <td>Approved</td>
+      <td>Approved</td>
+      <td>
+        <div class="ui vertical animated blue button">
+          <div class="visible content">editer</div>
+          <div class="hidden content">
+            <i class="edit icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated red button">
+          <div class="visible content">supprimer</div>
+          <div class="hidden content">
+            <i class="trash icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui vertical animated green button">
+          <div class="visible content">voir</div>
+          <div class="hidden content">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+    </div>
 </div>
 <!-- SIDEBAR -->
 <div ng-include src="'src/app/views/sidebar.html'" class="four wide column"></div>
 
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Modal Title
+  </div>
+  <div class="content">
+    <div class="image">
+      An image can appear on left or an icon
+    </div>
+    <div class="description">
+      A description can appear on the right
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
 
