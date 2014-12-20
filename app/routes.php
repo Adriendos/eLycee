@@ -23,14 +23,6 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
    return Response::json( [ 'test'=>'test', 404 ] );
 });
 
-
-// auth routes
-// Route::group(array('prefix' => 'v1', 'before' => 'auth'), function() 
-// {
-// 	// Route::get('auth/login', 'AuthController@login');
-// 	Route::post('auth/login', 'AuthController@login');
-// });
-
 // globals routes
 Route::group(['prefix' => 'v1/auth'], function() 
 { 

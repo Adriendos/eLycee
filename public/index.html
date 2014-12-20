@@ -8,84 +8,54 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
     <link rel="stylesheet" href="bower_components/angular-growl-2/build/angular-growl.css">
-    <link rel="stylesheet" href="dist/assets/css/app.min.css">  
+    <link rel="stylesheet" href="dist/css/app.min.css">  
 </head>
 <body ng-controller="MainController as main" ng-class="{pushable : isAdmin()}">
-    
+
     <!-- SIDEBAR ADMIN -->
-    <div ng-include src="'src/app/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
+    <div ng-include src="'js/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
 
     <div class="ui page grid" ng-class="{pusher : isAdmin()}">
-        
+
         <!-- NAV -->
-        <div ng-include src="'src/app/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
-        
+        <div ng-include src="'js/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
+
         <!-- NAV ADMIN --> 
-        <div ng-include src="'src/app/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
+        <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
 
-       <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-       <main class="app row" ng-class="{admin : isAdmin()}" ng-view></main>
+        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+        <main class="app row" ng-class="{admin : isAdmin()}" ng-view></main>
 
-       <!-- LOGIN MODAL -->
-       <div ng-include src="'src/app/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
+        <!-- LOGIN MODAL -->
+        <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
 
-       <!-- LOADING SPINNER -->
-       <div spinner class="loader-section">
+        <!-- LOADING SPINNER -->
+        <div spinner class="loader-section">
             <div class="loader-wrapper">
-                <span class="loader-quart-1 loader"></span>
+                <span class="loader loader-quart-1"></span>
                 <span class="loader loader-quart-2"></span>
                 <span class="loader loader-quart-3"></span>
                 <span class="loader loader-quart-4"></span>
             </div>
-       </div>
+        </div>
 
-       <!-- NOTIFICATION DIRECTIVE -->
-       <div growl></div>
+        <!-- NOTIFICATION DIRECTIVE -->
+        <div growl></div>
 
-       <!-- FOOTER -->
-   
-   </div>
+        <!-- FOOTER -->
 
+    </div>
 
-    <!-- SCRIPTS [TODO] require.js /!\ autoload js -->
-
-    <!-- Libs -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.js"></script>
-    
     <!-- Gmap -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
 
-    <!-- Angularz ... -->
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
-    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
-    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script type="text/javascript" src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-growl-2/build/angular-growl.js"></script>
+    <!-- Minified Vendors-->
+    <script type="text/javascript" src="dist/vendors/vendors.min.js"></script>
 
-    <!-- App -->
-    <script type="text/javascript" src="src/app/app.js"></script>
+    <!-- Minified App js-->
+    <script type="text/javascript" src="dist/js/eLycee.min.js"></script>
 
-    <!-- Factories -->
-    <script type="text/javascript" src="src/app/factories/PostsFactory.js"></script>
-    <script type="text/javascript" src="src/app/factories/AuthFactory.js"></script>
+    <!-- /!\ DONT PUT OTHER SCRIPTS HERE, DECLARE THEM IN GULPFILE.JS -->
 
-    <!-- Controllers -->
-    <script type="text/javascript" src="src/app/controllers/AuthController.js"></script>
-    <script type="text/javascript" src="src/app/controllers/HomeController.js"></script>
-    <script type="text/javascript" src="src/app/controllers/NewsController.js"></script>
-    <script type="text/javascript" src="src/app/controllers/MainController.js"></script>
-    <script type="text/javascript" src="src/app/controllers/ContactController.js"></script>
-    <script type="text/javascript" src="src/app/admin/controllers/AdminController.js"></script>
-    
-    <!-- Directives -->
-    <script type="text/javascript" src="src/app/directives/directives.js"></script>
-
-    
-
-    <!-- Behaviours -->
-    <script type="text/javascript" src="src/assets/js/behavior.js"></script>
 </body>
 </html>
