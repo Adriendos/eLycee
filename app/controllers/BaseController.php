@@ -11,7 +11,10 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$ressources = $model::all();
-		return Response::json($ressources);
+ 
+		return Response::json(array(
+			$ressources	
+		));
 	}
 
 	/**
