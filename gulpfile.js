@@ -24,7 +24,7 @@ var banner = [
 
 gulp.task('css', function () {
     return gulp.src('public/sass/app.scss')
-    .pipe(sass({sourcemap: true, sourcemapPath: 'public/dist/css/'}))
+    .pipe(sass())
       .on('error', function (err) { console.log(err.message); })    
     .pipe(autoprefixer('last 4 version'))
     .pipe(gulp.dest('public/dist/css/'))
