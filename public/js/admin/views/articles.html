@@ -1,4 +1,4 @@
-<div class="column padding-reset" style="margin-top:-70px">
+<div class="column padding-reset">
   <div class="ui huge message page grid center aligned">
       <h1 class="ui huge header">Administration des Articles</h1>
       <p>YOYOYOYO</p>
@@ -8,32 +8,30 @@
     <table class="ui sortable celled table">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Titre</th>
-          <th>Notes</th>
-          <th>Status</th>
-          <th>Crée le</th>
-          <th>Edité le</th>
-          <th>Auteur</th>
+          <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
+          <th ng-click="changeSorting($event,'title')">Titre</th>
+          <th ng-click="changeSorting($event,'status')">Status</th>
+          <th ng-click="changeSorting($event,'created_at')">Crée le</th>
+          <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
+          <th ng-click="changeSorting($event,'user_id')">Auteur</th>
           <th>Modifier</th>
           <th>Supprimer</th>
         </tr>
       </thead>
       <tbody>
         <!-- Start Loop -->
-        <tr ng-repeat="post in posts | toArray | limitTo: 10 track by post.id">
+        <tr ng-repeat="post in posts | toArray | limitTo: 10 | orderBy:sort.column:sort.descending track by post.id">
           <td>{{ post.id }}</td>
-          <td>{{ post.title | limitTo : 25}}</td>
-          <td>None</td>
+          <td>{{ post.title | limitTo : 20}} ...</td>
           <td>
             <div class="ui labeled icon button basic">
-              <i class="unlock icon"></i>
-              Publié
+              <i class="icon" ng-class="publicationState(post)"></i>
+              {{ post.status}}
             </div>
           </td>
-          <td>teub</td>
-          <td>teub</td>
-          <td>teub</td>
+          <td>{{post.created_at}}</td>
+          <td>{{post.updated_at}}</td>
+          <td>{{post.user_id}}</td>
           <td>
             <div class="ui labeled icon button positive">
               <i class="edit icon"></i>
