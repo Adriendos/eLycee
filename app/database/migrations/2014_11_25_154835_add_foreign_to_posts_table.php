@@ -15,7 +15,7 @@ class AddForeignToPostsTable extends Migration {
 		Schema::table('posts', function($table)
 		{
 			$table->integer('user_id')->unsigned()->nullable();
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
+			$table->foreign('user_id')->references('id')->on('users'); // ->onDelete('SET NULL') rm probleme seeding
 		});
 	}
 

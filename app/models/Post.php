@@ -10,5 +10,12 @@ class Post extends Eloquent {
 	 */
 	protected $table = 'posts';
 
-
+	/**
+	 * Mass assignment fillable fields
+	 * 
+	 * @var array
+	 */
+	protected $fillable = [ 'title', 'excerpt', 'content', 'url_thumbnail', 
+							'status', 'user_id', 'created_at', 'updated_at' ];
+  
 }
