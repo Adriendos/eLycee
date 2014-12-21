@@ -5,8 +5,6 @@ app.controller('PostController',
     //!\\ Session check //!\\
     AuthFactory.checkSession();
 
-    console.log(FileUploader);
-
 		$scope.posts;
     $scope.modal = [];
 
@@ -76,5 +74,9 @@ app.controller('PostController',
       openPostModal();
       $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
     };
+
+    $scope.uploader = new FileUploader();
+    // Image upload
+    // $('#progress-upload-img').progress('increment');
 
 }]);
