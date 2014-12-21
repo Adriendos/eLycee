@@ -56,11 +56,11 @@ app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, $http) {
       break;
 
       case 'info':
-        toastr.success(message);
+        toastr.info(message);
       break;
 
       case 'warning':
-        toastr.success(message, 'Attention');
+        toastr.warning(message, 'Attention');
       break;
 
       default:

@@ -3,14 +3,14 @@ app.controller('PostController',
 	function($scope, AuthFactory, PostsFactory, FileUploader) {
 
     //!\\ Session check //!\\
-    AuthFactory.checkSession();
+    $scope.checkAuthorization();
 
     console.log(FileUploader);
 
 		$scope.posts;
     $scope.modal = [];
 
-    $('.ui.modal').modal();
+    $('.modal').modal();
     
     // Getting all posts
 		PostsFactory.getAllPosts().then(function(posts) {

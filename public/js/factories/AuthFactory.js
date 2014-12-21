@@ -19,9 +19,13 @@ app.factory('AuthFactory',
         };
         return $http(request)
           .success( function(data, status, headers, config) {
-            $rootScope.notify('Vous vous etes correctement identifié.', 'success');
+            $rootScope.notify('Bonjour '+data.user.username+' !', 'info');
             localStorageService.set('credentials', data);
-            $location.path('/admin');
+            if(data.user.role.toLowerCase()=="teacher"){
+              $location.path('/admin');
+            }
+            return;
+            
           })
           .error( function(data, status, headers, config) {
             $rootScope.notify('Erreur d\' identifiants, veuillez réessayer.', 'error');
@@ -41,32 +45,8 @@ app.factory('AuthFactory',
         }
       };
       $http(request).then(function(response) {
-        $rootScope.notify('Vous vous etes correctement deconnecté.','success');
         return AuthFactory.redirectNotMember();
       });
-    };
-
-    // check if user has right
-    AuthFactory.checkSession = function() {
-      var credLocalStorage = localStorageService.get('credentials');
-      if(!credLocalStorage) {
-        $rootScope.notify('Veuillez vous connecter à l\' aide de vos infos', 'error');
-        return AuthFactory.redirectNotMember();      
-      }
-
-      var sessionToken = credLocalStorage.token;
-      var request = {
-        method: "GET",
-        url: urlAuth + '/checkSession', 
-        params: {auth_token: sessionToken}
-      };
-      $http(request)
-          .success( function(data, status, headers, config) {
-            return;
-          })
-          .error( function(data, status, headers, config) {
-            return AuthFactory.redirectNotMember();  
-          });
     };
 
     // private method
