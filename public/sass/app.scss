@@ -221,24 +221,20 @@
     height:250px;
  }
 
-.ta-editor {
+.textarea{
+    outline:none;
     vertical-align: top;
     margin:0;
-    padding:.8em 1em;
     background:#fff;
     border: 1px solid rgba(39,41,43,.15);
-    
     color: rgba(0,0,0,.8);
     border-radius: .2857rem;
     box-shadow: 0 0 transparent inset;
     -webkit-transition: background-color .2s ease,color .2s ease,box-shadow .2s ease,border-color .2s ease;
     transition: background-color .2s ease,color .2s ease,box-shadow .2s ease,border-color .2s ease;
     font-size: 1em;
-    /*height: 12em;*/
-    min-height: 8em;
-    max-height: 24em;
     line-height: 1.33;
-    resize: vertical;
+    resize: auto;
     width:100%;
     box-sizing:border-box;
     word-wrap:break-word;

@@ -50,6 +50,7 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
     $scope.openCreationModal = function() {
       $('#postModal').modal('show');
       $scope.modal.mode = 'create';
+      $('div.ng-pristine.ta-bind').addClass('textarea');
     };
 
 }]);
