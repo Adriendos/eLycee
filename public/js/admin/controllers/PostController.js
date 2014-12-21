@@ -1,27 +1,27 @@
 app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
 	function($scope, AuthFactory, PostsFactory) {
+
+    //!\\ Session check //!\\
+    AuthFactory.checkSession();
+
 		$scope.posts;
     $scope.modal = [];
     
-    //Get Posts
+    // Getting all posts
 		PostsFactory.getAllPosts().then(function(posts) {
-      // For correct order by id in table
       angular.forEach(posts, function (post) {
-        post.id = parseInt(post.id);
+        post.id = parseInt(post.id); //We parse the post.id so that we can sort the table 
       });
       $scope.posts = posts;
     });
-		
-		// check user rights
-		AuthFactory.checkSession();
-		$('.ui.modal').modal();
 
-    //Table
+    // Variable for table sorting
     $scope.sort = {
       column: 'id',
       descending: false
     }; 
 
+    // Check a post status
     $scope.publicationState = function(post) {
       if(post.status == 'published') {
         return 'unlock blue';
@@ -29,6 +29,7 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
       return 'lock red';
     }
 
+    // Function used to sort the table by clicking headers
     $scope.changeSorting = function($event, column) {
         var sort = $scope.sort;
         var th = $($event.currentTarget);
