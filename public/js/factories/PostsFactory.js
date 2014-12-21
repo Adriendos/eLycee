@@ -42,18 +42,9 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 	    };
 
 	    PostsFactory.save = function(saveInfos) {
-	    	var deferred = $q.defer();
-	    	Post.save(saveInfos).$promise.then(
-              //success
-              function(results) {
-                deferred.resolve(results); 
-              },
-              //error
-              function(err) {
-                console.error(err);
-              }
-            );
-            return deferred.promise;
+	    	Post.save(saveInfos, function(results) {
+                console.info('infos', results); 
+              });
 	    };
 
 	    return PostsFactory;

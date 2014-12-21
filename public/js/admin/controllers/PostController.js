@@ -83,17 +83,7 @@ app.controller('PostController',
       var reader = new FileReader();
       reader.onloadend = function () {
           $scope.currentPost.image64 = reader.result;
-          console.log($scope.currentPost);
-          PostsFactory.save($scope.currentPost).then(
-              //success
-              function(results) {
-                console.info('saveResults', results);
-              },
-              //error
-              function(err) {
-                console.error(err);
-              }
-            );
+          PostsFactory.save($scope.currentPost);
       }
       reader.readAsDataURL(f);
     };
