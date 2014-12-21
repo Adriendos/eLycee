@@ -272,7 +272,9 @@ body {
 .my-drop-zone {
     border: dotted 3px lightgray;
 }
-
 .my-drop-zone-over {
     border: dotted 3px green;
+}
+.ui.grid.no-top-margin {
+    margin: 0;
 }
