@@ -1,6 +1,8 @@
 app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
 	function($scope, AuthFactory, PostsFactory) {
 		$scope.posts;
+    $scope.modal = [];
+    
     //Get Posts
 		PostsFactory.getAllPosts().then(function(posts) {
       // For correct order by id in table
@@ -44,4 +46,10 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
           sort.descending = false;
         }
     };
+
+    $scope.openCreationModal = function() {
+      $('#postModal').modal('show');
+      $scope.modal.mode = 'create';
+    };
+
 }]);

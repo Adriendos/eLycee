@@ -1,7 +1,7 @@
 <div class="column padding-reset">
   <div class="ui huge message page grid center aligned">
       <h1 class="ui huge header">Administration des Articles</h1>
-      <p>YOYOYOYO</p>
+      <p><div class="ui blue button" ng-click="openCreationModal()">Créer un nouvel article</div></p>
   </div>
 
   <div class="sixteen wide column white">
@@ -49,5 +49,25 @@
       </tbody>
     </table>
   </div>
+</div>
 
+<!-- CREATION/EDITION MODAL -->
+<div class="ui modal" id="postModal">
+  <i class="close icon"></i>
+  <div class="header">
+    {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
+  </div>
+  <div class="content">
+    <div class="ui form">
+      <div class="field">
+        <label>Contenu  </label>
+        <div text-angular ng-model="htmlVariable" name="content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
 </div>

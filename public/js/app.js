@@ -3,43 +3,12 @@ var app;
 
 app = angular.module('eLycee', [
   "ngRoute","ngResource","ngMap",
-  "ngAnimate","ngSanitize","LocalStorageModule", "toastr"
+  "ngAnimate","ngSanitize","LocalStorageModule", "toastr", "textAngular"
 ]);
 
 app.constant('CONFIG', 
   { apiUrl: 'api/v1/' }   
 );
-
-// ROUTING ANGULAR
-app.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.when('/', {
-      controller: 'HomeController',
-      templateUrl: 'js/views/home.html'
-    }).when('/news', {
-      controller: 'NewsController',
-      templateUrl: 'js/views/news.html'
-    }).when('/contact', {
-      controller: 'ContactController',
-      templateUrl: 'js/views/contact.html'
-    }).when('/post/:id', {
-        controller : 'NewsController',
-        templateUrl : 'js/views/post/single.html'
-    })
-
-    // __admin views
-    .when('/admin', {
-        controller : 'AdminController',
-        templateUrl : 'js/admin/views/dashboard.html'
-    })
-    .when('/admin/articles', {
-        controller : 'PostController',
-        templateUrl : 'js/admin/views/articles.html'
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
-  }]);
 
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
@@ -98,20 +67,52 @@ app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, $http) {
   };
 }]);
 
-// __Filter (move in filters after) transforms object in an array (for table sort)
-app.filter('toArray', function () {
-    'use strict';
-
-    return function (obj) {
-        if (!(obj instanceof Object)) {
-            return obj;
-        }
-
-        return Object.keys(obj).map(function (key) {
-            return Object.defineProperty(obj[key], '$key', {__proto__: null, value: key});
-        });
-    }
-})
+// __ Config text-angular !!!
+app.config(['$provide', function($provide){
+    // this demonstrates how to register a new tool and add it to the default toolbar
+    $provide.decorator('taOptions', ['$delegate', function(taOptions){
+        // $delegate is the taOptions we are decorating
+        // here we override the default toolbars and classes specified in taOptions.
+        taOptions.toolbar = [
+            ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+            ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
+            ['justifyLeft','justifyCenter','justifyRight'],
+            ['html', 'insertImage', 'insertLink', 'unlink']
+        ];
+        taOptions.classes = {
+            focussed: 'focussed',
+            toolbar: '',
+            toolbarGroup: 'ui icon buttons',
+            toolbarButton: 'ui button',
+            toolbarButtonActive: 'active',
+            disabled: 'disabled',
+            textEditor: '',
+            htmlEditor: 'ui textarea'
+        };
+        return taOptions; // whatever you return will be the taOptions
+    }]);
+    // this demonstrates changing the classes of the icons for the tools for font-awesome v3.x
+    $provide.decorator('taTools', ['$delegate', function(taTools){
+        taTools.bold.iconclass = 'icon bold';
+        taTools.italics.iconclass = 'icon italic';
+        taTools.underline.iconclass = 'icon underline';
+        taTools.ul.iconclass = 'icon list';
+        taTools.ol.iconclass = 'icon list ordered';
+        taTools.undo.iconclass = 'icon left arrow';
+        taTools.redo.iconclass = 'icon right arrow';
+        taTools.justifyLeft.iconclass = 'icon align left';
+        taTools.justifyRight.iconclass = 'icon align right';
+        taTools.justifyCenter.iconclass = 'icon align center';
+        taTools.clear.iconclass = 'icon remove';
+        taTools.insertLink.iconclass = 'icon linkify';
+        taTools.insertImage.iconclass = 'icon attach';
+        // there is no quote icon in old font-awesome so we change to text as follows
+        delete 
+        taTools.quote.iconclass;
+        taTools.quote.buttontext = 'quote';
+        return taTools;
+    }]);
+}]);
 
 
 
