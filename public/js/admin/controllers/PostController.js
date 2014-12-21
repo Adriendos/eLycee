@@ -47,11 +47,23 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
         }
     };
 
-    $scope.openCreationModal = function() {
+    function openPostModal() {
       $('#postModal').modal('show');
+      $('div.ng-pristine.ta-bind').addClass('textarea');
+    };
+
+    $scope.openCreationModal = function() {
+      $scope.currentPost = [];
       $scope.modal.mode = 'create';
-      $('div.ng-pristine.ta-bind').addClass('textarea'); //We add some style to the textarea cause plugin is s***
+      openPostModal();
       $('.ui.checkbox').checkbox();
+    };
+
+    $scope.openEditionModal = function(post) {
+      $scope.currentPost = post;
+      $scope.modal.mode = 'edit';
+      openPostModal();
+      $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
     };
 
 }]);

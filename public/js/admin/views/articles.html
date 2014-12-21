@@ -33,7 +33,7 @@
           <td>{{post.updated_at}}</td>
           <td>{{post.user_id}}</td>
           <td>
-            <div class="ui labeled icon button positive">
+            <div class="ui labeled icon button positive" ng-click="openEditionModal(post)">
               <i class="edit icon"></i>
               Modifier
             </div>
@@ -62,7 +62,7 @@
       <div class="field">
         <label>Titre  </label>
         <div class="ui corner labeled input">
-        <input type="text" placeholder="Titre de l'article">
+        <input type="text" placeholder="Titre de l'article" ng-model="currentPost.title">
           <div class="ui corner label">
             <i class="asterisk icon"></i>
           </div>
@@ -70,7 +70,7 @@
       </div>
       <div class="field">
         <label>Contenu  </label>
-        <div text-angular ng-model="htmlVariable" name="content"></div>
+        <div text-angular ng-model="currentPost.content" name="content"></div>
       </div>
       <div class="field">
         <div class="ui toggle checkbox">
