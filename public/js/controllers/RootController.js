@@ -1,4 +1,4 @@
-app.controller('MainController', ['$scope', '$location', 'AuthFactory',  
+app.controller('RootController', ['$scope', '$location', 'AuthFactory',  
   function($scope, $location, AuthFactory) {
   	$scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
@@ -23,4 +23,8 @@ app.controller('MainController', ['$scope', '$location', 'AuthFactory',
     $scope.logout = function(){
       AuthFactory.logout();
     };  
+
+    $scope.go = function (path) {
+      $location.path(path);
+    };
 }]);

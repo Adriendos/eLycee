@@ -1,144 +1,55 @@
-<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE HOME</h1></div>
-<div class="ui divider"></div>
-<div class="six wide column">
-    <div class="ui fluid card">
-        
-<div class="ten wide column ui grey block header"><h3>Administration des articles</h3></div>
-<div class="ten wide column add">
-    <button class="ui blue button">créer un nouvel article</button>
-</div>
-<table class="ten wide column ui celled table" style="">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>titre</th>
-      <th>excerpt</th>
-      <th>content</th>
-      <th>user</th>
-      <th>editer</th>
-      <th>supprimer</th>
-      <th>voir</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John</td>
-      <td>Approved</td>
-      <td>None</td>
-      <td>Approved</td>
-      <td>None</td>
-      <td>
-        <div class="ui vertical animated blue button">
-          <div class="visible content">editer</div>
-          <div class="hidden content">
-            <i class="edit icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated red button">
-          <div class="visible content">supprimer</div>
-          <div class="hidden content">
-            <i class="trash icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated green button">
-          <div class="visible content">voir</div>
-          <div class="hidden content">
-            <i class="search icon"></i>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Jamie</td>
-      <td>Approved</td>
-      <td>Requires call</td>
-      <td>Approved</td>
-      <td>Approved</td>
-      <td>
-        <div class="ui vertical animated blue button">
-          <div class="visible content">editer</div>
-          <div class="hidden content">
-            <i class="edit icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated red button">
-          <div class="visible content">supprimer</div>
-          <div class="hidden content">
-            <i class="trash icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated green button">
-          <div class="visible content">voir</div>
-          <div class="hidden content">
-            <i class="search icon"></i>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Denied</td>
-      <td>None</td>
-      <td>Approved</td>
-      <td>Approved</td>
-      <td>
-        <div class="ui vertical animated blue button">
-          <div class="visible content">editer</div>
-          <div class="hidden content">
-            <i class="edit icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated red button">
-          <div class="visible content">supprimer</div>
-          <div class="hidden content">
-            <i class="trash icon"></i>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="ui vertical animated green button">
-          <div class="visible content">voir</div>
-          <div class="hidden content">
-            <i class="search icon"></i>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-    </div>
-</div>
-<!-- SIDEBAR -->
-<div ng-include src="'src/app/views/sidebar.html'" class="four wide column"></div>
-
-<div class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Modal Title
+<div class="column padding-reset" style="margin-top:-70px">
+  <div class="ui huge message page grid center aligned">
+      <h1 class="ui huge header">Administration des Articles</h1>
+      <p>YOYOYOYO</p>
   </div>
-  <div class="content">
-    <div class="image">
-      An image can appear on left or an icon
-    </div>
-    <div class="description">
-      A description can appear on the right
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
-</div>
 
+  <div class="sixteen wide column white">
+    <table class="ui sortable celled table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Titre</th>
+          <th>Notes</th>
+          <th>Status</th>
+          <th>Crée le</th>
+          <th>Edité le</th>
+          <th>Auteur</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Start Loop -->
+        <tr ng-repeat="post in posts | toArray | limitTo: 10 track by post.id">
+          <td>{{ post.id }}</td>
+          <td>{{ post.title | limitTo : 25}}</td>
+          <td>None</td>
+          <td>
+            <div class="ui labeled icon button basic">
+              <i class="unlock icon"></i>
+              Publié
+            </div>
+          </td>
+          <td>teub</td>
+          <td>teub</td>
+          <td>teub</td>
+          <td>
+            <div class="ui labeled icon button positive">
+              <i class="edit icon"></i>
+              Modifier
+            </div>
+          </td>
+          <td>
+            <div class="ui labeled icon button negative">
+              <i class="erase icon"></i>
+              Supprimer
+            </div>
+          </td>
+        </tr>
+        <!-- End Loop -->
+      </tbody>
+    </table>
+  </div>
+
+</div>

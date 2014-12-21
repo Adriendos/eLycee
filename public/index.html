@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
 </head>
-<body ng-controller="MainController as main">
+<body ng-controller="RootController">
     
     <!-- NAV ADMIN --> 
     <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
@@ -23,7 +23,7 @@
     
     <div class="ui page grid">
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:80px;"></main>
+        <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
 
         <!-- LOGIN MODAL -->
         <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>

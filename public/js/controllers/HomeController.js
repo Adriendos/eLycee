@@ -9,5 +9,5 @@ app.controller('HomeController',['postsFactory', '$scope', function(postsFactory
             function(err) {
               console.error(err);
             }
-          );;
+          );
 }]);
