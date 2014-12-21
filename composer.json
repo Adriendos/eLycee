@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"tappleby/laravel-auth-token": "0.3.*"
+		"tappleby/laravel-auth-token": "0.3.*",
+		"intervention/image": "*"
 	},
 	"require-dev": {
 	    "way/generators": "~2.0",

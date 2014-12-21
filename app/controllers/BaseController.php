@@ -26,11 +26,18 @@ class BaseController extends Controller {
 		$elem = new $model();
 		$inputs = Input::All();
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == '_method') { continue; }
+			if($inputName == '_method' || $inputName == 'image64') { continue; }
 			$elem->$inputName = $inputVal;
 		}
+		// threat image
+		$base64_str = substr($inputs['image64'], strpos($inputs['image64'], ",")+1);
+		// @todo refactor, test extension and make it dynamique ..
+		$image = base64_decode($base64_str);
+		$imgPath = "/img/".$model."/" . $model."-thumb-".time().".png";
+		$path = public_path() . $imgPath;
+		Image::make($image)->save($path);
+		$elem->url_thumbnail = $imgPath;
 		$elem->save(); 
-
 		return Response::json($elem);
     }
 

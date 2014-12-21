@@ -3,7 +3,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 		var PostsFactory = {},
 			apiUrl = CONFIG.apiUrl;
 
-		var resource = $resource(
+		var Post = $resource(
 			apiUrl + 'posts/:id',
 			{id: '@id' },
 			{
@@ -15,7 +15,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 
 	  	PostsFactory.getAllPosts = function () {
 	  		var deferred = $q.defer();
-	        resource.query().$promise.then(
+	        Post.query().$promise.then(
 		          //success
 		          function(results) {
 		          	deferred.resolve(results[0]); 
@@ -39,6 +39,21 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 				 	deferred.resolve(data);
 				 });
 	       	return deferred.promise;
+	    };
+
+	    PostsFactory.save = function(saveInfos) {
+	    	var deferred = $q.defer();
+	    	Post.save(saveInfos).$promise.then(
+              //success
+              function(results) {
+                deferred.resolve(results); 
+              },
+              //error
+              function(err) {
+                console.error(err);
+              }
+            );
+            return deferred.promise;
 	    };
 
 	    return PostsFactory;

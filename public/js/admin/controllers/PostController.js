@@ -78,20 +78,24 @@ app.controller('PostController',
     $scope.uploader = new FileUploader({autoUpload:true});
     // Image upload
     $scope.submitForm = function() {
-      // params = scope.$eval(attributes.ngThumb)
+      // image
       var f = $scope.uploader.queue[0]._file;
-
       var reader = new FileReader();
       reader.onloadend = function () {
-          console.log(reader.result);
+          $scope.currentPost.image64 = reader.result;
+          console.log($scope.currentPost);
+          PostsFactory.save($scope.currentPost).then(
+              //success
+              function(results) {
+                console.info('saveResults', results);
+              },
+              //error
+              function(err) {
+                console.error(err);
+              }
+            );
       }
       reader.readAsDataURL(f);
-
-      
-
-      // var b64File = ().readAsDataURL(f);
-      console.log(f);
-      console.log( b64File );
     };
 
     // var can = document.getElementById('canvas');
