@@ -75,13 +75,21 @@ app.controller('PostController',
       $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
     };
 
-    $scope.uploader = new FileUploader();
+    $scope.uploader = new FileUploader({autoUpload:true});
     // Image upload
     $scope.submitForm = function() {
       // params = scope.$eval(attributes.ngThumb)
       var f = $scope.uploader.queue[0]._file;
 
-      var b64File = (new FileReader()).readAsDataURL(f);
+      var reader = new FileReader();
+      reader.onloadend = function () {
+          console.log(reader.result);
+      }
+      reader.readAsDataURL(f);
+
+      
+
+      // var b64File = ().readAsDataURL(f);
       console.log(f);
       console.log( b64File );
     };
