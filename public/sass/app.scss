@@ -1,8 +1,13 @@
-// @import "compass";
+@import "compass";
 
-#body {
-    background-image: url('../../img/gaussian-blur.jpg');
-    background-size:cover;
+html,
+body {
+    height: 100%; width: 100%;
+}
+
+body {
+    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px)!important);
+    background-size: cover !important;
 }
 
 // __ Header 
