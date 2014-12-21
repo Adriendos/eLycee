@@ -40,13 +40,11 @@ class BaseController extends Controller {
 		// [TODO] check if everything ok after refacto + validate value
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$model = new $model();
-
 		foreach ($_POST as $key => $value) 
 		{
 			if($key == '_method') { continue; }
 			$model->$key = $value;
 		}
-
 		$model->save(); 
 
 		return Response::json([
@@ -66,11 +64,6 @@ class BaseController extends Controller {
 	{	
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id)->toArray();
-
-		// return Response::json([
-		// 		$vars => $elem,
-		// 	]
-		// );
 
 		return Response::json([$elem]);
 	}
@@ -96,6 +89,27 @@ class BaseController extends Controller {
 		// 		200
 		// 	]
 		// );
+		// $elem = $ctrl::findOrFail($id);
+	}
+
+	/**
+	 * Update the specified resource from storage
+	 * 
+	 * @param int $id
+	 * @return response
+	 */
+	public function update($id)
+	{
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$elem = $model::findOrFail($id);
+		$inputs = Input::All();
+		
+		foreach ($inputs as $inputName => $inputVal) {
+			if($inputName == '_method') { continue; }
+			$elem->$inputName = $inputVal;
+		}
+		$elem->save();
+		return Response::json($elem);
 	}
 
 	/**

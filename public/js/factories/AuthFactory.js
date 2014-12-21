@@ -17,7 +17,6 @@ app.factory('AuthFactory',
             _token   : csrfToken
           } 
         };
-        console.log(request);
         return $http(request)
           .success( function(data, status, headers, config) {
             $rootScope.notify('Vous vous etes correctement identifié.', 'success');
