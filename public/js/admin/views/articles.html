@@ -39,7 +39,7 @@
             </div>
           </td>
           <td>
-            <div class="ui labeled icon button negative">
+            <div class="ui labeled icon button negative" ng-click="openDeletePostModal(post)">
               <i class="erase icon"></i>
               Supprimer
             </div>
@@ -62,7 +62,7 @@
       <div class="field">
         <label>Titre  </label>
         <div class="ui corner labeled input">
-        <input type="text" placeholder="Titre de l'article" ng-model="currentPost.title">
+          <input type="text" placeholder="Titre de l'article" ng-model="currentPost.title">
           <div class="ui corner label">
             <i class="asterisk icon"></i>
           </div>
@@ -85,4 +85,25 @@
       </div>
     </div>
   </div>
+</div>
+<div id="deletePostModal" class="ui small modal transition" style="margin-top: -98px;">
+  <i class="close icon"></i>
+  <div class="header">
+    Supprimer
+  </div>
+  <div class="content">
+    <p>Voulez vous supprimer définitivement le Post suivant ?</p>
+    <b>Id :</b>  <em>{{ currentPost.id}}</em>&nbsp;&nbsp;&nbsp;&nbsp;<b>Status :</b><em>{{ currentPost.status }}</em>
+    <p><b>Titre :</b><em ng-bind="currentPost.title"></em></p>
+  </div>
+  <div class="actions">
+    <div class="ui negative button">
+      Non
+    </div>
+    <div class="ui positive right labeled icon button">
+      Oui
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
 
