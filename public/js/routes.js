@@ -11,13 +11,13 @@ app.config(['$routeProvider',
       controller: 'ContactController',
       templateUrl: 'js/views/contact.html'
     }).when('/post/:id', {
-        controller : 'PostController',
-        templateUrl : 'js/views/post/single.html'
+      controller : 'NewsController',
+      templateUrl : 'js/views/post/single.html'
     })
 
     // __admin views
     .when('/admin', {
-        controller : 'AdminController',
+        controller : 'DashboardController',
         templateUrl : 'js/admin/views/dashboard.html'
     })
     .when('/admin/articles', {

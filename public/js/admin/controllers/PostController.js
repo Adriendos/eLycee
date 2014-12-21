@@ -8,7 +8,7 @@ app.controller('PostController',
 		$scope.posts;
     $scope.modal = [];
 
-    $('.modal').modal();
+    $('.ui.modal').modal();
     
     // Getting all posts
 		PostsFactory.getAllPosts().then(function(posts) {

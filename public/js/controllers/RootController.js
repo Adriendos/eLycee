@@ -5,7 +5,7 @@ app.controller('RootController', ['$scope', '$location', 'AuthFactory', 'localSt
   	};
 
     $scope.showAdminSidebar = function() {
-      $('.bottom.horizontal.sidebar').first().sidebar('toggle');
+      $('.bottom.sidebar').first().sidebar('toggle');
     };
   	
     $scope.isActive = function (viewLocation) { 
