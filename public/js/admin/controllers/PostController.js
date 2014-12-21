@@ -1,5 +1,5 @@
-app.controller('PostController', ['$scope', 'AuthFactory', 'postsFactory',
-	function($scope, AuthFactory, postsFactory) {
+app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
+	function($scope, AuthFactory, PostsFactory) {
 		$scope.posts;
 		postsFactory.resource.query().$promise.then(
             //success
