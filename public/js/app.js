@@ -29,7 +29,7 @@ app.config(['$routeProvider',
         templateUrl : 'js/admin/views/dashboard.html'
     })
     .when('/admin/articles', {
-        controller : 'AdminArticlesController',
+        controller : 'PostController',
         templateUrl : 'js/admin/views/articles.html'
     })
     .otherwise({
