@@ -26,9 +26,6 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 // globals routes
 Route::group(['prefix' => 'v1/auth'], function() 
 { 
-	// Route::post('login', ['before' => 'csrf.json', 'uses' => 'AuthController@login']);
-	// Route::get('logout', 'AuthController@logout');
-
 	Route::get('csrfToken', [
 		'uses'   => 'BaseController@getToken',
 		'as'     => 'auth.csrftoken'

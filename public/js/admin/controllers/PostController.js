@@ -1,8 +1,11 @@
-app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
-	function($scope, AuthFactory, PostsFactory) {
+app.controller('PostController', 
+  ['$scope', 'AuthFactory', 'PostsFactory', 'FileUploader',
+	function($scope, AuthFactory, PostsFactory, FileUploader) {
 
     //!\\ Session check //!\\
     AuthFactory.checkSession();
+
+    console.log(FileUploader);
 
 		$scope.posts;
     $scope.modal = [];

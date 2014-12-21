@@ -2,8 +2,8 @@
 var app;
 
 app = angular.module('eLycee', [
-  "ngRoute","ngResource","ngMap",
-  "ngAnimate","ngSanitize","LocalStorageModule", "toastr", "textAngular"
+  'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
+  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'    
 ]);
 
 app.constant('CONFIG', 
