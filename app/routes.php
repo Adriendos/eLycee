@@ -26,18 +26,29 @@ App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 // globals routes
 Route::group(['prefix' => 'v1/auth'], function() 
 { 
-	Route::post('login', ['before' => 'csrf.json', 'uses' => 'AuthController@login']);
-	Route::get('csrfToken', 'AuthController@getToken');
-	Route::get('logout', 'AuthController@logout');
+	// Route::post('login', ['before' => 'csrf.json', 'uses' => 'AuthController@login']);
+	// Route::get('logout', 'AuthController@logout');
 
-	Route::get('token', 'Tappleby\AuthToken\AuthTokenController@index');
-
-	Route::post('token', [
-		'before' => 'csrf.json', 
-		'uses' => 'Tappleby\AuthToken\AuthTokenController@store'
+	Route::get('csrfToken', [
+		'uses'   => 'BaseController@getToken',
+		'as'     => 'auth.csrftoken'
 	]);
 
-	Route::delete('token', 'Tappleby\AuthToken\AuthTokenController@destroy');
+	Route::get('checkSession', [
+		'uses'   => 'Tappleby\AuthToken\AuthTokenController@index',
+		'as'     => 'auth.check'
+	]);
+
+	Route::post('login', [
+		'before' => 'csrf.json', 
+		'uses'   => 'Tappleby\AuthToken\AuthTokenController@store',
+		'as'     => 'auth.login'
+	]);
+
+	Route::delete('logout', [
+		'uses'   => 'Tappleby\AuthToken\AuthTokenController@destroy',
+		'as'     => 'auth.logout'
+	]);
 });
 Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function() 
 {
