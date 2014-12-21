@@ -25,11 +25,28 @@
               </div>
             </a>
             <div class="right menu">
-                <div class="item" id="connexion-btn" ng-click="showConnectModal()">
-                   <div class="ui positive button">
-                        <i class="icon user"></i>Se Connecter
+
+                <div class="item" id="connexion-btn" ng-click="showConnectModal()" ng-show="!isLoggedUser();">
+                  <div class="ui basic positive button">
+                      <i class="icon sign in"></i>
+                      Connexion
                     </div>
                 </div>
+                <div class="item" ng-click="logout()" ng-show="isLoggedUser();">
+                  <div class="ui basic negative button">
+                      <i class="icon sign out"></i>
+                      Déconnexion
+                    </div>
+                </div>
+                <div class="item" ng-click="go('/admin')" ng-show="isUserAdmin();">
+                  <div class="ui basic positive button">
+                      <i class="icon configure"></i>
+                      Administration
+                    </div>
+                </div>
+
+
+
                 <a target="_blank" class="item" href="https://www.facebook.com/pages/Cpdev08elycee/744260765642204?ref=bookmarks">
                     <i class="facebook icon"></i>
                 </a>
