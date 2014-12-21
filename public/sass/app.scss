@@ -256,7 +256,9 @@ body {
     display: inline-block;
     text-align: start;
 }
-
+.pt10 {
+    padding-top: 10px;
+}
 // drop zone
 .well {
     min-height: 20px;
@@ -277,4 +279,7 @@ body {
 }
 .ui.grid.no-top-margin {
     margin: 0;
+}
+.ui.buttons .or:before {
+    content: 'ou' !important;
 }

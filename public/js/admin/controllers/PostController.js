@@ -77,6 +77,8 @@ app.controller('PostController',
 
     $scope.uploader = new FileUploader();
     // Image upload
-    // $('#progress-upload-img').progress('increment');
+    $scope.submitForm = function() {
+      console.log($scope.uploader);
+    };
 
 }]);
