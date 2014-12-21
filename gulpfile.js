@@ -72,23 +72,23 @@ gulp.task('compress-vendors', function() {
     .pipe(gulp.dest('public/dist/vendors'));
 })
 
-gulp.task('browser-sync', function() {
-    browserSync.init(null, {
-        server: {
-            baseDir: 'public',
-            routes: {
-                '/bower_components': '../bower_components'
-            }
-        }
-    });
-});
+// gulp.task('browser-sync', function() {
+//     browserSync.init(null, {
+//         server: {
+//             baseDir: 'public',
+//             routes: {
+//                 '/bower_components': '../bower_components'
+//             }
+//         }
+//     });
+// });
 
 gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-gulp.task('default', ['css', 'compress-app', 'compress-vendors', 'browser-sync'], function () {
+gulp.task('default', ['css', 'compress-app', 'compress-vendors'], function () {
     gulp.watch("public/sass/*.scss", ['css']);
     gulp.watch("public/js/**/*.js", ['compress-app', 'compress-vendors']);
-    gulp.watch("public/*.html", ['bs-reload']);
+    //gulp.watch("public/*.html", ['bs-reload']);
 });

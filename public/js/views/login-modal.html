@@ -1,17 +1,17 @@
-<form class="ui basic modal" id="connexionPopUp" ng-controller="AuthController">
+<form class="ui basic modal" id="connexionPopUp" ng-controller="AuthController" style="border: 2px solid white;"> 
     <i class="close icon"></i>
     <div class="header">
-        Connectez-vous !
+        Connexion
     </div>
     <div class="content">
         <div class="image">
-            <i class="users icon"></i>
+            <i class="sign in icon"></i>
         </div>
         <div class="description">
             <div class="ui form">
                 <div class="two fields">
                     <div class="required field">
-                        <label class="popupLabel">Nom d'utilisateur : </label>
+                        <label class="popupLabel">Login : </label>
                         <div class="ui icon input">
                             <input type="text" ng-model="userInfos.username" value="test" placeholder="Identifiant">
                             <i class="user icon"></i>
@@ -30,11 +30,11 @@
     </div>
     <div class="actions">
         <div class="two fluid ui inverted buttons">
-            <button type="reset" class="ui red basic inverted button">
+            <button type="reset" class="ui red  button">
                 <i class="remove icon"></i>
                 Reset
             </button>
-            <button type="submit" id="submit" ng-click="login()" class="ui green basic inverted button">
+            <button type="submit" id="submit" ng-click="login()" class="ui green button">
                 <i class="checkmark icon"></i>
                 Connexion
             </button>
