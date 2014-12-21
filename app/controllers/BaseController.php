@@ -12,25 +12,13 @@ class BaseController extends Controller {
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$ressources = $model::all();
  
-		return Response::json(array(
-			$ressources	
-		));
+		return Response::json([$ressources]);
 	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 * 
-	 * @return View
-	 */
-	// public function create()
-	// {
-		
-	// }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Response
+	 * @return json element created
 	 */
 	public function store()
 	{	
@@ -49,8 +37,8 @@ class BaseController extends Controller {
 	 /**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  int $id
+	 * @return json element to display
 	 */
 	public function show($id)
 	{	
@@ -61,21 +49,10 @@ class BaseController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 * [TODO]
-	 * @param  int  $id
-	 * @return View
-	 */
-	public function edit($id)
-	{
-
-	}
-
-	/**
 	 * Update the specified resource from storage
 	 * 
 	 * @param int $id
-	 * @return response
+	 * @return json element updated
 	 */
 	public function update($id)
 	{
@@ -95,7 +72,7 @@ class BaseController extends Controller {
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @return str delete message
 	 */
 	public function destroy($id)
 	{
@@ -103,21 +80,21 @@ class BaseController extends Controller {
         $elem = $model::findOrFail($id);
         $elem->delete();
 
-        return Response::json('Element deleted');
+        return Response::json('L\'élément à bien été éffacé');
 	}
 
 	/**
 	 * get model results with limit
 	 * 
 	 * @param int limit 
-	 * @return json
+	 * @return json list of results filter by limit
 	 */
 	public function getWithLimit($limit)
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$results = $model::orderBy('created_at', 'DESC')->take($limit)->get();
 
-		$query = $model::orderBy('created_at', 'DESC')->take($limit)->get();
-		return Response::json($query);
+		return Response::json($results);
 	}
 	/**
 	 * Get csrf token
