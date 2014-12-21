@@ -28,8 +28,16 @@ app.factory('PostsFactory', ['$http', '$resource', '$q',
 	       	return deferred.promise;
 	    };
 
-	    PostsFactory.getPosts = function() {
-
+	    PostsFactory.getPosts = function(limitWantedPosts) {
+	    	var deferred = $q.defer();
+	    	$http.get('api/v1/posts/limit/' + limitWantedPosts)
+				 .success(function(data, status, headers, config) {
+				 	deferred.resolve(data);
+				 })
+				 .error(function(data, status, headers, config) {
+				 	deferred.resolve(data);
+				 });
+	       	return deferred.promise;
 	    };
 
 	    return PostsFactory;

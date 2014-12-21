@@ -53,9 +53,12 @@ Route::group(
 		Route::resource('users', 'UserController');
 
 		// __ posts
-		Route::get('posts/limit/:limit', 'PostController@getPostsWithLimit');
+		Route::get('posts/limit/{limit}', 'PostController@getWithLimit');
 		Route::resource('posts', 'PostController');
+
+		// __ comments
 		Route::resource('comments', 'CommentController');
+
 		Route::resource('questions', 'QuestionController');
 		Route::resource('choices', 'ChoiceController');
 		Route::resource('scores', 'ScoreController');
