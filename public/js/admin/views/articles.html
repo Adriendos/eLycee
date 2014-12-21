@@ -52,13 +52,17 @@
 </div>
 
 <!-- CREATION/EDITION MODAL -->
-<div class="ui modal fullscreen" id="postModal">
+<div class="ui fullscreen modal long" id="postModal">
   <i class="close icon"></i>
   <div class="header">
     {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
   </div>
   <div class="content">
     <div class="ui form">
+      <div class="field">
+        <label>Titre  </label>
+        <input type="text">
+      </div>
       <div class="field">
         <label>Contenu  </label>
         <div text-angular ng-model="htmlVariable" name="content"></div>

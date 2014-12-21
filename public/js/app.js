@@ -90,7 +90,7 @@ app.config(['$provide', function($provide){
             toolbarButtonActive: 'active',
             disabled: 'disabled',
             textEditor: '',
-            htmlEditor: 'ui textarea'
+            htmlEditor: ''
         };
         return taOptions; // whatever you return will be the taOptions
     }]);
