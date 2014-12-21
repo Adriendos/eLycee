@@ -56,24 +56,36 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function()
 });
 
 
-
 Route::group(
 	['prefix' => 'v1', 'after' =>'json.protect'], 
 	function() {
 		// __ users	
-		Route::resource('users', 'UserController');
+		Route::resource('users', 'UserController', 
+			['except' => ['create', 'edit'] 
+		]);
 
 		// __ posts
 		Route::get('posts/limit/{limit}', 'PostController@getWithLimit');
-		Route::resource('posts', 'PostController');
+		Route::resource('posts', 'PostController', 
+			['except' => ['create', 'edit'] 
+		]);
 
 		// __ comments
-		Route::resource('comments', 'CommentController');
+		Route::resource('comments', 'CommentController', 
+			['except' => ['create', 'edit'] 
+		]);
 
-		Route::resource('questions', 'QuestionController');
-		Route::resource('choices', 'ChoiceController');
-		Route::resource('scores', 'ScoreController');
-	});
+		Route::resource('questions', 'QuestionController', 
+			['except' => ['create', 'edit'] 
+		]);
+		Route::resource('choices', 'ChoiceController', 
+			['except' => ['create', 'edit'] 
+		]);
+		Route::resource('scores', 'ScoreController', 
+			['except' => ['create', 'edit'] 
+		]);
+	}
+);
 
 
 

@@ -20,15 +20,12 @@ class BaseController extends Controller {
 	/**
 	 * Show the form for creating a new resource.
 	 * 
-	 [TODO]
 	 * @return View
 	 */
-	public function create()
-	{
-		// $request = Route::getCurrentRoute()->getAction();
-		// $ctrl    = str_replace('Controller@create', '', $request['controller']);
-		// return View::make('admin.create'.$ctrl,[]);
-	}
+	// public function create()
+	// {
+		
+	// }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -59,7 +56,6 @@ class BaseController extends Controller {
 	{	
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id)->toArray();
-
 
 		return Response::json([$elem]);
 	}
@@ -104,12 +100,10 @@ class BaseController extends Controller {
 	public function destroy($id)
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-
         $elem = $model::findOrFail($id);
         $elem->delete();
 
-        // [TODO = > send ok or not]
-        // return Redirect::to('admin');
+        return Response::json('Element deleted');
 	}
 
 	/**
