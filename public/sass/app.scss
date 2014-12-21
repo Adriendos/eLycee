@@ -6,7 +6,7 @@ body {
 }
 
 body {
-    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px)!important);
+    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px )!important);
     background-size: cover !important;
 }
 
