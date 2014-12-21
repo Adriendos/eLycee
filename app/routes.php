@@ -44,10 +44,16 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function()
 
 });
 
+
+
 Route::group(
 	['prefix' => 'v1', 'after' =>'json.protect'], 
-	function() {	
+	function() {
+		// __ users	
 		Route::resource('users', 'UserController');
+
+		// __ posts
+		Route::get('posts/limit/:limit', 'PostController@getPostsWithLimit');
 		Route::resource('posts', 'PostController');
 		Route::resource('comments', 'CommentController');
 		Route::resource('questions', 'QuestionController');

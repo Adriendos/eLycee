@@ -1,4 +1,4 @@
-app.controller('AdminArticlesController', ['$scope', 'AuthFactory', 'postsFactory',
+app.controller('PostController', ['$scope', 'AuthFactory', 'postsFactory',
 	function($scope, AuthFactory, postsFactory) {
 		console.log(postsFactory);
 		// check user rights
