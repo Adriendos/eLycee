@@ -7,7 +7,10 @@ app = angular.module('eLycee', [
 ]);
 
 app.constant('CONFIG', 
-  { apiUrl: 'api/v1/' }   
+  { 
+    apiUrl : 'api/v1/',
+    urlAuth: 'api/v1/auth'
+  }   
 );
 
 // ROUTING ANGULAR

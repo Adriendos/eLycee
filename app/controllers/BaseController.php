@@ -128,6 +128,15 @@ class BaseController extends Controller {
 		$query = $model::orderBy('created_at', 'DESC')->take($limit)->get();
 		return Response::json($query);
 	}
+	/**
+	 * Get csrf token
+	 * 
+	 * @return str 
+	 */
+	public function getToken()
+	{
+		return csrf_token();
+	}
 
 	/**
 	 * [HELPER] => get model name and vars return name
