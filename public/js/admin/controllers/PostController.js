@@ -50,7 +50,8 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
     $scope.openCreationModal = function() {
       $('#postModal').modal('show');
       $scope.modal.mode = 'create';
-      $('div.ng-pristine.ta-bind').addClass('textarea');
+      $('div.ng-pristine.ta-bind').addClass('textarea'); //We add some style to the textarea cause plugin is s***
+      $('.ui.checkbox').checkbox();
     };
 
 }]);

@@ -61,17 +61,28 @@
     <div class="ui form">
       <div class="field">
         <label>Titre  </label>
-        <input type="text">
+        <div class="ui corner labeled input">
+        <input type="text" placeholder="Titre de l'article">
+          <div class="ui corner label">
+            <i class="asterisk icon"></i>
+          </div>
+        </div>
       </div>
       <div class="field">
         <label>Contenu  </label>
         <div text-angular ng-model="htmlVariable" name="content"></div>
       </div>
+      <div class="field">
+        <div class="ui toggle checkbox">
+          <input type="checkbox">
+          <label>Publier</label>
+        </div>
+      </div>
+      <div class="ui buttons">
+        <div class="ui submit positive button">{{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}</div>
+        <div class="or"></div>
+        <div class="ui button negative reset">Annuler</div>
+      </div>
     </div>
   </div>
 
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
-</div>
