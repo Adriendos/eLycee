@@ -37,23 +37,16 @@ class BaseController extends Controller {
 	 */
 	public function store()
 	{	
-		// [TODO] check if everything ok after refacto + validate value
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$model = new $model();
-
-		foreach ($_POST as $key => $value) 
-		{
-			if($key == '_method') { continue; }
-			$model->$key = $value;
+		$elem = new $model();
+		$inputs = Input::All();
+		foreach ($inputs as $inputName => $inputVal) {
+			if($inputName == '_method') { continue; }
+			$elem->$inputName = $inputVal;
 		}
+		$elem->save(); 
 
-		$model->save(); 
-
-		return Response::json([
-				'insert' => 'true',
-				200
-			]
-		);
+		return Response::json($elem);
     }
 
 	 /**
@@ -67,10 +60,6 @@ class BaseController extends Controller {
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id)->toArray();
 
-		// return Response::json([
-		// 		$vars => $elem,
-		// 	]
-		// );
 
 		return Response::json([$elem]);
 	}
@@ -83,19 +72,27 @@ class BaseController extends Controller {
 	 */
 	public function edit($id)
 	{
-		// $request = Route::getCurrentRoute()->getAction();
-		// $ctrl    = str_replace('Controller@edit', '', $request['controller']);
 
-  //       $elem = $ctrl::findOrFail($id);
+	}
 
-  //       $returnName = strtolower($ctrl);
+	/**
+	 * Update the specified resource from storage
+	 * 
+	 * @param int $id
+	 * @return response
+	 */
+	public function update($id)
+	{
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$elem = $model::findOrFail($id);
+		$inputs = Input::All();
 
-  //       return Response::json([
-		// 		'error'     => false,
-		// 		$returnName => $elem,
-		// 		200
-		// 	]
-		// );
+		foreach ($inputs as $inputName => $inputVal) {
+			if($inputName == '_method') { continue; }
+			$elem->$inputName = $inputVal;
+		}
+		$elem->save();
+		return Response::json($elem);
 	}
 
 	/**
