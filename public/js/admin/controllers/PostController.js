@@ -52,6 +52,11 @@ app.controller('PostController', ['$scope', 'AuthFactory', 'PostsFactory',
       $('div.ng-pristine.ta-bind').addClass('textarea');
     };
 
+    $scope.openDeletePostModal = function(post) {
+      $scope.currentPost = post;
+      $('#deletePostModal').modal('show');
+    };
+
     $scope.openCreationModal = function() {
       $scope.currentPost = [];
       $scope.modal.mode = 'create';
