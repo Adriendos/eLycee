@@ -21,7 +21,7 @@
     <!-- SIDEBAR ADMIN -->
     <div ng-include src="'js/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
     
-    <div class="ui page grid">
+    <div id="body" class="ui page grid">
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
         <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
 
