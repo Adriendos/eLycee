@@ -116,6 +116,20 @@ class BaseController extends Controller {
 	}
 
 	/**
+	 * get model results with limit
+	 * 
+	 * @param int limit 
+	 * @return json
+	 */
+	public function getWithLimit($limit)
+	{
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+
+		$query = $model::orderBy('created_at', 'DESC')->take($limit)->get();
+		return Response::json($query);
+	}
+
+	/**
 	 * [HELPER] => get model name and vars return name
 	 * 
 	 * @param str methodName

@@ -2,5 +2,4 @@
 
 class PostController extends \BaseController {
 
-	
 }
