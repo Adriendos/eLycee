@@ -11,7 +11,7 @@ app.config(['$routeProvider',
       controller: 'ContactController',
       templateUrl: 'js/views/contact.html'
     }).when('/post/:id', {
-        controller : 'NewsController',
+        controller : 'PostController',
         templateUrl : 'js/views/post/single.html'
     })
 

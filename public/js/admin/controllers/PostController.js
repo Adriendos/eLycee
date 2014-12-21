@@ -80,7 +80,7 @@ app.controller('PostController',
     $scope.submitForm = function() {
       // params = scope.$eval(attributes.ngThumb)
       var f = $scope.uploader.queue[0]._file;
-
+      console.log(f);
       var b64File = (new FileReader()).readAsDataURL(f);
       console.log(f);
       console.log( b64File );
