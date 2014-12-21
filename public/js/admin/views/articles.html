@@ -95,7 +95,7 @@
                 <tr ng-repeat="item in uploader.queue" class="ng-scope">
                   <td>
                     <i class="file image outline icon"></i>
-                    <strong class="ng-binding">ubuntu_desktop_12_04-wallpaper-1920x1200.jpg</strong>
+                    <strong>{{ item.file.name }}</strong>
                     <!-- Image preview -->
                     <!--auto height-->
                     <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->

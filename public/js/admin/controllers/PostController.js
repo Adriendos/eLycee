@@ -78,7 +78,23 @@ app.controller('PostController',
     $scope.uploader = new FileUploader();
     // Image upload
     $scope.submitForm = function() {
-      console.log($scope.uploader);
+      // params = scope.$eval(attributes.ngThumb)
+      var f = $scope.uploader.queue[0]._file;
+
+      var b64File = (new FileReader()).readAsDataURL(f);
+      console.log(f);
+      console.log( b64File );
     };
 
+    // var can = document.getElementById('canvas');
+    // var ctx = can.getContext('2d');
+    // var img = document.getElementById('tweetpic');
+    // ctx.drawImage(img, 0, 0);
+    // var b64Text = can.toDataURL();
+    // b64Text = b64Text.replace('data&colon;image/png;base64,','');
+    // var fileData = b64Text;
+
+    // $scope.uploader.onAfterAddingFile = function(fileItem) {
+    //   console.info('onAfterAddingFile', fileItem);
+    // };
 }]);
