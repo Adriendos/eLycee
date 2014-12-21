@@ -1,5 +1,5 @@
 app.controller('NewsController', ['PostsFactory', '$scope', function(PostsFactory, $scope) {
-  PostsFactory.getAllPosts().then(function(posts) {
+  PostsFactory.getPosts(4).then(function(posts) {
     $scope.posts = posts;
   });
 }]);

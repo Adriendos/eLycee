@@ -40,14 +40,14 @@
     </div>
 </div>
 <div class="six wide column only computer tablet">
-	<div class="ui relaxed divided items">
+	<div class="ui segment divided items">
 		<!-- START LOOP -->
 		<div class="item" ng-repeat="post in posts | limitTo:3">
 			<div class="ui small image">
 				<img src="http://lorempixel.com/300/200/sports">
 			</div>
 			<div class="content">
-				<a class="header" href="#/post/{{post.id}}">{{ post.title }}</a>
+				<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
 				<div class="meta">
 					<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
 					<a>Category</a>

@@ -1,5 +1,10 @@
 // @import "compass";
 
+#body {
+    background-image: url('../../img/gaussian-blur.jpg');
+    background-size:cover;
+}
+
 // __ Header 
 #navbar {
 	height: 37px;
