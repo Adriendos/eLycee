@@ -1,9 +1,9 @@
 app.factory('AuthFactory', 
-  ['$http', '$rootScope', '$sanitize', '$location', '$resource', 'localStorageService', 
-  function($http, $rootScope, $sanitize, $location, $resource, localStorageService) {
+  ['$http', '$rootScope', '$sanitize', '$location', '$resource', 'localStorageService', 'CONFIG',
+  function($http, $rootScope, $sanitize, $location, $resource, localStorageService, CONFIG) {
 
     var userInfos,
-    urlAuth = 'api/v1/auth',
+    urlAuth = CONFIG.apiUrl + 'auth',
     AuthFactory = {};
 
     AuthFactory.login = function(userInfos) {

@@ -1,10 +1,11 @@
-app.factory('PostsFactory', ['$http', '$resource', '$q',
-	function($http, $resource, $q) {
-		var PostsFactory = {};
+app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
+	function($http, $resource, $q, CONFIG) {
+		var PostsFactory = {},
+			apiUrl = CONFIG.apiUrl;
 
 		var resource = $resource(
-			"api/v1/posts/:id",
-			{id: "@id" },
+			apiUrl + 'posts/:id',
+			{id: '@id' },
 			{
 			  query: {method: 'GET', isArray: true},
 			  get: {method: 'GET', params:{id:'@id'}, isArray: true},
@@ -30,7 +31,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q',
 
 	    PostsFactory.getPosts = function(limitWantedPosts) {
 	    	var deferred = $q.defer();
-	    	$http.get('api/v1/posts/limit/' + limitWantedPosts)
+	    	$http.get(apiUrl + 'posts/limit/' + limitWantedPosts)
 				 .success(function(data, status, headers, config) {
 				 	deferred.resolve(data);
 				 })

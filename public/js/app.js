@@ -6,6 +6,10 @@ app = angular.module('eLycee', [
   "ngAnimate","ngSanitize","LocalStorageModule", "toastr"
 ]);
 
+app.constant('CONFIG', 
+  { apiUrl: 'api/v1/' }   
+);
+
 // ROUTING ANGULAR
 app.config(['$routeProvider',
   function($routeProvider) {
