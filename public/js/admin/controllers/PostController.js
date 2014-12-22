@@ -1,6 +1,6 @@
 app.controller('PostController', 
-  ['$scope', 'AuthFactory', 'PostsFactory', 'FileUploader',
-	function($scope, AuthFactory, PostsFactory, FileUploader) {
+  ['$scope', 'PostsFactory', 'FileUploader',
+	function($scope, PostsFactory, FileUploader) {
 
 		$scope.posts;
     $scope.modal = [];
