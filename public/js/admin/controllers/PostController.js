@@ -80,6 +80,7 @@ app.controller('PostController',
     $scope.submitForm = function() {
       // image
       var f = $scope.uploader.queue[0]._file;
+      console.info('infos file', f);
       var reader = new FileReader();
       reader.onloadend = function () {
           $scope.currentPost.image64 = reader.result;

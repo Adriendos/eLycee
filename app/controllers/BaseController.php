@@ -25,14 +25,13 @@ class BaseController extends Controller {
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = new $model();
 		$inputs = Input::All();
-		return Response::json('$inputs');
 
 		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image64') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 		// threat image
-		$base64_str = substr($_POST['image64'], strpos($_POST['image64'], ",")+1);
+		$base64_str = substr($inputs['image64'], strpos($inputs['image64'], ",")+1);
 		// @todo refactor, test extension and make it dynamique ..
 		$image = base64_decode($base64_str);
 		$imgPath = "/img/".$model."/" . $model."-thumb-".time().".png";
@@ -121,7 +120,7 @@ class BaseController extends Controller {
 	 * @param str methodName
 	 * @return array modelNameand vars 
 	 */
-	private function getModelNameAndVarsName($methodName) 
+	protected function getModelNameAndVarsName($methodName) 
 	{
 		$request   = Route::getCurrentRoute()->getAction();
 		$model = str_replace('Controller@' . $methodName, '', $request['controller']);

@@ -3,19 +3,21 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 		var PostsFactory = {},
 			apiUrl = CONFIG.apiUrl;
 
-		var Post = $resource(
+		PostsFactory.Post = $resource(
 			apiUrl + 'posts/:id',
 			{id: '@id' },
 			{
 			  query: {method: 'GET', isArray: true},
 			  get: {method: 'GET', params:{id:'@id'}, isArray: true},
-			  save: {method: 'POST', isArray: true}
+			  save: {
+			  	method: 'POST'
+			  }
 			}
 		);
 
 	  	PostsFactory.getAllPosts = function () {
 	  		var deferred = $q.defer();
-	        Post.query().$promise.then(
+	        PostsFactory.Post.query().$promise.then(
 		          //success
 		          function(results) {
 		          	deferred.resolve(results[0]); 
@@ -42,9 +44,8 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 	    };
 
 	    PostsFactory.save = function(saveInfos) {
-	    	Post.save(saveInfos, function(results) {
-                console.info('infos', results); 
-              });
+	    	var newPost = new PostsFactory.Post(saveInfos);
+			newPost.$save();
 	    };
 
 	    return PostsFactory;
