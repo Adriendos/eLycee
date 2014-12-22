@@ -30,8 +30,12 @@ class BaseController extends Controller {
 			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
+
+		$imgPath = $this->processImage($inputs, $model);
+		if($imgPath) {
+			$elem->url_thumbnail = $imgPath;
+		}
 		
-		$elem->url_thumbnail = $imgPath;
 		$elem->save(); 
 		return Response::json($elem);
     }
@@ -116,7 +120,7 @@ class BaseController extends Controller {
 	 */
 	protected function getModelNameAndVarsName($methodName) 
 	{
-		$request   = Route::getCurrentRoute()->getAction();
+		$request = Route::getCurrentRoute()->getAction();
 		$model = str_replace('Controller@' . $methodName, '', $request['controller']);
 		return [
 			'model' => $model,
@@ -128,17 +132,30 @@ class BaseController extends Controller {
 	 * [HELPER] => 	Process an image if it has been send
 	 * 
 	 * @param array the inputs received with the request
-	 * @return bool imageProcessSatus 
+	 * @return str path to image to store in the db
 	 */
-	protected function processImage($inputs)
+	protected function processImage($inputs, $modelName)
 	{
-		if( ! $inputs['image']) { return; }
-		// threat image
-		$base64_str = substr($inputs['image'][''], strpos($inputs['image64'], ",")+1);
-		// @todo refactor, test extension and make it dynamique ..
-		$image = base64_decode($base64_str);
-		$imgPath = "/img/".$model."/" . $model."-thumb-".time().".png";
-		$path = public_path() . $imgPath;
-		Image::make($image)->save($path);
+		if( ! $inputs['image']) { return false; }
+		// process image
+		$dirtyBase64 = $inputs['image']['base64'];
+		$base64Str = substr($dirtyBase64, strpos($dirtyBase64, ',')+1);
+		$imageFile = base64_decode($base64Str);
+
+		// test if file folder exists
+		$filePath = '/img/' . strtolower($model) . 's/';
+		$folderName = public_path() . $filePath;
+		if ( ! file_exists($folderName)) {
+		    mkdir($folderName, 0777);
+		}
+		// Image extension
+		$fileData = $inputs['image']['file'];
+		$fileExtension = substr( $fileData['type'], strpos( $fileData['type'], '/')+1);
+		$fileExtension = '.' . str_replace('jpeg', 'jpg', $fileExtension);
+
+		$imgName = strtolower($model) . '-thumb-' . time() . $fileExtension;
+		Image::make($imageFile)->save($folderName . $imgName);
+
+		return $filePath . $imgName;
 	}
 }
