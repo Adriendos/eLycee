@@ -283,3 +283,10 @@ body {
 .ui.buttons .or:before {
     content: 'ou' !important;
 }
+
+// problem modal scroll 
+.dimmed.dimmable>.ui.animating.dimmer, 
+.dimmed.dimmable>.ui.visible.dimmer, 
+.ui.active.dimmer {
+    overflow: scroll;
+}

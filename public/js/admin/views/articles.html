@@ -158,12 +158,20 @@
         </div><!-- ./ ui grid -->
       </div>
       <div class="field">
+        <label>Introduction  </label>
+        <div text-angular ng-model="currentPost.excerpt" name="excerpt"></div>
+      </div>
+      <div class="field">
         <label>Contenu  </label>
         <div text-angular ng-model="currentPost.content" name="content"></div>
       </div>
       <div class="field">
         <div class="ui toggle checkbox">
-          <input type="checkbox">
+          <input type="radio" 
+                 ng-model="currentPost.status" 
+                 name="status"
+                 ng-change="change()"
+                 value="published">
           <label>Publier</label>
         </div>
       </div>

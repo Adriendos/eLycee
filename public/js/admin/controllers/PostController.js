@@ -52,7 +52,7 @@ app.controller('PostController',
     };
 
     function openPostModal() {
-      $('#postModal').modal('show');
+      $('#postModal').modal('show').modal("refresh");
       $('div.ng-pristine.ta-bind').addClass('textarea');
     };
 
@@ -76,6 +76,9 @@ app.controller('PostController',
     };
 
     $scope.uploader = new FileUploader({autoUpload:true});
+    $scope.change =  function() {
+      console.info('change', 'change');
+    };
     // Image upload
     $scope.submitForm = function() {
       // image
