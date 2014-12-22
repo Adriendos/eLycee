@@ -1,5 +1,8 @@
 @import "compass";
-
+::selection {
+    background-color: rgba(#103F57,.8);
+    color: white;
+}
 html,
 body {
     height: 100%; width: 100%;
@@ -288,5 +291,5 @@ body {
 .dimmed.dimmable>.ui.animating.dimmer, 
 .dimmed.dimmable>.ui.visible.dimmer, 
 .ui.active.dimmer {
-    overflow: scroll;
+    // overflow: scroll;
 }
