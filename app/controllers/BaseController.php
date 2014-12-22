@@ -35,8 +35,8 @@ class BaseController extends Controller {
 		if($imgPath) {
 			$elem->url_thumbnail = $imgPath;
 		}
-		
-		$elem->save(); 
+		$elem->save();
+		 
 		return Response::json($elem);
     }
 
@@ -143,7 +143,7 @@ class BaseController extends Controller {
 		$imageFile = base64_decode($base64Str);
 
 		// test if file folder exists
-		$filePath = '/img/' . strtolower($model) . 's/';
+		$filePath = '/img/' . strtolower($modelName) . 's/';
 		$folderName = public_path() . $filePath;
 		if ( ! file_exists($folderName)) {
 		    mkdir($folderName, 0777);
@@ -153,7 +153,7 @@ class BaseController extends Controller {
 		$fileExtension = substr( $fileData['type'], strpos( $fileData['type'], '/')+1);
 		$fileExtension = '.' . str_replace('jpeg', 'jpg', $fileExtension);
 
-		$imgName = strtolower($model) . '-thumb-' . time() . $fileExtension;
+		$imgName = strtolower($modelName) . '-thumb-' . time() . $fileExtension;
 		Image::make($imageFile)->save($folderName . $imgName);
 
 		return $filePath . $imgName;
