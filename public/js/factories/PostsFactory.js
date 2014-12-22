@@ -8,10 +8,8 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 			{id: '@id' },
 			{
 			  query: {method: 'GET', isArray: true},
-			  get: {method: 'GET', params:{id:'@id'}, isArray: true},
-			  save: {
-			  	method: 'POST'
-			  }
+			  get: {method: 'GET', params:{id:'@id'} },
+			  save: { method: 'POST' }
 			}
 		);
 

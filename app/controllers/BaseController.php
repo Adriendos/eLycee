@@ -13,6 +13,21 @@ class BaseController extends Controller {
 		$ressources = $model::all();
  
 		return Response::json([$ressources]);
+
+		// __ test pagination
+		// $ressources = $model::paginate(100);
+		// $response = [
+		//     $vars        => $ressources->getItems(),
+		//     'pagination' => [
+		//         'total'        => $ressources->getTotal(),
+		//         'per_page'     => $ressources->getPerPage(),
+		//         'current_page' => $ressources->getCurrentPage(),
+		//         'last_page'    => $ressources->getLastPage(),
+		//         'from'         => $ressources->getFrom(),
+		//         'to'           => $ressources->getTo()
+		//     ]
+		// ];
+		// return Response::json([$response]);
 	}
 
 	/**
@@ -153,7 +168,7 @@ class BaseController extends Controller {
 		$fileExtension = substr( $fileData['type'], strpos( $fileData['type'], '/')+1);
 		$fileExtension = '.' . str_replace('jpeg', 'jpg', $fileExtension);
 
-		$imgName = strtolower($modelName) . '-thumb-' . time() . $fileExtension;
+		$imgName = strtolower($modelName) . '-thumb-' . str_random(8) . $fileExtension;
 		Image::make($imageFile)->save($folderName . $imgName);
 
 		return $filePath . $imgName;

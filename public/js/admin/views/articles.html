@@ -58,6 +58,7 @@
     {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
   </div>
   <div class="content">
+    <input type="hidden" ng-model="currentPost.id">
     <div class="ui form">
       <div class="field">
         <label>Titre  </label>
@@ -72,7 +73,7 @@
       <div class="field">
         <label>Image de couverture</label>
         <div class="ui grid no-top-margin">
-
+          <!-- PREVIEW IMAGE -->
           <div class="right floated left aligned eleven wide column ui compact segment">
             <!-- 
             <ul>
@@ -144,6 +145,7 @@
             </div> -->
           </div><!-- ./ ui compact appercu section -->
 
+          <!-- UPLOAD IMAGE ZONE -->
           <div class="left floated center aligned four wide column ui compact segment"
                style="margin-top: 0;">
             <!-- <div nv-file-drop uploader="uploader"> -->
@@ -154,9 +156,8 @@
             <div class="ui horizontal divider">Ou</div>
             <input type="file" nv-file-select uploader="uploader"/>
           </div><!-- ./ ui compact upload -->
-      
         </div><!-- ./ ui grid -->
-      </div>
+      </div><!-- .field image -->
       <div class="field">
         <label>Introduction  </label>
         <div text-angular ng-model="currentPost.excerpt" name="excerpt"></div>
@@ -176,7 +177,9 @@
         </div>
       </div>
       <div class="ui buttons">
-        <div class="ui submit positive button" ng-click="submitForm()">{{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}</div>
+        <div class="ui submit positive button" ng-click="submitForm()">
+          {{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}
+        </div>
         <div class="or"></div>
         <div class="ui button negative reset">Annuler</div>
       </div>

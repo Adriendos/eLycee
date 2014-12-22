@@ -76,20 +76,17 @@ app.controller('PostController',
     };
 
     $scope.uploader = new FileUploader({autoUpload:true});
-    $scope.change =  function() {
-      console.info('change', 'change');
-    };
-    // Image upload
-    $scope.submitForm = function() {
-      // image
+    $scope.submitForm = function() { // @todo verif fields image etc ...
+      // __ create new post 
       var imageFile = $scope.uploader.queue[0]._file;
+      console.log(imageFile);
       var reader = new FileReader();
       reader.onloadend = function () {
-          $scope.currentPost.image = {
-            base64: reader.result,
-            file: imageFile
-          };
-          PostsFactory.save($scope.currentPost);
+        $scope.currentPost.image = {
+          base64: reader.result,
+          file: imageFile
+        };
+        PostsFactory.save($scope.currentPost);
       }
       reader.readAsDataURL(imageFile);
     };
