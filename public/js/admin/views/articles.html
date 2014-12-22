@@ -52,7 +52,7 @@
 </div>
 
 <!-- CREATION/EDITION MODAL -->
-<div class="ui fullscreen modal long" id="postModal">
+<div class="ui fullscreen modal long" id="postModal" nv-file-drop uploader="uploader">
   <i class="close icon"></i>
   <div class="header">
     {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
@@ -138,19 +138,19 @@
                 <div class="progress">{{ uploader.progress + '%' }}</div>
               </div>
             </div> -->
-            <div id="progress-upload-img" class="ui teal progress">
+            <!-- <div id="progress-upload-img" class="ui teal progress">
               <div class="bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
               <div class="label">{{ uploader.progress + '%' }}</div>
-            </div>
+            </div> -->
           </div><!-- ./ ui compact appercu section -->
 
           <div class="left floated center aligned four wide column ui compact segment"
                style="margin-top: 0;">
-            <div nv-file-drop uploader="uploader">
+            <!-- <div nv-file-drop uploader="uploader"> -->
               <div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
                 Déposer votre image ici
               </div>
-            </div>
+            <!-- </div> -->
             <div class="ui horizontal divider">Ou</div>
             <input type="file" nv-file-select uploader="uploader"/>
           </div><!-- ./ ui compact upload -->

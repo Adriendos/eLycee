@@ -27,16 +27,10 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image64') { continue; }
+			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
-		// threat image
-		$base64_str = substr($inputs['image64'], strpos($inputs['image64'], ",")+1);
-		// @todo refactor, test extension and make it dynamique ..
-		$image = base64_decode($base64_str);
-		$imgPath = "/img/".$model."/" . $model."-thumb-".time().".png";
-		$path = public_path() . $imgPath;
-		Image::make($image)->save($path);
+		
 		$elem->url_thumbnail = $imgPath;
 		$elem->save(); 
 		return Response::json($elem);
@@ -130,4 +124,21 @@ class BaseController extends Controller {
 		];
 	}
 
+	/**
+	 * [HELPER] => 	Process an image if it has been send
+	 * 
+	 * @param array the inputs received with the request
+	 * @return bool imageProcessSatus 
+	 */
+	protected function processImage($inputs)
+	{
+		if( ! $inputs['image']) { return; }
+		// threat image
+		$base64_str = substr($inputs['image'][''], strpos($inputs['image64'], ",")+1);
+		// @todo refactor, test extension and make it dynamique ..
+		$image = base64_decode($base64_str);
+		$imgPath = "/img/".$model."/" . $model."-thumb-".time().".png";
+		$path = public_path() . $imgPath;
+		Image::make($image)->save($path);
+	}
 }

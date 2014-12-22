@@ -79,14 +79,16 @@ app.controller('PostController',
     // Image upload
     $scope.submitForm = function() {
       // image
-      var f = $scope.uploader.queue[0]._file;
-      console.info('infos file', f);
+      var imageFile = $scope.uploader.queue[0]._file;
       var reader = new FileReader();
       reader.onloadend = function () {
-          $scope.currentPost.image64 = reader.result;
+          $scope.currentPost.image = {
+            base64: reader.result,
+            file: imageFile
+          };
           PostsFactory.save($scope.currentPost);
       }
-      reader.readAsDataURL(f);
+      reader.readAsDataURL(imageFile);
     };
 
     // var can = document.getElementById('canvas');
