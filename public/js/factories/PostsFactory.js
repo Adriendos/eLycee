@@ -15,7 +15,8 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 
 	  	PostsFactory.getAllPosts = function () {
 	  		var deferred = $q.defer();
-	        PostsFactory.Post.query().$promise.then(
+	        PostsFactory.Post.query()
+	        	.$promise.then(
 		          //success
 		          function(results) {
 		          	deferred.resolve(results[0]); 
@@ -36,7 +37,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 				 	deferred.resolve(data);
 				 })
 				 .error(function(data, status, headers, config) {
-				 	deferred.resolve(data);
+				 	deferred.$resolve(data);
 				 });
 	       	return deferred.promise;
 	    };
