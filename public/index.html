@@ -23,7 +23,14 @@
     
     <div id="body" class="ui page grid">
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
+        <main id="app" class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
+
+         <div class="ui rail" ng-show="isAdmin()">
+      <div class="ui sticky">
+        <!-- Any arbitrary content !-->
+        COUCOU
+      </div>
+    </div>
 
         <!-- LOGIN MODAL -->
         <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
@@ -41,6 +48,7 @@
         <!-- NOTIFICATION DIRECTIVE -->
         <toast></toast>
     </div>
+   
 
     <!-- FOOTER -->
     <div class="ui vertical inverted footer segment fixed" ng-show="!isAdmin();">

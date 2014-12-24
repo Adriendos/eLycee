@@ -1,5 +1,6 @@
 app.controller('RootController', ['$scope', '$location', 'SessionService', 'localStorageService', '$rootScope', '$http', 'CONFIG',
   function($scope, $location, SessionService, localStorageService, $rootScope, $http, CONFIG) {
+    $('.ui.sticky').sticky({  context: '#app'});
   	$scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
   	};
