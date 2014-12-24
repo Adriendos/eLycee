@@ -1,5 +1,5 @@
-app.controller('RootController', ['$scope', '$location', 'AuthFactory', 'localStorageService', '$rootScope', '$http', 'CONFIG',
-  function($scope, $location, AuthFactory, localStorageService, $rootScope, $http, CONFIG) {
+app.controller('RootController', ['$scope', '$location', 'SessionService', 'localStorageService', '$rootScope', '$http', 'CONFIG',
+  function($scope, $location, SessionService, localStorageService, $rootScope, $http, CONFIG) {
   	$scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
   	};
@@ -21,7 +21,7 @@ app.controller('RootController', ['$scope', '$location', 'AuthFactory', 'localSt
     };
 
     $scope.logout = function(){
-      AuthFactory.logout();
+      SessionService.logout();
     };  
 
     $scope.go = function (path) {
@@ -33,54 +33,11 @@ app.controller('RootController', ['$scope', '$location', 'AuthFactory', 'localSt
     };
 
     $scope.isLoggedUser = function() {
-      if(getCredentials() != null) {
-        return true;
-      } else {
-        return false;
-      }
+      return SessionService.isLoggedUser();
     };
 
     $scope.isUserAdmin = function() {
-        var credLocalStorage = getCredentials();
-        if(credLocalStorage && (credLocalStorage.user.role.toLowerCase() == "teacher")) {
-          return true;
-        }
-        return false;
-    };
-
-    function getCredentials() {
-      return localStorageService.get('credentials');
-    }
-
-    $scope.checkAuthorization = function() {
-      if(!$scope.isUserAdmin()) {
-         $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
-          return AuthFactory.redirectNotMember(); 
-      }
-      return;
-    }
-
-    function checkSession() {
-      var credLocalStorage = getCredentials();
-      if(!credLocalStorage) {
-        return false;      
-      }
-
-      var sessionToken = credLocalStorage.token;
-      var request = {
-        method: "GET",
-        url: CONFIG.urlAuth + '/checkSession', 
-        params: {auth_token: sessionToken}
-      };
-      var success= true;
-      $http(request)
-        .success( function(data, status, headers, config) {
-         success = true;
-        })
-        .error( function(data, status, headers, config) {
-          success =  false;
-        });
-        return success;
-    };
-
+     return SessionService.isUserAdmin();
+   };
+    
 }]);  

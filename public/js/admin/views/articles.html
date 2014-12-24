@@ -21,25 +21,25 @@
       <tbody>
         <!-- Start Loop -->
         <tr ng-repeat="post in posts | toArray | limitTo: 10 | orderBy:sort.column:sort.descending track by post.id">
-          <td>{{ post.id }}</td>
-          <td>{{ post.title | limitTo : 20}} ...</td>
+          <td><small>{{ post.id }}</small></td>
+          <td><small>{{ post.title | limitTo : 20}} ...</small></td>
           <td>
-            <div class="ui labeled icon button basic">
+            <div class="mini ui labeled icon button basic">
               <i class="icon" ng-class="publicationState(post)"></i>
               {{ post.status}}
             </div>
           </td>
-          <td>{{post.created_at}}</td>
-          <td>{{post.updated_at}}</td>
-          <td>{{post.user_id}}</td>
+          <td><small>{{post.created_at}}</small></td>
+          <td><small>{{post.updated_at}}</small></td>
+          <td><small>{{post.user_id}}</small></td>
           <td>
-            <div class="ui labeled icon button positive" ng-click="openEditionModal(post)">
+            <div class="mini ui labeled icon button positive" ng-click="openEditionModal(post)">
               <i class="edit icon"></i>
               Modifier
             </div>
           </td>
           <td>
-            <div class="ui labeled icon button negative" ng-click="openDeletePostModal(post)">
+            <div class="mini ui labeled icon button negative" ng-click="openDeletePostModal(post)">
               <i class="erase icon"></i>
               Supprimer
             </div>
