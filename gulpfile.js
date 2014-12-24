@@ -8,6 +8,7 @@ header       = require('gulp-header'),
 rename       = require('gulp-rename'),
 minifyCSS    = require('gulp-minify-css'),
 concat       = require('gulp-concat'),
+notify       = require("gulp-notify");
 package      = require('./package.json');
 
 var banner = [
@@ -25,14 +26,17 @@ var banner = [
 gulp.task('css', function () {
     return gulp.src('public/sass/app.scss')
     .pipe(sass({compass: true}))
-      .on('error', function (err) { console.log(err.message); })    
+      .on('error', function (err) {
+        notify.onError("Sass error: <%= err.message %>") 
+      })    
     .pipe(autoprefixer('last 4 version'))
     .pipe(gulp.dest('public/dist/css/'))
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
     .pipe(header(banner, { package : package }))
     .pipe(gulp.dest('public/dist/css'))
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(browserSync.reload({stream:true}))
+    .pipe(notify('Css task done'));
 });
 
 gulp.task('compress-app', function(){
@@ -42,8 +46,9 @@ gulp.task('compress-app', function(){
         .pipe(rename('eLycee.js'))
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
-    	.pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('public/dist/js'));
+    	  .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('public/dist/js'))
+        .pipe(notify('App js task done'));
 });
 
 //Keep Updated with new libs
@@ -64,12 +69,13 @@ gulp.task('compress-vendors', function() {
     'public/bower_components/angular-file-upload/angular-file-upload.min.js'
 		//Add future bower dependencies here ;)
 	]).pipe(concat('vendors.js'))
-	.pipe(gulp.dest('public/dist/vendors'))
+	  .pipe(gulp.dest('public/dist/vendors'))
     .pipe(rename('vendors.js'))
     .pipe(uglify())
     .pipe(header(banner, { package : package }))
-	.pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('public/dist/vendors'));
+	  .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('public/dist/vendors'))
+    .pipe(notify('Vendors app js task done'));;
 })
 
 // gulp.task('browser-sync', function() {
