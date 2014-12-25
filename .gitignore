@@ -1,5 +1,6 @@
 /bootstrap/*.php
 /vendor
+/.idea
 composer.phar
 composer.lock
 .env.*.php

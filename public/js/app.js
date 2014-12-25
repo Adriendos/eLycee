@@ -118,21 +118,21 @@ app.config(['$provide', function($provide){
 }]);
 
 // Route Change interceptor
-app.run(function ($rootScope, $location, SessionService) { //Insert in the function definition the dependencies you need.
-    //Do your $on in here, like this:
-    $rootScope.$on("$locationChangeStart",function(event, next, current){
-        if($location.path().indexOf('/admin') >= 0) {
-          //ADMIN
-          if(!SessionService.isUserAdmin()) {
-            $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-            SessionService.logout();
-            $location.path('/');
-          }
-        } else {
-          //FRONT
-        }
-    });
-});
+// app.run(function ($rootScope, $location, SessionService) { //Insert in the function definition the dependencies you need.
+//     //Do your $on in here, like this:
+//     $rootScope.$on("$locationChangeStart",function(event, next, current){
+//         if($location.path().indexOf('/admin') >= 0) {
+//           //ADMIN
+//           if(!SessionService.isUserAdmin()) {
+//             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+//             SessionService.logout();
+//             $location.path('/');
+//           }
+//         } else {
+//           //FRONT
+//         }
+//     });
+// });
 
 
 
