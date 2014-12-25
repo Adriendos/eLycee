@@ -13,6 +13,29 @@ body {
     background-size: cover !important;
 }
 
+// __ ngAnimate example
+.reveal-animation.ng-enter {
+    -webkit-animation: Fade-Enter-Anime .5s;
+    -moz-animation: Fade-Enter-Anime .5s;
+    animation: Fade-Enter-Anime .5s;
+}
+.Content-Fade-Leave {
+    -webkit-animation: Fade-Leave-Anime .2s;
+    -moz-animation: Fade-Leave-Anime .2s;
+    animation: Fade-Leave-Anime .2s;
+}
+
+@-webkit-keyframes Fade-Enter-Anime {
+    from { opacity:0; }
+    to { opacity:1;  }
+}
+
+@-webkit-keyframes Fade-Leave-Anime {
+    from { opacity: 1; }
+    to {  opacity: 0; }
+}
+// __ ngAnimate example
+
 // __ Header 
 #navbar {
 	height: 37px;

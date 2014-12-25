@@ -11,6 +11,7 @@ app.factory('SessionService',
     SESS.logged = false;
 
     //TODO : Check token and initialize session
+
      
     SessionService.login = function(userInfos) {
       console.log('Login requested !'+userInfos);
@@ -80,6 +81,7 @@ app.factory('SessionService',
     //A refaire
     function checkToken() {
       var token = localStorageService.get('credentials');
+      console.log(token);
       var user = null;
       if(!token) {
         return user;      

@@ -1,47 +1,46 @@
-<!-- <div id="navbar" class="ui pointing menu navbar">
-    <a href="#/" class="brand item">eLycee</a>
-    <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
-    <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
-    <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-    
-</div> -->
+<!--<div id="navbar" class="ui pointing menu navbar">-->
+<!--<a href="#/" class="brand item">eLycee</a>-->
+<!--<a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>-->
+<!--<a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>-->
+<!--<a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>-->
+<!--</div>-->
 
- <div class="ui grid">
+<div class="ui grid">
     <div class="computer tablet only row">
-        <div class="ui inverted fixed menu navbar page grid">
+        <div class="ui inverted fixed menu navbar page grid ">
             <a href="#/" class="brand item">eLycee v0.0.0.0.1</a>
             <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
             <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
             <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
             <a class="ui dropdown item">Dropdown
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item">Action</div>
-                <div class="item">Another action</div>
-                <div class="item">Something else here</div>
-                <div class="ui divider"></div>
-                <div class="item">Seperated link</div>
-                <div class="item">One more seperated link</div>
-              </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">Action</div>
+                    <div class="item">Another action</div>
+                    <div class="item">Something else here</div>
+                    <div class="ui divider"></div>
+                    <div class="item">Seperated link</div>
+                    <div class="item">One more seperated link</div>
+                </div>
             </a>
             <div class="right menu">
 
                 <div class="item" id="connexion-btn" ng-click="showConnectModal()" ng-show="!isLoggedUser();">
-                  <div class="ui basic positive button">
-                      <i class="icon sign in"></i>
-                      Connexion
+                    <div class="ui basic positive button">
+                        <i class="icon sign in"></i>
+                        Connexion
                     </div>
                 </div>
                 <div class="item" ng-click="logout()" ng-show="isLoggedUser();">
-                  <div class="ui basic negative button">
-                      <i class="icon sign out"></i>
-                      Déconnexion
+                    <div class="ui basic negative button">
+                        <i class="icon sign out"></i>
+                        Déconnexion
                     </div>
                 </div>
                 <div class="item" ng-click="go('/admin')" ng-show="isUserAdmin();">
-                  <div class="ui basic positive button">
-                      <i class="icon configure"></i>
-                      Administration
+                    <div class="ui basic positive button">
+                        <i class="icon configure"></i>
+                        Administration
                     </div>
                 </div>
 

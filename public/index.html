@@ -23,7 +23,7 @@
     
     <div id="body" class="ui page grid">
         <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main id="app" class="app row" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
+        <main id="app" class="app row reveal-animation" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
 
          <div class="ui rail" ng-show="isAdmin()">
       <div class="ui sticky">
@@ -51,7 +51,7 @@
    
 
     <!-- FOOTER -->
-    <div class="ui vertical inverted footer segment fixed" ng-show="!isAdmin();">
+    <div class="ui vertical inverted footer segment fixed" ng-show="!isAdmin();" style="margin: 0">
         <div class="ui page grid">
           <div class="container">
             <div class="ui stackable inverted divided relaxed grid">
