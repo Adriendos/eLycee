@@ -117,22 +117,50 @@ app.config(['$provide', function($provide){
     }]);
 }]);
 
-// Route Change interceptor
-// app.run(function ($rootScope, $location, SessionService) { //Insert in the function definition the dependencies you need.
-//     //Do your $on in here, like this:
-//     $rootScope.$on("$locationChangeStart",function(event, next, current){
-//         if($location.path().indexOf('/admin') >= 0) {
-//           //ADMIN
-//           if(!SessionService.isUserAdmin()) {
-//             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-//             SessionService.logout();
-//             $location.path('/');
-//           }
-//         } else {
-//           //FRONT
-//         }
-//     });
-// });
+//Route Change interceptor
+app.run(function ($rootScope, $location, SessionService) { //Insert in the function definition the dependencies you need.
+     //Do your $on in here, like this:
+     $rootScope.$on("$locationChangeStart",function(event, next, current){
+         //console.log('Is user allowed?? => '+SessionService.isUserAllowed());
+         //if($location.path().indexOf('/admin') >= 0 && !SessionService.isUserAllowed()) {
+         //  //ADMIN
+         //  //if(!SessionService.isUserAdmin() || !SessionService.checkTokenAndInitializeSession()) {
+         //    $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+         //    SessionService.logout();
+         //    $location.path('/');
+         //  //}
+         //} else {
+         //   //SessionService.checkTokenAndInitializeSession();
+         //}
+         if( $location.path().indexOf('/admin') >= 0) {
+             if(SessionService.isLoggedUser() && SessionService.isUserAdmin()) {
+                 //Logged user
+                 return;
+             } else {
+                 //No user logged or user not admin
+                 SessionService.checkToken()
+                     .then(function(data) {
+                         // promise fulfilled
+                         if (SessionService.getUser().role === 'teacher') {
+                             return;
+                         } else {
+                             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                             SessionService.logout();
+                             $location.path('/');
+                         }
+                     }, function(error) {
+                         // promise rejected
+                         $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                         SessionService.logout();
+                         $location.path('/');
+
+                     });
+             }
+
+         }
+
+     });
+});
 
 
 
