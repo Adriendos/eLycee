@@ -31,8 +31,9 @@ describe('Controller: RootController', function() {
     var scope, ctrl;
 
     // Before each unit test instantiate the controller
-    beforeEach(inject(function ($controller, $rootScope, $location, SessionService) {
+    beforeEach(inject(function ($rootScope, _$location_, SessionService, $controller) {
         scope = $rootScope.$new();
+        $location = _$location_;
         mock = {
             $scope: scope,
             $location: $location,
@@ -46,6 +47,24 @@ describe('Controller: RootController', function() {
         expect(ctrl).toBeDefined();
     });
 
+    it('should test if the past is active', function() {
+        $location.path('/news');
+        expect(scope.isActive('/news')).toBe(true);
+        expect(scope.isActive('/contact')).toBe(false);
+    });
+
+    it('should test if the past is an admin path', function() {
+        $location.path('/admin/articles');
+        expect(scope.isAdmin()).toBe(true);
+        $location.path('/contact');
+        expect(scope.isAdmin()).toBe(false);
+    });
+
+    it('should test if the go method sends us to the desired location', function() {
+        $location.path('/admin/articles');
+        scope.go('/news');
+        expect($location.path()).toBe('/news');
+    });
 
 
 });

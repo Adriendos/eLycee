@@ -111,8 +111,8 @@ body {
     z-index: 100;
     position: absolute;
     margin:auto;
-    right:10px;
-    bottom:10px;
+    right:0; left:0;
+    bottom:0; top:0;
     padding:20px;
 
     .loader-wrapper {

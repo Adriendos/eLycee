@@ -36,9 +36,11 @@
         <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
 
         <!-- MAIN -->
-        <div class="ui page grid reveal-animation" ng-class="{admin : isAdmin()}" ng-view>
+        <div class="ui page grid reveal-animation pusher"
+             ng-class="{admin : isAdmin()}"
+             ng-view>
             <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-            <main class="ui grid reveal-animation" ng-class="{admin : isAdmin()}"></main>
+            <main class="ui grid fluid reveal-animation" ng-class="{admin : isAdmin()}"></main>
 
             <!-- NOTIFICATION DIRECTIVE -->
             <toast></toast>
@@ -47,41 +49,7 @@
         <div class="ui hidden divider"></div>
 
         <!-- FOOTER -->
-        <div class="ui vertical red footer segment fixed" ng-show="!isAdmin();" style="margin: 0">
-            <div class="ui page grid">
-                <div class="container">
-                    <div class="ui stackable inverted divided relaxed grid">
-                        <div class="eight wide column">
-                            <h3 class="ui header">Help Make Semantic UI Better</h3>
-                            <p>Maintaining an open source UI library is no small task. Support for the continued development of Semantic UI comes directly from the community.</p>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
-                                <button type="submit" class="ui red button">Donate Today</button>
-                            </form>
-                        </div>
-                        <div class="four wide column">
-                            <h5 class="ui red header">Contribute</h5>
-                            <div class="ui link list">
-                                <a class="item" href="https://www.transifex.com/organization/semantic-org/" target="_blank">Translation Hub</a>
-                                <a class="item" href="https://github.com/Semantic-Org/Semantic-UI" target="_blank">Issue Tracker</a>
-                                <a class="item" href="/cla.html" target="_blank">CLA</a>
-                                <a class="disabled item">Create Themes</a>
-                            </div>
-                        </div>
-                        <div class="four wide column">
-                            <h5 class="ui red header">Semantic Network</h5>
-                            <div class="ui link list">
-                                <a class="item" href="http://legacy.semantic-ui.com">Legacy Docs</a>
-                                <a class="item" href="http://www.learnsemantic.com">Learn Semantic</a>
-                                <a class="disabled item">Semantic Themes</a>
-                                <a class="disabled item">Semantic Layouts</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="ui vertical red footer segment fixed" ng-show="!isAdmin();" style="margin: 0" ng-include src="'js/views/footer.html'"></div>
 
         <!-- Gmap -->
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>

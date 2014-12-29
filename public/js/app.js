@@ -3,11 +3,12 @@ var app;
 
 app = angular.module('eLycee', [
   'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'    
+  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'
 ]);
 
 app.constant('CONFIG', 
-  { 
+  {
+    mode: 'dev',
     apiUrl : 'api/v1/',
     urlAuth: 'api/v1/auth'
   }   
@@ -38,8 +39,7 @@ app.config(function(toastrConfig) {
     positionClass: 'toast-top-right',
     tapToDismiss: true,
     timeOut: 1000,
-    titleClass: 'toast-title',
-    toastClass: 'toast'
+    titleClass: 'toast-title'
   });
 });
 
