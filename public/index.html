@@ -1,102 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="eLycee">
-<head>
-    <meta charset="UTF-8">
-    <title>eLycee - </title>
-    <meta name="description" content="">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="dist/css/app.min.css">  
-    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
-</head>
-<body ng-controller="RootController">
-    
-    <!-- NAV ADMIN --> 
-    <div ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></div>
-        
-    <!-- NAV -->
-    <div ng-include src="'js/views/navbar.html'" class="row" ng-hide="isAdmin()"></div>
+    <head>
+        <meta charset="utf-8">
+        <title>ELycee</title>
+        <meta name="description" content="">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
 
-    <!-- SIDEBAR ADMIN -->
-    <div ng-include src="'js/admin/views/sidebar.html'" ng-show="isAdmin()"></div>
-    
-    <div id="body" class="ui page grid">
-        <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
-        <main id="app" class="app row reveal-animation" ng-class="{admin : isAdmin()}" ng-view style="padding-top:50px;"></main>
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+        <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
+        <link rel="stylesheet" href="dist/css/app.min.css">
+    </head>
 
-         <div class="ui rail" ng-show="isAdmin()">
-      <div class="ui sticky">
-        <!-- Any arbitrary content !-->
-        COUCOU
-      </div>
-    </div>
+    <body ng-controller="RootController">
 
-        <!-- LOGIN MODAL -->
-        <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
+        <!--NAV-->
+        <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar"></ng-include>
 
         <!-- LOADING SPINNER -->
         <div spinner class="loader-section">
             <div class="loader-wrapper">
-                <span class="loader loader-quart-1"></span>
-                <span class="loader loader-quart-2"></span>
-                <span class="loader loader-quart-3"></span>
-                <span class="loader loader-quart-4"></span>
+              <span class="loader-bar">
+                  <span></span>
+              </span>
             </div>
         </div>
 
-        <!-- NOTIFICATION DIRECTIVE -->
-        <toast></toast>
-    </div>
-   
+        <!-- NAV ADMIN -->
+        <nav class="ui grid" ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></nav>
 
-    <!-- FOOTER -->
-    <div class="ui vertical inverted footer segment fixed" ng-show="!isAdmin();" style="margin: 0">
-        <div class="ui page grid">
-          <div class="container">
-            <div class="ui stackable inverted divided relaxed grid">
-              <div class="eight wide column">
-                <h3 class="ui inverted header">Help Make Semantic UI Better</h3>
-                <p>Maintaining an open source UI library is no small task. Support for the continued development of Semantic UI comes directly from the community.</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                  <input type="hidden" name="cmd" value="_s-xclick">
-                  <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
-                  <button type="submit" class="ui teal button">Donate Today</button>
-                </form>
-              </div>
-              <div class="four wide column">
-                <h5 class="ui teal inverted header">Contribute</h5>
-                <div class="ui inverted link list">
-                  <a class="item" href="https://www.transifex.com/organization/semantic-org/" target="_blank">Translation Hub</a>
-                  <a class="item" href="https://github.com/Semantic-Org/Semantic-UI" target="_blank">Issue Tracker</a>
-                  <a class="item" href="/cla.html" target="_blank">CLA</a>
-                  <a class="disabled item">Create Themes</a>
+        <div class="ui hidden divider"></div>
+
+        <!-- LOGIN MODAL -->
+        <div ng-include src="'js/views/login-modal.html'" class="row" ng-hide="isAdmin()"></div>
+
+        <!-- MAIN -->
+        <div class="ui page grid reveal-animation" ng-class="{admin : isAdmin()}" ng-view>
+            <!-- MAIN /!\ ANGULAR INJECTED TEMPLATES (PARTIALS/...) -->
+            <main class="ui grid reveal-animation" ng-class="{admin : isAdmin()}"></main>
+
+            <!-- NOTIFICATION DIRECTIVE -->
+            <toast></toast>
+        </div>
+
+        <div class="ui hidden divider"></div>
+
+        <!-- FOOTER -->
+        <div class="ui vertical red footer segment fixed" ng-show="!isAdmin();" style="margin: 0">
+            <div class="ui page grid">
+                <div class="container">
+                    <div class="ui stackable inverted divided relaxed grid">
+                        <div class="eight wide column">
+                            <h3 class="ui header">Help Make Semantic UI Better</h3>
+                            <p>Maintaining an open source UI library is no small task. Support for the continued development of Semantic UI comes directly from the community.</p>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
+                                <button type="submit" class="ui red button">Donate Today</button>
+                            </form>
+                        </div>
+                        <div class="four wide column">
+                            <h5 class="ui red header">Contribute</h5>
+                            <div class="ui link list">
+                                <a class="item" href="https://www.transifex.com/organization/semantic-org/" target="_blank">Translation Hub</a>
+                                <a class="item" href="https://github.com/Semantic-Org/Semantic-UI" target="_blank">Issue Tracker</a>
+                                <a class="item" href="/cla.html" target="_blank">CLA</a>
+                                <a class="disabled item">Create Themes</a>
+                            </div>
+                        </div>
+                        <div class="four wide column">
+                            <h5 class="ui red header">Semantic Network</h5>
+                            <div class="ui link list">
+                                <a class="item" href="http://legacy.semantic-ui.com">Legacy Docs</a>
+                                <a class="item" href="http://www.learnsemantic.com">Learn Semantic</a>
+                                <a class="disabled item">Semantic Themes</a>
+                                <a class="disabled item">Semantic Layouts</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="four wide column">
-                <h5 class="ui teal inverted header">Semantic Network</h5>
-                <div class="ui inverted link list">
-                  <a class="item" href="http://legacy.semantic-ui.com">Legacy Docs</a>
-                  <a class="item" href="http://www.learnsemantic.com">Learn Semantic</a>
-                  <a class="disabled item">Semantic Themes</a>
-                  <a class="disabled item">Semantic Layouts</a>
-                </div>
-              </div>
             </div>
-          </div>
-      </div>
-    </div>
+        </div>
 
-    <!-- Gmap -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
+        <!-- Gmap -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8sgeXmp_fZA1YTj4y_G-M5kNL4ztPWZY"></script>
 
-    <!-- Minified Vendors-->
-    <script type="text/javascript" src="dist/vendors/vendors.js"></script>
+        <!-- Minified Vendors-->
+        <script type="text/javascript" src="dist/vendors/vendors.js"></script>
 
-    <!-- Minified App js-->
-    <script type="text/javascript" src="dist/js/eLycee.js"></script>
+        <!-- Minified App js-->
+        <script type="text/javascript" src="dist/js/eLycee.js"></script>
 
-    <!-- /!\ DONT PUT OTHER SCRIPTS HERE, DECLARE THEM IN GULPFILE.JS -->
-
-</body>
+        <!-- /!\ DONT PUT OTHER SCRIPTS HERE, DECLARE THEM IN GULPFILE.JS -->
+    </body>
 </html>

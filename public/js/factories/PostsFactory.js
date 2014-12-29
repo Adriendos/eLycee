@@ -3,7 +3,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 		var PostsFactory = {},
 			apiUrl = CONFIG.apiUrl;
 
-		var CACHE = [];
+		var POSTS_CACHE = {};
 
 		PostsFactory.Post = $resource(
 			apiUrl + 'posts/:id',
@@ -16,13 +16,12 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 		);
 
 	  	PostsFactory.getAllPosts = function () {
-
 	  		var deferred = $q.defer();
 	        PostsFactory.Post.query()
 	        	.$promise.then(
 		          //success
 		          function(results) {
-		          	deferred.resolve(results[0]); 
+		          	deferred.resolve(results[0]);
 		          },
 		          //error
 		          function(err) {

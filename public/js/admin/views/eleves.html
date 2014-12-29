@@ -1,48 +1,219 @@
-<div class="sixteen wide column" style="background-color:yellow"><h1>TEMPLATE HOME</h1></div>
-<div class="ui divider"></div>
-<div class="six wide column">
-    <div class="ui fluid card">
-        <div class="image">
-            <img src="http://lorempixel.com/g/300/200/">
-        </div>
-        <div class="content">
-            <div class="header">Actualité de merde</div>
-            <div class="meta">
-                <a class="group">Put meta here</a>
-            </div>
-            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
-        </div>
-        <div class="extra content">
-            <a class="right floated created">Author</a>
-            <a class="friends">Comments or other shit</a>
-        </div>
-    </div>
-</div>
-<div class="six wide column only computer tablet">
-	<div class="ui relaxed divided items">
-		<!-- START LOOP -->
-		<div class="item" ng-repeat="post in allPosts.posts | limitTo:3">
-			<div class="ui small image">
-				<img src="http://lorempixel.com/300/200/sports">
-			</div>
-			<div class="content">
-				<a class="header">{{ post.title }}</a>
-				<div class="meta">
-					<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
-					<a>Category</a>
-				</div>
-				<div class="description">
-					{{ post.excerpt | limitTo:25}}
-				</div>
-				<div class="extra">
-					<img src="http://lorempixel.com/g/100/100/" class="ui circular avatar"> Username
-				</div>
+<div class="column padding-reset" style="margin-top:50px;">
+	<div class="ui huge message page grid center aligned">
+		<h1 class="ui huge header">Administration des Articles</h1>
+		<p><div class="ui blue button" ng-click="openCreationModal()">Créer un nouvel article</div></p>
+	</div>
+
+	<div class="ui form">
+		<div class="field">
+			<div class="ui icon input">
+				<input type="text" placeholder="Filtrer sur n'importe quelle colonne du tableau ..." ng-model="searchText">
+				<i class="search icon"></i>
 			</div>
 		</div>
-		<!-- END LOOP -->
+	</div>
+
+	<div class="sixteen wide column white">
+		<table class="ui sortable table">
+			<thead>
+			<tr>
+				<th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
+				<th ng-click="changeSorting($event,'title')">Titre</th>
+				<th ng-click="changeSorting($event,'status')">Status</th>
+				<th ng-click="changeSorting($event,'created_at')">Crée le</th>
+				<th ng-click="changeSorting($event,'updated_at')">Edité le</th>
+				<th ng-click="changeSorting($event,'user_id')">Auteur</th>
+				<th>Actions</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- Start Loop -->
+			<tr ng-repeat="post in posts | toArray | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id">
+				<td>{{ post.id }}</td>
+				<td>{{ post.title | limitTo : 35}} ...</td>
+				<td>
+					<div class="ui labeled icon button basic">
+						<i class="icon" ng-class="publicationState(post)"></i>
+						{{ post.status}}
+					</div>
+				</td>
+				<td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+				<td>{{post.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+				<td>{{post.user_id}}</td>
+				<td>
+					<div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
+						<i class="edit icon"></i>
+					</div>
+					<div class="ui icon button negative" ng-click="openDeletePostModal(post)">
+						<i class="trash icon"></i>
+					</div>
+					<div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
+						<i class="eye icon"></i>
+					</div>
+
+				</td>
+			</tr>
+			<!-- End Loop -->
+			</tbody>
+		</table>
 	</div>
 </div>
-<!-- SIDEBAR -->
-<div ng-include src="'src/app/views/sidebar.html'" class="four wide column"></div>
 
+<!-- CREATION/EDITION MODAL -->
+<div class="ui fullscreen modal long" id="postModal" nv-file-drop uploader="uploader">
+	<i class="close icon"></i>
+	<div class="header">
+		{{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
+	</div>
+	<div class="content">
+		<input type="hidden" ng-model="currentPost.id">
+		<div class="ui form">
+			<div class="field">
+				<label>Titre  </label>
+				<div class="ui corner labeled input">
+					<input type="text" placeholder="Titre de l'article" ng-model="currentPost.title">
+					<div class="ui corner label">
+						<i class="asterisk icon"></i>
+					</div>
+				</div>
+			</div>
+			<!-- Image manager -->
+			<div class="field">
+				<label>Image de couverture</label>
+				<div class="ui grid no-top-margin">
+					<!-- PREVIEW IMAGE -->
+					<div class="right floated left aligned eleven wide column ui compact segment">
+						<!--
+                        <ul>
+                          <li ng-repeat="item in uploader.queue">
+                              Name: <span ng-bind="item.file.name"></span><br/>
+                              <button ng-click="item.upload()">upload</button>
+                          </li>
+                        </ul> -->
+						<table class="ui celled striped table">
+							<thead>
+							<tr>
+								<th width="50%">Nom de fichier</th>
+								<th ng-show="uploader.isHTML5">Poids</th>
+								<th ng-show="uploader.isHTML5">Progression</th>
+								<th>Status</th>
+								<th>Actions</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="item in uploader.queue" class="ng-scope">
+								<td>
+									<i class="file image outline icon"></i>
+									<strong>{{ item.file.name }}</strong>
+									<!-- Image preview -->
+									<!--auto height-->
+									<!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+									<!--auto width-->
+									<div ng-show="uploader.isHTML5"
+										 ng-thumb="{ file: item._file, width: 250 }" class="pt10"></div>
+									<!--fixed width and height -->
+									<!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+								</td>
+								<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+								<td ng-show="uploader.isHTML5">
+									<div class="ui tiny progress success">
+										<div class="bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+									</div>
+								</td>
+								<td class="text-center">
+									<span ng-show="item.isSuccess"><i class="check circle icon"></i></span>
+									<span ng-show="item.isCancel"><i class="minus circle icon"></i></span>
+									<span ng-show="item.isError"><i class="trash icon"></i></span>
+								</td>
+								<td nowrap="">
+									<div class="ui icon buttons">
+										<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+											<i class="upload icon"></i> Upload
+										</button>
+										<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading" disabled="disabled">
+											<i class="ban icon"></i> Cancel
+										</button>
+										<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+											<i class="trash icon"></i> Remove
+										</button>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+
+						<!-- <div id="progress-upload-img" class="ui teal progress">
+                          <div class="bar" ng-style="{ 'width': uploader.progress + '%' }">
+                            <div class="progress">{{ uploader.progress + '%' }}</div>
+                          </div>
+                        </div> -->
+						<!-- <div id="progress-upload-img" class="ui teal progress">
+                          <div class="bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                          <div class="label">{{ uploader.progress + '%' }}</div>
+                        </div> -->
+					</div><!-- ./ ui compact appercu section -->
+
+					<!-- UPLOAD IMAGE ZONE -->
+					<div class="left floated center aligned four wide column ui compact segment"
+						 style="margin-top: 0;">
+						<!-- <div nv-file-drop uploader="uploader"> -->
+						<div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
+							Déposer votre image ici
+						</div>
+						<!-- </div> -->
+						<div class="ui horizontal divider">Ou</div>
+						<input type="file" nv-file-select uploader="uploader"/>
+					</div><!-- ./ ui compact upload -->
+				</div><!-- ./ ui grid -->
+			</div><!-- .field image -->
+			<div class="field">
+				<label>Introduction  </label>
+				<div text-angular ng-model="currentPost.excerpt" name="excerpt"></div>
+			</div>
+			<div class="field">
+				<label>Contenu  </label>
+				<div text-angular ng-model="currentPost.content" name="content"></div>
+			</div>
+			<div class="field">
+				<div class="ui toggle checkbox">
+					<input type="radio"
+						   ng-model="currentPost.status"
+						   name="status"
+						   ng-change="change()"
+						   value="published">
+					<label>Publier</label>
+				</div>
+			</div>
+			<div class="ui buttons">
+				<div class="ui submit positive button" ng-click="submitForm()">
+					{{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}
+				</div>
+				<div class="or"></div>
+				<div class="ui button negative reset">Annuler</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- DELETE POST MODAL -->
+<div id="deletePostModal" class="ui small modal">
+	<i class="close icon"></i>
+	<div class="header">
+		Supprimer
+	</div>
+	<div class="content">
+		<p>Voulez vous supprimer définitivement le Post suivant ?</p>
+		<b>Id :</b>  <em>{{ currentPost.id}}</em>&nbsp;&nbsp;&nbsp;&nbsp;<b>Status :</b><em>{{ currentPost.status }}</em>
+		<p><b>Titre :</b><em ng-bind="currentPost.title"></em></p>
+	</div>
+	<div class="actions">
+		<div class="ui negative button">
+			Non
+		</div>
+		<div class="ui positive right labeled icon button">
+			Oui
+			<i class="checkmark icon"></i>
+		</div>
+	</div>
+</div>
 

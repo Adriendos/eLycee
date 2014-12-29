@@ -1,25 +1,90 @@
 @import "compass";
+
+//////////////////////////////////  CONFIG   //////////////////////////////////
+
 ::selection {
     background-color: rgba(#103F57,.8);
     color: white;
 }
-html,
-body {
-    height: 100%; width: 100%;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 60px;
+}
+
+.ui.grid.main{
+    margin-top: 70px;
+}
+
+
+.mobile.row{
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+.mobile.row .ui.inverted.menu{
+    border-radius: 0px !important;
+}
+
+.padding-reset{
+    padding: 0px !important;
+}
+
+.ui.message{
+    padding: 40px !important;
+}
+
+@media (max-width: 767px) {
+    .ui.grid.main{
+        margin-top: 70px;
+    }
+    .ui.vertical.menu.navbar{
+        margin-top: 0px !important;
+    }
+}
+
+#mobile-menu{
+    margin-top: -15px !important;
+    width: 100%;
+    display: none;
+}
+
+.ui.page.grid {
+    padding-left:8%;
+    padding-right:8%;
+}
+
+.navbar {
+    right:0 !important;
 }
 
 body {
-    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px )!important);
-    background-size: cover !important;
+//    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px )!important);
+//    background-size: cover !important;
+//    background-color:white !important;
+    //test
+    background-image: url('../../img/grey.png');
+
 }
 
-// __ ngAnimate example
+//////////////////////////////////  CONFIG   //////////////////////////////////
+
+
+
+////////////////////////////////  NG_ANIMATE   ////////////////////////////////
+
 .reveal-animation.ng-enter {
     -webkit-animation: Fade-Enter-Anime .5s;
     -moz-animation: Fade-Enter-Anime .5s;
     animation: Fade-Enter-Anime .5s;
 }
-.Content-Fade-Leave {
+
+.reveal-animation.ng-leave {
     -webkit-animation: Fade-Leave-Anime .2s;
     -moz-animation: Fade-Leave-Anime .2s;
     animation: Fade-Leave-Anime .2s;
@@ -27,37 +92,111 @@ body {
 
 @-webkit-keyframes Fade-Enter-Anime {
     from { opacity:0; }
-    to { opacity:1;  }
+    to { opacity:1; }
 }
 
 @-webkit-keyframes Fade-Leave-Anime {
-    from { opacity: 1; }
-    to {  opacity: 0; }
+    from { opacity:1; }
+    to { opacity:0; }
 }
-// __ ngAnimate example
 
-// __ Header 
-#navbar {
-	height: 37px;
-	width: auto;
-	background: #FFFFFF;
+////////////////////////////////  NG_ANIMATE   ////////////////////////////////
 
-	&.navbar {
-		margin-top:30px;
+//////////////////////////////////  LOADER   //////////////////////////////////
 
-		&.sticky {
-			margin-top: 0px;
-			width:100%;
-			background: rgba(250,250,250,0.85);
-			color: #fff;
-			position:fixed;
-			z-index:3000;
-			top:0;
-			left:0;
-		    transition: background 1s;
-		}
-	} 
+.loader-section{
+    background-color:rgba(0,0,0,0.8);
+    height: 70px;
+    width:95px;
+    z-index: 100;
+    position: absolute;
+    margin:auto;
+    right:10px;
+    bottom:10px;
+    padding:20px;
+
+    .loader-wrapper {
+        text-align:center;
+        position: relative;
+        height: 30px;
+
+        .loader-bar:before{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left:0;
+            width:10px;
+            height:30px;
+            background-color: white;
+            display: block;
+            animation: grow 1s linear infinite;
+        }
+
+        .loader-bar:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left:15px;
+            width:10px;
+            height:30px;
+            background-color: white;
+            display: block;
+            animation: grow 1s linear -.25s infinite;
+        }
+
+        .loader-bar span {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left:30px;
+            width:10px;
+            height:30px;
+            background-color: white;
+            display: block;
+            animation: grow 1s linear -.5s infinite;
+        }
+
+        .loader-bar span:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            width: 10px;
+            height: 30px;
+            background-color: white;
+            display: block;
+            animation: grow 1s linear -.75s infinite;
+        }
+
+    }
+
 }
+
+@keyframes grow {
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+        background-color: white;
+    }
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+        background-color: red;
+    }
+    100% {
+        transform: scaleY(0);
+        opacity: 0;
+        background-color: white;
+    }
+}
+
+//////////////////////////////////  LOADER   //////////////////////////////////
+
+//////////////////////////////////  POPUPS   //////////////////////////////////
 
 #connexionPopUp {
     .ui {
@@ -66,190 +205,8 @@ body {
                 color: white;
             }
         }
-    } 
+    }
 }
-
-
-
-// __Loader
-.loader-section{
-    background-color:rgba(0,0,0,0.4);
-    height: 100px;
-    line-height: 100px;
-    width:100px;
-    border-radius: 100px;
-    z-index: 100;
-    position: absolute;
-    margin:auto;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-
-    .loader-wrapper {
-        text-align:center;
-        position: relative;
-
-        .loader{
-            display: inline-block;
-            vertical-align: middle;
-            position: absolute;
-            margin:0 auto;
-            left:0;
-            right:0;
-            box-sizing:border-box;
-        }
-
-        .loader-quart-1:after {
-            content: '';
-            width:50px;
-            position: absolute;
-            margin:0 auto;
-            left:0;right:0; top:25px;
-            height: 50px;
-            border: 4px solid transparent;
-            border-bottom-color:white;
-            border-top-color:white;
-            border-radius: 50px;
-
-            animation:spin 1s linear 1s infinite;
-        }
-
-        .loader-quart-2:after {
-            content: '';
-            width:40px;
-            position: absolute;
-             margin:0 auto;
-            left:0;right:0;
-            top:30px;
-            height:40px;
-            border: 4px solid transparent;
-            border-bottom-color:white;
-            border-top-color:white;
-            border-radius: 40px;
-
-            animation: spin 1s linear 0s infinite;
-            animation: spinreverse 2s linear 0.5s infinite;
-        }
-
-        .loader-quart-3:after {
-            content: '';
-            width:30px;
-            position: absolute;
-             margin:0 auto;
-            left:0;right:0;
-            top:35px;
-            height:30px;
-            border: 4px solid transparent;
-            border-bottom-color:white;
-            border-top-color:white;
-            border-radius: 30px;
-
-            animation:spin 1s linear 0s infinite;
-        }
-
-        .loader-quart-4:after {
-            content: '';
-            width:20px;
-            position: absolute;
-             margin:0 auto;
-            left:0;right:0;
-            top:40px;
-            height:20px;
-            border: 4px solid transparent;
-            border-top-color:white;
-            border-bottom-color:white;
-            border-radius: 20px;
-
-            animation:spin 1s linear 0s infinite;
-            animation:spinreverse 1s linear 0.5s infinite;
-        }
-
-
-    }
-
-}
-
-@keyframes spin {
-    0%{ transform:rotate(0deg);}
-    100%{ transform:rotate(-360deg);}
-}
-
-@keyframes spinreverse {
-    0%{ transform:rotate(0deg);}
-    100%{ transform:rotate(360deg);}
-}
-
-// __ Admin 
-.page{
- 	.big.launch{
-            margin-top: 20px;
-
-            .text{
-            	display: none;
-        	}
-        	
-        	&.button{
-            	position: absolute;
-            	top: 70px;
-            	z-index:10;
-
-        	}
-        }
-
-    .big.launch:hover .text{
-        display: inline-block;
-    }
-
-    .ui.block.header{
-        border-radius: 0;
-        border:none;
-    	 
-    	h3{
-	        margin:0;
-	        text-align: center;
-	    }
-    }
-
-    .app.admin.row{
-            text-align: center;
-    }
-
-	.ui.table.celled{
-        border-radius: 0; 
-
-        td,th{
-            text-align:center;
-            padding:.5em;
-        }
-    }
-
-    .ten.wide.column{
-    	&.celled{
-        padding: 0;
-        margin: 0 auto;
-	    }
-
-	    &.add{
-	    	text-align:center;
-	    	padding: 20px;
-	    }
-    }
-
-    .ui.inverted.button{
-        padding: 0.5em;
-    }
-
-    .ui.vertical.sidebar.labeled{
-   		display:none;
-   		z-index:10;
-   		padding-top:75px;
-    }
-
-    &.pusher.grid{
-    	padding:0;
-    }
- }
 
  .header-img {
     background-size:cover;
@@ -316,3 +273,45 @@ body {
 .ui.active.dimmer {
     // overflow: scroll;
 }
+
+//////////////////////////////////  POPUPS   //////////////////////////////////
+
+/////////////////////////////////  SEGMENTS   /////////////////////////////////
+
+#sidebar {
+    width: 100%;
+}
+
+.column.fixed {
+    width: 33% !important;
+}
+
+.ui.statistic {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.ui.statistic > .value, .ui.statistic > .label {
+    color:white !important;
+}
+
+#statistics:before {
+    position: absolute;
+    display:block;
+    content:'';
+    top:0; left: 0; right: 0; bottom: 0;
+}
+
+#statistics {
+    padding-top:50px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+
+
+/////////////////////////////////  SEGMENTS   /////////////////////////////////
+
+///////////////////////////////////  FONTS   //////////////////////////////////
+
+///////////////////////////////////  FONTS   //////////////////////////////////

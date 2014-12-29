@@ -1,70 +1,56 @@
-<div class="sixteen wide column">
-	<div class="ui segment">
-		<div class="ui statistic">
-			<div class="text value">
-				Eighty<br>
-				Two
+<div class="row" style="padding-top:50px;">
+	<div class="six wide column">
+		<div class="ui fluid card raised segment">
+			<div class="ui top attached label red">A la une</div>
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/">
 			</div>
-			<div class="label">
-				Text
+			<div class="content">
+				<div class="header">Actualité de merde</div>
+				<div class="meta">
+					<a class="group">Put meta here</a>
+				</div>
+				<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
+			</div>
+			<div class="extra content">
+				<a class="right floated created">Author</a>
+				<a class="ui tag red label">New</a>
 			</div>
 		</div>
-		<div class="ui statistic">
-			<div class="value">
-				<i class="ticket icon"></i> 5
+	</div>
+	<div class="six wide column only computer tablet">
+		<div class="ui segment raised items">
+			<div class="ui top attached label red">L'Actualité du lycée</div>
+			<!-- START LOOP -->
+			<div class="item" ng-repeat="post in posts | limitTo:3">
+				<div class="ui small image">
+					<img src="http://lorempixel.com/300/200/sports">
+				</div>
+				<div class="content">
+					<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
+					<div class="meta">
+						<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
+						<a>Category</a>
+					</div>
+					<div class="description">
+						{{ post.excerpt | limitTo:25}}
+					</div>
+					<div class="extra">
+						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> Username
+					</div>
+				</div>
 			</div>
-			<div class="label">
-				Labeled Icon
-			</div>
+			<!-- END LOOP -->
 		</div>
+	</div>
+	<!-- SIDEBAR -->
+	<div ng-include src="'js/views/sidebar.html'" class="four wide column">
 	</div>
 </div>
 
-<div class="ui divider"></div>
-<div class="six wide column">
-    <div class="ui fluid card">
-        <div class="image">
-            <img src="http://lorempixel.com/g/300/200/">
-        </div>
-        <div class="content">
-            <div class="header">Actualité de merde</div>
-            <div class="meta">
-                <a class="group">Put meta here</a>
-            </div>
-            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
-        </div>
-        <div class="extra content">
-            <a class="right floated created">Author</a>
-            <a class="ui tag red label">New</a>
-        </div>
-    </div>
-</div>
-<div class="six wide column only computer tablet">
-	<div class="ui segment divided items">
-		<!-- START LOOP -->
-		<div class="item" ng-repeat="post in posts | limitTo:3">
-			<div class="ui small image">
-				<img src="http://lorempixel.com/300/200/sports">
-			</div>
-			<div class="content">
-				<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
-				<div class="meta">
-					<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
-					<a>Category</a>
-				</div>
-				<div class="description">
-					{{ post.excerpt | limitTo:25}}
-				</div>
-				<div class="extra">
-					<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> Username
-				</div>
-			</div>
-		</div>
-		<!-- END LOOP -->
-	</div>
-</div>
-<!-- SIDEBAR -->
-<div ng-include src="'js/views/sidebar.html'" class="four wide column"></div>
+
+
+
 
 
 

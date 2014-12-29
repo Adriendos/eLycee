@@ -24,8 +24,14 @@ app.factory('SessionService',
 
             return $http(request)
                 .success( function(data ) {
-                  $rootScope.notify('Bonjour '+data.user.username+' !', 'info');
                   localStorageService.set('credentials', data.token);
+                  console.log(userInfos);
+                  if(userInfos.rememberme != true) {
+                    console.log('Destroy token cause userInfos.rememberme != true');
+                    destroyToken();
+                  }
+
+                  $rootScope.notify('Bonjour '+data.user.username+' !', 'info');
                   SESS.user = data.user;
                   SESS.logged = true;
                   if(SESS.user.role.toLowerCase()=="teacher"){
@@ -42,6 +48,15 @@ app.factory('SessionService',
 
         //LOGOUT
         SessionService.logout = function() {
+          destroyToken().then(function() {
+            SESS = {};
+            SESS.logged = false;
+            $location.path('/');
+          });
+        };
+
+        // @ returns promise
+        function destroyToken() {
           var token = localStorageService.get('credentials');
           var request = {
             method: "POST",
@@ -51,17 +66,17 @@ app.factory('SessionService',
               _method: 'DELETE'
             }
           };
-          $http(request).then(function(response) {
-            SESS = {};
-            SESS.logged = false;
-            localStorageService.clearAll();
-            SESS = {};
-            $location.path('/');
-          });
-        };
+
+          return $http(request)
+              .then(function(response) {
+                localStorageService.clearAll();
+              }, function(response) {
+                localStorageService.clearAll();
+              });
+        }
 
         // CHECKS TOKEN
-        // @return promise
+        // @returns promise
         // Checks token server-side and initializes session or logout
         SessionService.checkToken = function() {
           var request = {
