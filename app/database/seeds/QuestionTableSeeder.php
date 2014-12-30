@@ -9,7 +9,7 @@ class QuestionTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 40) as $index)
+		foreach(range(1, 260) as $index)
 		{
 			Question::create([
 				'content' => $faker->sentence(8) . ' ?',
