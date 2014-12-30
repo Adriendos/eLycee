@@ -16,6 +16,9 @@ app.config(['$routeProvider',
     }).when('/qcm', {
       controller : 'QcmController',
       templateUrl : 'js/views/qcm.html'
+    }).when('/qcm/:id', {
+      controller : 'ProceedQcmController',
+      templateUrl : 'js/views/qcm/single.html'
     })
 
     // __admin views
