@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration {
 			$table->string('excerpt', 255);
 			$table->text('content');
 			$table->string('url_thumbnail', 150);
-			$table->enum('status',['published','unpublished'])->default('published');
+			$table->enum('status',['published','unpublished'])->default('unpublished');
 			// ajouter user_id
 			$table->timestamps(); // pour Laravel
 		});

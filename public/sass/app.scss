@@ -287,9 +287,9 @@ body {
     content: 'ou' !important;
 }
 
-// problem modal scroll 
+// problem modal scroll @todo find another to solve the problem, cursor in textarea makes popu back to top
 .dimmed.dimmable>.ui.animating.dimmer, 
 .dimmed.dimmable>.ui.visible.dimmer, 
 .ui.active.dimmer {
-    // overflow: scroll;
+    overflow: scroll;
 }

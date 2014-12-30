@@ -1,6 +1,6 @@
 app.controller('PostController', 
-  ['$scope', 'PostsFactory', 'FileUploader',
-	function($scope, PostsFactory, FileUploader) {
+  ['$rootScope', '$scope', 'PostsFactory', 'FileUploader',
+	function($rootScope, $scope, PostsFactory, FileUploader) {
 
 		$scope.posts;
     $scope.modal = [];
@@ -65,18 +65,24 @@ app.controller('PostController',
       $('.ui.checkbox').checkbox();
     };
 
+    $scope.changeStatus = function() {
+      if($scope.currentPost.status === 'publish')
+        $scope.currentPost.status = 'unpublish';
+      else 
+        $scope.currentPost.status = 'publish';
+    };
+
     $scope.openEditionModal = function(post) {
       $scope.currentPost = post;
       $scope.modal.mode = 'edit';
       openPostModal();
-      $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
+      $('.ui.checkbox').checkbox();
     };
 
     $scope.uploader = new FileUploader({autoUpload:true});
     $scope.submitForm = function() { // @todo verif fields image etc ...
       // __ create new post 
       var imageFile = $scope.uploader.queue[0]._file;
-      console.log(imageFile);
       var reader = new FileReader();
       reader.onloadend = function () {
         $scope.currentPost.image = {
@@ -84,6 +90,7 @@ app.controller('PostController',
           file: imageFile
         };
         PostsFactory.save($scope.currentPost);
+        $rootScope.notify('L\'article : "'+$scope.currentPost.title+'"" a été correctement enregistré !', 'success');
       }
       reader.readAsDataURL(imageFile);
     };

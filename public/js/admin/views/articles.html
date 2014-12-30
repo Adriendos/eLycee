@@ -167,13 +167,11 @@
         <div text-angular ng-model="currentPost.content" name="content"></div>
       </div>
       <div class="field">
-        <div class="ui toggle checkbox">
-          <input type="radio" 
-                 ng-model="currentPost.status" 
-                 name="status"
-                 ng-change="change()"
-                 value="published">
-          <label>Publier</label>
+        <div id="status" ng-click="changeStatus()" class="ui toggle checkbox"> 
+          <input type="checkbox" 
+                 ng-model="currentPost.status"
+                 value="{{currentPost.status}}">
+          <label>Publier {{ currentPost.status }}</label>
         </div>
       </div>
       <div class="ui buttons">
