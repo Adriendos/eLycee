@@ -1,133 +1,80 @@
-<div class="row">
-  <h2 class="ui icon header">
-    <i class="dashboard icon"></i>
-    <div class="content">
-        Tableau de Bord 
-      <div class="sub header">Créez, Editez, Supprimez les articles du site.</div>
-    </div>
-  </h2>
-</div>
-<div class="five wide column white" style="margin-top:30px;">
-  <div class="ui two column stackable grid">
-    <div class="column" style="text-align:center;">
-      <div class="ui statistic">
-        <div class="value">
-          22
+<div class="row" id="statistics">
+  <div class="ui three column grid">
+    <div class="column">
+      <div class="ui basic horizontal segment center aligned">
+        <div class="ui statistic">
+          <div class="value">
+            <i class="icon file outline"></i> 5
+          </div>
+          <div class="label">
+            Articles
+          </div>
         </div>
-        <div class="label">
-        <i class="icon student"></i>Eleves inscrits
-        </div>
-      </div>
-    </div>
-    <div class="column" style="text-align:center;">
-      <div class="ui animated button positive">
-        <div class="visible content">Ajouter</div>
-        <div class="hidden content">
-          <i class="add circled icon"></i>
+        <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
+          <div class="ui inverted button">
+            <i class="plus icon"></i>
+            Ajouter
+          </div>
+          <div class="ui inverted button" ng-click="go('/admin/articles');">
+            <i class="eye icon"></i>
+            Parcourir
+          </div>
         </div>
       </div>
-      <div class="ui animated button blue">
-        <div class="visible content">Voir tous</div>
-        <div class="hidden content">
-          <i class="icon arrow circle right"></i>
+    </div>
+    <div class="column fixed">
+      <div class="ui basic horizontal segment center aligned ">
+        <div class="ui statistic">
+          <div class="value">
+            <i class="question icon"></i> 5
+          </div>
+          <div class="label">
+           Q.C.M.
+          </div>
         </div>
-      </div>  
+        <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
+        <div class="ui inverted button">
+          <i class="plus icon"></i>
+          Ajouter
+        </div>
+        <div class="ui inverted button">
+          <i class="eye icon"></i>
+          Parcourir
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="column fixed">
+      <div class="ui basic horizontal segment center aligned">
+        <div class="ui statistic">
+          <div class="value">
+            <i class="student icon"></i> 20
+          </div>
+          <div class="label">
+            Etudiants
+          </div>
+        </div>
+        <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
+          <div class="ui inverted button">
+            <i class="plus icon"></i>
+            Ajouter
+          </div>
+          <div class="ui inverted button">
+            <i class="eye icon"></i>
+            Parcourir
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<div class="five wide column white" style="margin-top:30px;">
-  <div class="ui two column stackable grid">
-    <div class="column" style="text-align:center;">
-      <div class="ui statistic">
-        <div class="value">
-          10
-        </div>
-        <div class="label">
-          <i class="help icon"></i>QCM
-        </div>
-      </div>
-    </div>
-    <div class="column" style="text-align:center;">
-      <div class="ui animated button positive">
-        <div class="visible content">Ajouter</div>
-        <div class="hidden content">
-          <i class="add circled icon"></i>
-        </div>
-      </div>
-      <div class="ui animated button blue">
-        <div class="visible content">Voir tous</div>
-        <div class="hidden content">
-          <i class="icon arrow circle right"></i>
-        </div>
-      </div>  
-    </div>
-  </div>
-</div>
-<div class="five wide column white" style="margin-top:30px;">
-  <div class="ui two column stackable grid">
-    <div class="column" style="text-align:center;">
-      <div class="ui statistic">
-        <div class="value">
-            22
-        </div>
-        <div class="label">
-          <i class="file icon"></i>Articles
-        </div>
-      </div>
-    </div>
-    <div class="column" style="text-align:center;">
-      <div class="ui animated button positive">
-        <div class="visible content">Ajouter</div>
-        <div class="hidden content">
-          <i class="add circled icon"></i>
-        </div>  
-      </div>      
-      <div class="ui animated button blue" ng-click="go('/admin/articles');">
-        <div class="visible content">Voir tous</div>
-        <div class="hidden content">
-          <i class="icon arrow circle right"></i>
-        </div>
-      </div>  
-    </div>
+<div class="left ui rail">
+  <p></p>
+  <p></p>
+  <p></p>
+  <div class="ui sticky">
+    <h3 class="ui header">Stuck Content</h3>
+    <img>
   </div>
 </div>
 
-<!-- FEED -->
-<div class="sixteen wide column" style="margin-top:50px">
-  <div class="ui feed piled segment">
-    <h3 class="ui header">Fil d'actualités</h3>
-    <div class="event">
-      <div class="label">
-        <i class="pencil icon"></i>
-      </div>
-      <div class="content">
-        <div class="summary">
-          Vous avez crée un nouveau QCM
-          <div class="date">
-            3 days ago
-          </div>
-        </div>
-        <div class="extra text">
-          <div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="label">
-        <i class="pencil icon"></i>
-      </div>
-      <div class="content">
-        <div class="summary">
-          Didier a ajouté un Nouvel Eleves à la classe 1ere S
-          <div class="date">
-            3 days ago
-          </div>
-        </div>
-        <div class="extra text">
-          Jacquie Michel
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

@@ -3,11 +3,12 @@ var app;
 
 app = angular.module('eLycee', [
   'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'    
+  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'
 ]);
 
 app.constant('CONFIG', 
-  { 
+  {
+    mode: 'dev',
     apiUrl : 'api/v1/',
     urlAuth: 'api/v1/auth'
   }   
@@ -38,8 +39,7 @@ app.config(function(toastrConfig) {
     positionClass: 'toast-top-right',
     tapToDismiss: true,
     timeOut: 1000,
-    titleClass: 'toast-title',
-    toastClass: 'toast'
+    titleClass: 'toast-title'
   });
 });
 
@@ -117,22 +117,46 @@ app.config(['$provide', function($provide){
     }]);
 }]);
 
-// Route Change interceptor
-// app.run(function ($rootScope, $location, SessionService) { //Insert in the function definition the dependencies you need.
-//     //Do your $on in here, like this:
-//     $rootScope.$on("$locationChangeStart",function(event, next, current){
-//         if($location.path().indexOf('/admin') >= 0) {
-//           //ADMIN
-//           if(!SessionService.isUserAdmin()) {
-//             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-//             SessionService.logout();
-//             $location.path('/');
-//           }
-//         } else {
-//           //FRONT
-//         }
-//     });
-// });
+//Route Change interceptor
+app.run(function ($rootScope, $location, SessionService) {
+     $rootScope.$on("$locationChangeStart",function(){
+         if( $location.path().indexOf('/admin') >= 0) {
+             if(SessionService.isLoggedUser() && SessionService.isUserAdmin()) {
+                 //Logged user and admin
+                 return;
+             } else {
+                 //No user logged or user not admin
+                 SessionService.checkToken()
+                     .then(function(data) {
+                         // promise fulfilled
+                         if (SessionService.getUser().role === 'teacher') {
+                             return;
+                         } else {
+                             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                             SessionService.logout();
+                             $location.path('/');
+                         }
+                     }, function(error) {
+                         // promise rejected
+                         $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                         SessionService.logout();
+                         $location.path('/');
+
+                     });
+             }
+
+         } else {
+             // Not on an admin route, checks token to inialize user session
+             SessionService.checkToken()
+                 .then(function() {
+                     return;
+                 }, function() {
+                    return;
+                 });
+         }
+
+     });
+});
 
 
 

@@ -3,6 +3,8 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 		var PostsFactory = {},
 			apiUrl = CONFIG.apiUrl;
 
+		var POSTS_CACHE = {};
+
 		PostsFactory.Post = $resource(
 			apiUrl + 'posts/:id',
 			{id: '@id' },
@@ -19,7 +21,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 	        	.$promise.then(
 		          //success
 		          function(results) {
-		          	deferred.resolve(results[0]); 
+		          	deferred.resolve(results[0]);
 		          },
 		          //error
 		          function(err) {
@@ -39,6 +41,7 @@ app.factory('PostsFactory', ['$http', '$resource', '$q', 'CONFIG',
 				 .error(function(data, status, headers, config) {
 				 	deferred.$resolve(data);
 				 });
+
 	       	return deferred.promise;
 	    };
 

@@ -1,7 +1,6 @@
-app.controller('RootController', ['$scope', '$location', 'SessionService', 'localStorageService', '$rootScope', '$http', 'CONFIG',
-  function($scope, $location, SessionService, localStorageService, $rootScope, $http, CONFIG) {
-    $('.ui.sticky').sticky({  context: '#app'});
-  	$scope.showConnectModal = function() {
+app.controller('RootController', ['$scope', '$location', 'SessionService',
+  function($scope, $location, SessionService) {
+    $scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
   	};
 
@@ -40,5 +39,9 @@ app.controller('RootController', ['$scope', '$location', 'SessionService', 'loca
     $scope.isUserAdmin = function() {
      return SessionService.isUserAdmin();
    };
-    
-}]);  
+
+    $scope.getUser = function() {
+      return SessionService.getUser();
+    }
+
+}]);

@@ -1,16 +1,17 @@
+
 app.controller('PostController', 
   ['$rootScope', '$scope', 'PostsFactory', 'FileUploader',
 	function($rootScope, $scope, PostsFactory, FileUploader) {
-
-		$scope.posts;
+    
+    $scope.posts;
     $scope.modal = [];
 
     $('.ui.modal').modal();
-    
+
     // Getting all posts
-		PostsFactory.getAllPosts().then(function(posts) {
+    PostsFactory.getAllPosts().then(function(posts) {
       angular.forEach(posts, function (post) {
-        post.id = parseInt(post.id); //We parse the post.id so that we can sort the table 
+        post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
       });
       $scope.posts = posts;
     });
@@ -19,7 +20,7 @@ app.controller('PostController',
     $scope.sort = {
       column: 'id',
       descending: false
-    }; 
+    };
 
     // Check a post status
     $scope.publicationState = function(post) {
@@ -31,21 +32,21 @@ app.controller('PostController',
 
     // Function used to sort the table by clicking headers
     $scope.changeSorting = function($event, column) {
-        var sort = $scope.sort;
-        var th = $($event.currentTarget);
-        if (sort.column == column) {
-            sort.descending = !sort.descending;
-            if(th.hasClass('ascending')) {
-              th.removeClass('ascending').addClass('descending');
-            } else {
-              th.removeClass('descending').addClass('ascending');
-            }
+      var sort = $scope.sort;
+      var th = $($event.currentTarget);
+      if (sort.column == column) {
+        sort.descending = !sort.descending;
+        if(th.hasClass('ascending')) {
+          th.removeClass('ascending').addClass('descending');
         } else {
-          $('th').removeClass('descending').removeClass('ascending');
-          $($event.currentTarget).addClass('ascending');
-          sort.column = column;
-          sort.descending = false;
+          th.removeClass('descending').addClass('ascending');
         }
+      } else {
+        $('th').removeClass('descending').removeClass('ascending');
+        $($event.currentTarget).addClass('ascending');
+        sort.column = column;
+        sort.descending = false;
+      }
     };
 
     function openPostModal() {
@@ -95,15 +96,15 @@ app.controller('PostController',
       reader.readAsDataURL(imageFile);
     };
 
-    // var can = document.getElementById('canvas');
-    // var ctx = can.getContext('2d');
-    // var img = document.getElementById('tweetpic');
-    // ctx.drawImage(img, 0, 0);
-    // var b64Text = can.toDataURL();
-    // b64Text = b64Text.replace('data&colon;image/png;base64,','');
-    // var fileData = b64Text;
+  // var can = document.getElementById('canvas');
+  // var ctx = can.getContext('2d');
+  // var img = document.getElementById('tweetpic');
+  // ctx.drawImage(img, 0, 0);
+  // var b64Text = can.toDataURL();
+  // b64Text = b64Text.replace('data&colon;image/png;base64,','');
+  // var fileData = b64Text;
 
-    // $scope.uploader.onAfterAddingFile = function(fileItem) {
-    //   console.info('onAfterAddingFile', fileItem);
-    // };
+  // $scope.uploader.onAfterAddingFile = function(fileItem) {
+  //   console.info('onAfterAddingFile', fileItem);
+  // };
 }]);
