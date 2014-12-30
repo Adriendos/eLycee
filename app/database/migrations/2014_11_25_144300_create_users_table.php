@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id')->unsigned();
 			$table->string('username',120);
+			$table->string('email', 128);
 			$table->string('password', 64);
 			$table->string('remember_token', 100);
 			$table->enum('role',['teacher','first_class','final_class'])->default('first_class');
