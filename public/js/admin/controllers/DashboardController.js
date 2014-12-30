@@ -4,5 +4,4 @@ app.controller('DashboardController',['PostsFactory', '$scope', function(PostsFa
       $(this).closest('.message').fadeOut();
     });
 
-
 }]);

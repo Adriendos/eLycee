@@ -3,7 +3,7 @@ var app;
 
 app = angular.module('eLycee', [
   'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload'
+  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart'
 ]);
 
 app.constant('CONFIG', 

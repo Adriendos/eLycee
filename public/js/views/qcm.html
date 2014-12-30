@@ -1,0 +1,75 @@
+<div class="row" style="padding-top:50px;">
+    <div class="six wide column">
+        <div class="ui segment">
+            <div class="ui top attached label">
+                <img src="http://lorempixel.com/100/100" class="ui avatar image">
+                {{ getUser().username}}, inscrit le {{getUser().created_at | dateToISO | date:'dd/MM/yyyy' }}
+            </div>
+            <div class="ui divider"></div>
+            <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
+            <div class="ui divider"></div>
+            <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
+        </div>
+    </div>
+    <div class="six wide column">
+        <div class="ui segment">
+            <div class="ui top attached label green">
+                QCM disponibles
+            </div>
+            <div class="ui relaxed divided list">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Snickerdoodle</div>
+                        An excellent companion
+                        <div class="right floated compact ui button">Commencer</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Poodle</div>
+                        A poodle, its pretty basic
+                        <div class="right floated compact ui button">Commencer</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Paulo</div>
+                        He's also a dog
+                        <div class="right floated compact ui button">Commencer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="ui top attached label blue">
+                QCM répondus
+            </div>
+            <div class="ui relaxed divided list">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Snickerdoodle</div>
+                        An excellent companion
+                        <div class="right floated compact ui label green">8/10</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Poodle</div>
+                        A poodle, its pretty basic
+                        <div class="right floated compact ui label green">6/10</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Paulo</div>
+                        He's also a dog
+                        <div class="right floated compact ui label red">3/10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SIDEBAR -->
+    <div ng-include src="'js/views/sidebar.html'" class="four wide column computer only">
+    </div>
+</div>

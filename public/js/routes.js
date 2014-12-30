@@ -13,6 +13,9 @@ app.config(['$routeProvider',
     }).when('/post/:id', {
       controller : 'NewsController',
       templateUrl : 'js/views/post/single.html'
+    }).when('/qcm', {
+      controller : 'QcmController',
+      templateUrl : 'js/views/qcm.html'
     })
 
     // __admin views

@@ -38,7 +38,11 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
 
     $scope.isUserAdmin = function() {
      return SessionService.isUserAdmin();
-   };
+    };
+
+    $scope.isUserStudent = function() {
+      return SessionService.isUserStudent();
+    }
 
     $scope.getUser = function() {
       return SessionService.getUser();
