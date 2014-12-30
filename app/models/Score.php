@@ -10,5 +10,5 @@ class Score extends Eloquent {
 	 */
 	protected $table = 'scores';
 
-
+	protected $fillable = ['score', 'user_id', 'qcm_id'];
 }

@@ -1,172 +1,55 @@
 <?php
+use Faker\Factory as Faker;
+
 class UserTableSeeder extends Seeder {
 	public function run() {
+
+		$faker = Faker::create();
+
 		DB::table('users')->delete();
 		DB::unprepared('ALTER TABLE users AUTO_INCREMENT=1'); 
 		DB::table('users')->insert(
 		[
 			[
 				'username'       => 'Alexandre',
-				'email'          => 'email@email.com',
+				'email'          => $faker->email,
 				'password'       => Hash::make('Alexandre'),
-				'remember_token' => '',
+				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'           => 'teacher',
 				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
 				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
 			],
 			[
 				'username'       => 'Abel',
-				'email'          => 'email@email.com',
+				'email'          => $faker->email,
 				'password'       => Hash::make('Abel'),
-				'remember_token' => '',
-				'role'           => 'first_class',
+				'profile_picture' => $faker->imageUrl(640, 480), 
+				'role'           => $faker->randomElement(['first_class', 'final_class']),
 				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
 				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
 			],
 			[
 				'username'       => 'Al',
-				'email'          => 'email@email.com',
+				'email'          => $faker->email,
 				'password'       => Hash::make('Al'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Alan',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Alan'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Arthur',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Arthur'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Carl',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Carl'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Blaise',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Blaise'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Isaac',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Isaac'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Steve',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Steve'),
-				'remember_token' => '',
-				'role'           => 'first_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Alfred',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Alfred'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Brendan',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Brendan'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'David',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('David'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'George',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('George'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Jim',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Jim'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Leslie',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Leslie'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Maria',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Maria'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Rasmus',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Rasmus'),
-				'remember_token' => '',
-				'role'           => 'final_class',
-				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'username'       => 'Tim',
-				'email'          => 'email@email.com',
-				'password'       => Hash::make('Tim'),
-				'remember_token' => '',
-				'role'           => 'final_class',
+				'profile_picture' => $faker->imageUrl(640, 480), 
+				'role'           => $faker->randomElement(['first_class', 'final_class']),
 				'created_at'     => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
 				'updated_at'     => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
 			]
 		]);
+		
+		foreach(range(1, 10) as $index)
+		{
+			User::create([
+				'username'       => $faker->firstName,
+				'email'          => $faker->email,
+				'password'       => Hash::make('password'),
+				'profile_picture' => $faker->imageUrl(640, 480),
+				'role'           => $faker->randomElement(['first_class', 'final_class']),
+				'created_at'    => $faker->unixTime(),
+				'updated_at'    => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
+			]);
+		}
 	}
 } ?>
