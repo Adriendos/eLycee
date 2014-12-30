@@ -3,6 +3,8 @@
         <div class="ui large fixed inverted menu navbar page grid">
             <a href="#/" class="item"> <i class="icon home"></i>Accueil du site</a>
             <a href="#/admin" class="item" ng-class="{ active: isActive('/admin')}"> <i class="icon dashboard"></i>Dashboard</a>
+            <a href="#/admin/articles" class="item" ng-class="{ active: isActive('/admin/articles')}"> <i class="icon ticket"></i>Articles</a>
+            <a href="#/admin/qcm" class="item" ng-class="{ active: isActive('/admin/qcm')}"> <i class="icon question"></i>QCM</a>
 
             <div class="right menu">
                 <a class="item" id="deconnexion" ng-click="logout()">

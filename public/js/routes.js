@@ -23,12 +23,20 @@ app.config(['$routeProvider',
 
     // __admin views
     .when('/admin', {
-        controller : 'DashboardController',
+        controller : 'AdminDashboardController',
         templateUrl : 'js/admin/views/dashboard.html'
     })
     .when('/admin/articles', {
-        controller : 'PostController',
+        controller : 'AdminPostController',
         templateUrl : 'js/admin/views/articles.html'
+    })
+    .when('/admin/qcm', {
+      controller : 'AdminQcmController',
+      templateUrl : 'js/admin/views/qcms.html'
+    })
+    .when('/admin/qcm/create', {
+      controller : 'AdminQcmCreationController',
+      templateUrl : 'js/admin/views/qcm/createQcm.html'
     })
     .otherwise({
       redirectTo: '/'

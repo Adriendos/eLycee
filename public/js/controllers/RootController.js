@@ -5,7 +5,7 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
   	};
 
     $scope.showAdminSidebar = function() {
-      $('.bottom.sidebar').first().sidebar('toggle');
+      $('.bottom.sidebar').sidebar('toggle');
     };
   	
     $scope.isActive = function (viewLocation) { 

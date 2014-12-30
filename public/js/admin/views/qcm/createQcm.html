@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="column padding-reset" style="margin-top:50px;">
+        <div class="ui huge message page grid center aligned">
+            <h1 class="ui huge header">Creer un QCM</h1>
+        </div>
+
+        <div class="ui form">
+            <div class="field">
+                <label for="">Titre
+                <input type="text" name="title"/>
+            </div>
+            <div class="field">
+                <label>Classe</label>
+                <select class="ui dropdown" id="classDropdown">
+                    <option value="">Classe</option>
+                    <option value="1">Premiere</option>
+                    <option value="0">Terminale</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="">Description</label>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="ui basic button" ng-click="addQuestionModal()"><i class="icon plus"></i>Ajouter une question</div>
+        </div>
+    </div>
+</div>
+
+<div class="ui modal" id="addQuestionModal">
+    <i class="close icon"></i>
+    <div class="header">
+        Ajout d'une question
+    </div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label for="">Question</label>
+                <input type="text" name="title" ng-model="question.title"/>
+            </div>
+            <div class="field">
+                <label>Reponse 1</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="answer" placeholder="Reponse" ng-model="question.answer1" submitQuestion>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="isAnswer1">
+                            <label>Bonne réponse</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Reponse 2</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="answer" placeholder="Reponse" ng-model="question.answer2" submitQuestion>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="isAnswer2">
+                            <label>Bonne réponse</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Reponse 3</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="answer" placeholder="Reponse" ng-model="question.answer3" submitQuestion>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="isAnswer3">
+                            <label>Bonne réponse</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui submit button positive" ng-click="submitQuestion()">Ajouter</div>
+            <div class="ui button negative">Annuler</div>
+
+        </div>
+    </div>
+</div>
