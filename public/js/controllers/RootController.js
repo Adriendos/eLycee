@@ -42,6 +42,14 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
 
     $scope.isUserStudent = function() {
       return SessionService.isUserStudent();
+    };
+
+    $scope.getUserClass= function() {
+      if(SessionService.getUser().role == 'first_class') {
+        return "1ere"
+      } else {
+        return "Terminale"
+      }
     }
 
     $scope.getUser = function() {

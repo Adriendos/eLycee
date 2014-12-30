@@ -3,7 +3,7 @@
         <div class="ui segment">
             <div class="ui top attached label">
                 <img src="http://lorempixel.com/100/100" class="ui avatar image">
-                {{ getUser().username}}, inscrit le {{getUser().created_at | dateToISO | date:'dd/MM/yyyy' }}
+                <span style="font-size:1.8em; vertical-align: middle"><span class="color:black">{{ getUser().username}}</span>, inscrit le {{getUser().created_at | dateToISO | date:'dd/MM/yyyy' }}, {{ getUserClass()}}</span>
             </div>
             <div class="ui divider"></div>
             <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
@@ -14,7 +14,7 @@
     <div class="six wide column">
         <div class="ui segment">
             <div class="ui top attached label green">
-                QCM disponibles
+                <i class="icon radio"></i>QCM disponibles
             </div>
             <div class="ui relaxed divided list">
                 <div class="item">
@@ -42,7 +42,7 @@
         </div>
         <div class="ui segment">
             <div class="ui top attached label blue">
-                QCM répondus
+                <i class="icon checkmark"></i>QCM répondus
             </div>
             <div class="ui relaxed divided list">
                 <div class="item">

@@ -1,23 +1,24 @@
 <div class="row" style="padding-top:50px;">
     <div class="sixteen wide column">
+        <h1>Le titre du QCM</h1>
         <div class="ui two steps">
-            <div class="active step">
+            <div class="step" ng-class="{ active: step == 1}">
                 <i class="question icon"></i>
                 <div class="content">
                     <div class="title">Répondez aux questions</div>
                 </div>
             </div>
-            <div class="disabled step">
+            <div class="step" ng-class="{ active: step == 2}">
                 <i class="info icon"></i>
                 <div class="content">
                     <div class="title">Votre score</div>
                 </div>
             </div>
         </div>
-        <div class="ui segment">
+        <div class="ui segment" ng-show="step == 1">
             <div class="ui form">
                 <div class="grouped fields">
-                    <label for="fruit">Select your second favorite fruit:</label>
+                    <label for="fruit"><i class="icon question"></i>Select your first favorite fruit:</label>
                     <div class="field">
                         <div class="ui radio checkbox checked">
                             <input type="radio" name="fruit" checked="">
@@ -45,7 +46,7 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="grouped fields">
-                    <label for="fruit">Select your second favorite fruit:</label>
+                    <label for="fruit"><i class="icon question"></i>Select your second favorite fruit:</label>
                     <div class="field">
                         <div class="ui radio checkbox checked">
                             <input type="radio" name="fruit" checked="">
@@ -71,8 +72,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="ui submit button">Valider</div>
+                <div class="ui submit button positive" ng-click="calculateScore();">Voir mon score</div>
             </div>
+        </div>
+        <div class="ui segment" ng-show="step == 2">
+            8/10 MA GEULE !
+            <div class="ui button" ng-click="go('/qcm');">Revenir au tableau des QCM</div>
         </div>
     </div>
 </div>
