@@ -116,6 +116,10 @@ app.factory('SessionService',
           return SESS.logged && SESS.user.role.toLowerCase() == "teacher";
         }
 
+        SessionService.isUserStudent = function() {
+          return SESS.logged && SESS.user.role.toLowerCase() != "teacher";
+        }
+
         // __ private
         function getToken() {
           return localStorageService.get('credentials');

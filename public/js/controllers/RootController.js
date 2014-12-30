@@ -5,7 +5,7 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
   	};
 
     $scope.showAdminSidebar = function() {
-      $('.bottom.sidebar').first().sidebar('toggle');
+      $('.bottom.sidebar').sidebar('toggle');
     };
   	
     $scope.isActive = function (viewLocation) { 
@@ -38,7 +38,19 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
 
     $scope.isUserAdmin = function() {
      return SessionService.isUserAdmin();
-   };
+    };
+
+    $scope.isUserStudent = function() {
+      return SessionService.isUserStudent();
+    };
+
+    $scope.getUserClass= function() {
+      if(SessionService.getUser().role == 'first_class') {
+        return "1ere"
+      } else {
+        return "Terminale"
+      }
+    }
 
     $scope.getUser = function() {
       return SessionService.getUser();

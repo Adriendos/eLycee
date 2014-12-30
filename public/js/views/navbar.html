@@ -5,14 +5,18 @@
             <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
             <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
             <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
+            <a class="red item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm">
+                <i class="icon student"></i>Q.C.M.
+                <div class="ui red label">3</div>
+            </a>
             <a class="ui dropdown item" ng-show="isUserAdmin();">
-                <i class="icon configure"></i>Administration<i class="dropdown icon"></i>
+                <i class="icon right arrow "></i>Administration<i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item" ng-click="go('/admin')"><i class="dashboard icon"></i>Dashboard</div>
                     <div class="ui horizontal divider"></div>
 
-                    <div class="item" ng-click="go('/articles')"><i class="icon file outline"></i>Articles</div>
-                    <div class="item"><i class="icon question"></i>Q.C.M.</div>
+                    <div class="item" ng-click="go('/admin/articles')"><i class="icon file outline"></i>Articles</div>
+                    <div class="item" ng-click="go('/admin/qcm')"><i class="icon question"></i>Q.C.M.</div>
                     <div class="item"><i class="icon student"></i>Eleves</div>
                 </div>
             </a>
