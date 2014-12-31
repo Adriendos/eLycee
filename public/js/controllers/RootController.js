@@ -50,7 +50,7 @@ app.controller('RootController', ['$scope', '$location', 'SessionService',
       } else {
         return "Terminale"
       }
-    }
+    };
 
     $scope.getUser = function() {
       return SessionService.getUser();

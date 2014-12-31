@@ -26,7 +26,7 @@ class BaseController extends Controller {
 		//         'to'           => $ressources->getTo()
 		//     ]
 		// ];
-		// return Response::json([$response]);
+		// return Response::json($response);
 	}
 
 	/**
