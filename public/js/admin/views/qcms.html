@@ -1,5 +1,5 @@
 <div class="column padding-reset" style="margin-top:50px;">
-    <div class="ui huge message page grid center aligned">
+    <div class="ui small message page grid center aligned">
         <h1 class="ui huge header">Administration des QCM</h1>
         <p><div class="ui blue button" ng-click="go('/admin/qcm/create')">Créer un nouveau QCM</div></p>
     </div>
@@ -19,7 +19,6 @@
             <tr>
                 <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
                 <th ng-click="changeSorting($event,'title')">Titre</th>
-                <th ng-click="changeSorting($event,'description')">Description</th>
                 <th ng-click="changeSorting($event,'class_level')">Niveau</th>
                 <th ng-click="changeSorting($event,'created_at')">Crée le</th>
                 <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
@@ -31,7 +30,6 @@
             <tr ng-repeat="qcm in qcms | toArray | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by qcm.id">
                 <td>{{ qcm.id }}</td>
                 <td>{{ qcm.title | limitTo : 75}} ...</td>
-                <td>{{ qcm.description | limitTo : 50}} ...</td>
                 <td>{{ getLevel(qcm.class_level)}}</td>
                 <td>{{qcm.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
                 <td>{{qcm.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
@@ -44,9 +42,6 @@
                     </div>
                     <div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
                         <i class="eye icon"></i>
-                    </div>
-                    <div class="ui icon button basic">
-                        <i class="icon" ng-class="publicationState(post)"></i>
                     </div>
                 </td>
             </tr>

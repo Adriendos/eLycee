@@ -1,14 +1,14 @@
 <div class="row">
     <div class="column padding-reset" style="margin-top:50px;">
         <h1>Créez un QCM</h1>
-        <div class="ui form small segment">
+        <form class="ui form small segment" name="newQcm" ng-submit="submitQcm()">
             <div class="field">
                 <label for="">Titre
                 <input type="text" name="title" placeholder="Entrez ici le titre du questionnaire" required/>
             </div>
             <div class="field">
                 <label>Classe</label>
-                <select class="ui dropdown" id="classDropdown" required>
+                <select class="ui dropdown" id="classDropdown" name="classlevel" required>
                     <option value="">Classe</option>
                     <option value="1">Premiere</option>
                     <option value="0">Terminale</option>
@@ -17,7 +17,7 @@
 
             <div class="field">
                 <label for="">Description</label>
-                <textarea name="" id="" cols="30" rows="10" placeholder="Decrivez brievement le theme du questionnaire" required></textarea>
+                <textarea name="description" id="" cols="30" rows="10" placeholder="Decrivez brièvement le theme du questionnaire" required></textarea>
             </div>
 
             <div id="questions">
@@ -27,8 +27,8 @@
             <div class="ui divider"></div>
 
             <div class="ui info button"id="addQuestionButton" ng-click="addQuestion()"><i class="icon plus"></i>Ajouter une question</div>
-            <div class="ui button positive" ng-submit>Enregistrer le qcm</div>
-        </div>
+            <input type="submit" class="ui button" ng-class="{ positive: newQcm.$valid }" ng-disabled="newQcm.$invalid"></input>
+        </form>
     </div>
 </div>
 
