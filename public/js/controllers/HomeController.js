@@ -1,4 +1,4 @@
-app.controller('HomeController',['PostsFactory', '$scope', function(PostsFactory, $scope) {
+app.controller('HomeController',['PostsFactory', 'DataAccess' , '$scope', function(PostsFactory, DataAccess, $scope) {
     var self = this;
 
     PostsFactory.getPosts(10).then(function(posts) {

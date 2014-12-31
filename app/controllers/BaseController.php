@@ -10,8 +10,24 @@ class BaseController extends Controller {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$ressources = $model::paginate(10);
+		//$ressources = $model::paginate(10);
+		$ressources = $model::all();
 		return Response::json($ressources);
+
+		// __ test pagination
+		// $ressources = $model::paginate(10);
+		// $response = [
+		//     $vars        => $ressources->getItems(),
+		//     'pagination' => [
+		//         'total'        => $ressources->getTotal(),
+		//         'per_page'     => $ressources->getPerPage(),
+		//         'current_page' => $ressources->getCurrentPage(),
+		//         'last_page'    => $ressources->getLastPage(),
+		//         'from'         => $ressources->getFrom(),
+		//         'to'           => $ressources->getTo()
+		//     ]
+		// ];
+		// return Response::json($response);
 	}
 
 	/**
