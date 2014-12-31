@@ -21,7 +21,7 @@ app.factory('QcmsFactory', ['$http', '$resource', '$q', 'CONFIG',
                 .$promise.then(
                 //success
                 function(results) {
-                    deferred.resolve(results[0]);
+                    deferred.resolve(results);
                 },
                 //error
                 function(err) {
@@ -49,6 +49,19 @@ app.factory('QcmsFactory', ['$http', '$resource', '$q', 'CONFIG',
             console.info('js form', saveInfos);
             var newQcm = new QcmsFactory.Qcm(saveInfos);
             newQcm.$save();
+        };
+
+        QcmsFactory.getQcmsPaginated = function(pageNumber) {
+            var deferred = $q.defer();
+            $http.get(apiUrl + 'qcms?page=' + pageNumber)
+                 .success(function(data, status, headers, config) {
+                    deferred.resolve(data);
+                 })
+                 .error(function(data, status, headers, config) {
+                    deferred.$resolve(data);
+                 });
+
+            return deferred.promise;
         };
 
         return QcmsFactory;

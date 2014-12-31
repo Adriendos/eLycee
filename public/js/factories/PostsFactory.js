@@ -60,7 +60,6 @@ app.factory('PostsFactory',
 	    };
 
 	    PostsFactory.save = function(saveInfos) {
-	    	console.info('js form', saveInfos);
 	    	var newPost = new PostsFactory.Post(saveInfos);
 			newPost.$save();
 	    };

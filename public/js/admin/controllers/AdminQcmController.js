@@ -1,6 +1,6 @@
 app.controller('AdminQcmController',
-    ['$scope', 'QcmsFactory', 'FileUploader',
-        function($scope, QcmsFactory, FileUploader) {
+    ['$rootScope', '$scope', 'QcmsFactory', 'FileUploader',
+        function($rootScope, $scope, QcmsFactory, FileUploader) {
 
             $scope.qcms;
             $scope.modal = [];
@@ -52,4 +52,9 @@ app.controller('AdminQcmController',
                 }
             }
 
+            $rootScope.$on('page.changed', function(e, pageNum) {
+              QcmsFactory.getPostsPaginated(pageNum).then( function(posts) {
+                $scope.posts = posts;
+              });
+            });
         }]);

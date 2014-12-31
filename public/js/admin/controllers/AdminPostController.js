@@ -77,7 +77,6 @@ app.controller('AdminPostController',
         $scope.submitForm = function() { // @todo verif fields image etc ...
           // __ create new post
           var imageFile = $scope.uploader.queue[0]._file;
-          console.log(imageFile);
           var reader = new FileReader();
           reader.onloadend = function () {
             $scope.currentPost.image = {
@@ -89,6 +88,7 @@ app.controller('AdminPostController',
           reader.readAsDataURL(imageFile);
         };
 
+        // pagination listener
         $rootScope.$on('page.changed', function(e, pageNum) {
           PostsFactory.getPostsPaginated(pageNum).then( function(posts) {
             $scope.posts = posts;
