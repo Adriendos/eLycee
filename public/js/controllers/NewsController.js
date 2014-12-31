@@ -1,5 +1,3 @@
-app.controller('NewsController', ['PostsFactory', '$scope', function(PostsFactory, $scope) {	
-  PostsFactory.getPosts(4).then(function(posts) {
-    $scope.posts = posts;
-  });
+app.controller('NewsController', ['$scope','posts', function($scope, posts) {
+  $scope.posts = posts;
 }]);

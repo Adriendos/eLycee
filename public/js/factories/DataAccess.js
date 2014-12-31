@@ -1,6 +1,6 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG',
-	function($http, $resource, $q, CONFIG) {
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope',
+	function($http, $resource, $q, CONFIG, $rootScope) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
@@ -27,74 +27,33 @@ app.factory('DataAccess',
 			}
 		);
 
-		init();
-
-		function init() {
-
-			var posts = DataAccess.Post.query();
-			posts.$promise.then(function (result) {
-				DATA_ACCESS.POSTS = result;
-				console.log(DATA_ACCESS);
-			});
-
-			var qcms = DataAccess.Qcm.query();
-			qcms.$promise.then(function (result) {
-				DATA_ACCESS.QCMS = result;
-				console.log(DATA_ACCESS);
-			});
-
-			console.log('done');
-
+		DataAccess.getPosts = function() {
+			if (DATA_ACCESS.POSTS) {
+				console.log('got it from cache !!');
+				return DATA_ACCESS.POSTS;
+			} else {
+				var promise = DataAccess.Post.query().$promise.then(
+					function(data, status, headers, config) {
+						DATA_ACCESS.POSTS = data;
+						return data;
+					});
+				return promise;
+			}
 		};
 
-	  	//PostsFactory.getAllPosts = function () {
-	  	//	var deferred = $q.defer();
-	    //    PostsFactory.Post.query()
-	    //    	.$promise.then(
-			//		//success
-			//		function(results) {
-			//			deferred.resolve(results);
-			//		},
-			//		//error
-			//		function(err) {
-			//			console.error(err);
-			//		}
-		 //       );
-        //
-	    //   	return deferred.promise;
-	    //};
-        //
-	    //PostsFactory.getPosts = function(limitWantedPosts) {
-	    //	var deferred = $q.defer();
-	    //	$http.get(apiUrl + 'posts/limit/' + limitWantedPosts)
-			//	 .success(function(data, status, headers, config) {
-			//	 	deferred.resolve(data);
-			//	 })
-			//	 .error(function(data, status, headers, config) {
-			//	 	deferred.$resolve(data);
-			//	 });
-        //
-	    //   	return deferred.promise;
-	    //};
-        //
-	    //PostsFactory.getPostsPaginated = function(pageNumber) {
-	    //	var deferred = $q.defer();
-	    //	$http.get(apiUrl + 'posts?page=' + pageNumber)
-			//	 .success(function(data, status, headers, config) {
-			//	 	deferred.resolve(data);
-			//	 })
-			//	 .error(function(data, status, headers, config) {
-			//	 	deferred.$resolve(data);
-			//	 });
-        //
-	    //   	return deferred.promise;
-	    //};
-        //
-	    //PostsFactory.save = function(saveInfos) {
-	    //	console.info('js form', saveInfos);
-	    //	var newPost = new PostsFactory.Post(saveInfos);
-			//newPost.$save();
-	    //};
+		DataAccess.getQcms = function() {
+			if (DATA_ACCESS.QCMS) {
+				console.log('got it from cache !!');
+				return DATA_ACCESS.QCMS;
+			} else {
+				var promise = DataAccess.Qcm.query().$promise.then(
+					function(data, status, headers, config) {
+						DATA_ACCESS.QCMS = data;
+						return data;
+					});
+				return promise;
+			}
+		};
 
 	    return DataAccess;
 }]);
