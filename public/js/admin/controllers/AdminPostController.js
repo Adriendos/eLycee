@@ -1,6 +1,6 @@
 app.controller('AdminPostController',
-    ['$scope', 'PostsFactory', 'FileUploader',
-      function($scope, PostsFactory, FileUploader) {
+    ['$rootScope', '$scope', 'PostsFactory', 'FileUploader',
+      function($rootScope, $scope, PostsFactory, FileUploader) {
 
         $scope.posts;
         $scope.modal = [];
@@ -89,8 +89,10 @@ app.controller('AdminPostController',
           reader.readAsDataURL(imageFile);
         };
 
-        $scope.$on('page.changed', function(e, v) {
-          console.log(v);
+        $rootScope.$on('page.changed', function(e, pageNum) {
+          PostsFactory.getPostsPaginated(pageNum).then( function(posts) {
+            $scope.posts = posts;
+          });
         });
 
         // var can = document.getElementById('canvas');
