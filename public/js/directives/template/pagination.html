@@ -1,0 +1,7 @@
+<div class="ui borderless pagination menu" ng-show="totalPages > 1">
+	<a class="item" ng-click="firstPage()">&laquo;</a>
+	<a class="item" ng-click="prevPage()">&lsaquo;</a>
+	<a class="item" ng-repeat="n in pages" ng-bind="n" ng-click="setPage(n)"></a>
+	<a class="item" ng-click="nextPage()">&rsaquo;</a>
+	<a class="item" ng-click="lastPage()">&raquo;</a>
+</div>
