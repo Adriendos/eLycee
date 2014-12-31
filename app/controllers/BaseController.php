@@ -151,7 +151,7 @@ class BaseController extends Controller {
 	 */
 	protected function processImage($inputs, $modelName)
 	{
-		if( ! $inputs['image']) { return false; }
+		if( ! isset($inputs['image'])) { return false; }
 		// process image
 		$dirtyBase64 = $inputs['image']['base64'];
 		$base64Str = substr($dirtyBase64, strpos($dirtyBase64, ',')+1);

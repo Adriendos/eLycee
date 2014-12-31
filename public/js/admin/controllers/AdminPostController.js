@@ -74,18 +74,22 @@ app.controller('AdminPostController',
         };
 
         $scope.uploader = new FileUploader({autoUpload:true});
-        $scope.submitForm = function() { // @todo verif fields image etc ...
-          // __ create new post
-          var imageFile = $scope.uploader.queue[0]._file;
-          var reader = new FileReader();
-          reader.onloadend = function () {
-            $scope.currentPost.image = {
-              base64: reader.result,
-              file: imageFile
-            };
+        $scope.submitForm = function() { // @todo verif fields not empty etc ...
+          var ngUploader = $scope.uploader.queue[0];
+          if(!angular.isUndefined(ngUploader)) { // has image ?
+            var imageFile = ngUploader._file;
+            var reader = new FileReader();
+            reader.onloadend = function () {
+              $scope.currentPost.image = {
+                base64: reader.result,
+                file: imageFile
+              };
+              PostsFactory.save($scope.currentPost);
+            }
+            reader.readAsDataURL(imageFile);
+          } else {
             PostsFactory.save($scope.currentPost);
           }
-          reader.readAsDataURL(imageFile);
         };
 
         // pagination listener
