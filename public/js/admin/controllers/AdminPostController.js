@@ -9,7 +9,8 @@ app.controller('AdminPostController',
 
         // Getting all posts
         PostsFactory.getAllPosts().then(function(posts) {
-          angular.forEach(posts, function (post) {
+          console.info('Posts => ', posts);
+          angular.forEach(posts.data, function (post) {
             post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
           });
           $scope.posts = posts;
@@ -87,6 +88,10 @@ app.controller('AdminPostController',
           }
           reader.readAsDataURL(imageFile);
         };
+
+        $scope.$on('page.changed', function(e, v) {
+          console.log(v);
+        });
 
         // var can = document.getElementById('canvas');
         // var ctx = can.getContext('2d');

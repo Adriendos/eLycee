@@ -10,12 +10,11 @@ class BaseController extends Controller {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$ressources = $model::all();
- 
-		return Response::json([$ressources]);
+		$ressources = $model::paginate(10);
+		return Response::json($ressources);
 
 		// __ test pagination
-		// $ressources = $model::paginate(100);
+		// $ressources = $model::paginate(10);
 		// $response = [
 		//     $vars        => $ressources->getItems(),
 		//     'pagination' => [
