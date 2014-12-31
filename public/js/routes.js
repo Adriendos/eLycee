@@ -3,10 +3,20 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
       controller: 'HomeController',
-      templateUrl: 'js/views/home.html'
+      templateUrl: 'js/views/home.html',
+      resolve: {
+        posts: function(DataAccess) {
+          return DataAccess.getPosts();
+        }
+      }
     }).when('/news', {
       controller: 'NewsController',
-      templateUrl: 'js/views/news.html'
+      templateUrl: 'js/views/news.html',
+      resolve: {
+        posts: function(DataAccess) {
+          return DataAccess.getPosts();
+        }
+      }
     }).when('/contact', {
       controller: 'ContactController',
       templateUrl: 'js/views/contact.html'

@@ -1,9 +1,9 @@
-app.controller('HomeController',['PostsFactory', 'DataAccess' , '$scope', function(PostsFactory, DataAccess, $scope) {
+app.controller('HomeController',['$scope', 'posts',
+    function($scope, posts) {
     var self = this;
 
-    PostsFactory.getPosts(10).then(function(posts) {
-      $scope.posts = posts;
-    });
+
+    $scope.posts = posts;
 
     $(document).ready(function(){
         $('.ui.dropdown').dropdown();
