@@ -9,7 +9,7 @@ app.factory('QcmsFactory', ['$http', '$resource', '$q', 'CONFIG',
             apiUrl + 'qcms/:id',
             {id: '@id' },
             {
-                query: {method: 'GET', isArray: true},
+                query: {method: 'GET', isArray: false},
                 get: {method: 'GET', params:{id:'@id'} },
                 save: { method: 'POST' }
             }

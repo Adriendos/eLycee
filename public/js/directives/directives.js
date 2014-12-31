@@ -120,7 +120,7 @@ app.directive( 'pagination', [ function() {
             };
 
             scope.$on('page.changed', function(e, v) {
-              console.info('value', v);
+              console.info('value changed', v);
             });
 
             scope.$watch( 'results', paginate );
