@@ -67,6 +67,10 @@ Route::group(
 			['except' => ['create', 'edit'] 
 		]);
 
+		Route::resource('qcms', 'QcmController',
+        			['except' => ['create', 'edit']
+        		]);
+
 		// __ comments
 		Route::resource('comments', 'CommentController', 
 			['except' => ['create', 'edit'] 

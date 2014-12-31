@@ -267,11 +267,11 @@ body {
     content: 'ou' !important;
 }
 
-// problem modal scroll @todo find another to solve the problem, cursor in textarea makes popu back to top
+// problem modal scroll 
 .dimmed.dimmable>.ui.animating.dimmer, 
 .dimmed.dimmable>.ui.visible.dimmer, 
 .ui.active.dimmer {
-    overflow: scroll;
+    // overflow: scroll;
 }
 
 //////////////////////////////////  POPUPS   //////////////////////////////////
@@ -295,18 +295,18 @@ body {
     color:white !important;
 }
 
-#statistics:before {
-    position: absolute;
-    display:block;
-    content:'';
-    top:0; left: 0; right: 0; bottom: 0;
-}
-
 #statistics {
     padding-top:50px;
     background-color: rgba(0,0,0,0.5);
 }
 
+.remove-question {
+    cursor: pointer;
+}
+.remove-question:hover {
+    background-color: red;
+    color:white;
+}
 
 
 
@@ -314,3 +314,4 @@ body {
 
 ///////////////////////////////////  FONTS   //////////////////////////////////
 
+///////////////////////////////////  FONTS   //////////////////////////////////
