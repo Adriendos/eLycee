@@ -69,7 +69,9 @@ app.directive('ngThumb', ['$window', function($window) {
     };
 }]);
 
-app.directive( 'pagination', [ function() {
+app.directive( 'pagination', [ 
+    '$rootScope',
+    function($rootScope) {
     return {
         restrict: 'A',
         scope: { results: '=pagination' },
@@ -115,13 +117,9 @@ app.directive( 'pagination', [ function() {
 
             var pageChange = function( newPage, lastPage ) {
                 if ( newPage != lastPage ) {
-                    scope.$emit( 'page.changed', newPage );
+                    $rootScope.$emit( 'page.changed', newPage );
                 }
             };
-
-            scope.$on('page.changed', function(e, v) {
-              console.info('value changed', v);
-            });
 
             scope.$watch( 'results', paginate );
             scope.$watch( 'currentPage', pageChange );

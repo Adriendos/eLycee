@@ -46,6 +46,19 @@ app.factory('PostsFactory',
 	       	return deferred.promise;
 	    };
 
+	    PostsFactory.getPostsPaginated = function(pageNumber) {
+	    	var deferred = $q.defer();
+	    	$http.get(apiUrl + 'posts?page=' + pageNumber)
+				 .success(function(data, status, headers, config) {
+				 	deferred.resolve(data);
+				 })
+				 .error(function(data, status, headers, config) {
+				 	deferred.$resolve(data);
+				 });
+
+	       	return deferred.promise;
+	    };
+
 	    PostsFactory.save = function(saveInfos) {
 	    	console.info('js form', saveInfos);
 	    	var newPost = new PostsFactory.Post(saveInfos);
