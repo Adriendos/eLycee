@@ -1,66 +1,22 @@
 <?php
+
+// Composer: "fzaninotto/faker": "v1.3.0"
+use Faker\Factory as Faker;
+
 class ScoreTableSeeder extends Seeder {
-	public function run() {
-		DB::table('scores')->delete();
-		DB::unprepared('ALTER TABLE scores AUTO_INCREMENT=1'); 
-		DB::table('scores')->insert(
-		[
-			[
-				'status_question' => 'todo',
-				'user_id' =>1,
-				'note' => 5,
-				'question_id' => 1,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>2,
-				'note' => 5,
-				'question_id' => 2,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>3,
-				'note' => 7,
-				'question_id' => 3,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>4,
-				'note' => 5,
-				'question_id' => 4,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>5,
-				'note' => 5,
-				'question_id' => 4,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>6,
-				'note' => 3,
-				'question_id' => 5,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			],
-			[
-				'status_question' => 'todo',
-				'user_id' =>7,
-				'note' => 10,
-				'question_id' => 6,
-				'created_at' => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at' => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
-			]
-		]);
+
+	public function run()
+	{
+		$faker = Faker::create();
+
+		foreach(range(1, 2390) as $index)
+		{
+			Score::create([
+				'score' => $faker->numberBetween(25, 100),
+				'user_id' => $faker->numberBetween(1, 10),
+				'qcm_id' => $faker->numberBetween(1, 10),
+			]);
+		}
 	}
-} ?>
+
+}

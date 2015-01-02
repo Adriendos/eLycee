@@ -1,4 +1,8 @@
 var gulp     = require('gulp'),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
     sass         = require('gulp-ruby-sass'),
     browserSync  = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -8,6 +12,8 @@ var gulp     = require('gulp'),
     rename       = require('gulp-rename'),
     minifyCSS    = require('gulp-minify-css'),
     concat       = require('gulp-concat'),
+    notify       = require("gulp-notify"),
+    plumber      = require('gulp-plumber'),
     package      = require('./package.json');
 
 var banner = [
@@ -25,14 +31,21 @@ var banner = [
 gulp.task('css', function () {
     return gulp.src('public/sass/app.scss')
         .pipe(sass({compass: true}))
-        .on('error', function (err) { console.log(err.message); })
+        .on('error', function (err) {
+            notify.onError("Sass error: <%= err.message %>")
+        })
         .pipe(autoprefixer('last 4 version'))
         .pipe(gulp.dest('public/dist/css/'))
         .pipe(minifyCSS())
         .pipe(rename({ suffix: '.min' }))
         .pipe(header(banner, { package : package }))
         .pipe(gulp.dest('public/dist/css'))
+<<<<<<< HEAD
         .pipe(browserSync.reload({stream:true}));
+=======
+        .pipe(browserSync.reload({stream:true}))
+        .pipe(notify('Css task done'));
+>>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 });
 
 gulp.task('compress-app', function(){
@@ -43,7 +56,12 @@ gulp.task('compress-app', function(){
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
         .pipe(rename({ suffix: '.min' }))
+<<<<<<< HEAD
         .pipe(gulp.dest('public/dist/js'));
+=======
+        .pipe(gulp.dest('public/dist/js'))
+        .pipe(notify('App js task done'));
+>>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 });
 
 //Keep Updated with new libs
@@ -62,16 +80,22 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/rangy/rangy-core.js',
         'public/bower_components/textAngular/dist/textAngular.min.js',
         'public/bower_components/angular-file-upload/angular-file-upload.min.js',
-        'public/bower_components/lodash/dist/lodash.min.js'
-
+        'public/bower_components/angular-google-chart/ng-google-chart.js',
+        'public/bower_components/lodash/dist/lodash.min.js',
         //Add future bower dependencies here ;)
-    ]).pipe(concat('vendors.js'))
+    ])
+        .pipe(concat('vendors.js'))
         .pipe(gulp.dest('public/dist/vendors'))
         .pipe(rename('vendors.js'))
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
         .pipe(rename({ suffix: '.min' }))
+<<<<<<< HEAD
         .pipe(gulp.dest('public/dist/vendors'));
+=======
+        .pipe(gulp.dest('public/dist/vendors'))
+        .pipe(notify('Vendors app js task done'));
+>>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 })
 
 // gulp.task('browser-sync', function() {
@@ -101,3 +125,4 @@ gulp.task('default', ['css', 'compress-app', 'compress-vendors'], function () {
     gulp.watch("public/js/**/*.js", ['compress-app', 'compress-vendors']);
     //gulp.watch("public/*.html", ['bs-reload']);
 });
+

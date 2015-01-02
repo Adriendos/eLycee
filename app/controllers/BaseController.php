@@ -10,12 +10,12 @@ class BaseController extends Controller {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		//$ressources = $model::paginate(10);
 		$ressources = $model::all();
- 
-		return Response::json([$ressources]);
+		return Response::json($ressources);
 
 		// __ test pagination
-		// $ressources = $model::paginate(100);
+		// $ressources = $model::paginate(10);
 		// $response = [
 		//     $vars        => $ressources->getItems(),
 		//     'pagination' => [
@@ -27,7 +27,7 @@ class BaseController extends Controller {
 		//         'to'           => $ressources->getTo()
 		//     ]
 		// ];
-		// return Response::json([$response]);
+		// return Response::json($response);
 	}
 
 	/**
@@ -151,7 +151,7 @@ class BaseController extends Controller {
 	 */
 	protected function processImage($inputs, $modelName)
 	{
-		if( ! $inputs['image']) { return false; }
+		if( ! isset($inputs['image'])) { return false; }
 		// process image
 		$dirtyBase64 = $inputs['image']['base64'];
 		$base64Str = substr($dirtyBase64, strpos($dirtyBase64, ',')+1);

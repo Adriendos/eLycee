@@ -47,6 +47,7 @@ Route::group(['prefix' => 'v1/auth'], function()
 		'as'     => 'auth.logout'
 	]);
 });
+
 Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function() 
 {
 
@@ -63,11 +64,15 @@ Route::group(
 
 		// __ posts
 		Route::get('posts/limit/{limit}', 'PostController@getWithLimit');
+
 		Route::resource('posts', 'PostController', 
 			['except' => ['create', 'edit'] 
 		]);
 
-		// __ comments
+		Route::resource('qcms', 'QcmController',
+			['except' => ['create', 'edit']
+		]);
+
 		Route::resource('comments', 'CommentController', 
 			['except' => ['create', 'edit'] 
 		]);

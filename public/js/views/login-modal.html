@@ -1,4 +1,4 @@
-<form class="ui basic modal" id="connexionPopUp" style="border: 2px solid white;" ng-controller="AuthenticationController"> 
+<form class="ui basic modal" id="connexionPopUp" style="border: 2px solid white;" ng-controller="AuthenticationCtrl">
     <i class="close icon"></i>
     <div class="header">
         Connexion
@@ -23,6 +23,12 @@
                             <input type="password" ng-model="userInfos.password" value="test" placeholder="Password">
                             <i class="lock icon"></i>
                         </div>
+                    </div>
+                </div>
+                <div class="inline field">
+                    <div class="ui checkbox" id="rememberme">
+                        <input type="checkbox" ng-model="userInfos.rememberme">
+                        <label style="color:white">Garder ma session ouverte</label>
                     </div>
                 </div>
             </div>

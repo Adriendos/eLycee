@@ -1,5 +1,5 @@
-<div class="column padding-reset">
-  <div class="ui huge message page grid center aligned">
+<div class="column padding-reset" style="margin-top:50px;">
+  <div class="ui small message page grid center aligned">
     <h1 class="ui huge header">Administration des Articles</h1>
     <p><div class="ui blue button" ng-click="openCreationModal()">Créer un nouvel article</div></p>
   </div>
@@ -7,48 +7,44 @@
   <div class="ui form">
     <div class="field">
       <div class="ui icon input">
-        <input type="text" placeholder="Filtrer..." ng-model="searchText">
+        <input type="text" placeholder="Filtrer sur n'importe quelle colonne du tableau ..." ng-model="searchText">
         <i class="search icon"></i>
       </div>
     </div>
   </div>
 
   <div class="sixteen wide column white">
-    <table class="ui celled sortable table">
+    <table class="ui sortable table">
       <thead>
         <tr>
           <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
           <th ng-click="changeSorting($event,'title')">Titre</th>
-          <th ng-click="changeSorting($event,'status')">Status</th>
           <th ng-click="changeSorting($event,'created_at')">Crée le</th>
           <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
           <th ng-click="changeSorting($event,'user_id')">Auteur</th>
-          <th>Modifier</th>
-          <th>Supprimer</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <!-- Start Loop -->
-        <tr ng-repeat="post in posts | toArray | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id">
-          <td><small>{{ post.id }}</small></td>
-          <td><small>{{ post.title | limitTo : 30}} ...</small></td>
+        <tr ng-repeat="post in posts| limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id"><!-- limitTo: 10 | -->
+          <td>{{ post.id }}</td>
+          <td>{{ post.title | limitTo : 75}} ...</td>
+          <td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+          <td>{{post.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+          <td>{{post.user_id}}</td>
           <td>
-            <div class="mini ui labeled icon button basic">
-              <i class="icon" ng-class="publicationState(post)"></i>
-              {{ post.status}}
-            </div>
-          </td>
-          <td><small>{{post.created_at}}</small></td>
-          <td><small>{{post.updated_at}}</small></td>
-          <td><small>{{post.user_id}}</small></td>
-          <td>
-            <div class="mini ui icon button positive" ng-click="openEditionModal(post)">
+            <div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
               <i class="edit icon"></i>
             </div>
-          </td>
-          <td>
-            <div class="mini ui icon button negative" ng-click="openDeletePostModal(post)">
-              <i class="erase icon"></i>
+            <div class="ui icon button negative" ng-click="openDeletePostModal(post)">
+              <i class="trash icon"></i>
+            </div>
+            <div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
+              <i class="eye icon"></i>
+            </div>
+            <div class="ui icon button basic">
+              <i class="icon" ng-class="publicationState(post)"></i>
             </div>
           </td>
         </tr>
@@ -56,6 +52,7 @@
       </tbody>
     </table>
   </div>
+  <!--<div class="pagination-wrapper" pagination="posts"></div>-->
 </div>
 
 <!-- CREATION/EDITION MODAL -->
@@ -80,88 +77,8 @@
       <div class="field">
         <label>Image de couverture</label>
         <div class="ui grid no-top-margin">
-          <!-- PREVIEW IMAGE -->
-          <div class="right floated left aligned eleven wide column ui compact segment">
-            <!-- 
-            <ul>
-              <li ng-repeat="item in uploader.queue">
-                  Name: <span ng-bind="item.file.name"></span><br/>
-                  <button ng-click="item.upload()">upload</button>
-              </li>
-            </ul> -->
-            <table class="ui celled striped table">
-              <thead>
-                <tr>
-                  <th width="50%">Nom de fichier</th>
-                  <th ng-show="uploader.isHTML5">Poids</th>
-                  <th ng-show="uploader.isHTML5">Progression</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="item in uploader.queue" class="ng-scope">
-                  <td>
-                    <i class="file image outline icon"></i>
-                    <strong>{{ item.file.name }}</strong>
-                    <!-- Image preview -->
-                    <!--auto height-->
-                    <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                    <!--auto width-->
-                    <div ng-show="uploader.isHTML5" 
-                         ng-thumb="{ file: item._file, width: 250 }" class="pt10"></div>
-                    <!--fixed width and height -->
-                    <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                  </td>
-                  <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                  <td ng-show="uploader.isHTML5">
-                    <div class="ui tiny progress success">
-                      <div class="bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span ng-show="item.isSuccess"><i class="check circle icon"></i></span>
-                    <span ng-show="item.isCancel"><i class="minus circle icon"></i></span>
-                    <span ng-show="item.isError"><i class="trash icon"></i></span>
-                  </td>
-                  <td nowrap="">
-                    <div class="ui icon buttons">
-                      <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                        <i class="upload icon"></i> Upload
-                      </button>
-                      <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading" disabled="disabled">
-                        <i class="ban icon"></i> Cancel
-                      </button>
-                      <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                        <i class="trash icon"></i> Remove
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- <div id="progress-upload-img" class="ui teal progress">
-              <div class="bar" ng-style="{ 'width': uploader.progress + '%' }">
-                <div class="progress">{{ uploader.progress + '%' }}</div>
-              </div>
-            </div> -->
-            <!-- <div id="progress-upload-img" class="ui teal progress">
-              <div class="bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-              <div class="label">{{ uploader.progress + '%' }}</div>
-            </div> -->
-          </div><!-- ./ ui compact appercu section -->
-
           <!-- UPLOAD IMAGE ZONE -->
-          <div class="left floated center aligned four wide column ui compact segment"
-               style="margin-top: 0;">
-            <!-- <div nv-file-drop uploader="uploader"> -->
-              <div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
-                Déposer votre image ici
-              </div>
-            <!-- </div> -->
-            <div class="ui horizontal divider">Ou</div>
-            <input type="file" nv-file-select uploader="uploader"/>
+          <div img-uploader class="center aligned sixtine wide column ui compact segment" style="margin-top: 0;">
           </div><!-- ./ ui compact upload -->
         </div><!-- ./ ui grid -->
       </div><!-- .field image -->
@@ -174,13 +91,11 @@
         <div text-angular ng-model="currentPost.content" name="content"></div>
       </div>
       <div class="field">
-        <div class="ui toggle checkbox">
-          <input type="radio" 
-                 ng-model="currentPost.status" 
-                 name="status"
-                 ng-change="change()"
-                 value="published">
-          <label>Publier</label>
+        <div id="status" ng-click="changeStatus()" class="ui toggle checkbox"> 
+          <input type="checkbox" 
+                 ng-model="currentPost.status"
+                 value="{{currentPost.status}}">
+          <label>Publier {{ currentPost.status }}</label>
         </div>
       </div>
       <div class="ui buttons">

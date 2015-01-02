@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="column padding-reset" style="margin-top:50px;">
+        <h1>Créez un QCM</h1>
+        <form class="ui form small segment" name="newQcm" ng-submit="submitQcm()">
+            <div class="field">
+                <label for="">Titre
+                <input type="text" name="title" placeholder="Entrez ici le titre du questionnaire" required/>
+            </div>
+            <div class="field">
+                <label>Classe</label>
+                <select class="ui dropdown" id="classDropdown" name="classlevel" required>
+                    <option value="">Classe</option>
+                    <option value="1">Premiere</option>
+                    <option value="0">Terminale</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="">Description</label>
+                <textarea name="description" id="" cols="30" rows="10" placeholder="Decrivez brièvement le theme du questionnaire" required></textarea>
+            </div>
+
+            <div id="questions">
+                <!-- Here comes added questions -->
+            </div>
+
+            <div class="ui divider"></div>
+
+            <div class="ui info button"id="addQuestionButton" ng-click="addQuestion()"><i class="icon plus"></i>Ajouter une question</div>
+            <input type="submit" class="ui button" ng-class="{ positive: newQcm.$valid }" ng-disabled="newQcm.$invalid"></input>
+        </form>
+    </div>
+</div>
+
+<!-- DELETE QUESTION MODAL -->
+<div id="deleteQuestionModal" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Supprimer
+    </div>
+    <div class="content">
+        <p>Voulez vous supprimer définitivement cette question?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            Non
+        </div>
+        <div class="ui positive right labeled icon button">
+            Oui
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+

@@ -10,5 +10,5 @@ class Comment extends Eloquent {
 	 */
 	protected $table = 'comments';
 
-
+	protected $guardable = ['id'];
 }

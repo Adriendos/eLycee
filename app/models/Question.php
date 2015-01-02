@@ -9,6 +9,5 @@ class Question extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'questions';
-
-
+	protected $guardable = 'id';
 }

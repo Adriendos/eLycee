@@ -1,0 +1,55 @@
+<div class="column padding-reset" style="margin-top:50px;">
+    <div class="ui small message page grid center aligned">
+        <h1 class="ui huge header">Administration des QCM</h1>
+        <p><div class="ui blue button" ng-click="go('/admin/qcm/create')">Créer un nouveau QCM</div></p>
+    </div>
+
+    <div class="ui form">
+        <div class="field">
+            <div class="ui icon input">
+                <input type="text" placeholder="Filtrer sur n'importe quelle colonne du tableau ..." ng-model="searchText">
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="sixteen wide column white">
+        <table class="ui sortable table">
+            <thead>
+            <tr>
+                <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
+                <th ng-click="changeSorting($event,'title')">Titre</th>
+                <th ng-click="changeSorting($event,'class_level')">Niveau</th>
+                <th ng-click="changeSorting($event,'created_at')">Crée le</th>
+                <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Start Loop -->
+            <tr ng-repeat="qcm in qcms | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by qcm.id">
+                <td>{{ qcm.id }}</td>
+                <td>{{ qcm.title | limitTo : 75}} ...</td>
+                <td>{{ getLevel(qcm.class_level)}}</td>
+                <td>{{qcm.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+                <td>{{qcm.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
+                        <i class="edit icon"></i>
+                    </div>
+                    <div class="ui icon button negative" ng-click="openDeletePostModal(post)">
+                        <i class="trash icon"></i>
+                    </div>
+                    <div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
+                        <i class="eye icon"></i>
+                    </div>
+                </td>
+            </tr>
+            <!-- End Loop -->
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="pagination-wrapper" pagination="qcms"></div>-->
+</div>
+
+
