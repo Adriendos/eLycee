@@ -1,5 +1,4 @@
 var gulp     = require('gulp'),
-<<<<<<< HEAD
     sass         = require('gulp-ruby-sass'),
     browserSync  = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -10,19 +9,6 @@ var gulp     = require('gulp'),
     minifyCSS    = require('gulp-minify-css'),
     concat       = require('gulp-concat'),
     package      = require('./package.json');
-=======
-sass         = require('gulp-ruby-sass'),
-browserSync  = require('browser-sync'),
-autoprefixer = require('gulp-autoprefixer'),
-uglify       = require('gulp-uglify'),
-jshint       = require('gulp-jshint'),
-header       = require('gulp-header'),
-rename       = require('gulp-rename'),
-minifyCSS    = require('gulp-minify-css'),
-concat       = require('gulp-concat'),
-notify       = require("gulp-notify");
-package      = require('./package.json');
->>>>>>> 78dc3b38773d65c0d6a2f17789ff033a08f0b212
 
 var banner = [
     '/*!\n' +
@@ -38,7 +24,6 @@ var banner = [
 
 gulp.task('css', function () {
     return gulp.src('public/sass/app.scss')
-<<<<<<< HEAD
         .pipe(sass({compass: true}))
         .on('error', function (err) { console.log(err.message); })
         .pipe(autoprefixer('last 4 version'))
@@ -48,20 +33,6 @@ gulp.task('css', function () {
         .pipe(header(banner, { package : package }))
         .pipe(gulp.dest('public/dist/css'))
         .pipe(browserSync.reload({stream:true}));
-=======
-    .pipe(sass({compass: true}))
-      .on('error', function (err) {
-        notify.onError("Sass error: <%= err.message %>") 
-      })    
-    .pipe(autoprefixer('last 4 version'))
-    .pipe(gulp.dest('public/dist/css/'))
-    .pipe(minifyCSS())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(header(banner, { package : package }))
-    .pipe(gulp.dest('public/dist/css'))
-    .pipe(browserSync.reload({stream:true}))
-    .pipe(notify('Css task done'));
->>>>>>> 78dc3b38773d65c0d6a2f17789ff033a08f0b212
 });
 
 gulp.task('compress-app', function(){
@@ -71,19 +42,12 @@ gulp.task('compress-app', function(){
         .pipe(rename('eLycee.js'))
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
-<<<<<<< HEAD
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/dist/js'));
-=======
-    	  .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('public/dist/js'))
-        .pipe(notify('App js task done'));
->>>>>>> 78dc3b38773d65c0d6a2f17789ff033a08f0b212
 });
 
 //Keep Updated with new libs
 gulp.task('compress-vendors', function() {
-<<<<<<< HEAD
     return gulp.src([
         'public/bower_components/jquery/dist/jquery.min.js',
         'public/bower_components/angular/angular.min.js',
@@ -108,31 +72,6 @@ gulp.task('compress-vendors', function() {
         .pipe(header(banner, { package : package }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/dist/vendors'));
-=======
-	return gulp.src([
-		'public/bower_components/jquery/dist/jquery.min.js',
-    'public/bower_components/angular/angular.min.js',
-    'public/bower_components/angular-route/angular-route.min.js',
-    'public/bower_components/angular-animate/angular-animate.min.js',
-    'public/bower_components/semantic-ui/dist/semantic.min.js',
-    'public/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-    'public/bower_components/angular-resource/angular-resource.min.js',
-    'public/bower_components/angular-sanitize/angular-sanitize.min.js',
-		'public/bower_components/ngmap/build/scripts/ng-map.min.js',
-    'public/bower_components/angular-toastr/dist/angular-toastr.js',
-    'public/bower_components/rangy/rangy-core.js',
-    'public/bower_components/textAngular/dist/textAngular.min.js',
-    'public/bower_components/angular-file-upload/angular-file-upload.min.js'
-		//Add future bower dependencies here ;)
-	]).pipe(concat('vendors.js'))
-	  .pipe(gulp.dest('public/dist/vendors'))
-    .pipe(rename('vendors.js'))
-    .pipe(uglify())
-    .pipe(header(banner, { package : package }))
-	  .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('public/dist/vendors'))
-    .pipe(notify('Vendors app js task done'));;
->>>>>>> 78dc3b38773d65c0d6a2f17789ff033a08f0b212
 })
 
 // gulp.task('browser-sync', function() {
