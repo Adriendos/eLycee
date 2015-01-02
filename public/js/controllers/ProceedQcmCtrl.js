@@ -1,4 +1,4 @@
-app.controller('ProceedQcmController', [ '$scope', function($scope) {
+app.controller('ProceedQcmCtrl', [ '$scope', function($scope) {
     $scope.step = 1; //Initialize step to questions
 
     $scope.calculateScore = function() {

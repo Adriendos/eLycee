@@ -1,4 +1,4 @@
-app.controller('AdminDashboardController',['PostsFactory', '$scope', function(PostsFactory, $scope) {
+app.controller('AdminDashboardCtrl',['$scope', function($scope) {
 	$('.ui.modal').modal();
     $('.message .close').on('click', function() {
       $(this).closest('.message').fadeOut();

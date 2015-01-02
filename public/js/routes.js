@@ -2,50 +2,40 @@
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/', {
-      controller: 'HomeController',
-      templateUrl: 'js/views/home.html',
-      resolve: {
-        posts: function(DataAccess) {
-          return DataAccess.getPosts();
-        }
-      }
+      controller: 'HomeCtrl',
+      templateUrl: 'js/views/home.html'
     }).when('/news', {
-      controller: 'NewsController',
-      templateUrl: 'js/views/news.html',
-      resolve: {
-        posts: function(DataAccess) {
-          return DataAccess.getPosts();
-        }
-      }
+      controller: 'NewsCtrl',
+      templateUrl: 'js/views/news.html'
     }).when('/contact', {
-      controller: 'ContactController',
+      controller: 'ContactCtrl',
       templateUrl: 'js/views/contact.html'
     }).when('/post/:id', {
-      controller : 'NewsController',
+      controller : 'SinglePostCtrl',
       templateUrl : 'js/views/post/single.html'
     }).when('/qcm', {
-      controller : 'QcmController',
+      controller : 'QcmCtrl',
       templateUrl : 'js/views/qcm.html'
     }).when('/qcm/:id', {
-      controller : 'ProceedQcmController',
+      controller : 'ProceedQcmCtrl',
       templateUrl : 'js/views/qcm/single.html'
     })
 
     // __admin views
     .when('/admin', {
-        controller : 'AdminDashboardController',
+        controller : 'AdminDashboardCtrl',
         templateUrl : 'js/admin/views/dashboard.html'
     })
     .when('/admin/articles', {
-        controller : 'AdminPostController',
+        controller : 'AdminPostCtrl',
         templateUrl : 'js/admin/views/articles.html'
     })
     .when('/admin/qcm', {
-      controller : 'AdminQcmController',
+      controller : 'AdminQcmCtrl',
       templateUrl : 'js/admin/views/qcms.html'
     })
     .when('/admin/qcm/create', {
-      controller : 'AdminQcmCreationController',
+      controller : 'AdminQcmCreationCtrl',
       templateUrl : 'js/admin/views/qcm/createQcm.html'
     })
     .otherwise({

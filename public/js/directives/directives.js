@@ -82,7 +82,7 @@ app.directive( 'pagination', [
             var paginate = function( results ) {
                 if ( !scope.currentPage ) scope.currentPage = 0;
 
-                scope.total = results.total;
+                scope.total = results.length;
                 scope.totalPages = results.last_page;
                 scope.pages = [];
 

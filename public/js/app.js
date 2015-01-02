@@ -14,6 +14,15 @@ app.constant('CONFIG',
   }   
 );
 
+app.constant('ENTITY',
+    {
+        post: 'posts',
+        qcm: 'qcms',
+        question: 'questions',
+        answer: 'answers'
+    }
+);
+
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
   localStorageServiceProvider
@@ -44,7 +53,7 @@ app.config(function(toastrConfig) {
 });
 
 // __ Fonction notify accessible depuis n'importe quel $scope
-app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, $http) {
+app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, DataAccess) {
   $rootScope.notify = function(message, level) {
     switch(level) {
       case 'error':
@@ -68,6 +77,7 @@ app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, $http) {
       ;
     }
   };
+
 }]);
 
 // __ Config text-angular !!!
@@ -118,7 +128,7 @@ app.config(['$provide', function($provide){
 }]);
 
 //Route Change interceptor
-app.run(function ($rootScope, $location, SessionService) {
+app.run(function ($rootScope, $location, SessionService, DataAccess) {
      $rootScope.$on("$locationChangeStart",function(){
          if( $location.path().indexOf('/admin') >= 0) {
              if(SessionService.isLoggedUser() && SessionService.isUserAdmin()) {
@@ -126,37 +136,42 @@ app.run(function ($rootScope, $location, SessionService) {
                  return;
              } else {
                  //No user logged or user not admin
-                 SessionService.checkToken()
-                     .then(function(data) {
-                         // promise fulfilled
-                         if (SessionService.getUser().role === 'teacher') {
-                             return;
-                         } else {
+                 if(SessionService.isUserStudent()) {
+                     SessionService.checkToken()
+                         .then(function(data) {
+                             // promise fulfilled
+                             if (SessionService.getUser().role === 'teacher') {
+                                 return;
+                             } else {
+                                 $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                                 SessionService.logout();
+                                 $location.path('/');
+                             }
+                         }, function(error) {
+                             // promise rejected
                              $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
                              SessionService.logout();
                              $location.path('/');
-                         }
-                     }, function(error) {
-                         // promise rejected
-                         $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-                         SessionService.logout();
-                         $location.path('/');
 
-                     });
+                         });
+                 }
              }
 
          } else {
              // Not on an admin route, checks token to inialize user session
-             SessionService.checkToken()
-                 .then(function() {
-                     return;
-                 }, function() {
-                    return;
-                 });
+             if(SessionService.isLoggedUser()) {
+                 SessionService.checkToken()
+                     .then(function() {
+                         return;
+                     }, function() {
+                         return;
+                     });
+             }
          }
 
      });
 });
+
 
 
 

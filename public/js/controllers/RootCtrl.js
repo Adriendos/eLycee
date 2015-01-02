@@ -1,4 +1,4 @@
-app.controller('RootController', ['$scope', '$location', 'SessionService',
+app.controller('RootCtrl', ['$scope', '$location', 'SessionService',
   function($scope, $location, SessionService) {
     $scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');

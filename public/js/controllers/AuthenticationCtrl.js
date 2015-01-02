@@ -1,4 +1,4 @@
-app.controller('AuthenticationController', ['$scope', 'SessionService', function($scope, SessionService) {
+app.controller('AuthenticationCtrl', ['$scope', 'SessionService', function($scope, SessionService) {
   $('.ui.checkbox')
       .checkbox()
   ;

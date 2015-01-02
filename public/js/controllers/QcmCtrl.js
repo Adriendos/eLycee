@@ -1,4 +1,4 @@
-app.controller('QcmController',['QcmsFactory', '$scope', function(QcmsFactory, $scope) {
+app.controller('QcmCtrl',['QcmsFactory', '$scope', function(QcmsFactory, $scope) {
     var self = this;
 
     $scope.chartObject = {

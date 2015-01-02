@@ -70,6 +70,7 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/textAngular/dist/textAngular.min.js',
         'public/bower_components/angular-file-upload/angular-file-upload.min.js',
         'public/bower_components/angular-google-chart/ng-google-chart.js',
+        'public/bower_components/lodash/dist/lodash.min.js',
         //Add future bower dependencies here ;)
     ])
         .pipe(concat('vendors.js'))

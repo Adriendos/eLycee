@@ -1,20 +1,20 @@
-app.controller('AdminPostController',
-    ['$rootScope', '$scope', 'PostsFactory', 'FileUploader',
-      function($rootScope, $scope, PostsFactory, FileUploader) {
+app.controller('AdminPostCtrl',
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
+      function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
 
         $scope.posts;
         $scope.modal = [];
 
         $('.ui.modal').modal();
 
-        // Getting all posts
-        PostsFactory.getAllPosts().then(function(posts) {
-          console.info('Posts => ', posts);
-          angular.forEach(posts.data, function (post) {
-            post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
-          });
-          $scope.posts = posts;
-        });
+        DataAccess.getAllData(ENTITY.post).then(
+            function(posts) {
+              angular.forEach(posts, function (post) {
+                post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
+              });
+              $scope.posts = posts;
+            }
+        );
 
         // Variable for table sorting
         $scope.sort = {

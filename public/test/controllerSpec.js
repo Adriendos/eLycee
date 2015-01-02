@@ -1,4 +1,4 @@
-describe('Controller: HomeController', function() {
+describe('Controller: HomeCtrl', function() {
     // Instantiate a new version of the module
     beforeEach(module('eLycee'));
 
@@ -11,7 +11,7 @@ describe('Controller: HomeController', function() {
             $scope: scope,
             PostsFactory: PostsFactory
         }
-        ctrl = $controller('HomeController', mock);
+        ctrl = $controller('HomeCtrl', mock);
     }));
 
     // TESTS
@@ -24,7 +24,7 @@ describe('Controller: HomeController', function() {
     });
 });
 
-describe('Controller: RootController', function() {
+describe('Controller: RootCtrl', function() {
     // Instantiate a new version of the module
     beforeEach(module('eLycee'));
 
@@ -39,7 +39,7 @@ describe('Controller: RootController', function() {
             $location: $location,
             SessionService: SessionService
         }
-        ctrl = $controller('RootController', mock);
+        ctrl = $controller('RootCtrl', mock);
     }));
 
     // TESTS

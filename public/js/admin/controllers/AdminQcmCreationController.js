@@ -1,4 +1,4 @@
-app.controller('AdminQcmCreationController',
+app.controller('AdminQcmCreationCtrl',
     ['$scope', '$compile',
         function($scope, $compile) {
             $scope.question = {};

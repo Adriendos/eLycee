@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <!-- Start Loop -->
-            <tr ng-repeat="qcm in qcms.data | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by qcm.id">
+            <tr ng-repeat="qcm in qcms | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by qcm.id">
                 <td>{{ qcm.id }}</td>
                 <td>{{ qcm.title | limitTo : 75}} ...</td>
                 <td>{{ getLevel(qcm.class_level)}}</td>
@@ -49,7 +49,7 @@
             </tbody>
         </table>
     </div>
-    <div class="pagination-wrapper" pagination="qcms"></div>
+    <!--<div class="pagination-wrapper" pagination="qcms"></div>-->
 </div>
 
 

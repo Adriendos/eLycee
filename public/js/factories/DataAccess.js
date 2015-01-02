@@ -1,58 +1,50 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG', '$rootScope',
-	function($http, $resource, $q, CONFIG, $rootScope) {
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory',
+	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
-		var DATA_ACCESS = {};
 
-		//Keep separated logic here
-		DataAccess.Post = $resource(
-			apiUrl + 'posts/:id',
-			{id: '@id' },
-			{
-				query: {method: 'GET', isArray: true},
-				get: {method: 'GET', params:{id:'@id'} },
-				save: { method: 'POST' }
-			}
-		);
+		DataAccess.getAllData = function(entityName) {
+			var resource = ResourceFactory.getResource(entityName);
 
-		DataAccess.Qcm = $resource(
-			apiUrl + 'posts/:id',
-			{id: '@id' },
-			{
-				query: {method: 'GET', isArray: true},
-				get: {method: 'GET', params:{id:'@id'} },
-				save: { method: 'POST' }
-			}
-		);
-
-		DataAccess.getPosts = function() {
-			if (DATA_ACCESS.POSTS) {
-				console.log('got it from cache !!');
-				return DATA_ACCESS.POSTS;
-			} else {
-				var promise = DataAccess.Post.query().$promise.then(
-					function(data, status, headers, config) {
-						DATA_ACCESS.POSTS = data;
-						return data;
-					});
-				return promise;
-			}
+			return query(resource, entityName);
 		};
 
-		DataAccess.getQcms = function() {
-			if (DATA_ACCESS.QCMS) {
-				console.log('got it from cache !!');
-				return DATA_ACCESS.QCMS;
-			} else {
-				var promise = DataAccess.Qcm.query().$promise.then(
-					function(data, status, headers, config) {
-						DATA_ACCESS.QCMS = data;
-						return data;
-					});
-				return promise;
-			}
+		DataAccess.getDataById = function(entityName, id) {
+			var resource = ResourceFactory.getResource(entityName);
+
+			return get(resource, id, entityName);
+		};
+
+		function get(resource, id) {
+			var d = $q.defer();
+			var start = new Date().getTime();
+
+			var result = resource.get({ id : id}).$promise.then(
+				function(data) {
+					d.resolve(result);
+					console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
+					return data[0];
+				},function() {
+					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error')
+				});
+
+			return d.promise;
+		};
+
+		function query(resource) {
+			var d = $q.defer();
+			var start = new Date().getTime();
+			var result = resource.query(
+				function(data) {
+					d.resolve(result);
+					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
+				},function() {
+					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error')
+				});
+
+			return d.promise;
 		};
 
 	    return DataAccess;

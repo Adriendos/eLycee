@@ -1,15 +1,18 @@
-app.controller('AdminQcmController',
-    ['$rootScope', '$scope', 'QcmsFactory', 'FileUploader',
-        function($rootScope, $scope, QcmsFactory, FileUploader) {
+app.controller('AdminQcmCtrl',
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
+        function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
 
             $scope.qcms;
             $scope.modal = [];
 
-            // Getting all qcms
-            QcmsFactory.getAllQcms().then(function(qcms) {
-                console.log(qcms);
-                $scope.qcms = qcms;
-            });
+            DataAccess.getAllData(ENTITY.qcm).then(
+                function(qcms) {
+                    angular.forEach(qcms, function (qcm) {
+                        qcm.id = parseInt(qcm.id); //We parse the post.id so that we can sort the table
+                    });
+                    $scope.qcms = qcms;
+                }
+            );
 
             // Variable for table sorting
             $scope.sort = {
