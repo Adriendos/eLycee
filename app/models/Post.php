@@ -3,6 +3,8 @@
 
 class Post extends Eloquent {
 
+	use Iverberk\Larasearch\Traits\SearchableTrait;
+
 	/**
 	 * The database table used by the model.
 	 *

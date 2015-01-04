@@ -5,11 +5,12 @@ describe('Controller: HomeCtrl', function() {
     var scope, ctrl;
 
     // Before each unit test instantiate the controller
-    beforeEach(inject(function($controller, $rootScope, PostsFactory) {
+    beforeEach(inject(function($controller, $rootScope, DataAccess, ENTITY) {
         scope = $rootScope.$new();
         mock = {
             $scope: scope,
-            PostsFactory: PostsFactory
+            DataAccess: DataAccess,
+            ENTITY : ENTITY
         }
         ctrl = $controller('HomeCtrl', mock);
     }));

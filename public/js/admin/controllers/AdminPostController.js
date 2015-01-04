@@ -16,6 +16,23 @@ app.controller('AdminPostCtrl',
             }
         );
 
+        $scope.postForm = function() {
+          console.info('Submitted Form');
+          console.log($scope.currentPost);
+
+          // Do form checkings here :)
+
+          if($scope.modal.mode == 'create') {
+            DataAccess.create(ENTITY.post, $scope.currentPost);
+          } else {
+            DataAccess.update(ENTITY.post, $scope.currentPost);
+          }
+
+          $('.ui.modal').modal('close');
+
+
+        };
+
         // Variable for table sorting
         $scope.sort = {
           column: 'id',
