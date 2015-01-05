@@ -104,9 +104,10 @@ app.controller('AdminPostCtrl',
         };
         $scope.uploader = new FileUploader({autoUpload:true});
 
-        $scope.uploader.onComplete( function(response, status, headers){
-          console.log(response);
-        });
+        // => @todo
+        // $scope.uploader.onComplete( function(response, status, headers){
+        //   console.log(response);
+        // });
 
         $scope.submitForm = function() { // @todo verif fields not empty etc ...
           var ngUploader = $scope.uploader.queue[0];
