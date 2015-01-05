@@ -1,38 +1,43 @@
-<!-- Image exists -->
-<img ng-src="{{currentPost.url_thumbnail}}" alt="{{currentPost.title}}" width="200">
+<div ng-show="currentPost.url_thumbnail != ''">
+  <!-- Image exists -->
+  <img ng-src="{{currentPost.url_thumbnail}}" alt="{{currentPost.title}}" width="200">
+</div>
 
 <!-- Image uploader zone -->
-<div>  <!-- ng-hide="uploader.isFile(uploader.queue[0].file)" -->
-  <div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
-  	Déposer votre image ici
+<div ng-show="angular.isUndefined(currentPost.url_thumbnail)">
+  <div>  <!-- ng-hide="uploader.isFile(uploader.queue[0].file)" -->
+    <div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
+      Déposer votre image ici
+    </div>
+
+    <div class="ui horizontal divider">Ou</div>
+    <input type="file" nv-file-select uploader="uploader"/>
   </div>
 
-  <div class="ui horizontal divider">Ou</div>
-  <input type="file" nv-file-select uploader="uploader"/>
-</div>
+  <!-- Image describer zone -->
+  <div > <!-- ng-hide="uploader.isFile(uploader.queue[0].file)" -->
+    <div ng-repeat="item in uploader.queue">
+      <i class="file image outline icon"></i>
+      <strong>{{ item.file.name }}</strong>
+      <div ng-show="uploader.isHTML5" 
+           ng-thumb="{ file: item._file, width: 250 }" class="pt10"></div>
+      <p ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</p>
+      <div ng-show="uploader.isHTML5" class="ui tiny progress success">
+        <div class="bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+      </div>
+    </div>
 
-<!-- Image describer zone -->
-<div > <!-- ng-hide="uploader.isFile(uploader.queue[0].file)" -->
-  <div ng-repeat="item in uploader.queue">
-    <i class="file image outline icon"></i>
-    <strong>{{ item.file.name }}</strong>
-    <div ng-show="uploader.isHTML5" 
-         ng-thumb="{ file: item._file, width: 250 }" class="pt10"></div>
-    <p ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</p>
-    <div ng-show="uploader.isHTML5" class="ui tiny progress success">
-      <div class="bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+    <div class="ui icon buttons actions">
+      <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+      <i class="upload icon"></i> Upload
+      </button>
+      <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading" disabled="disabled">
+      <i class="ban icon"></i> Cancel
+      </button>
+      <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+      <i class="trash icon"></i> Remove
+      </button>
     </div>
   </div>
-
-  <div class="ui icon buttons actions">
-    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-    <i class="upload icon"></i> Upload
-    </button>
-    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading" disabled="disabled">
-    <i class="ban icon"></i> Cancel
-    </button>
-    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-    <i class="trash icon"></i> Remove
-    </button>
-  </div>
 </div>
+

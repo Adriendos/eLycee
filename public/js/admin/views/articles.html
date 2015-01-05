@@ -62,14 +62,18 @@
     {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
   </div>
   <div class="content">
-    <input type="hidden" ng-model="currentPost.id">
-    <form class="ui form" ng-submit="postForm()" name="postEditionForm" novalidate>
+    <form name="postForm" class="ui form" ng-submit="postForm()" novalidate>
+      <input type="hidden" ng-model="currentPost.id">
+
       <div class="field">
         <label>Titre</label>
         <div class="ui corner labeled input">
-          <input type="text" placeholder="Titre de l'article" ng-model="currentPost.title">
+          <input type="text" name="postTitle" placeholder="Titre de l'article" ng-model="currentPost.title" required>
           <div class="ui corner label">
             <i class="asterisk icon"></i>
+          </div>
+          <div ng-show="postForm.postTitle.$error.required">
+            Veuillez entrer un titre pour l' article
           </div>
         </div>
       </div>
@@ -98,12 +102,17 @@
           <label>Publier {{ currentPost.status }}</label>
         </div>
       </div>
+
       <div class="ui buttons">
         <input type="submit" class="ui submit positive button">
           {{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}
         </input>
-        <div class="or"></div>
+        
         <div class="ui button negative reset">Annuler</div>
+
+        <input type="submit" ng-click="update(user)" value="{{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}" />
+        <div class="or"></div>
+        <input type="button" ng-click="reset(form)" value="Reset" />
       </div>
     </form>
   </div>
