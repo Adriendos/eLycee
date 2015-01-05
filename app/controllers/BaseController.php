@@ -145,7 +145,7 @@ class BaseController extends Controller {
 		$imageFile = base64_decode($base64Str);
 
 		// test if file folder exists
-		$filePath = '/img/' . strtolower($modelName) . 's/';
+		$filePath = '/img/resources/' . strtolower($modelName) . 's/';
 		$folderName = public_path() . $filePath;
 		if ( ! file_exists($folderName)) {
 		    mkdir($folderName, 0777);
