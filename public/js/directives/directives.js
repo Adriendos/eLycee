@@ -81,16 +81,39 @@ app.directive('imgUploader', [ function() {
     };
 }]);
 
-app.directive('pagination',  function() {
+app.directive('pagination',  function(DataAccess, ENTITY) {
     return {
         restrict: 'E',
         transclude: true,
         scope: {
             pages: '=',
-            switchPage: '&',
             currentPage: '=',
-            nbPages: '='
+            nbPages: '=',
+            datas: '=',
+            entity: '='
         },
-        templateUrl: 'js/directives/template/pagination.html'
+        templateUrl: 'js/directives/template/pagination.html',
+        link: function (scope, element, attrs) {
+            scope.switchPage = function(page) {
+                if( (page > 0) && (page < scope.nbPages + 1)) {
+                    switch (scope.entity) {
+                        case ENTITY.post :
+                            console.log('debut');
+                            scope.$parent.posts = DataAccess.getPage(scope.datas, page);
+                            console.log('fin');
+                            break;
+                        case ENTITY.qcm :
+
+                            scope.$parent.qcms = DataAccess.getPage(scope.datas, page);
+                            break;
+                    }
+                    scope.$parent.currentPage = page;
+
+                }
+                $('html, body').animate({
+                    scrollTop: $('html').offset().top + 200
+                }, 500);
+            };
+        }
     }
 });

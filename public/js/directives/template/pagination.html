@@ -1,7 +1,7 @@
 <div class="ui borderless pagination menu" >
-	<a class="item" ng-click="">&laquo;</a>
-	<a class="item" ng-click="">&lsaquo;</a>
-	<a class="item" ng-class="{ active: currentPage == n}" ng-click="switchPage({page: n})" ng-repeat="n in [] | range:pages">{{n}}</a>
-	<a class="item" ng-click="">&rsaquo;</a>
-	<a class="item" ng-click="">&raquo;</a>
+	<a class="item" ng-click="switchPage(1)">&laquo;</a>
+	<a class="item" ng-click="switchPage(currentPage-1)">&lsaquo;</a>
+	<a class="item" ng-class="{ active: currentPage == n}" ng-click="switchPage(n)" ng-repeat="n in [] | range:pages">{{n}}</a>
+	<a class="item" ng-click="switchPage(currentPage+1)">&rsaquo;</a>
+	<a class="item" ng-click="switchPage(pages)">&raquo;</a>
 </div>
