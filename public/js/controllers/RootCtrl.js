@@ -22,7 +22,7 @@ app.controller('RootCtrl', ['$scope', '$location', 'SessionService',
 
     $scope.logout = function(){
       SessionService.logout();
-    };  
+    };
 
     $scope.go = function (path) {
       $location.path(path);

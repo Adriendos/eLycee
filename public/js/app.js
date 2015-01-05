@@ -159,6 +159,15 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
                  }, function() {
                      return;
                  });
+            /** 
+                
+                Faire test ici, pour rendre le twitter timeline
+    
+            **/
+            if( $location.path().indexOf('/contact') < 0) {
+
+            }
+
          }
 
      });
