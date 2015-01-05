@@ -270,6 +270,10 @@ body {
 .ui.buttons .or:before {
     content: 'ou' !important;
 }
+.ui.circular.icon.button{
+    vertical-align:middle;
+}
+
 
 // problem modal scroll 
 .dimmed.dimmable>.ui.animating.dimmer, 
@@ -319,3 +323,9 @@ body {
 ///////////////////////////////////  FONTS   //////////////////////////////////
 
 ///////////////////////////////////  FONTS   //////////////////////////////////
+
+///////////////////////////////////  CONTACT FORM   //////////////////////////////////
+
+.form .field textarea.noResize{
+    resize:none;
+}

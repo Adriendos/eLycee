@@ -15,25 +15,25 @@
 			</div>
 		</div>
 		<div class="field">
-			<label>Gender</label>
-			<div class="ui selection dropdown">
-				<div class="default text">Select Gender</div>
-				<i class="dropdown icon"></i>
-				<input type="hidden" name="gender">
-				<div class="menu">
-					<div class="item" data-value="male">Male</div>
-					<div class="item" data-value="female">Female</div>
-				</div>
-			</div>
+	      <label>Gender</label>
+	      <div class="ui selection dropdown">
+	        <input type="hidden" name="gender">
+	        <div class="default text">Gender</div>
+	        <i class="dropdown icon"></i>
+	        <div class="menu">
+	          <div class="item" data-value="male">Male</div>
+	          <div class="item" data-value="female">Female</div>
+	        </div>
+	      </div>
+    </div>
+		<div class="field">
+			<label>Classe</label>
+			<input placeholder="Classe" type="text">
 		</div>
 		<div class="field">
-			<label>Login</label>
-			<input placeholder="Username" type="text">
-		</div>
-		<div class="field">
-			<label>Password</label>
-			<input type="password">
-		</div>
+		    <label>Message</label>
+		    <textarea class="noResize"></textarea>
+		  </div>
 		<div class="inline field">
 			<div class="ui checkbox">
 				<input type="checkbox">
@@ -60,5 +60,8 @@
 	visible="true"></marker>
 </map>
 </div>
+
+<!-- SIDEBAR -->
+	<div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>
 
 
