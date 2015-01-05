@@ -64,14 +64,8 @@ body{
 }
 
 body {
-//    @include background-image(radial-gradient(45px 45px, #e3dbc8 180px, #103f57 668px )!important);
-//    background-size: cover !important;
-//    background-color:white !important;
-    //test
     background-image: url('../../img/grey.png');
-
 }
-
 //////////////////////////////////  CONFIG   //////////////////////////////////
 
 
@@ -245,6 +239,8 @@ body {
 .pagination-wrapper {
     padding-top: 15px;
     text-align: center;
+    display: block;
+    margin: 5px 0 20px;
 }
 // drop zone
 .well {
