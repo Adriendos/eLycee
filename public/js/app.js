@@ -3,15 +3,15 @@ var app;
 
 app = angular.module('eLycee', [
   'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart'
+  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart', 'djds4rce.angular-socialshare'
 ]);
 
 app.constant('CONFIG', 
   {
     mode: 'dev',
     apiUrl : 'api/v1/',
-    urlAuth: 'api/v1/auth'
-  }   
+    urlAuth: 'api/v1/auth',
+  }
 );
 
 app.constant('ENTITY',
@@ -159,6 +159,15 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
                  }, function() {
                      return;
                  });
+            /** 
+                
+                Faire test ici, pour rendre le twitter timeline
+    
+            **/
+            if( $location.path().indexOf('/contact') < 0) {
+
+            }
+
          }
 
      });

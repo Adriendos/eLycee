@@ -13,14 +13,17 @@
         </div>
     </div>
 
+    <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allQcms" nb-pages="nbPages" current-page="currentPage"></pagination>
+
+
     <div class="sixteen wide column white">
         <table class="ui sortable table">
             <thead>
             <tr>
-                <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
+                <th ng-click="changeSorting($event,'id')">Id</th>
                 <th ng-click="changeSorting($event,'title')">Titre</th>
                 <th ng-click="changeSorting($event,'class_level')">Niveau</th>
-                <th ng-click="changeSorting($event,'created_at')">Crée le</th>
+                <th ng-click="changeSorting($event,'created_at')" class="descending">Crée le</th>
                 <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
                 <th>Actions</th>
             </tr>
@@ -49,7 +52,8 @@
             </tbody>
         </table>
     </div>
-    <!--<div class="pagination-wrapper" pagination="qcms"></div>-->
+    <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allQcms" nb-pages="nbPages" current-page="currentPage"></pagination>
+
 </div>
 
 

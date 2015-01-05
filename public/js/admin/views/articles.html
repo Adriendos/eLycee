@@ -12,17 +12,17 @@
       </div>
     </div>
   </div>
-
-  <pagination class="pagination-wrapper center aligned" pages="nbPages"  data-switch-page="switchPage(page)" data-current-page="currentPage"></pagination>
+  
+  <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
 
   <div class="sixteen wide column white">
-    
-    <table class="ui sortable table">
+
+    <table class="ui sortable table loading">
       <thead>
         <tr>
-          <th ng-click="changeSorting($event,'id')" class="ascending">Id</th>
+          <th ng-click="changeSorting($event,'id')" >Id</th>
           <th ng-click="changeSorting($event,'title')">Titre</th>
-          <th ng-click="changeSorting($event,'created_at')">Crée le</th>
+          <th ng-click="changeSorting($event,'created_at')"  class="descending">Crée le</th>
           <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
           <th ng-click="changeSorting($event,'user_id')">Auteur</th>
           <th>Actions</th>
@@ -30,7 +30,7 @@
       </thead>
       <tbody>
         <!-- Start Loop -->
-        <tr ng-repeat="post in posts | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id"><!-- limitTo: 10 | -->
+        <tr ng-repeat="post in posts | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id">
           <td>{{ post.id }}</td>
           <td>{{ post.title | limitTo : 75}} ...</td>
           <td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
@@ -55,7 +55,8 @@
       </tbody>
     </table>
   </div>
-  <pagination class="pagination-wrapper" pages="nbPages"  data-switch-page="switchPage(page)" data-current-page="currentPage"></pagination>
+  <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
+
 </div>
 
 <!-- CREATION/EDITION MODAL -->

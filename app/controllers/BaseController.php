@@ -11,7 +11,9 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		//$ressources = $model::paginate(10);
-		$ressources = $model::all();
+		$ressources = $model::orderBy('created_at', 'DESC')->get();
+		//::all()->orderby;
+
 		return Response::json($ressources);
 	}
 

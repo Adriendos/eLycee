@@ -1,4 +1,7 @@
 <div class="row" style="padding-top:50px;">
+	<pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
+
+
 	<div class="twelve wide column">
 		<div class="ui segment divided items">
 			<!-- START LOOP -->
@@ -9,7 +12,7 @@
 				<div class="content">
 					<a class="header" href="#/post/{{post.id}}">{{ post.title }}</a>
 					<div class="meta">
-						<a>{{ post.updated_at }}</a>
+						<a>{{ post.created_at }}</a>
 						<a>Category</a>
 					</div>
 					<div class="description">
@@ -22,6 +25,8 @@
 			</div>
 			<!-- END LOOP -->
 		</div>
+		<pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
+
 	</div>
 	<!-- SIDEBAR -->
 	<div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>
