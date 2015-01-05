@@ -52,7 +52,7 @@
       </tbody>
     </table>
   </div>
-  <pagination class="pagination-wrapper" nbPages="10"></pagination>
+  <pagination class="pagination-wrapper" nb-pages="10"></pagination>
 </div>
 
 <!-- CREATION/EDITION MODAL -->
@@ -65,18 +65,22 @@
     <form name="postForm" class="ui form" ng-submit="postForm()" novalidate>
       <input type="hidden" ng-model="currentPost.id">
 
-      <div class="field">
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.title.$error.required }">
         <label>Titre</label>
         <div class="ui corner labeled input">
-          <input type="text" name="postTitle" placeholder="Titre de l'article" ng-model="currentPost.title" required>
+          <input type="text" name="title" placeholder="Titre de l'article" ng-model="currentPost.title" required>
           <div class="ui corner label">
             <i class="asterisk icon"></i>
           </div>
-          <div ng-show="postForm.postTitle.$error.required">
-            Veuillez entrer un titre pour l' article
+
+          <div ng-show="postForm.$submitted || postForm.title.$touched">
+            <div ng-show="postForm.title.$error.required">
+              Veuillez entrer un titre pour l' article
+            </div>
           </div>
-        </div>
-      </div>
+        </div> <!-- /ui corner labeled input -->
+      </div> <!-- Field title -->
+
       <!-- Image manager -->
       <div class="field">
         <label>Image de couverture</label>
@@ -86,14 +90,32 @@
           </div><!-- ./ ui compact upload -->
         </div><!-- ./ ui grid -->
       </div><!-- .field image -->
-      <div class="field">
+
+
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
         <div text-angular ng-model="currentPost.excerpt" name="excerpt"></div>
+
+        <div ng-show="postForm.$submitted || postForm.excerpt.$touched">
+          <div ng-show="postForm.excerpt.$error.required">
+            Veuillez entrer un extrait pour l' article
+          </div>
+        </div>
       </div>
-      <div class="field">
+
+
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
         <div text-angular ng-model="currentPost.content" name="content"></div>
+
+        <div ng-show="postForm.$submitted || postForm.content.$touched">
+          <div ng-show="postForm.content.$error.required">
+            Veuillez entrer un contenu pour l' article
+          </div>
+        </div>
       </div>
+
+
       <div class="field">
         <div id="status" ng-click="changeStatus()" class="ui toggle checkbox"> 
           <input type="checkbox" 
