@@ -15,6 +15,7 @@ app.controller('AdminPostCtrl',
                 post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
               });
               allPosts = posts;
+              console.log(DataAccess.getNbPage(posts));
               $scope.posts = DataAccess.getPage(allPosts, 1);
               $scope.nbPages = DataAccess.getNbPage(posts);
 

@@ -50,7 +50,7 @@ app.factory('DataAccess',
 			if(datas.length%10 != 0) {
 				return Math.ceil(datas.length/10);
 			} else {
-				return datas/10;
+				return datas.length/10;
 			}
 		};
 
