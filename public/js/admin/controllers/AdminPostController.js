@@ -4,6 +4,8 @@ app.controller('AdminPostCtrl',
 
         $scope.posts;
         $scope.modal = [];
+        $scope.currentPage = 1;
+        var allPosts;
 
         $('.ui.modal').modal();
 
@@ -12,14 +14,21 @@ app.controller('AdminPostCtrl',
               angular.forEach(posts, function (post) {
                 post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
               });
-              $scope.posts = posts;
+              allPosts = posts;
+              $scope.posts = DataAccess.getPage(allPosts, 1);
+              $scope.nbPages = DataAccess.getNbPage(posts);
 
-              console.info('page 1 ->');
-              console.log(DataAccess.getPage(posts, 1));
-              console.info('NB Pages =>');
-              console.log(DataAccess.getNbPage(posts));
+              //console.info('page 1 ->');
+              //console.log(DataAccess.getPage(posts, 1));
+              //console.info('NB Pages =>');
+              //console.log(DataAccess.getNbPage(posts));
             }
         );
+
+        $scope.switchPage = function(page) {
+          $scope.posts = DataAccess.getPage(allPosts,page);
+          $scope.currentPage = page;
+        };
 
         $scope.postForm = function() {
 

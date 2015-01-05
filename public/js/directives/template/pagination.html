@@ -1,16 +1,7 @@
-<!--<div class="ui borderless pagination menu" ng-show="totalPages > 1">-->
-	<!--<a class="item" ng-click="firstPage()">&laquo;</a>-->
-	<!--<a class="item" ng-click="prevPage()">&lsaquo;</a>-->
-	<!--<a class="item" ng-repeat="n in pages" ng-bind="n" ng-click="setPage(n)"></a>-->
-	<!--<a class="item" ng-click="nextPage()">&rsaquo;</a>-->
-	<!--<a class="item" ng-click="lastPage()">&raquo;</a>-->
-<!--</div>-->
-
 <div class="ui borderless pagination menu" >
-	<a class="item" href="">{{nbPages}}</a>
 	<a class="item" ng-click="">&laquo;</a>
 	<a class="item" ng-click="">&lsaquo;</a>
-	<a class="item" ng-click="" ng-repeat="n in [] | range:nbPages">&laquo;</a>
+	<a class="item" ng-class="{ active: currentPage == n}" ng-click="switchPage({page: n})" ng-repeat="n in [] | range:pages">{{n}}</a>
 	<a class="item" ng-click="">&rsaquo;</a>
 	<a class="item" ng-click="">&raquo;</a>
 </div>

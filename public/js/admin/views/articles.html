@@ -14,6 +14,7 @@
   </div>
 
   <div class="sixteen wide column white">
+    <pagination class="pagination-wrapper" pages="nbPages"  data-switch-page="switchPage(page)" data-current-page="currentPage"></pagination>
     <table class="ui sortable table">
       <thead>
         <tr>
@@ -27,7 +28,7 @@
       </thead>
       <tbody>
         <!-- Start Loop -->
-        <tr ng-repeat="post in posts| limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id"><!-- limitTo: 10 | -->
+        <tr ng-repeat="post in posts | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id"><!-- limitTo: 10 | -->
           <td>{{ post.id }}</td>
           <td>{{ post.title | limitTo : 75}} ...</td>
           <td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
@@ -52,7 +53,7 @@
       </tbody>
     </table>
   </div>
-  <pagination class="pagination-wrapper" nbPages="10"></pagination>
+  <pagination class="pagination-wrapper" pages="nbPages"  data-switch-page="switchPage(page)"></pagination>
 </div>
 
 <!-- CREATION/EDITION MODAL -->
