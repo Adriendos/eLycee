@@ -1,11 +1,8 @@
 /bootstrap/*.php
 /vendor
-<<<<<<< HEAD
 .idea/
-=======
 .idea/*
 .idea/workspace.xml
->>>>>>> 825cb84f63e0a6e265471b82a9cde2ef90e4e50a
 composer.phar
 composer.lock
 .env.*.php
