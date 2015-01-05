@@ -9,16 +9,20 @@ app.controller('AdminPostCtrl',
 
         $('.ui.modal').modal();
 
-        DataAccess.getAllData(ENTITY.post).then(
-            function(posts) {
-              angular.forEach(posts, function (post) {
-                post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
-              });
-              $scope.allPosts = posts;
-              $scope.posts = DataAccess.getPage($scope.allPosts, 1);
-              $scope.nbPages = DataAccess.getNbPage(posts);
-            }
-        );
+        init();
+
+        function init() {
+          DataAccess.getAllData(ENTITY.post).then(
+              function(posts) {
+                angular.forEach(posts, function (post) {
+                  post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
+                });
+                $scope.allPosts = posts;
+                $scope.posts = DataAccess.getPage($scope.allPosts, 1);
+                $scope.nbPages = DataAccess.getNbPage(posts);
+              }
+          );
+        };
 
         $scope.postForm = function() {
           // Do form checkings here :)
@@ -33,6 +37,7 @@ app.controller('AdminPostCtrl',
 
         $scope.deletePost = function() {
           DataAccess.delete(ENTITY.post, $scope.currentPost.id);
+          init();
         };
 
         // Variable for table sorting

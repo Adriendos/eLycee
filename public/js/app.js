@@ -52,6 +52,7 @@ app.config(function(toastrConfig) {
   });
 });
 
+
 // __ Fonction notify accessible depuis n'importe quel $scope
 app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, DataAccess) {
   $rootScope.notify = function(message, level) {
