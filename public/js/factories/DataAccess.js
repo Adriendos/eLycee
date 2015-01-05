@@ -4,7 +4,6 @@ app.factory('DataAccess',
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
-
 		// Public DataAccess methods, all ajax model queries should use the following methods
 		DataAccess.getAllData = function(entityName) {
 			var resource = ResourceFactory.getResource(entityName);
@@ -37,7 +36,23 @@ app.factory('DataAccess',
 			var resource = ResourceFactory.getResource(entityName);
 			// TODO Delete post from cache
 			return remove(resource, id);
-		}
+		};
+
+		// Datas NEEDS to be an array !
+		DataAccess.getPage = function(datas, page) {
+			var start = page*10 -10;
+			var end = start + 10;
+			return datas.slice(start, end);
+		};
+
+		DataAccess.getNbPage = function(datas) {
+			console.log(datas);
+			if(datas.length%10 != 0) {
+				return Math.ceil(datas.length/10);
+			} else {
+				return datas/10;
+			}
+		};
 
 		// Private Resource Methods
 		// Intensive use of promises to handle asynchronous requests and responses
