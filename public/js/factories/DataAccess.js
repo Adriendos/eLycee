@@ -46,7 +46,6 @@ app.factory('DataAccess',
 		};
 
 		DataAccess.getNbPage = function(datas) {
-			console.log(datas);
 			if(datas.length%10 != 0) {
 				return Math.ceil(datas.length/10);
 			} else {

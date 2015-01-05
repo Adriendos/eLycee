@@ -88,11 +88,9 @@ app.directive('pagination',  function() {
         scope: {
             pages: '=',
             switchPage: '&',
-            currentPage: '='
+            currentPage: '=',
+            nbPages: '='
         },
-        templateUrl: 'js/directives/template/pagination.html',
-        link: function( scope, elem, attr ) {
-            scope.nbPages = nbPages;
-        }
+        templateUrl: 'js/directives/template/pagination.html'
     }
 });
