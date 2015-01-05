@@ -16,10 +16,8 @@ app.controller('AdminPostCtrl',
 
               console.info('page 1 ->');
               console.log(DataAccess.getPage(posts, 1));
-              console.info('page 2 ->');
-              console.log(DataAccess.getPage(posts, 2));
-              console.info('page 3 ->');
-              console.log(DataAccess.getPage(posts, 3));
+              console.info('NB Pages =>');
+              console.log(DataAccess.getNbPage(posts));
             }
         );
 

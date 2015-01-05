@@ -41,10 +41,17 @@ app.factory('DataAccess',
 
 		// Datas NEEDS to be an array !
 		DataAccess.getPage = function(datas, page) {
-			console.log(datas);
-			var start = parseInt(page + '0') - 1;
-			var end = start + 11;
+			var start = page*10 -10;
+			var end = start + 10;
 			return datas.slice(start, end);
+		};
+
+		DataAccess.getNbPage = function(datas) {
+			if(datas.length%10 != 0) {
+				return Math.ceil(datas.length/10);
+			} else {
+				return datas/10;
+			}
 		};
 
 		// Private Resource Methods
