@@ -20,7 +20,8 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG',
                     {
                         query: {method: 'GET', isArray: true, cache: true},
                         get: {method: 'GET', params: {id: '@id'}, isArray: true, cache : true},
-                        save: {method: 'POST'}
+                        save: {method: 'POST'},
+                        update: { method:'PUT' }
                     }
                 );
 

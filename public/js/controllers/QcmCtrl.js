@@ -1,5 +1,6 @@
-app.controller('QcmCtrl',['QcmsFactory', '$scope', function(QcmsFactory, $scope) {
+app.controller('QcmCtrl',['$scope', function($scope) {
     var self = this;
+
 
     $scope.chartObject = {
         "type": "PieChart",

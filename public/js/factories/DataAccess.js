@@ -1,6 +1,6 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$rootScope',
-	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $rootScope) {
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory',
+	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
@@ -15,22 +15,29 @@ app.factory('DataAccess',
 		DataAccess.getDataById = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
 
+
 			return get(resource, id);
 		};
 
 		DataAccess.create = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
+			// TODO Add post in cache
 
 			return create(resource, data);
 		};
 
 		DataAccess.update = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
+			// TODO Update post from cache
 
 			return update(resource, data);
 		};
 
-
+		DataAccess.delete = function(entityName, id) {
+			var resource = ResourceFactory.getResource(entityName);
+			// TODO Delete post from cache
+			return remove(resource, id);
+		}
 
 		// Private Resource Methods
 		// Intensive use of promises to handle asynchronous requests and responses
@@ -69,22 +76,33 @@ app.factory('DataAccess',
 
 			var entity = new resource(data);
 			entity.user_id = SessionService.getUser().id;
-			entity.$save(function() {
+			var result = entity.$save(function() {
 				$rootScope.notify('Sauvegarde effectuée avec succès.');
+				d.resolve(result);
+			},function() {
+				$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
 			});
 
-			//return result;
+			return d.promise;
 		};
 
 		function update(resource, data) {
 			var id = data.id;
 			get(resource, id).then(function(entity) {
 				$.extend(entity, data); // Replaces entity fields by data fields
-				entity.$save(function() {
+				entity.$update(function() {
 					$rootScope.notify('Modification effectuée avec succès.');
 				});
 			});
-		}
+		};
+
+		function remove(resource, id) {
+			get(resource, id).then(function(entity) {
+				entity.$delete(function() {
+					$rootScope.notify('Suppression effectuée avec succès.');
+				});
+			});
+		};
 
 	    return DataAccess;
 }]);
