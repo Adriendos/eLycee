@@ -153,14 +153,12 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
 
          } else {
              // Not on an admin route, checks token to inialize user session
-             if(SessionService.isLoggedUser()) {
-                 SessionService.checkToken()
-                     .then(function() {
-                         return;
-                     }, function() {
-                         return;
-                     });
-             }
+             SessionService.checkToken()
+                 .then(function() {
+                     return;
+                 }, function() {
+                     return;
+                 });
          }
 
      });

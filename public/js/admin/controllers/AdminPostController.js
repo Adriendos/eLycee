@@ -17,8 +17,6 @@ app.controller('AdminPostCtrl',
         );
 
         $scope.postForm = function() {
-          console.info('Submitted Form');
-          console.log($scope.currentPost);
 
           // Do form checkings here :)
 
@@ -29,8 +27,10 @@ app.controller('AdminPostCtrl',
           }
 
           $('.ui.modal').modal('close');
+        };
 
-
+        $scope.deletePost = function() {
+          DataAccess.delete(ENTITY.post, $scope.currentPost.id);
         };
 
         // Variable for table sorting

@@ -33,26 +33,15 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.addQuestion = function() {
                 var html = '<div class="ui segment">';
-                html+= '<div class="ui top attached label small left"><i class="icon question"></i>Question:</div>';
+                html+= '<div class="ui top attached label small left blue"><i class="icon question"></i>Question:</div>';
                 html+= '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);"><i class="icon close"></i> &nbsp;Supprimer cette question</div>';
                 html+= '<div class="field">';
                 html+= '<label>Question</label>';
                 html+= '<input type="text" placeholder="Entrez ici la question" required>';
                 html+= '</div>';
-                html+= '<div class="fields">';
-                html+= '<div class="five wide field">';
-                html+= '<label>Bonne réponse <i class="icon checkmark green"></i></label>';
-                html+= '<input type="text" placeholder="Entrez la bonne réponse" required>';
-                html+= '</div>';
-                html+= '<div class="five wide field">';
-                html+= '<label>Réponse fausse <i class="icon remove red"></i></label>';
-                html+= '<input type="text" placeholder="Mauvaise réponse" required>';
-                html+= '</div>';
-                html+= '<div class="five wide field">';
-                html+= '<label>Réponse fausse <i class="icon remove red"></i></label>';
-                html+= '<input type="text" placeholder="Mauvais réponse" required>';
-                html+= '</div>';
-                html+= '</div>';
+                html+= '<div class="fields" id="answers">';
+                html+= '<div class="ui divider invisible"></div>';
+                html+= '<div class="ui button tiny positive" ng-click="addAnswer()">Ajouter une réponse</div>';
                 html+= '</div>';
 
                 // pre compile for ng-click working in injected html
@@ -63,6 +52,29 @@ app.controller('AdminQcmCreationCtrl',
                 }, 1000);
 
                 $scope.nbQuestion++;
+            };
+
+            $scope.addAnswer = function() {
+                var html = '<div class="two fields">';
+                html+= '<div class="field">';
+                html+= '<label>Réponse</label>';
+                html+= '<input placeholder="Saisissez la réponse" type="text">';
+                html+= '</div>';
+                html+= '<div class="field">';
+                html+= '<label>Valeur</label>';
+                html+= '<div class="ui radio checkbox">';
+                html+= '<input type="radio" name="value" checked="">';
+                html+= '<label>Bonne réponse</label>';
+                html+= '</div>';
+                html+= '&nbsp;&nbsp;'
+                html+= '<div class="ui radio checkbox">';
+                html+= '<input type="radio" name="value" checked="">';
+                html+= '<label>Mauvaise réponse</label>';
+                html+= '</div>';
+                html+= '</div>';
+                html+= '</div>';
+
+                $('#answers').append($compile(html)($scope));
             };
 
             $scope.submitQcm = function() {
