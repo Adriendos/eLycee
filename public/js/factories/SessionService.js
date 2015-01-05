@@ -25,7 +25,6 @@ app.factory('SessionService',
             return $http(request)
                 .success( function(data ) {
                   localStorageService.set('credentials', data.token);
-                  console.log(userInfos);
                   if(userInfos.rememberme != true) {
                     console.log('Destroy token cause userInfos.rememberme != true');
                     destroyToken();
@@ -110,20 +109,20 @@ app.factory('SessionService',
 
         SessionService.isLoggedUser = function() {
           return SESS.logged;
-        }
+        };
 
         SessionService.isUserAdmin = function() {
           return SESS.logged && SESS.user.role.toLowerCase() == "teacher";
-        }
+        };
 
         SessionService.isUserStudent = function() {
           return SESS.logged && SESS.user.role.toLowerCase() != "teacher";
-        }
+        };
 
         // __ private
         function getToken() {
           return localStorageService.get('credentials');
-        }
+        };
 
         // Returns singleton
         return SessionService;

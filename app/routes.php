@@ -86,6 +86,9 @@ Route::group(
 		Route::resource('scores', 'ScoreController', 
 			['except' => ['create', 'edit'] 
 		]);
+
+		Route::get('search/{query}', 'SearchController@search');
+
 	}
 );
 

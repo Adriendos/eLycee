@@ -1,8 +1,5 @@
 var gulp     = require('gulp'),
-<<<<<<< HEAD
-=======
 
->>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
     sass         = require('gulp-ruby-sass'),
     browserSync  = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -40,12 +37,8 @@ gulp.task('css', function () {
         .pipe(rename({ suffix: '.min' }))
         .pipe(header(banner, { package : package }))
         .pipe(gulp.dest('public/dist/css'))
-<<<<<<< HEAD
-        .pipe(browserSync.reload({stream:true}));
-=======
         .pipe(browserSync.reload({stream:true}))
         .pipe(notify('Css task done'));
->>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 });
 
 gulp.task('compress-app', function(){
@@ -56,12 +49,8 @@ gulp.task('compress-app', function(){
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
         .pipe(rename({ suffix: '.min' }))
-<<<<<<< HEAD
-        .pipe(gulp.dest('public/dist/js'));
-=======
         .pipe(gulp.dest('public/dist/js'))
         .pipe(notify('App js task done'));
->>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 });
 
 //Keep Updated with new libs
@@ -90,12 +79,8 @@ gulp.task('compress-vendors', function() {
         .pipe(uglify())
         .pipe(header(banner, { package : package }))
         .pipe(rename({ suffix: '.min' }))
-<<<<<<< HEAD
-        .pipe(gulp.dest('public/dist/vendors'));
-=======
         .pipe(gulp.dest('public/dist/vendors'))
         .pipe(notify('Vendors app js task done'));
->>>>>>> 7d7e67745169b46492779ea5da1c1cae3ae5c4fd
 })
 
 // gulp.task('browser-sync', function() {

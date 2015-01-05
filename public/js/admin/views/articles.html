@@ -63,7 +63,7 @@
   </div>
   <div class="content">
     <input type="hidden" ng-model="currentPost.id">
-    <div class="ui form">
+    <form class="ui form" ng-submit="postForm()" name="postEditionForm" novalidate>
       <div class="field">
         <label>Titre  </label>
         <div class="ui corner labeled input">
@@ -78,7 +78,7 @@
         <label>Image de couverture</label>
         <div class="ui grid no-top-margin">
           <!-- UPLOAD IMAGE ZONE -->
-          <div img-uploader class="center aligned sixtine wide column ui compact segment" style="margin-top: 0;">
+          <div img-uploader class="center aligned sixteen wide column ui compact segment" style="margin-top: 0;">
           </div><!-- ./ ui compact upload -->
         </div><!-- ./ ui grid -->
       </div><!-- .field image -->
@@ -99,13 +99,13 @@
         </div>
       </div>
       <div class="ui buttons">
-        <div class="ui submit positive button" ng-click="submitForm()">
+        <input type="submit" class="ui submit positive button">
           {{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}
-        </div>
+        </input>
         <div class="or"></div>
         <div class="ui button negative reset">Annuler</div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 

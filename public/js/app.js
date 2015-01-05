@@ -136,15 +136,10 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
                  return;
              } else {
                  //No user logged or user not admin
-                 if(SessionService.isUserStudent()) {
                      SessionService.checkToken()
                          .then(function(data) {
-                             // promise fulfilled
-                             if (SessionService.getUser().role === 'teacher') {
-                                 return;
-                             } else {
+                             if(data.role != 'teacher') {
                                  $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-                                 SessionService.logout();
                                  $location.path('/');
                              }
                          }, function(error) {
@@ -154,7 +149,6 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
                              $location.path('/');
 
                          });
-                 }
              }
 
          } else {
