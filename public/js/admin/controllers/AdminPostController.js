@@ -31,9 +31,7 @@ app.controller('AdminPostCtrl',
         };
 
         $scope.postForm = function() {
-
           // Do form checkings here :)
-
           if($scope.modal.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost);
           } else {

@@ -4,7 +4,6 @@ app.factory('DataAccess',
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
-
 		// Public DataAccess methods, all ajax model queries should use the following methods
 		DataAccess.getAllData = function(entityName) {
 			var resource = ResourceFactory.getResource(entityName);

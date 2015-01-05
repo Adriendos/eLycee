@@ -73,12 +73,12 @@ app.directive('ngThumb', ['$window', function($window) {
 
 
 app.directive('imgUploader', [ function() {
-
     return {
         restrict: 'A',
         templateUrl: 'js/directives/template/image-uploader.html',
         link: function(scope, element, attributes) {
             var params = scope.$eval(attributes.imgUploader);
+            console.info('params', params);
         }
     };
 }]);
@@ -92,6 +92,9 @@ app.directive('pagination',  function() {
             switchPage: '&',
             currentPage: '='
         },
-        templateUrl: 'js/directives/template/pagination.html'
+        templateUrl: 'js/directives/template/pagination.html',
+        link: function( scope, elem, attr ) {
+            scope.nbPages = nbPages;
+        }
     }
 });
