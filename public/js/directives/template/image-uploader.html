@@ -1,10 +1,7 @@
-<div ng-show="currentPost.url_thumbnail != ''">
-  <!-- Image exists -->
-  <img ng-src="{{currentPost.url_thumbnail}}" alt="{{currentPost.title}}" width="200">
-</div>
-
 <!-- Image uploader zone -->
-<div ng-show="angular.isUndefined(currentPost.url_thumbnail)">
+
+
+<div> <!-- angular.isUndefined(currentPost.url_thumbnail) -->
   <div>  <!-- ng-hide="uploader.isFile(uploader.queue[0].file)" -->
     <div class="well my-drop-zone" nv-file-over uploader="uploader" over-class="my-drop-zone-over" >
       Déposer votre image ici

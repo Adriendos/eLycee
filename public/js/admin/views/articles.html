@@ -52,7 +52,7 @@
       </tbody>
     </table>
   </div>
-  <pagination class="pagination-wrapper" nb-pages="10"></pagination>
+  <!-- <pagination class="pagination-wrapper" nb-pages="10"></pagination> -->
 </div>
 
 <!-- CREATION/EDITION MODAL -->
@@ -73,7 +73,7 @@
             <i class="asterisk icon"></i>
           </div>
 
-          <div ng-show="postForm.$submitted || postForm.title.$touched">
+          <div ng-show="postForm.$submitted">
             <div ng-show="postForm.title.$error.required">
               Veuillez entrer un titre pour l' article
             </div>
@@ -84,19 +84,27 @@
       <!-- Image manager -->
       <div class="field">
         <label>Image de couverture</label>
-        <div class="ui grid no-top-margin">
-          <!-- UPLOAD IMAGE ZONE -->
-          <div img-uploader class="center aligned sixteen wide column ui compact segment" style="margin-top: 0;">
-          </div><!-- ./ ui compact upload -->
-        </div><!-- ./ ui grid -->
+        <div class="ui right aligned grid">
+          <div class="center aligned one column row">
+            <!-- UPLOAD IMAGE ZONE -->
+            <div class="column">
+              <div class="ui segment">
+                <div img-uploader="currentPost.url_thumbnail">
+                  <!-- <img ng-src="{{currentPost.url_thumbnail}}" alt="{{currentPost.title}}" width="200"> -->
+                </div><!-- ./ ui compact upload -->
+              </div>
+            </div>  
+          </div><!-- ./ ui grid -->
+        </div>  
+        
       </div><!-- .field image -->
 
 
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
-        <div text-angular ng-model="currentPost.excerpt" name="excerpt"></div>
+        <div text-angular ng-model="currentPost.excerpt" name="excerpt" data-ng-required></div>
 
-        <div ng-show="postForm.$submitted || postForm.excerpt.$touched">
+        <div ng-show="postForm.$submitted">
           <div ng-show="postForm.excerpt.$error.required">
             Veuillez entrer un extrait pour l' article
           </div>
@@ -104,14 +112,12 @@
       </div>
 
 
-      <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
+      <div class="field" ng-class="{ error: postForm.$submitted && currentPost.content.length <= 0 }">
         <label>Contenu</label>
         <div text-angular ng-model="currentPost.content" name="content"></div>
 
-        <div ng-show="postForm.$submitted || postForm.content.$touched">
-          <div ng-show="postForm.content.$error.required">
-            Veuillez entrer un contenu pour l' article
-          </div>
+        <div ng-show="postForm.$submitted && currentPost.content.length <= 0">
+          Veuillez entrer un contenu pour l' article
         </div>
       </div>
 
