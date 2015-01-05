@@ -37,8 +37,8 @@ app.controller('AdminPostCtrl',
 
         // Variable for table sorting
         $scope.sort = {
-          column: 'id',
-          descending: false
+          column: 'created_at',
+          descending: true
         };
 
         // Check a post status

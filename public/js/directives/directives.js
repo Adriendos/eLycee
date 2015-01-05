@@ -111,7 +111,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
 
                 }
                 $('html, body').animate({
-                    scrollTop: $('html').offset().top + 200
+                    scrollTop: $('html').offset().top
                 }, 500);
             };
         }
