@@ -37,7 +37,15 @@ app.factory('DataAccess',
 			var resource = ResourceFactory.getResource(entityName);
 			// TODO Delete post from cache
 			return remove(resource, id);
-		}
+		};
+
+		// Datas NEEDS to be an array !
+		DataAccess.getPage = function(datas, page) {
+			console.log(datas);
+			var start = parseInt(page + '0') - 1;
+			var end = start + 11;
+			return datas.slice(start, end);
+		};
 
 		// Private Resource Methods
 		// Intensive use of promises to handle asynchronous requests and responses

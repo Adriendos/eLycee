@@ -13,6 +13,13 @@ app.controller('AdminPostCtrl',
                 post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
               });
               $scope.posts = posts;
+
+              console.info('page 1 ->');
+              console.log(DataAccess.getPage(posts, 1));
+              console.info('page 2 ->');
+              console.log(DataAccess.getPage(posts, 2));
+              console.info('page 3 ->');
+              console.log(DataAccess.getPage(posts, 3));
             }
         );
 
