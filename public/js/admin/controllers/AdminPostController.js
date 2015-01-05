@@ -102,8 +102,12 @@ app.controller('AdminPostCtrl',
           openPostModal();
           $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
         };
-
         $scope.uploader = new FileUploader({autoUpload:true});
+
+        $scope.uploader.onComplete( function(response, status, headers){
+          console.log(response);
+        });
+
         $scope.submitForm = function() { // @todo verif fields not empty etc ...
           var ngUploader = $scope.uploader.queue[0];
           if(!angular.isUndefined(ngUploader)) { // has image ?
