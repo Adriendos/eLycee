@@ -260,6 +260,12 @@ body {
 .my-drop-zone-over {
     border: dotted 3px green;
 }
+.ta-scroll-window > .ta-bind {
+    background-color: #FFF;
+}
+#image-uploader .column .ui.segment{
+    min-height: 180px;
+}
 .ui.grid.no-top-margin {
     margin: 0;
 }
@@ -268,17 +274,6 @@ body {
 }
 .ui.circular.icon.button{
     vertical-align:middle;
-}
-
-#image-uploader .column .ui.segment{
-    min-height: 180px;
-}
-
-// problem modal scroll 
-.dimmed.dimmable>.ui.animating.dimmer, 
-.dimmed.dimmable>.ui.visible.dimmer, 
-.ui.active.dimmer {
-    overflow: scroll;
 }
 
 //////////////////////////////////  POPUPS   //////////////////////////////////
