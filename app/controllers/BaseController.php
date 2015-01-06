@@ -132,7 +132,7 @@ class BaseController extends Controller {
 
 	/**
 	 * [HELPER] => 	Process an image if it has been send
-	 * 
+	 * @todo put it elsewhere
 	 * @param array the inputs received with the request
 	 * @return str path to image to store in the db
 	 */

@@ -24,15 +24,48 @@ app.controller('AdminPostCtrl',
           );
         };
 
-        $scope.postForm = function() {
-          // Do form checkings here :)
-          if($scope.modal.mode == 'create') {
-            DataAccess.create(ENTITY.post, $scope.currentPost);
-          } else {
-            DataAccess.update(ENTITY.post, $scope.currentPost);
-          }
+       /**
+        * FORM PROCESS 
+        **/
 
-          $('.ui.modal').modal('close');
+        // __ image process
+        $scope.uploader = new FileUploader({autoUpload:true});
+        $scope.imageFile = false;
+        $scope.isFormLoading = false;
+
+        // after image upload
+        $scope.uploader.onAfterAddingFile = function(fileItem) {
+          $scope.imageFile = fileItem._file;
+          var reader = new FileReader();
+          reader.onloadend = function () {
+            $scope.currentPost.url_thumbnail = reader.result;
+            $scope.currentPost.image = {
+                base64: reader.result,
+                file: $scope.imageFile
+              };
+          }
+          reader.readAsDataURL($scope.imageFile);
+        };
+
+        $scope.submitForm = function() { // @todo loadee ...
+          // remove url_thumbnail prop 
+          $scope.isFormLoading = true;
+          delete $scope.currentPost.url_thumbnail;
+          console.info('current post', $scope.currentPost);
+          if($scope.modal.mode == 'create') {
+            DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
+              treatForm();
+            });
+          } else {
+            DataAccess.update(ENTITY.post, $scope.currentPost).then( function() {
+              treatForm();
+            });
+          }          
+        };
+
+        function treatForm() {
+          $scope.isFormLoading = false;
+          $('.ui.modal').modal('hide');
         };
 
         $scope.deletePost = function() {
@@ -97,26 +130,4 @@ app.controller('AdminPostCtrl',
           $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
         };
 
-        // __ image process
-        $scope.uploader = new FileUploader({autoUpload:true});
-        $scope.imageFile = false;
-
-        // CALLBACKS
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-          $scope.imageFile = fileItem._file;
-          var reader = new FileReader();
-          reader.onloadend = function () {
-            $scope.currentPost.url_thumbnail = reader.result;
-            $scope.currentPost.image = {
-                base64: reader.result,
-                file: $scope.imageFile
-              };
-          }
-          reader.readAsDataURL($scope.imageFile);
-        };
-
-        $scope.submitForm = function() { // @todo verif fields not empty etc ...
-          console.info('test', $scope.currentPost);
-          PostsFactory.save($scope.currentPost);
-        };
       }]);
