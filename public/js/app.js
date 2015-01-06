@@ -26,14 +26,9 @@ app.constant('ENTITY',
 
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-<<<<<<< HEAD
     localStorageServiceProvider
         .setPrefix('eLycee')
         .setNotify(true, true);
-=======
-  localStorageServiceProvider.setPrefix('eLycee')
-                             .setNotify(true, true); 
->>>>>>> 88d51438c161be14dc7e782a62123c54636d7392
 }]);
 
 // __ Config Toastr 
