@@ -1,5 +1,5 @@
-app.controller('NewsCtrl', ['$scope', 'ENTITY', 'DataAccess', 'tweetsWidgetService',
-function($scope, ENTITY, DataAccess, tweetsWidgetService) {
+app.controller('NewsCtrl', ['$scope', 'ENTITY', 'DataAccess',
+function($scope, ENTITY, DataAccess) {
 
     $scope.posts;
     $scope.modal = [];
@@ -19,5 +19,4 @@ function($scope, ENTITY, DataAccess, tweetsWidgetService) {
 
     tweetsWidgetService.destroyAllWidgets();
     tweetsWidgetService.loadAllWidgets();
-
 }]);

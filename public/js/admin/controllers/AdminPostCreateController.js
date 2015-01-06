@@ -4,7 +4,8 @@ app.controller('AdminPostCreationCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
     	$scope.entity = ENTITY.post;
-
+      $('.ui.checkbox').checkbox();
+      $scope.mode = 'create';
     	/**
         * FORM PROCESS 
         **/

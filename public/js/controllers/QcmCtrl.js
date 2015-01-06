@@ -1,9 +1,6 @@
-app.controller('QcmCtrl',['$scope','tweetsWidgetService', function($scope,tweetsWidgetService) {
+app.controller('QcmCtrl',['$scope', function($scope) {
     var self = this;
 
-    tweetsWidgetService.destroyAllWidgets();
-    tweetsWidgetService.loadAllWidgets();
-    
     $scope.chartObject = {
         "type": "PieChart",
         "displayed": true,
