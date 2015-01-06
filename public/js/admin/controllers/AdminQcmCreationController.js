@@ -16,7 +16,14 @@ app.controller('AdminQcmCreationCtrl',
             $('.ui.modal').modal();
 
             $scope.removeQuestion = function($event) {
-                $($event.currentTarget).closest('.ui.segment').fadeOut().remove();
+                var segment = $($event.currentTarget).closest('.ui.segment');
+                var id = segment.data('id');
+                console.log($scope.questions.id);
+                console.log(id);
+                delete $scope.questions[id];
+                segment.fadeOut().remove();
+                console.log($scope.questions);
+
                 $scope.nbQuestion--;
             };
 
@@ -44,17 +51,18 @@ app.controller('AdminQcmCreationCtrl',
                 $scope.questions[guid] = { content : '', answers: {}};
 
                 var html = [
-                    '<div class="ui segment">',
-                        '<div class="ui top attached label small left blue"><i class="icon question"></i>Question:</div>',
-                        '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);">',
-                            '<i class="icon close"></i> &nbsp;Supprimer cette question',
-                        '</div>',
+                    '<div class="ui segment" data-id="\''+guid+'\'">',
+                        '<div class="ui top attached label small left blue"><i class="icon help"></i>Question:</div>',
+                            '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);">',
+                                '<i class="icon close"></i> &nbsp;Supprimer',
+                            '</div>',
+                        '<div class="invisible ui divider"></div>',
                         '<div class="field">',
-                            '<label>Question</label>',
+                            '<label><i class="icon help"></i>Question</label>',
                             '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content">',
                         '</div>',
-                        '<div class="fields" id="answers'+guid+'">',
-                            '<div class="ui divider invisible"></div>',
+                        '<div class="ui divider"></div>',
+                         '<div class="field" id="answers'+guid+'">',
                             '<div class="ui button tiny positive" ng-click="addAnswer(\''+guid+'\')">Ajouter une réponse</div>',
                         '</div>',
                     '</div>'
@@ -68,7 +76,6 @@ app.controller('AdminQcmCreationCtrl',
                     scrollTop: $('#addQuestionButton').offset().top
                 }, 1000);
 
-                $scope.nbQuestion++;
             };
 
             $scope.addAnswer = function(questionGuid) {
@@ -77,28 +84,32 @@ app.controller('AdminQcmCreationCtrl',
 
                 var html = [
                     '<div class="two fields">',
-                        '<div class="field">',
-                            '<label>Réponse</label>',
-                            '<input placeholder="Saisissez la réponse" type="text" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content">',
-                        '</div>',
-                        '<div class="field">',
-                            '<label>Valeur</label>',
-                            '<div class="ui radio checkbox">',
-                            '<input type="radio" name="value'+guid+'" value="1">',
-                            '<label>Bonne réponse</label>',
-                        '</div>&nbsp;&nbsp;',
-                        '<div class="ui radio checkbox">',
-                            '<input type="radio" name="value'+guid+'" value="0" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].status">',
-                            '<label>Mauvaise réponse</label>',
-                        '</div>',
+                    '<div class="field">',
+                    '<label><i class="icon certificate"></i>Réponse</label>',
+                    '<input placeholder="Saisissez la réponse" type="text" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content">',
+                    '</div>',
+                    '<div class="field">',
+                    '<label>Valeur</label>',
+                    '<div class="ui radio checkbox">',
+                    '<input type="radio" name="value'+guid+'" value="1">',
+                    '<label>Bonne réponse</label>',
+                    '</div>&nbsp;&nbsp;',
+                    '<div class="ui radio checkbox">',
+                    '<input type="radio" name="value'+guid+'" value="0" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].status">',
+                    '<label>Mauvaise réponse</label>',
+                    '</div>',
                     '</div>'
                 ].join('');
 
-                $('#answers'+questionGuid).append($compile(html)($scope));
+                $('#answers'+questionGuid).prepend($compile(html)($scope));
                 $('.ui.radio.checkbox')
                     .checkbox('setting', 'onChange' ,function() {
                         $scope.setAnswerStatus(questionGuid, guid, this[0].value);
                     });
+
+                $('html, body').animate({
+                    scrollTop: $('#answers'+questionGuid).offset().top
+                }, 1000);
 
 
                 console.log($scope.questions);
@@ -106,12 +117,15 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.submitQcm = function() {
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then(function(data){
-                    console.log(data.id);
+                    //data.id;
+
+                    angular.forEach($scope.questions, function(question) {
+                        //question.qcm_id
+                        //DataAccess.create(ENTITY.question, question)
+                    });
                 });
 
-                angular.forEach($scope.questions, function() {
 
-                });
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {

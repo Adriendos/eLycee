@@ -30,6 +30,8 @@ class QcmQuestionController extends \NestedBaseController {
 	 */
 	public function show($firstResourceId, $secondResourceId)
 	{
+
+
 		return 'test ' . $firstResourceId . ' testtetsts ' . $secondResourceId;
 	}
 
