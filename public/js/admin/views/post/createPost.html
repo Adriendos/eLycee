@@ -1,7 +1,6 @@
-<div id="postModal" nv-file-drop uploader="uploader">
-  <i class="close icon"></i>
+<div class="column padding-reset" style="margin-top:50px;" nv-file-drop uploader="uploader">
   <div class="header">
-    {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
+   <h1> {{ mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}</h1>
   </div>
   <div class="content">
     <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
@@ -35,7 +34,7 @@
       <!-- @todo => president erreur field text angular -->
       <div class="field">
         <label>Introduction</label>
-        <div text-angular ng-model="currentPost.excerpt"></div>
+        <div text-angular class="segment ui" ng-model="currentPost.excerpt"></div>
 
         <!-- <div ng-show="postForm.$submitted">
           <div ng-show="postForm.excerpt.$error.required">
@@ -47,7 +46,7 @@
 
       <div class="field">
         <label>Contenu</label>
-        <div text-angular ng-model="currentPost.content"></div>
+        <div text-angular class="segment ui" ng-model="currentPost.content"></div>
 
        <!--  <div ng-show="postForm.$submitted">
           Veuillez entrer un contenu pour l' article

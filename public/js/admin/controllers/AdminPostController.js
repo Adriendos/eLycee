@@ -8,9 +8,7 @@ app.controller('AdminPostCtrl',
         $scope.entity = ENTITY.post;
 
         $('.ui.modal').modal();
-
         init();
-
         function init() {
           DataAccess.getAllData(ENTITY.post).then(
               function(posts) {
@@ -107,29 +105,29 @@ app.controller('AdminPostCtrl',
           }
         };
 
-        function openPostModal() {
-          $('#postModal').modal('show').modal("refresh");
-          $('div.ng-pristine.ta-bind').addClass('textarea');
-        };
+        // function openPostModal() {
+        //   $('#postModal').modal('show').modal("refresh");
+        //   $('div.ng-pristine.ta-bind').addClass('textarea');
+        // };
 
         $scope.openDeletePostModal = function(post) {
           $scope.currentPost = post;
           $('#deletePostModal').modal('show');
         };
 
-        $scope.openCreationModal = function() {
-          $scope.currentPost = [];
-          $scope.modal.mode = 'create';
-          openPostModal();
-          $('.ui.checkbox').checkbox();
-        };
+        // $scope.openCreationModal = function() {
+        //   $scope.currentPost = [];
+        //   $scope.modal.mode = 'create';
+        //   openPostModal();
+        //   $('.ui.checkbox').checkbox();
+        // };
 
-        $scope.openEditionModal = function(post) {
-          $scope.currentPost = post;
-          $scope.modal.mode = 'edit';
-          openPostModal();
-          $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
-        };
+        // $scope.openEditionModal = function(post) {
+        //   $scope.currentPost = post;
+        //   $scope.modal.mode = 'edit';
+        //   openPostModal();
+        //   $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
+        // };
 
 
       }]);
