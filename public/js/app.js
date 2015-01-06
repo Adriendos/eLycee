@@ -2,32 +2,32 @@
 var app;
 
 app = angular.module('eLycee', [
-  'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart', 'djds4rce.angular-socialshare'
+      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
+      'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 
+      'googlechart', 'djds4rce.angular-socialshare'
   ]);
 
 app.constant('CONFIG', 
-{
-    mode: 'dev',
-    apiUrl : 'api/v1/',
-    urlAuth: 'api/v1/auth',
-}
+    {
+        mode: 'dev',
+        apiUrl : 'api/v1/',
+        urlAuth: 'api/v1/auth',
+    }
 );
 
 app.constant('ENTITY',
-{
-    post: 'posts',
-    qcm: 'qcms',
-    question: 'questions',
-    answer: 'answers'
-}
+    {
+        post: 'posts',
+        qcm: 'qcms',
+        question: 'questions',
+        answer: 'answers'
+    }
 );
 
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-  localStorageServiceProvider
-  .setPrefix('eLycee')
-  .setNotify(true, true); 
+  localStorageServiceProvider.setPrefix('eLycee')
+                             .setNotify(true, true); 
 }]);
 
 // __ Config Toastr 
