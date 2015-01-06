@@ -1,5 +1,5 @@
 <?php 
 	
-	class QuestionAnswerController extends \BaseController {
+	class QuestionAnswerController extends \NestedBaseController {
 
 	}

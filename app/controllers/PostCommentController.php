@@ -1,5 +1,5 @@
 <?php 
 
-	class PostCommentController extends \BaseController {
+	class PostCommentController extends \NestedBaseController {
 
 	}
