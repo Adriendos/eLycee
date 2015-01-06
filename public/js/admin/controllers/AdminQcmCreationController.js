@@ -1,7 +1,7 @@
 app.controller('AdminQcmCreationCtrl',
     ['$scope', '$compile', 'Utils',
         function($scope, $compile, Utils) {
-            $scope.question = {};
+            $scope.questions = {};
             $scope.nbQuestion = 1;
             $scope.currentQcm = {};
 
@@ -33,6 +33,9 @@ app.controller('AdminQcmCreationCtrl',
             };
 
             $scope.addQuestion = function() {
+                var guid = Utils.guid();
+                $scope.questions[guid] = { content : '', answers: {}};
+
                 var html = [
                     '<div class="ui segment">',
                         '<div class="ui top attached label small left blue"><i class="icon question"></i>Question:</div>',
@@ -41,14 +44,16 @@ app.controller('AdminQcmCreationCtrl',
                         '</div>',
                         '<div class="field">',
                             '<label>Question</label>',
-                            '<input type="text" placeholder="Entrez ici la question" required>',
+                            '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content">',
                         '</div>',
-                        '<div class="fields" id="answers">',
+                        '<div class="fields" id="answers'+guid+'">',
                             '<div class="ui divider invisible"></div>',
-                            '<div class="ui button tiny positive" ng-click="addAnswer()">Ajouter une réponse</div>',
+                            '<div class="ui button tiny positive" ng-click="addAnswer(\''+guid+'\')">Ajouter une réponse</div>',
                         '</div>',
                     '</div>'
                 ].join('');
+
+
 
                 // pre compile for ng-click working in injected html
                 $('#questions').append($compile(html)($scope));
@@ -59,31 +64,47 @@ app.controller('AdminQcmCreationCtrl',
                 $scope.nbQuestion++;
             };
 
-            $scope.addAnswer = function() {
+            $scope.addAnswer = function(questionGuid) {
+                var guid = Utils.guid();
+                $scope.questions[questionGuid].answers[guid] = { content: '', status: 0};
+
                 var html = [
                     '<div class="two fields">',
                         '<div class="field">',
                             '<label>Réponse</label>',
-                            '<input placeholder="Saisissez la réponse" type="text">',
+                            '<input placeholder="Saisissez la réponse" type="text" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content">',
                         '</div>',
                         '<div class="field">',
                             '<label>Valeur</label>',
                             '<div class="ui radio checkbox">',
-                            '<input type="radio" name="value" checked="">',
+                            '<input type="radio" name="value'+guid+'" value="1">',
                             '<label>Bonne réponse</label>',
                         '</div>&nbsp;&nbsp;',
-                        '<div class="ui radio checkbox">',
-                            '<input type="radio" name="value" checked="">',
+                        '<div class="ui radio checkbox checked">',
+                            '<input type="radio" name="value'+guid+'" value="0">',
                             '<label>Mauvaise réponse</label>',
                         '</div>',
                     '</div>'
                 ].join('');
 
-                $('#answers').append($compile(html)($scope));
+                $('#answers'+questionGuid).append($compile(html)($scope));
+                $('.ui.radio.checkbox')
+                    .checkbox('setting', 'onChange' ,function() {
+                        $scope.setAnswerStatus(questionGuid, guid, this[0].value);
+                    });
+
+
+                console.log($scope.questions);
             };
 
             $scope.submitQcm = function() {
                 console.log('form submitted');
+                console.log($scope.questions);
+                console.log($scope.answers);
+            };
+
+            $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
+              questions[questionGuid].answers[answerGuid].status = parseInt(val);
             };
 
         }]);

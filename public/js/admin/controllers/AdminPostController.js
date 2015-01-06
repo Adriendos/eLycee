@@ -24,15 +24,16 @@ app.controller('AdminPostCtrl',
           );
         };
 
-        $scope.postForm = function() {
-          // Do form checkings here :)
-          if($scope.modal.mode == 'create') {
-            DataAccess.create(ENTITY.post, $scope.currentPost);
-          } else {
-            DataAccess.update(ENTITY.post, $scope.currentPost);
-          }
-
-          $('.ui.modal').modal('close');
+        $scope.submitForm = function() {
+          //// Do form checkings here :)
+          //if($scope.modal.mode == 'create') {
+          //  DataAccess.create(ENTITY.post, $scope.currentPost);
+          //} else {
+          //  DataAccess.update(ENTITY.post, $scope.currentPost);
+          //}
+          //
+          //$('.ui.modal').modal('close');
+          alert('couille');
         };
 
         $scope.deletePost = function() {
@@ -139,40 +140,21 @@ app.controller('AdminPostCtrl',
         //   console.log(response);
         // });
 
-        $scope.submitForm = function() { // @todo verif fields not empty etc ...
-          var ngUploader = $scope.uploader.queue[0];
-          if(!angular.isUndefined(ngUploader)) { // has image ?
-            var imageFile = ngUploader._file;
-            var reader = new FileReader();
-            reader.onloadend = function () {
-              $scope.currentPost.image = {
-                base64: reader.result,
-                file: imageFile
-              };
-              PostsFactory.save($scope.currentPost);
-            }
-            reader.readAsDataURL(imageFile);
-          } else {
-            PostsFactory.save($scope.currentPost);
-          }
-        };
-
-        // pagination listener
-        $rootScope.$on('page.changed', function(e, pageNum) {
-          PostsFactory.getPostsPaginated(pageNum).then( function(posts) {
-            $scope.posts = posts;
-          });
-        });
-
-        // var can = document.getElementById('canvas');
-        // var ctx = can.getContext('2d');
-        // var img = document.getElementById('tweetpic');
-        // ctx.drawImage(img, 0, 0);
-        // var b64Text = can.toDataURL();
-        // b64Text = b64Text.replace('data&colon;image/png;base64,','');
-        // var fileData = b64Text;
-
-        // $scope.uploader.onAfterAddingFile = function(fileItem) {
-        //   console.info('onAfterAddingFile', fileItem);
-        // };
+        //$scope.submitForm = function() { // @todo verif fields not empty etc ...
+        //  var ngUploader = $scope.uploader.queue[0];
+        //  if(!angular.isUndefined(ngUploader)) { // has image ?
+        //    var imageFile = ngUploader._file;
+        //    var reader = new FileReader();
+        //    reader.onloadend = function () {
+        //      $scope.currentPost.image = {
+        //        base64: reader.result,
+        //        file: imageFile
+        //      };
+        //      PostsFactory.save($scope.currentPost);
+        //    }
+        //    reader.readAsDataURL(imageFile);
+        //  } else {
+        //    PostsFactory.save($scope.currentPost);
+        //  }
+        //};
       }]);
