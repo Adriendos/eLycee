@@ -1,8 +1,8 @@
 
 
 app.controller('AdminPostCreationCtrl',
-    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location',
-    function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location) {
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService',
+    function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService) {
     	$scope.entity = ENTITY.post;
       $('.ui.checkbox').checkbox();
       $scope.mode = 'create';
@@ -32,9 +32,10 @@ app.controller('AdminPostCreationCtrl',
 
         $scope.submitForm = function() { // @todo loadee ...
           // remove url_thumbnail prop 
-          $scope.isFormLoading = true;
           delete $scope.currentPost.url_thumbnail;
+          $scope.isFormLoading = true;
           console.info('current post', $scope.currentPost);
+          $scope.currentPost.user_id = SessionService.getUser().id;
           if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
               closeForm();
