@@ -2,8 +2,8 @@
 var app;
 
 app = angular.module('eLycee', [
-  'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
-  'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart', 'djds4rce.angular-socialshare'
+    'toastr', 'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
+  'LocalStorageModule', 'textAngular', 'angularFileUpload', 'googlechart', 'djds4rce.angular-socialshare'
 ]);
 
 app.constant('CONFIG', 
@@ -32,24 +32,25 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
 
 // __ Config Toastr 
 app.config(function(toastrConfig) {
-  angular.extend(toastrConfig, {
-    allowHtml: true,
-    closeButton: true,
-    closeHtml: '<button>&times;</button>',
-    containerId: 'toast-container',
-    extendedTimeOut: 1000,
-    iconClasses: {
-      error: 'toast-error',
-      info: 'toast-info',
-      success: 'toast-success',
-      warning: 'toast-warning'
-    },
-    messageClass: 'toast-message',
-    positionClass: 'toast-top-right',
-    tapToDismiss: true,
-    timeOut: 1000,
-    titleClass: 'toast-title'
-  });
+    angular.extend(toastrConfig, {
+        allowHtml: true,
+        closeButton: false,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        positionClass: 'toast-top-right',
+        tapToDismiss: true,
+        timeOut: 5000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
 });
 
 

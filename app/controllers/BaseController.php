@@ -53,7 +53,7 @@ class BaseController extends Controller {
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id)->toArray();
 
-		return Response::json([$elem]);
+		return Response::json($elem);
 	}
 
 	/**
