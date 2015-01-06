@@ -18,11 +18,12 @@ app.controller('AdminQcmCreationCtrl',
             $scope.removeQuestion = function($event) {
                 var segment = $($event.currentTarget).closest('.ui.segment');
                 var id = segment.data('id');
-                console.log($scope.questions.id);
-                console.log(id);
+                $scope.questions[id] = 'test';
+                console.info('questions obj', $scope.questions);
                 delete $scope.questions[id];
+                console.info('questions obj after delete', $scope.questions);
+
                 segment.fadeOut().remove();
-                console.log($scope.questions);
 
                 $scope.nbQuestion--;
             };
