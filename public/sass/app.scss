@@ -270,6 +270,9 @@ body {
     vertical-align:middle;
 }
 
+#image-uploader .column .ui.segment{
+    min-height: 180px;
+}
 
 // problem modal scroll 
 .dimmed.dimmable>.ui.animating.dimmer, 

@@ -75,7 +75,7 @@ app.directive('imgUploader', [ function() {
         templateUrl: 'js/directives/template/image-uploader.html',
         link: function(scope, element, attributes) {
             var params = scope.$eval(attributes.imgUploader);
-            
+            console.info('attr uploader', params);
         }
     };
 }]);

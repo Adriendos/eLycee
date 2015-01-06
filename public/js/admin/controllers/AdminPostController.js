@@ -99,59 +99,28 @@ app.controller('AdminPostCtrl',
 
         // __ image process
         $scope.uploader = new FileUploader({autoUpload:true});
+        $scope.imageFile = false;
         // CALLBACKS
-        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
         $scope.uploader.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
+          $scope.imageFile = fileItem._file;
+          var reader = new FileReader();
+          reader.onloadend = function () {
+            $scope.currentPost.url_thumbnail = reader.result;
+          }
+          reader.readAsDataURL($scope.imageFile);
         };
-        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        $scope.uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        $scope.uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        $scope.uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
-        console.info('uploader', $scope.uploader);
-        // => @todo
-        // $scope.uploader.onComplete( function(response, status, headers){
-        //   console.log(response);
-        // });
 
         $scope.submitForm = function() { // @todo verif fields not empty etc ...
-          var ngUploader = $scope.uploader.queue[0];
-          if(!angular.isUndefined(ngUploader)) { // has image ?
-            var imageFile = ngUploader._file;
+          if($scope.imageFile) { // has image ?
             var reader = new FileReader();
             reader.onloadend = function () {
               $scope.currentPost.image = {
                 base64: reader.result,
-                file: imageFile
+                file: $scope.imageFile
               };
               PostsFactory.save($scope.currentPost);
             }
-            reader.readAsDataURL(imageFile);
+            reader.readAsDataURL($scope.imageFile);
           } else {
             PostsFactory.save($scope.currentPost);
           }
@@ -163,16 +132,4 @@ app.controller('AdminPostCtrl',
             $scope.posts = posts;
           });
         });
-
-        // var can = document.getElementById('canvas');
-        // var ctx = can.getContext('2d');
-        // var img = document.getElementById('tweetpic');
-        // ctx.drawImage(img, 0, 0);
-        // var b64Text = can.toDataURL();
-        // b64Text = b64Text.replace('data&colon;image/png;base64,','');
-        // var fileData = b64Text;
-
-        // $scope.uploader.onAfterAddingFile = function(fileItem) {
-        //   console.info('onAfterAddingFile', fileItem);
-        // };
       }]);
