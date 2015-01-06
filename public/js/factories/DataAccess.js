@@ -87,7 +87,6 @@ app.factory('DataAccess',
 			var d = $q.defer();
 
 			var entity = new resource(data);
-			entity.user_id = SessionService.getUser().id;
 			var result = entity.$save(function() {
 				$rootScope.notify('Sauvegarde effectuée avec succès.');
 				d.resolve(result);

@@ -16,7 +16,4 @@ function($scope, ENTITY, DataAccess) {
             $scope.nbPages = DataAccess.getNbPage(posts);
         }
     );
-
-    tweetsWidgetService.destroyAllWidgets();
-    tweetsWidgetService.loadAllWidgets();
 }]);

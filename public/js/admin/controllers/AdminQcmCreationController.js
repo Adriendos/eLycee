@@ -1,11 +1,18 @@
 app.controller('AdminQcmCreationCtrl',
-    ['$scope', '$compile', 'Utils',
-        function($scope, $compile, Utils) {
+    ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
+        function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
             $scope.questions = {};
             $scope.nbQuestion = 1;
-            $scope.currentQcm = {};
+            $scope.currentQcm = {
+                title: '',
+                description: '',
+                class_level: ''
+            };
 
-            $('select.dropdown').dropdown();
+            $('select.dropdown').dropdown('setting', 'onChange' ,function() {
+                $scope.currentQcm.class_level = $(this).dropdown('get value')
+            });
+
             $('.ui.modal').modal();
 
             $scope.removeQuestion = function($event) {
@@ -80,8 +87,8 @@ app.controller('AdminQcmCreationCtrl',
                             '<input type="radio" name="value'+guid+'" value="1">',
                             '<label>Bonne réponse</label>',
                         '</div>&nbsp;&nbsp;',
-                        '<div class="ui radio checkbox checked">',
-                            '<input type="radio" name="value'+guid+'" value="0">',
+                        '<div class="ui radio checkbox">',
+                            '<input type="radio" name="value'+guid+'" value="0" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].status">',
                             '<label>Mauvaise réponse</label>',
                         '</div>',
                     '</div>'
@@ -98,13 +105,17 @@ app.controller('AdminQcmCreationCtrl',
             };
 
             $scope.submitQcm = function() {
-                console.log('form submitted');
-                console.log($scope.questions);
-                console.log($scope.answers);
+                DataAccess.create(ENTITY.qcm, $scope.currentQcm).then(function(data){
+                    console.log(data.id);
+                });
+
+                angular.forEach($scope.questions, function() {
+
+                });
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
-              questions[questionGuid].answers[answerGuid].status = parseInt(val);
+                $scope.questions[questionGuid].answers[answerGuid].status = parseInt(val);
             };
 
         }]);
