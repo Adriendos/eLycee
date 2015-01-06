@@ -1,0 +1,73 @@
+<div id="postModal" nv-file-drop uploader="uploader">
+  <i class="close icon"></i>
+  <div class="header">
+    {{ modal.mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}
+  </div>
+  <div class="content">
+    <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
+      <input type="hidden" ng-model="currentPost.id">
+
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.title.$error.required }">
+        <label>Titre</label>
+        <div class="ui corner labeled input">
+          <input type="text" name="title" placeholder="Titre de l'article" ng-model="currentPost.title" required>
+          <div class="ui corner label">
+            <i class="asterisk icon"></i>
+          </div>
+
+          <div ng-show="postForm.$submitted">
+            <div ng-show="postForm.title.$error.required">
+              Veuillez entrer un titre pour l' article
+            </div>
+          </div>
+        </div> <!-- /ui corner labeled input -->
+      </div> <!-- Field title -->
+
+      <!-- Image manager -->
+      <div id="image-uploader" class="field">
+        <label>Image de couverture</label>
+        <div class="ui right aligned grid">
+          <!-- UPLOAD IMAGE ZONE -->
+          <div img-uploader class="center aligned two columns row"></div>
+        </div>  
+      </div><!-- .field image -->
+
+      <!-- @todo => president erreur field text angular -->
+      <div class="field">
+        <label>Introduction</label>
+        <div text-angular ng-model="currentPost.excerpt"></div>
+
+        <!-- <div ng-show="postForm.$submitted">
+          <div ng-show="postForm.excerpt.$error.required">
+            Veuillez entrer un extrait pour l' article
+          </div>
+        </div> -->
+      </div>
+
+
+      <div class="field">
+        <label>Contenu</label>
+        <div text-angular ng-model="currentPost.content"></div>
+
+       <!--  <div ng-show="postForm.$submitted">
+          Veuillez entrer un contenu pour l' article
+        </div> -->
+      </div>
+
+      <div class="field">
+        <div id="status" ng-click="changeStatus()" class="ui toggle checkbox" > 
+          <input type="checkbox" 
+                 ng-model="currentPost.status"
+                 value="{{currentPost.status}}">
+          <label>Publier {{ currentPost.status }}</label>
+        </div>
+      </div>
+
+      <div class="ui buttons">
+        <input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
+        <div class="or"></div>
+        <div class="ui button negative reset">Annuler</div>
+      </div>
+    </form>
+  </div>
+</div>
