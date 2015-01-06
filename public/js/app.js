@@ -4,30 +4,30 @@ var app;
 app = angular.module('eLycee', [
   'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
   'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 'googlechart', 'djds4rce.angular-socialshare'
-]);
+  ]);
 
 app.constant('CONFIG', 
-  {
+{
     mode: 'dev',
     apiUrl : 'api/v1/',
     urlAuth: 'api/v1/auth',
-  }
+}
 );
 
 app.constant('ENTITY',
-    {
-        post: 'posts',
-        qcm: 'qcms',
-        question: 'questions',
-        answer: 'answers'
-    }
+{
+    post: 'posts',
+    qcm: 'qcms',
+    question: 'questions',
+    answer: 'answers'
+}
 );
 
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
   localStorageServiceProvider
-    .setPrefix('eLycee')
-    .setNotify(true, true); 
+  .setPrefix('eLycee')
+  .setNotify(true, true); 
 }]);
 
 // __ Config Toastr 
@@ -43,13 +43,13 @@ app.config(function(toastrConfig) {
       info: 'toast-info',
       success: 'toast-success',
       warning: 'toast-warning'
-    },
-    messageClass: 'toast-message',
-    positionClass: 'toast-top-right',
-    tapToDismiss: true,
-    timeOut: 1000,
-    titleClass: 'toast-title'
-  });
+  },
+  messageClass: 'toast-message',
+  positionClass: 'toast-top-right',
+  tapToDismiss: true,
+  timeOut: 1000,
+  titleClass: 'toast-title'
+});
 });
 
 
@@ -58,26 +58,26 @@ app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, DataAccess
   $rootScope.notify = function(message, level) {
     switch(level) {
       case 'error':
-        toastr.error(message,'Erreur');
+      toastr.error(message,'Erreur');
       break;
 
       case 'success':
-        toastr.success(message);
+      toastr.success(message);
       break;
 
       case 'info':
-        toastr.info(message);
+      toastr.info(message);
       break;
 
       case 'warning':
-        toastr.warning(message, 'Attention');
+      toastr.warning(message, 'Attention');
       break;
 
       default:
-        toastr.info(message)
+      toastr.info(message)
       ;
-    }
-  };
+  }
+};
 
 }]);
 
@@ -88,10 +88,10 @@ app.config(['$provide', function($provide){
         // $delegate is the taOptions we are decorating
         // here we override the default toolbars and classes specified in taOptions.
         taOptions.toolbar = [
-            ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
-            ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
-            ['justifyLeft','justifyCenter','justifyRight'],
-            ['html', 'insertImage', 'insertLink', 'unlink']
+        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+        ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
+        ['justifyLeft','justifyCenter','justifyRight'],
+        ['html', 'insertImage', 'insertLink', 'unlink']
         ];
         taOptions.classes = {
             focussed: 'focussed',
@@ -130,48 +130,42 @@ app.config(['$provide', function($provide){
 
 //Route Change interceptor
 app.run(function ($rootScope, $location, SessionService, DataAccess) {
-     $rootScope.$on("$locationChangeStart",function(){
-         if( $location.path().indexOf('/admin') >= 0) {
-             if(SessionService.isLoggedUser() && SessionService.isUserAdmin()) {
-                 //Logged user and admin
-                 return;
-             } else {
-                 //No user logged or user not admin
-                     SessionService.checkToken()
-                         .then(function(data) {
-                             if(data.role != 'teacher') {
-                                 $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-                                 $location.path('/');
-                             }
-                         }, function(error) {
-                             // promise rejected
-                             $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
-                             SessionService.logout();
-                             $location.path('/');
-
-                         });
-             }
-
-         } else {
-             // Not on an admin route, checks token to inialize user session
-             SessionService.checkToken()
-                 .then(function() {
-                     return;
-                 }, function() {
-                     return;
-                 });
+    $rootScope.$on("$locationChangeStart",function(){
+        if( $location.path().indexOf('/admin') >= 0) {
+            if(SessionService.isLoggedUser() && SessionService.isUserAdmin()) {
+                //Logged user and admin
+                return;
+            } else {
+                //No user logged or user not admin
+                SessionService.checkToken()
+                .then(function(data) {
+                    if(data.role != 'teacher') {
+                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                        $location.path('/');
+                    }
+                }, function(error) {
+                        // promise rejected
+                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                        SessionService.logout();
+                        $location.path('/');
+                    });
+            }
+        } else {
+            // Not on an admin route, checks token to inialize user session
+            SessionService.checkToken()
+                .then(function() {
+                    return;
+                }, function() {
+                    return;
+                });
             /** 
-                
-                Faire test ici, pour rendre le twitter timeline
-    
+            Faire test ici, pour rendre le twitter timeline
             **/
             if( $location.path().indexOf('/contact') < 0) {
 
             }
-
-         }
-
-     });
+        }
+    });
 });
 
 
