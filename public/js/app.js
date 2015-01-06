@@ -158,12 +158,6 @@ app.config(function(toastrConfig) {
                    }, function () { 
                        return; 
                    }); 
-               ///** 
-               // Faire test ici, pour rendre le twitter timeline 
-               // **/ 
-               //if ($location.path().indexOf('/contact') < 0) { 
-               // 
-               //} 
            } 
        }); 
    }]);
