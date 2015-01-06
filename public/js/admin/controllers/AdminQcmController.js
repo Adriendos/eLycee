@@ -57,11 +57,5 @@ app.controller('AdminQcmCtrl',
                 } else {
                     return 'Terminale';
                 }
-            }
-
-            $rootScope.$on('page.changed', function(e, pageNum) {
-              QcmsFactory.getPostsPaginated(pageNum).then( function(posts) {
-                $scope.posts = posts;
-              });
-            });
+            };
         }]);
