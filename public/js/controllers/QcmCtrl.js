@@ -1,7 +1,9 @@
-app.controller('QcmCtrl',['$scope', function($scope) {
+app.controller('QcmCtrl',['$scope','tweetsWidgetService', function($scope,tweetsWidgetService) {
     var self = this;
 
-
+    tweetsWidgetService.destroyAllWidgets();
+    tweetsWidgetService.loadAllWidgets();
+    
     $scope.chartObject = {
         "type": "PieChart",
         "displayed": true,
@@ -78,4 +80,5 @@ app.controller('QcmCtrl',['$scope', function($scope) {
         },
         "formatters": {}
     }
+
 }]);
