@@ -69,7 +69,6 @@ app.directive('ngThumb', ['$window', function($window) {
     };
 }]);
 
-
 app.directive('imgUploader', [ function() {
     return {
         restrict: 'A',

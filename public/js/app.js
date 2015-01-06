@@ -26,8 +26,8 @@ app.constant('ENTITY',
 
 // __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-  localStorageServiceProvider.setPrefix('eLycee')
-                             .setNotify(true, true); 
+    localStorageServiceProvider.setPrefix('eLycee')
+                               .setNotify(true, true); 
 }]);
 
 // __ Config Toastr 
@@ -73,8 +73,7 @@ app.run(['$rootScope','toastr', '$http', function($rootScope, toastr, DataAccess
       break;
 
       default:
-      toastr.info(message)
-      ;
+      toastr.info(message);
   }
 };
 
@@ -139,12 +138,12 @@ app.run(function ($rootScope, $location, SessionService, DataAccess) {
                 SessionService.checkToken()
                 .then(function(data) {
                     if(data.role != 'teacher') {
-                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error');
                         $location.path('/');
                     }
                 }, function(error) {
                         // promise rejected
-                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error')
+                        $rootScope.notify("Vous n'avez pas accès à cette section.",'error');
                         SessionService.logout();
                         $location.path('/');
                     });

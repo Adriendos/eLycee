@@ -86,5 +86,4 @@ app.controller('AdminQcmCreationCtrl',
                 console.log('form submitted');
             };
 
-
         }]);
