@@ -125,11 +125,4 @@ app.controller('AdminPostCtrl',
             PostsFactory.save($scope.currentPost);
           }
         };
-
-        // pagination listener
-        $rootScope.$on('page.changed', function(e, pageNum) {
-          PostsFactory.getPostsPaginated(pageNum).then( function(posts) {
-            $scope.posts = posts;
-          });
-        });
       }]);
