@@ -18,6 +18,6 @@ function($scope, ENTITY, DataAccess, tweetsWidgetService) {
     );
 
     tweetsWidgetService.destroyAllWidgets();
-        tweetsWidgetService.loadAllWidgets();
+    tweetsWidgetService.loadAllWidgets();
 
 }]);
