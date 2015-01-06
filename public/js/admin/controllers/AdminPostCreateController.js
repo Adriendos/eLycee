@@ -1,8 +1,8 @@
 
 
 app.controller('AdminPostCreationCtrl',
-    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
-    function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location',
+    function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location) {
     	$scope.entity = ENTITY.post;
       $('.ui.checkbox').checkbox();
       $scope.mode = 'create';
@@ -16,6 +16,7 @@ app.controller('AdminPostCreationCtrl',
         $scope.isFormLoading = false;
 
         // after image upload
+        // @todo remove that and make process image form in directive l. 77
         $scope.uploader.onAfterAddingFile = function(fileItem) {
           $scope.imageFile = fileItem._file;
           var reader = new FileReader();
@@ -47,7 +48,7 @@ app.controller('AdminPostCreationCtrl',
 
         function closeForm() {
           $scope.isFormLoading = false;
-          go('/admin/posts');
+          $location.path('admin/posts');
         };
 
         $scope.reset = function() {

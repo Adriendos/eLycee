@@ -74,8 +74,8 @@ app.directive('imgUploader', [ function() {
         restrict: 'A',
         templateUrl: 'js/directives/template/image-uploader.html',
         link: function(scope, element, attributes) {
+            // @todo remove that and make process image form here
             var params = scope.$eval(attributes.imgUploader);
-            console.info('attr uploader', params);
         }
     };
 }]);
