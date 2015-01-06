@@ -34,7 +34,7 @@ app.controller('AdminPostCreationCtrl',
           $scope.isFormLoading = true;
           delete $scope.currentPost.url_thumbnail;
           console.info('current post', $scope.currentPost);
-          if($scope.modal.mode == 'create') {
+          if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
               closeForm();
             });
@@ -48,5 +48,12 @@ app.controller('AdminPostCreationCtrl',
         function closeForm() {
           $scope.isFormLoading = false;
           go('/admin/posts');
+        };
+
+        $scope.reset = function() {
+          $scope.currentPost = {};
+          $('html, body').animate({
+            scrollTop: $('html').offset().top
+          }, 500);
         };
     }]);
