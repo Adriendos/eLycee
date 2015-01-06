@@ -1,8 +1,9 @@
 app.controller('AdminQcmCreationCtrl',
-    ['$scope', '$compile',
-        function($scope, $compile) {
+    ['$scope', '$compile', 'Utils',
+        function($scope, $compile, Utils) {
             $scope.question = {};
             $scope.nbQuestion = 1;
+            $scope.currentQcm = {};
 
             $('select.dropdown').dropdown();
             $('.ui.modal').modal();
@@ -83,7 +84,7 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.submitQcm = function() {
                 console.log('form submitted');
-            }
+            };
 
 
         }]);

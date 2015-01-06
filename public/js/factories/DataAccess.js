@@ -7,7 +7,6 @@ app.factory('DataAccess',
 		// Public DataAccess methods, all ajax model queries should use the following methods
 		DataAccess.getAllData = function(entityName) {
 			var resource = ResourceFactory.getResource(entityName);
-
 			return query(resource);
 		};
 
@@ -103,7 +102,7 @@ app.factory('DataAccess',
 		function update(resource, data) {
 			var id = data.id;
 			get(resource, id).then(function(entity) {
-				$.extend(entity, data); // Replaces entity fields by data fields
+				angular.extend(entity, data); // Replaces entity fields by data fields
 				entity.$update(function() {
 					$rootScope.notify('Modification effectuée avec succès.');
 				});

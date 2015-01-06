@@ -11,7 +11,7 @@ app.constant('CONFIG',
     {
         mode: 'dev',
         apiUrl : 'api/v1/',
-        urlAuth: 'api/v1/auth',
+        urlAuth: 'api/v1/auth'
     }
 );
 
@@ -49,7 +49,6 @@ app.config(function(toastrConfig) {
   tapToDismiss: true,
   timeOut: 1000,
   titleClass: 'toast-title'
-});
 });
 
 

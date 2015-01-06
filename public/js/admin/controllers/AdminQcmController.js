@@ -30,7 +30,7 @@ app.controller('AdminQcmCtrl',
                     return 'unlock blue';
                 }
                 return 'lock red';
-            }
+            };
 
             // Function used to sort the table by clicking headers
             $scope.changeSorting = function($event, column) {
