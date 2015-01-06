@@ -1,4 +1,4 @@
-app.controller('SidebarCtrl', ['$scope', '$http', 'CONFIG', function($scope, $http, CONFIG) {
+app.controller('SidebarCtrl', ['$scope', '$http', 'CONFIG', 'tweetsWidgetService', function($scope, $http, CONFIG,tweetsWidgetService) {
     $('.left.sidebar').first()
         .sidebar('attach events', '#sidebar-button')
     ;
@@ -17,4 +17,7 @@ app.controller('SidebarCtrl', ['$scope', '$http', 'CONFIG', function($scope, $ht
                 // or server returns response with an error status.
             });
     };
+
+    tweetsWidgetService.destroyAllWidgets();
+    tweetsWidgetService.loadAllWidgets();
 }]);

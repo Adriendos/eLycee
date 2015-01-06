@@ -1,14 +1,10 @@
-app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY','tweetsWidgetService',
-    function($scope, DataAccess, ENTITY, tweetsWidgetService) {
+app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY', function($scope, DataAccess, ENTITY) {
 
         DataAccess.getAllData(ENTITY.post).then(
             function(posts) {
                $scope.posts = posts;
             }
         );
-
-        tweetsWidgetService.destroyAllWidgets();
-        tweetsWidgetService.loadAllWidgets();
 
     $(document).ready(function(){
         $('.ui.dropdown').dropdown();
