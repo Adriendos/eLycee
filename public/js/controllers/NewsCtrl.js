@@ -17,4 +17,6 @@ function($scope, ENTITY, DataAccess) {
         }
     );
 
+    tweetsWidgetService.destroyAllWidgets();
+    tweetsWidgetService.loadAllWidgets();
 }]);
