@@ -24,16 +24,49 @@ app.controller('AdminPostCtrl',
           );
         };
 
-        $scope.submitForm = function() {
-          //// Do form checkings here :)
-          //if($scope.modal.mode == 'create') {
-          //  DataAccess.create(ENTITY.post, $scope.currentPost);
-          //} else {
-          //  DataAccess.update(ENTITY.post, $scope.currentPost);
-          //}
-          //
-          //$('.ui.modal').modal('close');
-          alert('couille');
+
+       /**
+        * FORM PROCESS 
+        **/
+
+        // __ image process
+        $scope.uploader = new FileUploader({autoUpload:true});
+        $scope.imageFile = false;
+        $scope.isFormLoading = false;
+
+        // after image upload
+        $scope.uploader.onAfterAddingFile = function(fileItem) {
+          $scope.imageFile = fileItem._file;
+          var reader = new FileReader();
+          reader.onloadend = function () {
+            $scope.currentPost.url_thumbnail = reader.result;
+            $scope.currentPost.image = {
+                base64: reader.result,
+                file: $scope.imageFile
+              };
+          }
+          reader.readAsDataURL($scope.imageFile);
+        };
+
+        $scope.submitForm = function() { // @todo loadee ...
+          // remove url_thumbnail prop 
+          $scope.isFormLoading = true;
+          delete $scope.currentPost.url_thumbnail;
+          console.info('current post', $scope.currentPost);
+          if($scope.modal.mode == 'create') {
+            DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
+              treatForm();
+            });
+          } else {
+            DataAccess.update(ENTITY.post, $scope.currentPost).then( function() {
+              treatForm();
+            });
+          }          
+        };
+
+        function treatForm() {
+          $scope.isFormLoading = false;
+          $('.ui.modal').modal('hide');
         };
 
         $scope.deletePost = function() {
@@ -98,63 +131,5 @@ app.controller('AdminPostCtrl',
           $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
         };
 
-        // __ image process
-        $scope.uploader = new FileUploader({autoUpload:true});
-        // CALLBACKS
-        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
-        };
-        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        $scope.uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        $scope.uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        $scope.uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
-        console.info('uploader', $scope.uploader);
-        // => @todo
-        // $scope.uploader.onComplete( function(response, status, headers){
-        //   console.log(response);
-        // });
 
-        //$scope.submitForm = function() { // @todo verif fields not empty etc ...
-        //  var ngUploader = $scope.uploader.queue[0];
-        //  if(!angular.isUndefined(ngUploader)) { // has image ?
-        //    var imageFile = ngUploader._file;
-        //    var reader = new FileReader();
-        //    reader.onloadend = function () {
-        //      $scope.currentPost.image = {
-        //        base64: reader.result,
-        //        file: imageFile
-        //      };
-        //      PostsFactory.save($scope.currentPost);
-        //    }
-        //    reader.readAsDataURL(imageFile);
-        //  } else {
-        //    PostsFactory.save($scope.currentPost);
-        //  }
-        //};
       }]);

@@ -38,6 +38,10 @@ app.config(['$routeProvider',
       controller : 'AdminQcmCreationCtrl',
       templateUrl : 'js/admin/views/qcm/createQcm.html'
     })
+    .when('/admin/post/create', {
+      controller : 'AdminPostCreationCtrl',
+      templateUrl : 'js/admin/views/post/createPost.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -1,5 +1,5 @@
-app.controller('NewsCtrl', ['$scope', 'ENTITY', 'DataAccess',
-function($scope, ENTITY, DataAccess) {
+app.controller('NewsCtrl', ['$scope', 'ENTITY', 'DataAccess', 'tweetsWidgetService',
+function($scope, ENTITY, DataAccess, tweetsWidgetService) {
 
     $scope.posts;
     $scope.modal = [];
@@ -16,5 +16,8 @@ function($scope, ENTITY, DataAccess) {
             $scope.nbPages = DataAccess.getNbPage(posts);
         }
     );
+
+    tweetsWidgetService.destroyAllWidgets();
+        tweetsWidgetService.loadAllWidgets();
 
 }]);

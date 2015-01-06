@@ -13,7 +13,6 @@ app.factory('DataAccess',
 		DataAccess.getDataById = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
 
-
 			return get(resource, id);
 		};
 
