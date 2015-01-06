@@ -2,7 +2,4 @@
 
 class UserController extends \BaseController {
 
-
-
-
 }

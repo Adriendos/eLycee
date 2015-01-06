@@ -86,7 +86,15 @@ Route::group(
 		Route::resource('scores', 'ScoreController', 
 			['except' => ['create', 'edit'] 
 		]);
-
+		Route::resource('qcms.questions', 'QcmQuestionController',
+			['except' => ['create', 'edit'] 
+		]);
+		Route::resource('questions.answers', 'QuestionAnswerController',
+			['except' => ['create', 'edit'] 
+		]);
+		Route::resource('posts.comments', 'PostCommentController',
+			['except' => ['create', 'edit'] 
+		]);
 		Route::get('search/{query}', 'SearchController@search');
 
 	}
