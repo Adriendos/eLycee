@@ -24,7 +24,7 @@
 			<!-- START LOOP -->
 			<div class="item" ng-repeat="post in posts | limitTo:3">
 				<div class="ui small image">
-					<img src="http://lorempixel.com/300/200/sports">
+					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content">
 					<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>

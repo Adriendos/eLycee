@@ -65,7 +65,7 @@
       <div class="ui buttons">
         <input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
         <div class="or"></div>
-        <div class="ui button negative reset">Annuler</div>
+        <div class="ui button negative reset" ng-click="reset()">Annuler</div>
       </div>
     </form>
   </div>

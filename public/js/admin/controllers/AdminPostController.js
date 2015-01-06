@@ -22,51 +22,6 @@ app.controller('AdminPostCtrl',
           );
         };
 
-
-       /**
-        * FORM PROCESS 
-        **/
-
-        // __ image process
-        $scope.uploader = new FileUploader({autoUpload:true});
-        $scope.imageFile = false;
-        $scope.isFormLoading = false;
-
-        // after image upload
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-          $scope.imageFile = fileItem._file;
-          var reader = new FileReader();
-          reader.onloadend = function () {
-            $scope.currentPost.url_thumbnail = reader.result;
-            $scope.currentPost.image = {
-                base64: reader.result,
-                file: $scope.imageFile
-              };
-          }
-          reader.readAsDataURL($scope.imageFile);
-        };
-
-        $scope.submitForm = function() { // @todo loadee ...
-          // remove url_thumbnail prop 
-          $scope.isFormLoading = true;
-          delete $scope.currentPost.url_thumbnail;
-          console.info('current post', $scope.currentPost);
-          if($scope.modal.mode == 'create') {
-            DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
-              treatForm();
-            });
-          } else {
-            DataAccess.update(ENTITY.post, $scope.currentPost).then( function() {
-              treatForm();
-            });
-          }          
-        };
-
-        function treatForm() {
-          $scope.isFormLoading = false;
-          $('.ui.modal').modal('hide');
-        };
-
         $scope.deletePost = function() {
           DataAccess.delete(ENTITY.post, $scope.currentPost.id);
           init();
@@ -104,30 +59,9 @@ app.controller('AdminPostCtrl',
             sort.descending = false;
           }
         };
-
-        // function openPostModal() {
-        //   $('#postModal').modal('show').modal("refresh");
-        //   $('div.ng-pristine.ta-bind').addClass('textarea');
-        // };
-
+        
         $scope.openDeletePostModal = function(post) {
           $scope.currentPost = post;
           $('#deletePostModal').modal('show');
         };
-
-        // $scope.openCreationModal = function() {
-        //   $scope.currentPost = [];
-        //   $scope.modal.mode = 'create';
-        //   openPostModal();
-        //   $('.ui.checkbox').checkbox();
-        // };
-
-        // $scope.openEditionModal = function(post) {
-        //   $scope.currentPost = post;
-        //   $scope.modal.mode = 'edit';
-        //   openPostModal();
-        //   $('.ui.checkbox').checkbox().prop('checked',post.status=='published');
-        // };
-
-
       }]);
