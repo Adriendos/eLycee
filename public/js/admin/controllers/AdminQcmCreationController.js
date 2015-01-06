@@ -33,21 +33,25 @@ app.controller('AdminQcmCreationCtrl',
             };
 
             $scope.addQuestion = function() {
-                var html = '<div class="ui segment">';
-                html+= '<div class="ui top attached label small left blue"><i class="icon question"></i>Question:</div>';
-                html+= '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);"><i class="icon close"></i> &nbsp;Supprimer cette question</div>';
-                html+= '<div class="field">';
-                html+= '<label>Question</label>';
-                html+= '<input type="text" placeholder="Entrez ici la question" required>';
-                html+= '</div>';
-                html+= '<div class="fields" id="answers">';
-                html+= '<div class="ui divider invisible"></div>';
-                html+= '<div class="ui button tiny positive" ng-click="addAnswer()">Ajouter une réponse</div>';
-                html+= '</div>';
+                var html = [
+                    '<div class="ui segment">',
+                        '<div class="ui top attached label small left blue"><i class="icon question"></i>Question:</div>',
+                        '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);">',
+                            '<i class="icon close"></i> &nbsp;Supprimer cette question',
+                        '</div>',
+                        '<div class="field">',
+                            '<label>Question</label>',
+                            '<input type="text" placeholder="Entrez ici la question" required>',
+                        '</div>',
+                        '<div class="fields" id="answers">',
+                            '<div class="ui divider invisible"></div>',
+                            '<div class="ui button tiny positive" ng-click="addAnswer()">Ajouter une réponse</div>',
+                        '</div>',
+                    '</div>'
+                ].join('');
 
                 // pre compile for ng-click working in injected html
                 $('#questions').append($compile(html)($scope));
-
                 $('html, body').animate({
                     scrollTop: $('#addQuestionButton').offset().top
                 }, 1000);
@@ -56,32 +60,31 @@ app.controller('AdminQcmCreationCtrl',
             };
 
             $scope.addAnswer = function() {
-                var html = '<div class="two fields">';
-                html+= '<div class="field">';
-                html+= '<label>Réponse</label>';
-                html+= '<input placeholder="Saisissez la réponse" type="text">';
-                html+= '</div>';
-                html+= '<div class="field">';
-                html+= '<label>Valeur</label>';
-                html+= '<div class="ui radio checkbox">';
-                html+= '<input type="radio" name="value" checked="">';
-                html+= '<label>Bonne réponse</label>';
-                html+= '</div>';
-                html+= '&nbsp;&nbsp;'
-                html+= '<div class="ui radio checkbox">';
-                html+= '<input type="radio" name="value" checked="">';
-                html+= '<label>Mauvaise réponse</label>';
-                html+= '</div>';
-                html+= '</div>';
-                html+= '</div>';
+                var html = [
+                    '<div class="two fields">',
+                        '<div class="field">',
+                            '<label>Réponse</label>',
+                            '<input placeholder="Saisissez la réponse" type="text">',
+                        '</div>',
+                        '<div class="field">',
+                            '<label>Valeur</label>',
+                            '<div class="ui radio checkbox">',
+                            '<input type="radio" name="value" checked="">',
+                            '<label>Bonne réponse</label>',
+                        '</div>&nbsp;&nbsp;',
+                        '<div class="ui radio checkbox">',
+                            '<input type="radio" name="value" checked="">',
+                            '<label>Mauvaise réponse</label>',
+                        '</div>',
+                    '</div>'
+                ].join('');
 
                 $('#answers').append($compile(html)($scope));
             };
 
             $scope.submitQcm = function() {
                 console.log('form submitted');
-
-            }
+            };
 
 
         }]);
