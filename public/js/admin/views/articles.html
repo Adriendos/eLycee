@@ -92,51 +92,44 @@
           <!-- UPLOAD IMAGE ZONE -->
           <div img-uploader class="center aligned two columns row"></div>
         </div>  
-        
       </div><!-- .field image -->
 
 
-      <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
+      <div class="field">
         <label>Introduction</label>
-        <div text-angular ng-model="currentPost.excerpt" name="excerpt" data-ng-required></div>
+        <div text-angular ng-model="currentPost.excerpt"></div>
 
-        <div ng-show="postForm.$submitted">
+        <!-- <div ng-show="postForm.$submitted">
           <div ng-show="postForm.excerpt.$error.required">
             Veuillez entrer un extrait pour l' article
           </div>
-        </div>
-      </div>
-
-
-      <div class="field" ng-class="{ error: postForm.$submitted && currentPost.content.length <= 0 }">
-        <label>Contenu</label>
-        <div text-angular ng-model="currentPost.content" name="content"></div>
-
-        <div ng-show="postForm.$submitted && currentPost.content.length <= 0">
-          Veuillez entrer un contenu pour l' article
-        </div>
+        </div> -->
       </div>
 
 
       <div class="field">
+        <label>Contenu</label>
+        <div text-angular ng-model="currentPost.content"></div>
+
+       <!--  <div ng-show="postForm.$submitted">
+          Veuillez entrer un contenu pour l' article
+        </div> -->
+      </div>
+
+
+     <!--  <div class="field">
         <div id="status" ng-click="changeStatus()" class="ui toggle checkbox"> 
           <input type="checkbox" 
                  ng-model="currentPost.status"
                  value="{{currentPost.status}}">
           <label>Publier {{ currentPost.status }}</label>
         </div>
-      </div>
+      </div> -->
 
       <div class="ui buttons">
-        <input type="submit" class="ui submit positive button">
-          {{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}
-        </input>
-        
-        <div class="ui button negative reset">Annuler</div>
-
-        <input type="submit" ng-click="update(user)" value="{{ modal.mode == "create" ? "Creer" : "Enregistrer les modifications" }}" />
+        <input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
         <div class="or"></div>
-        <input type="button" ng-click="reset(form)" value="Reset" />
+        <div class="ui button negative reset">Annuler</div>
       </div>
     </form>
   </div>

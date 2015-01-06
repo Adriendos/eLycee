@@ -100,29 +100,23 @@ app.controller('AdminPostCtrl',
         // __ image process
         $scope.uploader = new FileUploader({autoUpload:true});
         $scope.imageFile = false;
+
         // CALLBACKS
         $scope.uploader.onAfterAddingFile = function(fileItem) {
           $scope.imageFile = fileItem._file;
           var reader = new FileReader();
           reader.onloadend = function () {
             $scope.currentPost.url_thumbnail = reader.result;
+            $scope.currentPost.image = {
+                base64: reader.result,
+                file: $scope.imageFile
+              };
           }
           reader.readAsDataURL($scope.imageFile);
         };
 
         $scope.submitForm = function() { // @todo verif fields not empty etc ...
-          if($scope.imageFile) { // has image ?
-            var reader = new FileReader();
-            reader.onloadend = function () {
-              $scope.currentPost.image = {
-                base64: reader.result,
-                file: $scope.imageFile
-              };
-              PostsFactory.save($scope.currentPost);
-            }
-            reader.readAsDataURL($scope.imageFile);
-          } else {
-            PostsFactory.save($scope.currentPost);
-          }
+          console.info('test', $scope.currentPost);
+          PostsFactory.save($scope.currentPost);
         };
       }]);
