@@ -9,15 +9,10 @@ class Qcm extends \Eloquent {
 	 */
 	protected $table = 'qcms';
 
-	/**
-	 * Mass assignment fillable fields
-	 * 
-	 * @var array
-	 */
-	protected $fillable = ['title', 'description'];
-
-	public function questions()
-	{
-		return $this->belongsToMany('Question', 'qcm_question');
-	}
+	// /**
+	//  * Mass assignment fillable fields
+	//  * 
+	//  * @var array
+	//  */
+	protected $guardable = ['id'];
 }

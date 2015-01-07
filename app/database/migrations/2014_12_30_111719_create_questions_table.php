@@ -16,6 +16,8 @@ class CreateQuestionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->text('content');
+			$table->integer('qcm_id')->unsigned()->index();
+			$table->foreign('qcm_id')->references('id')->on('qcms')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

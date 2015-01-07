@@ -12,8 +12,9 @@ class CommentTableSeeder extends Seeder {
 		foreach(range(1, 320) as $index)
 		{
 			Comment::create([
-				'content' => $faker->sentence(),
-				'user_id' => $faker->numberBetween(1, 10),
+				'content'    => $faker->sentence(),
+				'name'       => $faker->name,
+				'post_id'    => $faker->numberBetween(1, 10),
 				'created_at' => $faker->unixTime(),
 				'updated_at' => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
 			]);
