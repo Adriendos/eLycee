@@ -4,7 +4,7 @@ var app;
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize', 
      'LocalStorageModule', 'toastr', 'angularFileUpload',
-     'googlechart', 'djds4rce.angular-socialshare', 'ngCkeditor'
+     'googlechart', 'djds4rce.angular-socialshare'
  ]);
 
 app.constant('CONFIG', 

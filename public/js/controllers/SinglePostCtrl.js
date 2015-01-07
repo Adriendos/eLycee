@@ -12,7 +12,6 @@ app.controller('SinglePostCtrl',
                 function(comments) {
                     $scope.post = post;
                     $scope.post.comments = comments;
-
                 });
           }
       );

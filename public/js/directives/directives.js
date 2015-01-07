@@ -119,7 +119,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
 
 app.directive('comment', function(DataAccess, ENTITY) {
     return {
-        resrict: 'E',
+        restrict: 'E',
         transclude: true,
         scope: {
             postId: '=',
@@ -128,14 +128,13 @@ app.directive('comment', function(DataAccess, ENTITY) {
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
             scope.specialField = '';
-            scope.comment = { 'name': '' , 'content': '', 'user_id': scope.$parent.post.id};
-            scope.postComment = function() {
-                if(scope.specialField == '') {
-                   DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
-                        console.log('EPIC SUCCESS');
-                   });
-                }
-            }
+            scope.comment = { name: 'zizi' , content: '', post_id: scope.postId};
+            console.log(scope);
+            scope.postComment = function(){
+                DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
+                    console.log('good');
+                });
+            };
         }
     };
 });
