@@ -17,10 +17,21 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.removeQuestion = function($event) {
                 var segment = $($event.currentTarget).closest('.ui.segment');
+                console.info('type of id ', segment.data('id'));
                 var id = segment.data('id');
-                $scope.questions[id] = 'test';
-                console.info('questions obj', $scope.questions);
-                delete $scope.questions[id];
+
+                console.info('questions obj before delete', $scope.questions);
+                angular.forEach($scope.questions, function(question, key) {
+                    if(key == id) {
+                        console.log('********* data OK');
+                        delete question;   
+                    }
+
+                    console.info('id ', typeof id);
+                    console.info('Key ', typeof key);
+                    // console.info('Quest ', question);
+                });
+
                 console.info('questions obj after delete', $scope.questions);
 
                 segment.fadeOut().remove();
@@ -49,7 +60,7 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.addQuestion = function() {
                 var guid = Utils.guid();
-                $scope.questions[guid] = { content : '', answers: {}};
+                $scope.questions[guid] = { content : '', answers: {} };
 
                 var html = [
                     '<div class="ui segment" data-id="\''+guid+'\'">',

@@ -16,4 +16,8 @@ class Qcm extends \Eloquent {
 	 */
 	protected $fillable = ['title', 'description'];
 
+	public function questions()
+	{
+		return $this->belongsToMany('Question', 'qcm_question');
+	}
 }
