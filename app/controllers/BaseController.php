@@ -52,7 +52,7 @@ class BaseController extends Controller {
 		return Response::json($elem);
     }
 
-	 /**
+	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int $id

@@ -38,13 +38,13 @@
           <td>{{post.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
           <td>{{post.user_id}}</td>
           <td class="center aligned">
-            <div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
+            <div class="ui icon button positive" ng-click="go('/admin/post/edit/'+post.id)" data-content="Editer l'article">
               <i class="edit icon"></i>
             </div>
             <div class="ui icon button negative" ng-click="openDeletePostModal(post)">
               <i class="trash icon"></i>
             </div>
-            <div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
+            <div class="ui icon button primary" ng-click="go('/post/'+post.id)">
               <i class="eye icon"></i>
             </div>
             <div class="ui icon button basic">

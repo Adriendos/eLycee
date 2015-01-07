@@ -1,17 +1,25 @@
 app.controller('AdminPostEditCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService', '$routeParams',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams) {
+      // init vars
     	$scope.entity = ENTITY.post;
       $scope.currentPost = {}; 
 
-      if( $routeParams.id ) {
+      if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
-      } else {
+        DataAccess.getDataById(ENTITY.post, $routeParams.id).then( 
+          function(post) {
+            if( post.status == 'published') {
+              $('.ui.checkbox').checkbox('check');
+            }
+            $scope.currentPost = post; 
+          });
+      } else { // create a new post
         $scope.mode = 'create';
+        $scope.currentPost.status = 'unpublished';
       }
-      console.log($scope.mode);
+
       // Checkbox published
-      $scope.currentPost.status = 'unpublished';
       $('.ui.checkbox').checkbox('setting', 'onChange', function() {
         var inputVal = this[0].checked;
         if( inputVal ) {
@@ -47,7 +55,7 @@ app.controller('AdminPostEditCtrl',
 
         $scope.submitForm = function() { // @todo loadee ...
           // remove url_thumbnail prop 
-          // delete $scope.currentPost.url_thumbnail;
+          delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
           $scope.currentPost.user_id = SessionService.getUser().id;
           if($scope.mode == 'create') {
@@ -63,7 +71,7 @@ app.controller('AdminPostEditCtrl',
 
         function closeForm() {
           $scope.isFormLoading = false;
-          $location.path('/admin/articles');
+          $location.path('/admin/posts');
         };
 
         $scope.reset = function() {
