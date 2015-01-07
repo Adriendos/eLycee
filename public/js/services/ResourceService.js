@@ -19,11 +19,13 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                 switch(entityName) {
                     case ENTITY.question :
                         resource =  $resource(
-                            apiUrl + "/qcm/:qcm_id/question/:id",
-
+                            apiUrl + "qcms/:id/questions/:entity_id",
                             {
-                                query: {method: 'GET',params: {user_id: "@qcm_id"}, isArray: true, cache: true},
-                                get: {method: 'GET', params: {user_id: "@qcm_id", id: "@id"}, isArray: true, cache : true},
+                                id: '@id'
+                            },
+                            {
+                                query: {method: 'GET', isArray: true, cache: true},
+                                get: {method: 'GET', params: {entity_id: "@entity_id"}, isArray: true, cache : true},
                                 save: {method: 'POST'},
                                 update: { method:'PUT' }
                             }
@@ -32,7 +34,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         break;
                     case ENTITY.answer :
                         resource = $resource(
-                            apiUrl + "/question/:question_id/answer/:id",
+                            apiUrl + "/questions/:question_id/answers/:id",
 
                             {
                                 query: {method: 'GET',params: {user_id: "@question_id"}, isArray: true, cache: true},

@@ -1,4 +1,4 @@
-app.controller('AdminQcmCtrl',
+app.controller('AdminQcmsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
         function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
 

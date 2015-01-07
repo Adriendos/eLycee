@@ -10,6 +10,11 @@ app.factory('DataAccess',
 			return query(resource);
 		};
 
+		DataAccess.getAllData = function(entityName, id) {
+			var resource = ResourceFactory.getResource(entityName);
+			return nestedQuery(resource, id);
+		}
+
 		DataAccess.getDataById = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
 
@@ -82,6 +87,21 @@ app.factory('DataAccess',
 
 			return d.promise;
 		};
+
+		function nestedQuery(resource, id) {
+			var d = $q.defer();
+			var start = new Date().getTime();
+			var result = resource.query(
+				{id: id},
+				function(data) {
+					d.resolve(result);
+					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
+				},function() {
+					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
+				});
+
+			return d.promise;
+		}
 
 		function create(resource, data) {
 			var d = $q.defer();

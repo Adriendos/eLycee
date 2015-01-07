@@ -1,4 +1,4 @@
-app.controller('AdminQcmCreationCtrl',
+app.controller('AdminQcmEditCtrl',
     ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
         function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
             $scope.questions = {};

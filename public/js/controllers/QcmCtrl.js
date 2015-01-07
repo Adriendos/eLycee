@@ -24,6 +24,7 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                             $scope.availableQcms.push(qcm);
                         }
                     });
+                    $('.loadingQcms').toggleClass('loading');
                 }
             );
 

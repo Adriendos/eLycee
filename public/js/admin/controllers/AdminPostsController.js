@@ -1,4 +1,4 @@
-app.controller('AdminPostCtrl',
+app.controller('AdminPostsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
       function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
 
