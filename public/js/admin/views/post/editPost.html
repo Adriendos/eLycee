@@ -34,7 +34,7 @@
       <!-- @todo => president erreur field text angular -->
       <div class="field">
         <label>Introduction</label>
-        <textarea ckeditor="editorOptions" ng-model="currentPost.excerpt" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }"></textarea>
+        <textarea ck-editor ng-model="currentPost.excerpt" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }"></textarea>
 
         <!-- <div ng-show="postForm.$submitted">
           <div ng-show="postForm.excerpt.$error.required">
@@ -46,7 +46,7 @@
 
       <div class="field">
         <label>Contenu</label>
-        <textarea ckeditor="editorOptions" ng-model="currentPost.content" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }"></textarea>
+        <textarea ck-editor ng-model="currentPost.content" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }"></textarea>
 
         <!--  <div ng-show="postForm.$submitted">
            Veuillez entrer un contenu pour l' article
