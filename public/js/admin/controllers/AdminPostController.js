@@ -6,6 +6,7 @@ app.controller('AdminPostCtrl',
         $scope.modal = [];
         $scope.currentPage = 1;
         $scope.entity = ENTITY.post;
+        $scope.currentPost = {};
 
         $('.ui.modal').modal();
         init();
