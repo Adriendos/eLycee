@@ -122,15 +122,16 @@ app.directive('comment', function(DataAccess, ENTITY) {
         restrict: 'E',
         transclude: true,
         scope: {
-            postId: '=',
+            postId: '=postId',
             comments: '='
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
             scope.specialField = '';
-            scope.comment = { name: 'zizi' , content: '', post_id: scope.postId};
+            scope.comment = { name: 'zizi' , content: '', post_id: 1};
             console.log(scope);
             scope.postComment = function(){
+                console.log(scope.comment);
                 DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
                     console.log('good');
                 });
