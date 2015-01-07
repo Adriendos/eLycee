@@ -1,7 +1,7 @@
 app.controller('AdminQcmCreationCtrl',
     ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
         function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
-            $scope.questions = new Object();
+            $scope.questions = {};
             $scope.nbQuestion = 1;
             $scope.currentQcm = {
                 title: '',
@@ -17,23 +17,10 @@ app.controller('AdminQcmCreationCtrl',
 
             $scope.removeQuestion = function($event) {
                 var segment = $($event.currentTarget).closest('.ui.segment');
-                console.info('type of id ', segment.data('id'));
                 var id = segment.data('id');
 
-
-                console.info('questions obj before delete', $scope.questions);
-                angular.forEach($scope.questions, function(question, key) {
-                    if(key == id) {
-                        console.log('********* data OK');
-                        delete question;   
-                    }
-
-                    console.info('id ', typeof id);
-                    console.info('Key ', typeof key);
-                    // console.info('Quest ', question);
-                });
-
-                console.info('questions obj after delete', $scope.questions);
+                delete $scope.questions[id];
+                console.log($scope.questions);
 
                 segment.fadeOut().remove();
 
@@ -64,7 +51,7 @@ app.controller('AdminQcmCreationCtrl',
                 $scope.questions[guid] = { content : '', answers: {} };
 
                 var html = [
-                    '<div class="ui segment" data-id="\''+guid+'\'">',
+                    '<div class="ui segment" data-id="'+guid+'">',
                         '<div class="ui top attached label small left blue"><i class="icon help"></i>Question:</div>',
                             '<div class="ui top attached label small right remove-question" ng-click="removeQuestion($event);">',
                                 '<i class="icon close"></i> &nbsp;Supprimer',
