@@ -8,7 +8,7 @@ class BaseController extends Controller {
 	public function __construct()
     {
     	$this->beforeFilter('auth.token', 
-    		['except' => ['index', 'getToken'] 
+    		['except' => ['index', 'getToken', 'show'] 
     	]);
     }
 
@@ -39,7 +39,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image') { continue; }
+			if($inputName == 'image' || $inputName == 'auth_token') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
@@ -79,7 +79,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == '_method') { continue; }
+			if($inputName == '_method' || $inputName == 'auth_token') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 		$elem->save();
