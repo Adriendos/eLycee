@@ -112,19 +112,30 @@ app.controller('AdminQcmEditCtrl',
                     scrollTop: $('#answers'+questionGuid).offset().top
                 }, 1000);
 
-
-                console.log($scope.questions);
             };
 
             $scope.submitQcm = function() {
-                DataAccess.create(ENTITY.qcm, $scope.currentQcm).then(function(data){
-                    //data.id;
+                //DataAccess.create(ENTITY.qcm, $scope.currentQcm).then(function(data){
+                //    //data.id;
+                //
+                //    angular.forEach($scope.questions, function(question) {
+                //        //question.qcm_id
+                //        //DataAccess.create(ENTITY.question, question)
+                //    });
+                //});
 
-                    angular.forEach($scope.questions, function(question) {
-                        //question.qcm_id
-                        //DataAccess.create(ENTITY.question, question)
+                $scope.currentQcm.questions = [];
+                angular.forEach($scope.questions, function(question) {
+                    answers = question.answers;
+                    question.answers = [];
+                    angular.forEach(answers, function(answer) {
+                        question.answers.push(answer);
                     });
+                    $scope.currentQcm.questions.push(question);
+
                 });
+
+                console.log($scope.currentQcm);
 
 
             };
