@@ -1,5 +1,5 @@
-app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService', 'TokenHandler',
-    function($resource, CONFIG, ENTITY, SessionService, TokenHandler) {
+app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService',
+    function($resource, CONFIG, ENTITY, SessionService) {
 
         var ResourceService = {};
 
@@ -54,9 +54,9 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                             },
                             {
                                 query: {method: 'GET', isArray: true, cache: true},
-                                get: {method: 'GET', params: {id: '@id'}, isArray: false, cache : true},
-                                save: {method: 'POST'},
-                                update: { method:'PUT' }
+                                get: {method: 'GET', params: {id: '@id' }, isArray: false, cache : true},
+                                save: {method: 'POST', headers: { 'X-Auth-Token' : SessionService.getToken() } },
+                                update: { method:'PUT', headers: { 'X-Auth-Token' : SessionService.getToken() } }
                             }
 
                         );
@@ -66,7 +66,9 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                 RESOURCES[entityName] = resource;
 
                 //Wrap resource to secure api with token
-                return TokenHandler.wrapActions(resource, ["query", "update", "save"] );
+                //resource = TokenHandler.wrapActions(resource, ["query", "update", "save"] );
+                //console.log(resource);
+                return resource;
 
             }
         };
