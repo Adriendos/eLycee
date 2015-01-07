@@ -19,34 +19,39 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                 switch(entityName) {
                     case ENTITY.question :
                         resource =  $resource(
-                            apiUrl + "qcms/:id/questions/:entity_id",
+                            apiUrl + "qcms/:id/questions",
                             {
                                 id: '@id'
                             },
                             {
-                                query: {method: 'GET', isArray: true, cache: true},
-                                get: {method: 'GET', params: {entity_id: "@entity_id"}, isArray: true, cache : true},
-                                save: {method: 'POST'},
-                                update: { method:'PUT' }
+                                query: {method: 'GET', isArray: true, cache: true}
                             }
-
                         );
                         break;
                     case ENTITY.answer :
-                        resource = $resource(
-                            apiUrl + "/questions/:question_id/answers/:id",
-
+                        resource =  $resource(
+                            apiUrl + "questions/:id/answers",
                             {
-                                query: {method: 'GET',params: {user_id: "@question_id"}, isArray: true, cache: true},
-                                get: {method: 'GET', params: {user_id: "@question_id", id: "@id"}, isArray: true, cache : true},
-                                save: {method: 'POST'},
-                                update: { method:'PUT' }
+                                id: '@id'
+                            },
+                            {
+                                query: {method: 'GET', isArray: true, cache: true}
                             }
 
                         );
                         break;
                     case ENTITY.comment :
-                        // TODO
+                        resource =  $resource(
+                            apiUrl + "posts/:id/comments",
+                            {
+                                id: '@id'
+                            },
+                            {
+                                query: {method: 'GET', isArray: true, cache: true},
+                                save: { url: apiUrl + entityName + '/:id' ,method:'POST', headers: { 'X-Auth-Token' : SessionService.getToken() }}
+                            }
+
+                        );
                         break;
                     default :
                         resource = $resource(
@@ -67,9 +72,6 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
 
                 RESOURCES[entityName] = resource;
 
-                //Wrap resource to secure api with token
-                //resource = TokenHandler.wrapActions(resource, ["query", "update", "save"] );
-                //console.log(resource);
                 return resource;
 
             }

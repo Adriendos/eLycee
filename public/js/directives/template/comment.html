@@ -8,18 +8,18 @@
         </div>
     </div>
 </div>
-<form novalidate ng-submit="postComment()" class="ui form segment">
+<form ng-submit="postComment()" class="ui form segment" name="commentForm">
     <h2>Laisser un commentaire :</h2>
     <div class="field" style="display:none">
-        <input type="text" name="specialField"/>
+        <input type="text" name="specialField" ng-model="specialField"/>
     </div>
     <div class="field">
         <label>Votre nom : </label>
-        <input type="text">
+        <input type="text" name="name" ng-model="comment.name">
     </div>
     <div class="field">
         <label>Commentaire :</label>
-        <textarea name="content"></textarea>
+        <textarea name="content" ng-model="comment.content"></textarea>
     </div>
     <input type="submit" value="Publier" class="ui green button"/>
 </form>

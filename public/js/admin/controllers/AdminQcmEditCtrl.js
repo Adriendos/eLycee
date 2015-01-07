@@ -9,6 +9,7 @@ app.controller('AdminQcmEditCtrl',
                 class_level: ''
             };
 
+            $('#validateQcm').modal();
             $('select.dropdown').dropdown('setting', 'onChange' ,function() {
                 $scope.currentQcm.class_level = $(this).dropdown('get value')
             });
@@ -115,15 +116,6 @@ app.controller('AdminQcmEditCtrl',
             };
 
             $scope.submitQcm = function() {
-                //DataAccess.create(ENTITY.qcm, $scope.currentQcm).then(function(data){
-                //    //data.id;
-                //
-                //    angular.forEach($scope.questions, function(question) {
-                //        //question.qcm_id
-                //        //DataAccess.create(ENTITY.question, question)
-                //    });
-                //});
-
                 $scope.currentQcm.questions = [];
                 angular.forEach($scope.questions, function(question) {
                     answers = question.answers;
@@ -136,12 +128,15 @@ app.controller('AdminQcmEditCtrl',
                 });
 
                 console.log($scope.currentQcm);
-
-
+                //create qcm here
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
                 $scope.questions[questionGuid].answers[answerGuid].status = parseInt(val);
+            };
+
+            $scope.openValidateQcmModal = function() {
+                $('#validateQcm').modal('show');
             };
 
         }]);

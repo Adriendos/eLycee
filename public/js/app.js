@@ -3,8 +3,8 @@ var app;
 
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize', 
-     'LocalStorageModule', 'toastr', 'textAngular', 'angularFileUpload', 
-     'googlechart', 'djds4rce.angular-socialshare' 
+     'LocalStorageModule', 'toastr', 'angularFileUpload',
+     'googlechart', 'djds4rce.angular-socialshare', 'ngCkeditor'
  ]);
 
 app.constant('CONFIG', 
@@ -21,7 +21,9 @@ app.constant('ENTITY',
        qcm: 'qcms',
        question: 'questions', 
        answer: 'answers' ,
-       score: 'scores'
+       score: 'scores',
+       comment: 'comments',
+       user:'users'
    } 
 );
 

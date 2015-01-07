@@ -127,8 +127,14 @@ app.directive('comment', function(DataAccess, ENTITY) {
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
+            scope.specialField = '';
+            scope.comment = { 'name': '' , 'content': '', 'user_id': scope.$parent.post.id};
             scope.postComment = function() {
-                alert('mes burnes ! TODO: check if special field empty -> if yes post comment with dataAccess');
+                if(scope.specialField == '') {
+                   DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
+                        console.log('EPIC SUCCESS');
+                   });
+                }
             }
         }
     };

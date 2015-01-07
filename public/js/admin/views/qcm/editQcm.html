@@ -1,7 +1,7 @@
 <div class="row">
     <div class="column padding-reset" style="margin-top:50px;">
         <h1><i class="write icon"></i> Création d'un nouveau QCM</h1>
-        <form class="ui form segment" name="newQcm" ng-submit="submitQcm()" novalidate>
+        <form class="ui form segment" name="newQcm" ng-submit="openValidateQcmModal()" novalidate>
             <h2>Description du QCM</h2>
             <div class="field">
                 <label for="" class="label">Titre
@@ -31,6 +31,28 @@
             <div class="ui info button"id="addQuestionButton" ng-click="addQuestion()"><i class="icon plus"></i>Ajouter une question</div>
             <input type="submit" class="ui button"></input>
         </form>
+    </div>
+</div>
+
+<!-- Validate qcm creation -->
+<div id="validateQcm" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Supprimer
+    </div>
+    <div class="content">
+        <p>Créer le qcm?</p>
+        <b>Attention</em>
+        <p>Si vous validez, le qcm sera crée et vous ne pourrez plus le modifier !</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            Retour
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="submitQcm()">
+            Valider
+            <i class="checkmark icon"></i>
+        </div>
     </div>
 </div>
 

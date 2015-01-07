@@ -17,27 +17,21 @@ app.factory('DataAccess',
 
 		DataAccess.getDataById = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-
 			return get(resource, id);
 		};
 
 		DataAccess.create = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Add post in cache
-
 			return create(resource, entityName, data);
 		};
 
 		DataAccess.update = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Update post from cache
-
 			return update(resource,entityName, data);
 		};
 
 		DataAccess.delete = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Delete post from cache
 			return remove(resource, id);
 		};
 
