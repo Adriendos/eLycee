@@ -8,12 +8,12 @@
 			<div class="content">
 				<div class="header">Actualité à la une !</div>
 				<div class="meta">
-					<a class="group">Put meta here</a>
+					<a class="group">02/01/2015</a>
 				</div>
 				<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
 			</div>
 			<div class="extra content">
-				<a class="right floated created">Author</a>
+				<a class="right floated created">Author name</a>
 				<a class="ui tag red label">New</a>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 				<div class="content">
 					<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
 					<div class="meta">
-						<small>{{ post.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</small>
+						<small>{{ post.created_at | dateToISO | date:'dd/MM/yyyy'}}</small>
 						<a>Category</a>
 					</div>
 					<div class="description">

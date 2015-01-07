@@ -10,8 +10,8 @@
 		<div class="ui hidden divider"></div>
 		<p>{{post.content}}</p>
 		<em>Rédigé par: {{post.user_id.username}}</em></br>
-		<em>Le: {{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</em>
-		<a twitter  data-lang="fr" data-count='horizontal' data-url='http://localhost/eLycee/public/#/post/25' data-size="medium" data-text='post.title' ></a>
+		<em>Le: {{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</em></br>
+		<a twitter class="right aligned" data-lang="fr" data-count='horizontal' data-url='http://localhost/eLycee/public/#/post/25' data-size="medium" data-text='post.title'></a>
 	</div>
 
 	<comment comments="[{content:'zizi', name:'Didier', created_at:'1992-08-18 21:00:13'},{content: 'zizi2', name:'Francis', created_at:'1975-06-26 21:00:13'}]"></comment>
