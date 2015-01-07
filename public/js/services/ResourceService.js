@@ -50,7 +50,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
                             },
                             {
                                 query: {method: 'GET', isArray: true, cache: true},
-                                get: {method: 'GET', params: {id: '@id'}, isArray: true, cache : true},
+                                get: {method: 'GET', params: {id: '@id'}, isArray: false, cache : true},
                                 save: {method: 'POST'},
                                 update: { method:'PUT' }
                             }
