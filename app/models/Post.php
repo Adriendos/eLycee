@@ -19,5 +19,9 @@ class Post extends Eloquent {
 	 */
 	protected $fillable = [ 'title', 'excerpt', 'content', 'url_thumbnail', 
 							'status', 'user_id', 'created_at', 'updated_at' ];
-  
+
+	public function comments() 
+	{
+		return $this->hasMany('Comment');
+	}
 }

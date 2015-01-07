@@ -8,4 +8,9 @@ class Qcm extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'qcms';
+
+	public function questions() 
+	{
+		return $this->hasMany('Question');
+	}
 }

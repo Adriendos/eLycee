@@ -9,7 +9,7 @@ class AnswerTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 989) as $index)
 		{
 			Answer::create([
 				'content' => implode(' ', $faker->sentences),
