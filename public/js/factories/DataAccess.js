@@ -61,7 +61,7 @@ app.factory('DataAccess',
 				function(data) {
 					d.resolve(result);
 					console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
-					return data[0];
+					return data;
 				},function() {
 					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error')
 				});
