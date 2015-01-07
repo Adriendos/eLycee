@@ -9,7 +9,11 @@ class NestedBaseController extends Controller {
 	 */
 	public function index($id)
 	{
+		$model = rtrim( ucfirst( Request::segment(2) ), 's');
+		$joined_table = Request::segment(4);
+		$elem = $model::findOrFail($id)->$joined_table;
 
+		return Response::json($elem);
 	}
 
 	/**
