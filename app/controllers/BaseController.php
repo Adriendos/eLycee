@@ -79,8 +79,12 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == '_method' || $inputName == 'auth_token') { continue; }
+			if($inputName == 'image' || $inputName == '_method' || $inputName == 'auth_token') { continue; }
 			$elem->$inputName = $inputVal;
+		}
+		$imgPath = $this->processImage($inputs, $model);
+		if($imgPath) {
+			$elem->url_thumbnail = $imgPath;
 		}
 		$elem->save();
 		return Response::json($elem);
