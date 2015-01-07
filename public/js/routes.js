@@ -38,6 +38,7 @@ app.config(['$routeProvider',
         controller : 'AdminPostsCtrl',
         templateUrl : 'js/admin/views/articles.html'
     })
+    // @todo facto both create and edit are the same
     .when('/admin/post/create', {
       controller : 'AdminPostEditCtrl',
       templateUrl : 'js/admin/views/post/editPost.html'

@@ -109,6 +109,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
                     scope.$parent.currentPage = page;
 
                 }
+                // @todo facto make a util of that
                 $('html, body').animate({
                     scrollTop: $('html').offset().top
                 }, 500);
