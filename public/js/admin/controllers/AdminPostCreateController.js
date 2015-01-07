@@ -1,14 +1,29 @@
 
 
 app.controller('AdminPostCreationCtrl',
-    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService',
-    function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService) {
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService', '$routeParams',
+    function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams) {
     	$scope.entity = ENTITY.post;
-      $('.ui.checkbox').checkbox();
-      $scope.mode = 'create';
-      $scope.currentPost = {};
+      $scope.currentPost = {}; 
 
-    	/**
+      if( $routeParams.id ) {
+        $scope.mode = 'edit';
+      } else {
+        $scope.mode = 'create';
+      }
+      console.log($scope.mode);
+      // Checkbox published
+      $scope.currentPost.status = 'unpublished';
+      $('.ui.checkbox').checkbox('setting', 'onChange', function() {
+        var inputVal = this[0].checked;
+        if( inputVal ) {
+          $scope.currentPost.status = 'published';
+        } else {
+          $scope.currentPost.status = 'unpublished';
+        }
+      });
+
+      /**
         * FORM PROCESS 
         **/
 
