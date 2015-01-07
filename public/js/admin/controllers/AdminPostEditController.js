@@ -1,4 +1,4 @@
-app.controller('AdminPostCreationCtrl',
+app.controller('AdminPostEditCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService', '$routeParams',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams) {
     	$scope.entity = ENTITY.post;
