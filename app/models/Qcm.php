@@ -8,11 +8,4 @@ class Qcm extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'qcms';
-
-	// /**
-	//  * Mass assignment fillable fields
-	//  * 
-	//  * @var array
-	//  */
-	protected $guardable = ['id'];
 }

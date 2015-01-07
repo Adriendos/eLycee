@@ -3,6 +3,16 @@
 class BaseController extends Controller {
 
 	/**
+	 * filter auth token 
+	 */
+	public function __construct()
+    {
+    	$this->beforeFilter('auth.token', 
+    		['except' => ['index', 'getToken'] 
+    	]);
+    }
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
