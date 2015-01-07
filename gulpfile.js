@@ -67,6 +67,7 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/ngmap/build/scripts/ng-map.min.js',
         'public/bower_components/angular-toastr/dist/angular-toastr.js',
         'public/bower_components/rangy/rangy-core.js',
+        'public/bower_components/ng-ckeditor/libs/ckeditor/ckeditor.js',
         'public/bower_components/ng-ckeditor/ng-ckeditor.min.js',
         'public/bower_components/angular-file-upload/angular-file-upload.min.js',
         'public/bower_components/angular-google-chart/ng-google-chart.js',

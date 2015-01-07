@@ -46,11 +46,11 @@
 
       <div class="field">
         <label>Contenu</label>
-        <!--<div text-angular class="segment ui" ng-model="currentPost.content"></div>-->
+        <textarea ckeditor="editorOptions" ng-model="currentPost.content" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }"></textarea>
 
-       <!--  <div ng-show="postForm.$submitted">
-          Veuillez entrer un contenu pour l' article
-        </div> -->
+        <!--  <div ng-show="postForm.$submitted">
+           Veuillez entrer un contenu pour l' article
+         </div> -->
       </div>
 
       <div class="field">
