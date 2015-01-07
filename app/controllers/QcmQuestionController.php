@@ -8,8 +8,7 @@ class QcmQuestionController extends \NestedBaseController {
 	 */
 	public function index($id)
 	{
-		$qcm = Qcm::findOrFail($id);
-		// $return = $qcm->pivot->questions;
+		$qcm = Qcm::findOrFail($id)->questions()->get();
 		return Response::json($qcm);
 	}
 
@@ -20,6 +19,7 @@ class QcmQuestionController extends \NestedBaseController {
 	 */
 	public function store()
 	{	
+
     }
 
 	/**
