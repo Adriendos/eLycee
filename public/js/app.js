@@ -18,7 +18,7 @@ app.constant('CONFIG',
 app.constant('ENTITY', 
    { 
        post: 'posts', 
-       qcm: 'qcms', 
+       qcm: 'qcms',
        question: 'questions', 
        answer: 'answers' 
    } 

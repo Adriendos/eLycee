@@ -1,0 +1,21 @@
+<div>
+    <div class="ui segment" ng-repeat="comment in comments">
+        Auteur: {{comment.name}} </br>
+        Contenu: {{comment.content}}
+    </div>
+</div>
+<form novalidate ng-submit="postComment()" class="ui form">
+    <label>Laisser un commentaire :</label>
+    <div class="field" style="display:none">
+        <input type="text" name="specialField"/>
+    </div>
+    <div class="field">
+        <label>Votre nom : </label>
+        <input type="text">
+    </div>
+    <div class="field">
+        <label>Commentaire :</label>
+        <textarea name="content"></textarea>
+    </div>
+    <input type="submit" class="ui button"/>
+</form>

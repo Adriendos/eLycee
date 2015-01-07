@@ -1,7 +1,7 @@
 app.controller('AdminQcmCreationCtrl',
     ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
         function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
-            $scope.questions = {};
+            $scope.questions = new Object();
             $scope.nbQuestion = 1;
             $scope.currentQcm = {
                 title: '',
@@ -18,9 +18,9 @@ app.controller('AdminQcmCreationCtrl',
             $scope.removeQuestion = function($event) {
                 var segment = $($event.currentTarget).closest('.ui.segment');
                 var id = segment.data('id');
-                $scope.questions[id] = 'test';
+                console.log($scope.questions.id);
                 console.info('questions obj', $scope.questions);
-                delete $scope.questions[id];
+                delete $scope.questions[id.toString()];
                 console.info('questions obj after delete', $scope.questions);
 
                 segment.fadeOut().remove();
@@ -82,6 +82,7 @@ app.controller('AdminQcmCreationCtrl',
             $scope.addAnswer = function(questionGuid) {
                 var guid = Utils.guid();
                 $scope.questions[questionGuid].answers[guid] = { content: '', status: 0};
+
 
                 var html = [
                     '<div class="two fields">',
