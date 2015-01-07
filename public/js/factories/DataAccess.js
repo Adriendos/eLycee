@@ -120,13 +120,17 @@ app.factory('DataAccess',
 
 		function update(resource, entityName, data) {
 			var id = data.id;
+			var d = $q.defer();
 			get(resource, id).then(function(entity) {
 				angular.extend(entity, data); // Replaces entity fields by data fields
-				entity.$update(function() {
+
+				var result = entity.$update(function() {
 					clearCache(entityName, id);
+					d.resolve(result);
 					$rootScope.notify('Modification effectuée avec succès.');
 				});
 			});
+			return d.promise;
 		};
 
 		function remove(resource, entityName, id) {
