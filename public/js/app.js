@@ -20,7 +20,8 @@ app.constant('ENTITY',
        post: 'posts', 
        qcm: 'qcms',
        question: 'questions', 
-       answer: 'answers' 
+       answer: 'answers' ,
+       score: 'scores'
    } 
 );
 
