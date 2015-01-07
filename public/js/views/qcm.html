@@ -18,24 +18,10 @@
                 <i class="icon radio"></i>QCM disponibles
             </div>
             <div class="ui relaxed divided list">
-                <div class="item">
+                <div class="item" ng-repeat="qcm in availableQcms">
                     <div class="content">
-                        <div class="header">Snickerdoodle</div>
-                        An excellent companion
-                        <div class="right floated compact ui button" ng-click="go('/qcm/1');">Commencer</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="content">
-                        <div class="header">Poodle</div>
-                        A poodle, its pretty basic
-                        <div class="right floated compact ui button" ng-click="go('/qcm/1');">Commencer</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="content">
-                        <div class="header">Paulo</div>
-                        He's also a dog
+                        <div class="header">{{qcm.title}}</div>
+                        {{ qcm.description }}
                         <div class="right floated compact ui button" ng-click="go('/qcm/1');">Commencer</div>
                     </div>
                 </div>
@@ -46,25 +32,11 @@
                 <i class="icon checkmark"></i>QCM répondus
             </div>
             <div class="ui relaxed divided list">
-                <div class="item">
-                    <div class="content">
-                        <div class="header">Snickerdoodle</div>
-                        An excellent companion
-                        <div class="right floated compact ui label green">8/10</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="content">
-                        <div class="header">Poodle</div>
-                        A poodle, its pretty basic
-                        <div class="right floated compact ui label green">6/10</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="content">
-                        <div class="header">Paulo</div>
-                        He's also a dog
-                        <div class="right floated compact ui label red">3/10</div>
+                <div class="item" ng-repeat="qcm in unavailableQcms">
+                    <div class="content" >
+                        <div class="header">{{qcm.title}}</div>
+                        {{qcm.description}}
+                        <div class="right floated compact ui label green">{{qcm.score}}</div>
                     </div>
                 </div>
             </div>
