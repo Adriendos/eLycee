@@ -32,9 +32,7 @@
 						<small>{{ post.created_at | dateToISO | date:'dd/MM/yyyy'}}</small>
 						<a>Category</a>
 					</div>
-					<div class="description">
-						{{ post.excerpt | limitTo:25}}
-					</div>
+					<div class="description" ng-bind-html="post.excerpt | limitTo:25 | htmlToPlaintext"></div>
 					<div class="extra">
 						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> Username
 					</div>

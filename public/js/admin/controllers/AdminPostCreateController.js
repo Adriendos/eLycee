@@ -7,6 +7,7 @@ app.controller('AdminPostCreationCtrl',
       $('.ui.checkbox').checkbox();
       $scope.mode = 'create';
       $scope.currentPost = {};
+
     	/**
         * FORM PROCESS 
         **/
@@ -35,8 +36,6 @@ app.controller('AdminPostCreationCtrl',
           // remove url_thumbnail prop 
           // delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
-          console.info('current post', $scope.currentPost);
-          console.info('current post', '$scope.currentPost');
           $scope.currentPost.user_id = SessionService.getUser().id;
           if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
@@ -51,7 +50,7 @@ app.controller('AdminPostCreationCtrl',
 
         function closeForm() {
           $scope.isFormLoading = false;
-          $location.path('admin/posts');
+          $location.path('/admin/articles');
         };
 
         $scope.reset = function() {
