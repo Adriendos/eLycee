@@ -1,7 +1,7 @@
 app.controller('AdminQcmCreationCtrl',
     ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
         function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
-            $scope.questions = {};
+            $scope.questions = new Object();
             $scope.nbQuestion = 1;
             $scope.currentQcm = {
                 title: '',
@@ -19,6 +19,7 @@ app.controller('AdminQcmCreationCtrl',
                 var segment = $($event.currentTarget).closest('.ui.segment');
                 console.info('type of id ', segment.data('id'));
                 var id = segment.data('id');
+
 
                 console.info('questions obj before delete', $scope.questions);
                 angular.forEach($scope.questions, function(question, key) {
@@ -93,6 +94,7 @@ app.controller('AdminQcmCreationCtrl',
             $scope.addAnswer = function(questionGuid) {
                 var guid = Utils.guid();
                 $scope.questions[questionGuid].answers[guid] = { content: '', status: 0};
+
 
                 var html = [
                     '<div class="two fields">',

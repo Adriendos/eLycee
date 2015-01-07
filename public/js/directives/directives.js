@@ -116,3 +116,20 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
         }
     }
 });
+
+app.directive('comment', function(DataAccess, ENTITY) {
+    return {
+        resrict: 'E',
+        transclude: true,
+        scope: {
+            postId: '=',
+            comments: '='
+        },
+        templateUrl: 'js/directives/template/comment.html',
+        link: function(scope, element, attrs) {
+            scope.postComment = function() {
+                alert('mes burnes ! TODO: check if special field empty -> if yes post comment with dataAccess');
+            }
+        }
+    };
+});
