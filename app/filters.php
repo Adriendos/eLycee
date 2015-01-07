@@ -55,7 +55,6 @@ Route::filter('auth.json', function() // nG app
 	}
 });
 
-
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

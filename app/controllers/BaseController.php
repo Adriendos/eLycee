@@ -3,6 +3,16 @@
 class BaseController extends Controller {
 
 	/**
+	 * filter auth token 
+	 */
+	public function __construct()
+    {
+    	$this->beforeFilter('auth.token', 
+    		['except' => ['index', 'getToken', 'show'] 
+    	]);
+    }
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -29,7 +39,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image') { continue; }
+			if($inputName == 'image' || $inputName == 'auth_token') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
@@ -69,7 +79,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == '_method') { continue; }
+			if($inputName == '_method' || $inputName == 'auth_token') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 		$elem->save();
