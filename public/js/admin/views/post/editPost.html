@@ -1,6 +1,6 @@
 <div class="column padding-reset" style="margin-top:50px;" nv-file-drop uploader="uploader">
   <div class="header">
-   <h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Article" : "Edition de l'article" }}</h1>
+    <h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Article" : "Edition de l'article" }}</h1>
   </div>
   <div class="content ui form segment">
     <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
@@ -28,12 +28,14 @@
         <div class="ui right aligned grid">
           <!-- UPLOAD IMAGE ZONE -->
           <div img-uploader class="center aligned two columns row"></div>
-        </div>  
+        </div>
       </div><!-- .field image -->
 
       <!-- @todo => president erreur field text angular -->
       <div class="field">
         <label>Introduction</label>
+        <textarea ck-editor ng-model="currentPost.excerpt" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }"></textarea>
+
         <!-- <div ng-show="postForm.$submitted">
           <div ng-show="postForm.excerpt.$error.required">
             Veuillez entrer un extrait pour l' article
@@ -44,14 +46,16 @@
 
       <div class="field">
         <label>Contenu</label>
+        <textarea ck-editor ng-model="currentPost.content" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }"></textarea>
+
         <!--  <div ng-show="postForm.$submitted">
            Veuillez entrer un contenu pour l' article
          </div> -->
       </div>
 
       <div class="field">
-        <div class="ui toggle checkbox" > 
-          <input type="checkbox" 
+        <div class="ui toggle checkbox" >
+          <input type="checkbox"
                  value="{{currentPost.status}}">
           <label>Publier</label>
         </div>
