@@ -26,21 +26,25 @@ app.config(['$routeProvider',
         controller : 'AdminDashboardCtrl',
         templateUrl : 'js/admin/views/dashboard.html'
     })
-    .when('/admin/articles', {
-        controller : 'AdminPostCtrl',
-        templateUrl : 'js/admin/views/articles.html'
-    })
     .when('/admin/qcm', {
-      controller : 'AdminQcmCtrl',
+      controller : 'AdminQcmsCtrl',
       templateUrl : 'js/admin/views/qcms.html'
     })
     .when('/admin/qcm/create', {
-      controller : 'AdminQcmCreationCtrl',
-      templateUrl : 'js/admin/views/qcm/createQcm.html'
+      controller : 'AdminQcmEditCtrl',
+      templateUrl : 'js/admin/views/qcm/editQcm.html'
+    })
+    .when('/admin/articles', {
+        controller : 'AdminPostsCtrl',
+        templateUrl : 'js/admin/views/articles.html'
     })
     .when('/admin/post/create', {
-      controller : 'AdminPostCreationCtrl',
-      templateUrl : 'js/admin/views/post/createPost.html'
+      controller : 'AdminPostEditCtrl',
+      templateUrl : 'js/admin/views/post/editPost.html'
+    })
+    .when('/admin/post/edit/:id', {
+      controller : 'AdminPostEditCtrl',
+      templateUrl : 'js/admin/views/post/editPost.html'
     })
     .otherwise({
       redirectTo: '/'
