@@ -8,7 +8,7 @@
         </div>
     </div>
 </div>
-<form ng-submit="postComment()" class="ui form segment" name="commentForm">
+<form name="newComment" class="ui form segment" name="commentForm" ng-submit="postComment()">
     <h2>Laisser un commentaire :</h2>
     <div class="field" style="display:none">
         <input type="text" name="specialField" ng-model="specialField"/>
@@ -21,5 +21,5 @@
         <label>Commentaire :</label>
         <textarea name="content" ng-model="comment.content"></textarea>
     </div>
-    <input type="submit" value="Publier" class="ui green button"/>
+    <input ng-submit type="submit" value="Publier" class="ui green button"/>
 </form>
