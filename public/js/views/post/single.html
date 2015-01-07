@@ -1,18 +1,22 @@
 <div class="ui divider"></div>
+<div class="ui divider"></div>
 <div class="twelve wide column">
 	<div class="ui segment">
-		<a class="ui ribbon label red">Ribbon</a>
-		<div class="header-img" style="background-image: url('http://lorempixel.com/g/300/200/');">
-
-		</div>
-
 		<h1>{{post.title}}</h1>
+		<a class="ui ribbon label red">Ribbon</a>
+		
+		<div class="header-img" style="background-image: url('http://lorempixel.com/g/300/200/');">
+		</div>
+		<div class="ui hidden divider"></div>
 		<p>{{post.content}}</p>
-		<a twitter  data-lang=fr" data-count='horizontal' data-url='http://localhost/eLycee/public/#/post/25' data-size="medium" data-text='post.title' ></a>
+		<em>Rédigé par: {{post.user_id.username}}</em></br>
+		<em>Le: {{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</em>
+		<a twitter  data-lang="fr" data-count='horizontal' data-url='http://localhost/eLycee/public/#/post/25' data-size="medium" data-text='post.title' ></a>
 	</div>
-	<comment comments="[{content:'zizi', name:'Didier'},{content: 'zizi2', name:'Francis'}]"></comment>
 
-	<div class="ui four cards">
+	<comment comments="[{content:'zizi', name:'Didier', created_at:'1992-08-18 21:00:13'},{content: 'zizi2', name:'Francis', created_at:'1975-06-26 21:00:13'}]"></comment>
+
+	<!-- <div class="ui four cards">
 		<div class="card">
 			<div class="image">
 				<img src="http://lorempixel.com/g/300/200/">
@@ -45,7 +49,7 @@
 				<div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <!-- SIDEBAR -->
 <div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>

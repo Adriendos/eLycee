@@ -1,8 +1,8 @@
 <div class="column padding-reset" style="margin-top:50px;" nv-file-drop uploader="uploader">
   <div class="header">
-   <h1> {{ mode == "create" ? "Creation d'un nouvel Article" : "Edition de l'article" }}</h1>
+   <h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Article" : "Edition de l'article" }}</h1>
   </div>
-  <div class="content">
+  <div class="content ui form segment">
     <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
       <input type="hidden" ng-model="currentPost.id">
 

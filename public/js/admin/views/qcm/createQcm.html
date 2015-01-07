@@ -1,8 +1,8 @@
 <div class="row">
     <div class="column padding-reset" style="margin-top:50px;">
-        <h1>Créez un QCM</h1>
-        <form class="ui form     segment" name="newQcm" ng-submit="submitQcm()" novalidate>
-            <h3>Le QCM</h3>
+        <h1><i class="write icon"></i> Création d'un nouveau QCM</h1>
+        <form class="ui form segment" name="newQcm" ng-submit="submitQcm()" novalidate>
+            <h2>Description du QCM</h2>
             <div class="field">
                 <label for="" class="label">Titre
                 <input type="text" name="title" ng-model="currentQcm.title" placeholder="Entrez ici le titre du questionnaire" required/>
@@ -21,7 +21,7 @@
                 <textarea name="description" id="" cols="30" rows="10" placeholder="Decrivez brièvement le theme du questionnaire" required ng-model="currentQcm.description"></textarea>
             </div>
 
-            <h3>Les Questions</h3>
+            <h2>Les Questions</h2>
             <div id="questions">
                 <!-- Here comes added questions -->
             </div>

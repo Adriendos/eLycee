@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="ui centered row">
+  <div class="ui centered row basic segment" ng-show="nbPages>1">
       <pagination class="pagination-wrapper aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
   </div>
 
@@ -21,12 +21,12 @@
     <table class="ui sortable table loading">
       <thead>
         <tr>
-          <th ng-click="changeSorting($event,'id')" >Id</th>
+          <th ng-click="changeSorting($event,'id')">ID</th>
           <th ng-click="changeSorting($event,'title')">Titre</th>
           <th ng-click="changeSorting($event,'created_at')"  class="descending">Crée le</th>
           <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
           <th ng-click="changeSorting($event,'user_id')">Auteur</th>
-          <th>Actions</th>
+          <th class="center aligned" >Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +37,7 @@
           <td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
           <td>{{post.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
           <td>{{post.user_id}}</td>
-          <td>
+          <td class="center aligned">
             <div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
               <i class="edit icon"></i>
             </div>
@@ -56,7 +56,7 @@
       </tbody>
     </table>
   </div>
-  <div class="ui centered row">
+  <div class="ui centered row basic segment" ng-show="nbPages>1">
     <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allPosts" nb-pages="nbPages" current-page="currentPage"></pagination>
   </div>
 </div>
