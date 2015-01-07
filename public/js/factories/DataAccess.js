@@ -72,7 +72,7 @@ app.factory('DataAccess',
 		function query(resource) {
 			var d = $q.defer();
 			var start = new Date().getTime();
-			var result = resource.query(
+			var result = resource._query(
 				function(data) {
 					d.resolve(result);
 					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug

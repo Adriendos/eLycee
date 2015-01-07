@@ -1,5 +1,5 @@
-app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
-    function($resource, CONFIG, ENTITY) {
+app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService', 'TokenHandler',
+    function($resource, CONFIG, ENTITY, SessionService, TokenHandler) {
 
         var ResourceService = {};
 
@@ -7,14 +7,18 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
 
         var RESOURCES = {};
 
+        //Token Handler : api protection
+
         //Generic resource generator
         ResourceService.getResource = function(entityName) {
             if(RESOURCES[entityName]) {
                 return RESOURCES[entityName];
             } else {
+                var resource;
+
                 switch(entityName) {
                     case ENTITY.question :
-                        return $resource(
+                        resource =  $resource(
                             apiUrl + "/qcm/:qcm_id/question/:id",
 
                             {
@@ -27,7 +31,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
                         );
                         break;
                     case ENTITY.answer :
-                        return $resource(
+                        resource = $resource(
                             apiUrl + "/question/:question_id/answer/:id",
 
                             {
@@ -43,7 +47,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
                         // TODO
                         break;
                     default :
-                        return $resource(
+                        resource = $resource(
                             apiUrl + entityName + '/:id',
                             {
                                 id: '@id'
@@ -59,24 +63,16 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY',
                         break;
                 }
 
-                var resource = $resource(
-                    apiUrl + entityName + '/:id',
-                    {
-                        id: '@id'
-                    },
-                    {
-                        query: {method: 'GET', isArray: true, cache: true},
-                        get: {method: 'GET', params: {id: '@id'}, isArray: true, cache : true},
-                        save: {method: 'POST'},
-                        update: { method:'PUT' }
-                    }
-                );
-
                 RESOURCES[entityName] = resource;
 
-                return resource;
+                //Wrap resource to secure api with token
+                return TokenHandler.wrapActions(resource, ["query", "update", "save"] );
+
             }
         };
+
+
+
 
         return ResourceService;
 }]);

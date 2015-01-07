@@ -81,7 +81,7 @@ app.factory('SessionService',
           var request = {
             method: "GET",
             url: CONFIG.urlAuth + '/checkSession',
-            params: {auth_token: getToken()}
+            params: {auth_token: this.getToken()}
           };
 
           return $http(request)
@@ -120,7 +120,7 @@ app.factory('SessionService',
         };
 
         // __ private
-        function getToken() {
+        SessionService.getToken = function() {
           return localStorageService.get('credentials');
         };
 
