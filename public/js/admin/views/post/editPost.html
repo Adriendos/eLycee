@@ -13,10 +13,6 @@
           <div class="ui corner label">
             <i class="asterisk icon"></i>
           </div>
-
-          <div ng-show="postForm.$submitted && postForm.title.$error.required">
-              Veuillez entrer un titre pour l' article
-          </div>
         </div> <!-- /ui corner labeled input -->
       </div> <!-- Field title -->
 
@@ -27,30 +23,18 @@
           <!-- UPLOAD IMAGE ZONE -->
           <div img-uploader class="center aligned two columns row"></div>
         </div>
-
-        <div ng-show="postForm.$submitted && errorimage">
-              Le champ image est requis
-        </div> <!-- /ui corner labeled input -->
       </div><!-- .field image -->
 
       <!-- @todo => president erreur field text angular -->
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
         <textarea name="excerpt" ck-editor ng-model="currentPost.excerpt" required></textarea>
-
-        <div ng-show="postForm.$submitted && postForm.excerpt.$error.required">
-            Veuillez entrer un extrait pour l' article
-        </div>
       </div>
 
 
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
         <textarea name="content" ck-editor ng-model="currentPost.content"  required></textarea>
-
-         <div ng-show="postForm.$submitted && postForm.content.$error.required">
-           Veuillez entrer un contenu pour l' article
-         </div>
       </div>
 
       <div class="field">
@@ -60,6 +44,24 @@
           <label>Publier</label>
         </div>
       </div>
+
+      <!-- errors -->
+      <div ng-show="postForm.$submitted && ! postForm.$valid" class="ui error form" style="margin-bottom: 20px">
+          <div class="ui error message">
+            <div class="header">
+              <p ng-show="postForm.title.$error.required">
+              Veuillez entrer un titre pour l' article
+              </p>
+              <p ng-show="errorimage">Le champ image est requis</p>
+              <p ng-show="postForm.content.$error.required">
+                Veuillez entrer un contenu pour l' article
+              </p>
+              <p ng-show="postForm.excerpt.$error.required">
+                Veuillez entrer un extrait pour l' article
+              </p>
+            </div>
+          </div>  
+      </div> <!-- /ui corner labeled input -->
 
       <div class="ui buttons">
         <input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>

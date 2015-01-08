@@ -6,3 +6,4 @@ app.controller('ContactCtrl', ['$scope', function($scope) {
         $('.ui.dropdown').dropdown();
     });
 }]);
+
