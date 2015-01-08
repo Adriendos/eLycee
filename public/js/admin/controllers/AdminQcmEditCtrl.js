@@ -128,7 +128,9 @@ app.controller('AdminQcmEditCtrl',
                 });
 
                 console.log($scope.currentQcm);
-                //create qcm here
+                DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
+                    console.log(data);
+                });
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
