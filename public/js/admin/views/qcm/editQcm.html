@@ -21,13 +21,6 @@
                 <textarea name="description" id="" cols="30" rows="10" placeholder="Decrivez brièvement le theme du questionnaire" required ng-model="currentQcm.description"></textarea>
             </div>
 
-            <h2>Les Questions</h2>
-            <div id="questions">
-                <!-- Here comes added questions -->
-            </div>
-
-            <div class="ui divider"></div>
-
             <div class="ui error message" ng-show="formError">
                 <i class="close icon"></i>
                 <div class="header">
@@ -38,6 +31,13 @@
                     <li>You need to select your home country.</li>
                 </ul>
             </div>
+
+            <h2>Les Questions</h2>
+            <div id="questions">
+                <!-- Here comes added questions -->
+            </div>
+
+            <div class="ui divider"></div>
 
             <div class="ui info button" id="addQuestionButton" ng-click="addQuestion()"><i class="icon plus"></i>Ajouter une question</div>
             <input type="submit" class="ui button"></input>

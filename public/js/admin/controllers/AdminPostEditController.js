@@ -6,8 +6,6 @@ app.controller('AdminPostEditCtrl',
       $scope.currentPost = {};
       $scope.errorimage = true; 
 
-      $scope.modelInit = false;
-
       if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
         $scope.errorimage = false;
@@ -17,7 +15,6 @@ app.controller('AdminPostEditCtrl',
               $('.ui.checkbox').checkbox('check');
             }
             $scope.currentPost = post;
-            $scope.modelInit = true;
           });
       } else { // create a new post
         $scope.mode = 'create';
@@ -60,10 +57,16 @@ app.controller('AdminPostEditCtrl',
           reader.readAsDataURL($scope.imageFile);
         };
 
+        $scope.$watch('$scope.postForm', function(form) {
+          console.info('form', form);
+        });
+
         $scope.submitForm = function() { // @todo loadee ...
+          // yoyoyoyoyoyoyyoyo
           // invalid postForm
-          // console.info('image post', $scope.currentPost);
-          if ( ! $scope.postForm.$valid) {
+          // console.info('image post', $scope.errorimage);
+          if ( ! $scope.postForm.$valid || $scope.errorimage) {
+            $scope.postForm.$valid = false;
             return;
           }
 
