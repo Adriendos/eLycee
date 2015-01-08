@@ -3,6 +3,7 @@ app.controller('AdminQcmsCtrl',
         function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
 
             $scope.qcms;
+            $scope.allQcms;
             $scope.modal = [];
             $scope.currentPage = 1;
             $scope.entity = ENTITY.qcm;
@@ -34,21 +35,29 @@ app.controller('AdminQcmsCtrl',
 
             // Function used to sort the table by clicking headers
             $scope.changeSorting = function($event, column) {
+
                 var sort = $scope.sort;
                 var th = $($event.currentTarget);
+
                 if (sort.column == column) {
                     sort.descending = !sort.descending;
                     if(th.hasClass('ascending')) {
                         th.removeClass('ascending').addClass('descending');
+                        $scope.allQcms = Utils.sortDescending($scope.allPosts, column);
                     } else {
                         th.removeClass('descending').addClass('ascending');
+                        $scope.allQcms = Utils.sortAscending($scope.allPosts, column);
                     }
                 } else {
                     $('th').removeClass('descending').removeClass('ascending');
                     $($event.currentTarget).addClass('ascending');
                     sort.column = column;
                     sort.descending = false;
+                    $scope.allQcms = Utils.sortAscending($scope.allPosts, column);
                 }
+                $scope.posts = DataAccess.getPage($scope.allQcms, 1);
+
+
             };
 
             $scope.getLevel = function(level) {

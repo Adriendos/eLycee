@@ -11,6 +11,24 @@ app.factory('Utils', [function() {
         return uuid;
     };
 
+    Utils.sortDescending = function(dataArray, property) {
+        dataArray.sort(function(a, b){
+            if(a[property].toLowerCase() < b[property].toLowerCase()) return -1;
+            if(a[property].toLowerCase() > b[property].toLowerCase()) return 1;
+            return 0;
+        });
+        return dataArray;
+    };
+
+    Utils.sortAscending = function(dataArray, property) {
+        dataArray.sort(function(a, b){
+            if(a[property].toLowerCase() > b[property].toLowerCase()) return -1;
+            if(a[property].toLowerCase() < b[property].toLowerCase()) return 1;
+            return 0;
+        });
+        return dataArray;
+
+    };
 
     return Utils;
 }]);

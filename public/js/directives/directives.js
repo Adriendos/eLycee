@@ -97,9 +97,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
                 if( (page > 0) && (page < scope.nbPages + 1)) {
                     switch (scope.entity) {
                         case ENTITY.post :
-                            console.log('debut');
                             scope.$parent.posts = DataAccess.getPage(scope.datas, page);
-                            console.log('fin');
                             break;
                         case ENTITY.qcm :
 

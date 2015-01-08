@@ -21,7 +21,6 @@
         <table class="ui sortable table">
             <thead>
             <tr>
-                <th ng-click="changeSorting($event,'id')">Id</th>
                 <th ng-click="changeSorting($event,'title')">Titre</th>
                 <th ng-click="changeSorting($event,'class_level')">Niveau</th>
                 <th ng-click="changeSorting($event,'created_at')" class="descending">Crée le</th>
@@ -31,8 +30,7 @@
             </thead>
             <tbody>
             <!-- Start Loop -->
-            <tr ng-repeat="qcm in qcms | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict track by qcm.id">
-                <td>{{ qcm.id }}</td>
+            <tr ng-repeat="qcm in qcms | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict">
                 <td>{{ qcm.title | limitTo : 75}} ...</td>
                 <td>{{ getLevel(qcm.class_level)}}</td>
                 <td>{{qcm.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
