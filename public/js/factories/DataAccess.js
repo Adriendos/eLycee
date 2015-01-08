@@ -124,6 +124,7 @@ app.factory('DataAccess',
 					$rootScope.notify('Modification effectuée avec succès.');
 				});
 			});
+			
 			return d.promise;
 		};
 

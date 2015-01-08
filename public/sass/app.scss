@@ -327,6 +327,10 @@ body {
 
 ///////////////////////////////////  CONTACT FORM   //////////////////////////////////
 
-.form .field textarea.noResize{
-    resize:none;
+.form .field {
+
+    textarea.noResize{
+        resize:none;
+    }
 }
+

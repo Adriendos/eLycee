@@ -14,43 +14,43 @@
             <i class="asterisk icon"></i>
           </div>
 
-          <div ng-show="postForm.$submitted">
-            <div ng-show="postForm.title.$error.required">
+          <div ng-show="postForm.$submitted && postForm.title.$error.required">
               Veuillez entrer un titre pour l' article
-            </div>
           </div>
         </div> <!-- /ui corner labeled input -->
       </div> <!-- Field title -->
 
       <!-- Image manager -->
-      <div id="image-uploader" class="field">
+      <div id="image-uploader" class="field" ng-class="{ error: postForm.$submitted && errorimage }"> <!-- && ! postForm.url_thumbnail.length  -->
         <label>Image de couverture</label>
         <div class="ui right aligned grid">
           <!-- UPLOAD IMAGE ZONE -->
           <div img-uploader class="center aligned two columns row"></div>
         </div>
+
+        <div ng-show="postForm.$submitted && errorimage">
+              Le champ image est requis
+        </div> <!-- /ui corner labeled input -->
       </div><!-- .field image -->
 
       <!-- @todo => president erreur field text angular -->
-      <div class="field">
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
-        <textarea ck-editor ng-model="currentPost.excerpt" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }"></textarea>
+        <textarea name="excerpt" ck-editor ng-model="currentPost.excerpt" required></textarea>
 
-        <!-- <div ng-show="postForm.$submitted">
-          <div ng-show="postForm.excerpt.$error.required">
+        <div ng-show="postForm.$submitted && postForm.excerpt.$error.required">
             Veuillez entrer un extrait pour l' article
-          </div>
-        </div> -->
+        </div>
       </div>
 
 
-      <div class="field">
+      <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
-        <textarea ck-editor ng-model="currentPost.content" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }"></textarea>
+        <textarea name="content" ck-editor ng-model="currentPost.content"  required></textarea>
 
-        <!--  <div ng-show="postForm.$submitted">
+         <div ng-show="postForm.$submitted && postForm.content.$error.required">
            Veuillez entrer un contenu pour l' article
-         </div> -->
+         </div>
       </div>
 
       <div class="field">
