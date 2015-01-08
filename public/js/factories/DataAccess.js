@@ -97,7 +97,7 @@ app.factory('DataAccess',
 			return d.promise;
 		}
 
-		function create(resource, data, entityName) {
+		function create(resource, entityName, data) {
 			var d = $q.defer();
 
 			var entity = new resource(data);
