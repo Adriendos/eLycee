@@ -148,19 +148,18 @@ app.directive('comment', function(DataAccess, ENTITY, $route) {
 app.directive('ckEditor', [function () {
     return {
         require: '?ngModel',
+        transclude: true,
+        scope: false,
         link: function ($scope, elm, attr, ngModel) {
-
             var ck = CKEDITOR.replace(elm[0]);
-
-            ck.on('pasteState', function () {
-                $scope.$apply(function () {
-                    ngModel.$setViewValue(ck.getData());
-                });
+            $scope.$watch($scope.modelInit, function() {
+                console.info('init', ngModel.$modelValue);
+                console.info('model init', $scope.modelInit);
+                if(!angular.isUndefined(ngModel.$modelValue)) {
+                    console.info('ok ', ngModel.$modelValue);
+                    ck.setData(ngModel.$modelValue);
+                }
             });
-
-            ngModel.$render = function (value) {
-                ck.setData(ngModel.$modelValue);
-            };
         }
     };
 }]);

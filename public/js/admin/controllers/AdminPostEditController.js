@@ -6,6 +6,8 @@ app.controller('AdminPostEditCtrl',
       $scope.currentPost = {};
       $scope.errorimage = true; 
 
+      $scope.modelInit = false;
+
       if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
         $scope.errorimage = false;
@@ -14,7 +16,8 @@ app.controller('AdminPostEditCtrl',
             if( post.status == 'published') {
               $('.ui.checkbox').checkbox('check');
             }
-            $scope.currentPost = post; 
+            $scope.currentPost = post;
+            $scope.modelInit = true;
           });
       } else { // create a new post
         $scope.mode = 'create';
