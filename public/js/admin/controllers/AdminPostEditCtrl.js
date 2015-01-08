@@ -2,11 +2,9 @@ app.controller('AdminPostEditCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService', '$routeParams',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams) {
       // init vars
-    	$scope.entity = ENTITY.post;
+      $scope.entity = ENTITY.post;
       $scope.currentPost = {};
       $scope.errorimage = true; 
-
-      $scope.modelInit = false;
 
       if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
@@ -17,8 +15,6 @@ app.controller('AdminPostEditCtrl',
               $('.ui.checkbox').checkbox('check');
             }
             $scope.currentPost = post;
-            $scope.modelInit = true;
-
           });
       } else { // create a new post
         $scope.mode = 'create';
@@ -46,6 +42,7 @@ app.controller('AdminPostEditCtrl',
 
         // after image upload
         // @todo remove that and make process image form in directive l. 77
+
         $scope.uploader.onAfterAddingFile = function(fileItem) {
           $scope.errorimage = false;
           $scope.imageFile = fileItem._file;
@@ -60,36 +57,45 @@ app.controller('AdminPostEditCtrl',
           reader.readAsDataURL($scope.imageFile);
         };
 
-        $scope.submitForm = function() { // @todo loadee ...
-          console.log(SessionService.getToken());
+        $scope.$watch('postForm.$valid', function(newVal, oldVal) {
+          if( newVal && $scope.errorimage ) {
+            $scope.postForm.$valid = false;
+          }
+        });
+
+        $scope.$watch('errorimage', function(newVal, oldVal) {
+          if( !newVal ) {
+            $scope.postForm.$valid = true;
+          }
+        });
+
+        $scope.submitForm = function() { 
           // invalid postForm
-          if ( ! $scope.postForm.$valid) return;
-          // remove url_thumbnail prop 
+          if ( ! $scope.postForm.$valid) { // || $scope.errorimage
+            // $scope.postForm.$valid = false;
+            return;
+          }
+
+          // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
           $scope.currentPost.user_id = SessionService.getUser().id;
-          if($scope.mode == 'create') {
 
+          if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
-              closeFormAndRedirect();
+              closeForm();
             });
           } else {
             DataAccess.update(ENTITY.post, $scope.currentPost).then( function(data) {
-              closeFormAndRedirect();
+              closeForm();
             });
           }          
         };
 
-        function closeFormAndRedirect() {
+        function closeForm() {
           $scope.isFormLoading = false;
           $location.path('/admin/posts');
         };
-
-        function _validInput(dataInputVal) {
-          if( ! dataInputVal) {
-
-          }
-        }
 
         $scope.reset = function() {
           $scope.currentPost = {};
