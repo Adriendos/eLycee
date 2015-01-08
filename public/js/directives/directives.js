@@ -118,24 +118,27 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
     }
 });
 
-app.directive('comment', function(DataAccess, ENTITY) {
+app.directive('comment', function(DataAccess, ENTITY, $route) {
     return {
         restrict: 'E',
         transclude: true,
         scope: {
-            pid: '=',
-            comments: '='
+            comments: '=',
+            postId: '='
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
+            scope.comment = { name: 'test' , content: '', post_id: scope.postId};
+            scope.$parent.$watch('post.id', function(value){
+                scope.comment.post_id = value;
+            });
             scope.specialField = '';
-            scope.comment = { name: 'test' , content: '', post_id: scope.pid};
-            console.log(scope);
             scope.postComment = function(){
-                console.log(scope.comment);
-                DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
-                    console.log('good');
-                });
+                if(scope.specialField == '') {
+                    DataAccess.create(ENTITY.comment, scope.comment).then(function (data) {
+                        scope.$parent.reloadComments();
+                    });
+                }
             };
         }
     };
