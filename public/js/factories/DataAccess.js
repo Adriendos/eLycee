@@ -27,12 +27,12 @@ app.factory('DataAccess',
 
 		DataAccess.update = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			return update(resource,entityName, data);
+			return update(resource, entityName, data);
 		};
 
 		DataAccess.delete = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-			return remove(resource, id);
+			return remove(resource, entityName, id);
 		};
 
 		// Datas NEEDS to be an array !
@@ -95,7 +95,7 @@ app.factory('DataAccess',
 				});
 
 			return d.promise;
-		}
+		};
 
 		function create(resource, entityName, data) {
 			var d = $q.defer();
@@ -140,7 +140,7 @@ app.factory('DataAccess',
 		function clearCache(entityName) {
 			var $httpDefaultCache = $cacheFactory.get('$http');
 			$httpDefaultCache.remove(CONFIG.apiUrl+entityName);
-		}
+		};
 
 	    return DataAccess;
 }]);

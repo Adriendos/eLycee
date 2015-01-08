@@ -24,6 +24,7 @@ app.controller('AdminPostsCtrl',
         };
 
         $scope.deletePost = function() {
+          console.info('id', $scope.currentPost.id);
           DataAccess.delete(ENTITY.post, $scope.currentPost.id);
           init();
         };
@@ -35,11 +36,23 @@ app.controller('AdminPostsCtrl',
         };
 
         // Check a post status
-        $scope.publicationState = function(post) {
+        $scope.getStatusClass = function(post) {
           if(post.status == 'published') {
             return 'unlock blue';
           }
           return 'lock red';
+        }
+
+        $scope.updateStatus = function(post) {
+          if(post.status == 'published') {
+            post.status = 'unpublished'
+          } else {
+            post.status = 'published'
+          }
+          console.info('new status', post.status);
+          DataAccess.update(ENTITY.post, post).then( function(data) {
+            console.info('ok update', data);
+          });
         }
 
         // Function used to sort the table by clicking headers
