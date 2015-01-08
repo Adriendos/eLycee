@@ -8,11 +8,6 @@ app.controller('AdminPostsCtrl',
         $scope.entity = ENTITY.post;
         $scope.currentPost = {};
 
-        $scope.editorOptions = {
-          language: 'ru',
-          uiColor: '#000000'
-        };
-
         $('.ui.modal').modal();
         init();
         function init() {
