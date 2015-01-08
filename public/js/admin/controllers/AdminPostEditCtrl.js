@@ -18,6 +18,7 @@ app.controller('AdminPostEditCtrl',
             }
             $scope.currentPost = post;
             $scope.modelInit = true;
+
           });
       } else { // create a new post
         $scope.mode = 'create';

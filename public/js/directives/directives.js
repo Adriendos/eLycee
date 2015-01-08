@@ -149,15 +149,38 @@ app.directive('ckEditor', [function () {
         transclude: true,
         scope: false,
         link: function ($scope, elm, attr, ngModel) {
+            if (!ngModel) return;
+
             var ck = CKEDITOR.replace(elm[0]);
-            $scope.$watch($scope.modelInit, function() {
-                console.info('init', ngModel.$modelValue);
-                console.info('model init', $scope.modelInit);
-                if(!angular.isUndefined(ngModel.$modelValue)) {
-                    console.info('ok ', ngModel.$modelValue);
-                    ck.setData(ngModel.$modelValue);
-                }
+
+            ck.on('instanceReady', function() {
+                ck.setData(ngModel.$viewValue);
             });
+
+            function updateModel() {
+                $scope.$apply(function() {
+                    if ( ck.getData().length ) {
+                        ngModel.$setViewValue(ck.getData());
+                    }
+                });
+            }
+
+            ck.on('pasteState', updateModel);
+            ck.on('change', updateModel);
+            ck.on('key', updateModel);
+            ck.on('dataReady', updateModel);
+
+            ngModel.$render = function() {
+                ck.setData(ngModel.$modelValue);
+            };
+
+
+            //var ck = CKEDITOR.replace(elm[0]);
+            //$scope.$watch('modelInit', function() {
+            //    if($scope.modelInit == true) {
+            //        ck.setData(ngModel.$modelValue);
+            //    }
+            //});
         }
     };
 }]);
