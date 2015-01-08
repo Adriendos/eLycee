@@ -3,6 +3,18 @@
         <h1><i class="write icon"></i> Création d'un nouveau QCM</h1>
         <form class="ui form segment" name="newQcm" ng-submit="openValidateQcmModal()" novalidate>
             <h2>Description du QCM</h2>
+            <div class="ui error form" ng-show="formError || (newQcm.$invalid && newQcm.$submitted) ">
+                <div class="ui error message">
+                    <div class="header">
+                        Il ya eu une ou plusieurs erreurs lors de la validation du qcm:
+                    </div>
+                    <ul class="list">
+                        <li ng-show="newQcm.title.$error.required">Veuillez renseigner le titre du qcm</li>
+                        <li ng-show="newQcm['classe_level'].required">Veuillez renseigner la classe du qcm</li>
+                        <li ng-show="newQcm.description.$error.required">Veuillez renseigner la description du qcm</li>
+                    </ul>
+                </div>
+            </div>
             <div class="field">
                 <label for="" class="label">Titre
                 <input type="text" name="title" ng-model="currentQcm.title" placeholder="Entrez ici le titre du questionnaire" required/>
@@ -19,17 +31,6 @@
             <div class="field">
                 <label for="">Description</label>
                 <textarea name="description" id="" cols="30" rows="10" placeholder="Decrivez brièvement le theme du questionnaire" required ng-model="currentQcm.description"></textarea>
-            </div>
-
-            <div class="ui error message" ng-show="formError">
-                <i class="close icon"></i>
-                <div class="header">
-                    There was some errors with your submission
-                </div>
-                <ul class="list">
-                    <li>You must include both a upper and lower case letters in your password.</li>
-                    <li>You need to select your home country.</li>
-                </ul>
             </div>
 
             <h2>Les Questions</h2>
