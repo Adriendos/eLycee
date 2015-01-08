@@ -5,6 +5,12 @@ app.controller('AdminPostEditCtrl',
     	$scope.entity = ENTITY.post;
       $scope.currentPost = {}; 
 
+      // @todo remove that 
+      DataAccess.getDataById(ENTITY.post, 2).then( function(post) {
+        delete post.id;
+        $scope.currentPost = post;
+      });
+
       if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
         DataAccess.getDataById(ENTITY.post, $routeParams.id).then( 
@@ -59,13 +65,15 @@ app.controller('AdminPostEditCtrl',
           $scope.isFormLoading = true;
           $scope.currentPost.user_id = SessionService.getUser().id;
           if($scope.mode == 'create') {
-            console.info('info Post', $scope.currentPost);
-            DataAccess.create(ENTITY.post, $scope.currentPost).then( function() {
+            console.info('before create Post', $scope.currentPost);
+            DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
+              console.info('after create post data', data);
               closeForm();
             });
           } else {
-            console.info('info Post', $scope.currentPost);
-            DataAccess.update(ENTITY.post, $scope.currentPost).then( function() {
+            console.info('before update Post', $scope.currentPost);
+            DataAccess.update(ENTITY.post, $scope.currentPost).then( function(data) {
+              console.info('after update post data', data);
               closeForm();
             });
           }          

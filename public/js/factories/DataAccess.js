@@ -97,7 +97,7 @@ app.factory('DataAccess',
 			return d.promise;
 		}
 
-		function create(resource, data, entityName) {
+		function create(resource, entityName, data) {
 			var d = $q.defer();
 
 			var entity = new resource(data);
@@ -108,7 +108,7 @@ app.factory('DataAccess',
 			},function() {
 				$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
 			});
-
+			console.info('in create private meth', data);
 			return d.promise;
 		};
 
@@ -124,6 +124,7 @@ app.factory('DataAccess',
 					$rootScope.notify('Modification effectuée avec succès.');
 				});
 			});
+			console.info('in update  private meth', data);
 			return d.promise;
 		};
 
