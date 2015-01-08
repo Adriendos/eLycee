@@ -53,7 +53,6 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.json'], function()
 
 });
 
-
 Route::group(
 	['prefix' => 'v1', 'after' =>'json.protect'], 
 	function() {

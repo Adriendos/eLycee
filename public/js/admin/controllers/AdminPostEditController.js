@@ -62,12 +62,12 @@ app.controller('AdminPostEditCtrl',
         $scope.submitForm = function() { // @todo loadee ...
           // invalid postForm
           if ( ! $scope.postForm.$valid) return;
-          // remove url_thumbnail prop 
+          // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
           $scope.currentPost.user_id = SessionService.getUser().id;
-          if($scope.mode == 'create') {
 
+          if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
               closeForm();
             });
