@@ -97,9 +97,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
                 if( (page > 0) && (page < scope.nbPages + 1)) {
                     switch (scope.entity) {
                         case ENTITY.post :
-                            console.log('debut');
                             scope.$parent.posts = DataAccess.getPage(scope.datas, page);
-                            console.log('fin');
                             break;
                         case ENTITY.qcm :
 
@@ -118,7 +116,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
     }
 });
 
-app.directive('comment', function(DataAccess, ENTITY, $route) {
+app.directive('comment', function(DataAccess, ENTITY, $route, SessionService) {
     return {
         restrict: 'E',
         transclude: true,
@@ -128,7 +126,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route) {
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.comment = { name: '' , content: '', post_id: scope.postId};
+            scope.comment = { name: SessionService.getUser().username || '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){
                 scope.comment.post_id = value;
             });

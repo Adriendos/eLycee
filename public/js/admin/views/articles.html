@@ -30,7 +30,7 @@
       </thead>
       <tbody>
         <!-- Start Loop -->
-        <tr ng-repeat="post in posts | orderBy:sort.column:sort.descending | filter:searchText:strict track by post.id">
+        <tr ng-repeat="post in posts | filter:searchText:strict track by post.created_at">
           <td>{{ post.title | limitTo : 95}} ...</td>
           <td>{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
           <td>{{post.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
