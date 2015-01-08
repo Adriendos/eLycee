@@ -95,7 +95,7 @@ app.factory('DataAccess',
 				});
 
 			return d.promise;
-		}
+		};
 
 		function create(resource, entityName, data) {
 			var d = $q.defer();
@@ -140,7 +140,7 @@ app.factory('DataAccess',
 		function clearCache(entityName) {
 			var $httpDefaultCache = $cacheFactory.get('$http');
 			$httpDefaultCache.remove(CONFIG.apiUrl+entityName);
-		}
+		};
 
 	    return DataAccess;
 }]);

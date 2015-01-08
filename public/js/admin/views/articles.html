@@ -39,7 +39,7 @@
             <div class="ui icon button positive" ng-click="go('/admin/post/edit/'+post.id)" data-content="Editer l'article">
               <i class="edit icon"></i>
             </div>
-            <div class="ui icon button negative" ng-click="openDeletePostModal(post.id);">
+            <div class="ui icon button negative" ng-click="openDeletePostModal(post);">
               <i class="trash icon"></i>
             </div>
             <div class="ui icon button primary" ng-click="go('/post/'+post.id)">
@@ -70,8 +70,8 @@
   </div>
   <div class="content">
     <p>Voulez vous supprimer définitivement le Post suivant ?</p>
-    <b>Id :</b>  <em>{{ currentPost.id}}</em>&nbsp;&nbsp;&nbsp;&nbsp;<b>Status :</b><em>{{ currentPost.status }}</em>
-    <p><b>Titre :</b><em ng-bind="currentPost.title"></em></p>
+    <p><b>Titre :</b> <em>{{currentPost.title}}</em></p>
+    <b>Status :</b><em>{{ currentPost.status }}</em>
   </div>
   <div class="actions">
     <div class="ui negative button">
