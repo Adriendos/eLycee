@@ -160,8 +160,8 @@ class BaseController extends Controller {
 
 		// test if file folder exists
 		$filePath = 'img/resources/' . strtolower($modelName) . 's/';
-		$folderName = public_path() . $filePath;
-		if ( ! file_exists($folderName)) {
+		$folderName = public_path() .'/'. $filePath;
+		if ( !file_exists($folderName)) {
 		    mkdir($folderName, 0777);
 		}
 		// Image extension
