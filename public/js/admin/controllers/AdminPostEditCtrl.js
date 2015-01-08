@@ -57,16 +57,22 @@ app.controller('AdminPostEditCtrl',
           reader.readAsDataURL($scope.imageFile);
         };
 
-        $scope.$watch('$scope.postForm', function(form) {
-          console.info('form', form);
+        $scope.$watch('postForm.$valid', function(newVal, oldVal) {
+          if( newVal && $scope.errorimage ) {
+            $scope.postForm.$valid = false;
+          }
         });
 
-        console.info('test test', 'test test');
+        $scope.$watch('errorimage', function(newVal, oldVal) {
+          if( !newVal ) {
+            $scope.postForm.$valid = true;
+          }
+        });
 
         $scope.submitForm = function() { 
           // invalid postForm
-          if ( ! $scope.postForm.$valid || $scope.errorimage) {
-            $scope.postForm.$valid = false;
+          if ( ! $scope.postForm.$valid) { // || $scope.errorimage
+            // $scope.postForm.$valid = false;
             return;
           }
 
@@ -90,12 +96,6 @@ app.controller('AdminPostEditCtrl',
           $scope.isFormLoading = false;
           $location.path('/admin/posts');
         };
-
-        function _validInput(dataInputVal) {
-          if( ! dataInputVal) {
-
-          }
-        }
 
         $scope.reset = function() {
           $scope.currentPost = {};
