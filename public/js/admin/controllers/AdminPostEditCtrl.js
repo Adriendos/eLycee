@@ -61,6 +61,7 @@ app.controller('AdminPostEditCtrl',
         };
 
         $scope.submitForm = function() { // @todo loadee ...
+          console.log(SessionService.getToken());
           // invalid postForm
           if ( ! $scope.postForm.$valid) return;
           // remove url_thumbnail prop 
@@ -70,16 +71,16 @@ app.controller('AdminPostEditCtrl',
           if($scope.mode == 'create') {
 
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
-              closeForm();
+              closeFormAndRedirect();
             });
           } else {
             DataAccess.update(ENTITY.post, $scope.currentPost).then( function(data) {
-              closeForm();
+              closeFormAndRedirect();
             });
           }          
         };
 
-        function closeForm() {
+        function closeFormAndRedirect() {
           $scope.isFormLoading = false;
           $location.path('/admin/posts');
         };

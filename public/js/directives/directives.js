@@ -152,31 +152,6 @@ app.directive('ckEditor', [function () {
             if (!ngModel) return;
 
             var ck = CKEDITOR.replace(elm[0]);
-<<<<<<< HEAD
-            // $scope.$apply(function () {
-            //     ngModel.$setViewValue(ck.getData());
-            // });
-            // ck.setData(ngModel.$modelValue);
-            // // $scope.$watch('modelInit', function() {
-            // //     if($scope.modelInit) {
-            // //         ck.setData(ngModel.$modelValue);
-            // //     }
-            // // });
-            // if (!ngModel) return;
-
-            // ck.on('pasteState', function() {
-            //     scope.$apply(function() {
-            //       ngModel.$setViewValue(ck.getData());
-            //     });
-            // });
-
-            // ngModel.$render = function(value) {
-            //     ck.setData(ngModel.$viewValue);
-            // };
-
-            var ck = CKEDITOR.replace(elm[0]);
-
-            if (!ngModel) return;
 
             ck.on('instanceReady', function() {
                 ck.setData(ngModel.$viewValue);
