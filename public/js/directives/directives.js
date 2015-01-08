@@ -150,14 +150,48 @@ app.directive('ckEditor', [function () {
         scope: false,
         link: function ($scope, elm, attr, ngModel) {
             var ck = CKEDITOR.replace(elm[0]);
-            $scope.$watch($scope.modelInit, function() {
-                console.info('init', ngModel.$modelValue);
-                console.info('model init', $scope.modelInit);
-                if(!angular.isUndefined(ngModel.$modelValue)) {
-                    console.info('ok ', ngModel.$modelValue);
-                    ck.setData(ngModel.$modelValue);
-                }
+            // $scope.$apply(function () {
+            //     ngModel.$setViewValue(ck.getData());
+            // });
+            // ck.setData(ngModel.$modelValue);
+            // // $scope.$watch('modelInit', function() {
+            // //     if($scope.modelInit) {
+            // //         ck.setData(ngModel.$modelValue);
+            // //     }
+            // // });
+            // if (!ngModel) return;
+
+            // ck.on('pasteState', function() {
+            //     scope.$apply(function() {
+            //       ngModel.$setViewValue(ck.getData());
+            //     });
+            // });
+
+            // ngModel.$render = function(value) {
+            //     ck.setData(ngModel.$viewValue);
+            // };
+
+            var ck = CKEDITOR.replace(elm[0]);
+
+            if (!ngModel) return;
+
+            ck.on('instanceReady', function() {
+                ck.setData(ngModel.$viewValue);
             });
+
+            function updateModel() {
+              scope.$apply(function() {
+                  ngModel.$setViewValue(ck.getData());
+              });
+            }
+
+            ck.on('change', updateModel);
+            ck.on('key', updateModel);
+            ck.on('dataReady', updateModel);
+
+            ngModel.$render = function(value) {
+                ck.setData(ngModel.$viewValue);
+            };
         }
     };
 }]);
