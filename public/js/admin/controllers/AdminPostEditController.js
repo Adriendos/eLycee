@@ -61,8 +61,10 @@ app.controller('AdminPostEditCtrl',
           console.info('form', form);
         });
 
-        $scope.submitForm = function() { // @todo loadee ...
-          // yoyoyoyoyoyoyyoyo
+        console.info('test test', 'test test');
+
+        $scope.submitForm = function() { 
+          console.info('info log', toLog);
           // invalid postForm
           // console.info('image post', $scope.errorimage);
           if ( ! $scope.postForm.$valid || $scope.errorimage) {
