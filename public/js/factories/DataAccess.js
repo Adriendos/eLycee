@@ -17,27 +17,21 @@ app.factory('DataAccess',
 
 		DataAccess.getDataById = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-
 			return get(resource, id);
 		};
 
 		DataAccess.create = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Add post in cache
-
-			return create(resource, data);
+			return create(resource, entityName, data);
 		};
 
 		DataAccess.update = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Update post from cache
-
-			return update(resource, data);
+			return update(resource,entityName, data);
 		};
 
 		DataAccess.delete = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-			// TODO Delete post from cache
 			return remove(resource, id);
 		};
 
@@ -103,12 +97,13 @@ app.factory('DataAccess',
 			return d.promise;
 		}
 
-		function create(resource, data) {
+		function create(resource, entityName, data) {
 			var d = $q.defer();
 
 			var entity = new resource(data);
 			var result = entity.$save(function() {
 				$rootScope.notify('Sauvegarde effectuée avec succès.');
+				clearCache(entityName);
 				d.resolve(result);
 			},function() {
 				$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
@@ -117,23 +112,34 @@ app.factory('DataAccess',
 			return d.promise;
 		};
 
-		function update(resource, data) {
+		function update(resource, entityName, data) {
 			var id = data.id;
+			var d = $q.defer();
 			get(resource, id).then(function(entity) {
 				angular.extend(entity, data); // Replaces entity fields by data fields
-				entity.$update(function() {
+
+				var result = entity.$update(function() {
+					clearCache(entityName, id);
+					d.resolve(result);
 					$rootScope.notify('Modification effectuée avec succès.');
+				});
+			});
+			return d.promise;
+		};
+
+		function remove(resource, entityName, id) {
+			get(resource, id).then(function(entity) {
+				entity.$delete(function() {
+					$rootScope.notify('Suppression effectuée avec succès.');
+					clearCache(entityName, id);
 				});
 			});
 		};
 
-		function remove(resource, id) {
-			get(resource, id).then(function(entity) {
-				entity.$delete(function() {
-					$rootScope.notify('Suppression effectuée avec succès.');
-				});
-			});
-		};
+		function clearCache(entityName) {
+			var $httpDefaultCache = $cacheFactory.get('$http');
+			$httpDefaultCache.remove(CONFIG.apiUrl+entityName);
+		}
 
 	    return DataAccess;
 }]);

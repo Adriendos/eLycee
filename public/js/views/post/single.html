@@ -3,19 +3,14 @@
 <div class="twelve wide column">
 	<div class="ui segment">
 		<h1>{{post.title}}</h1>
-		<a class="ui ribbon label red">Ribbon</a>
+		<a class="ui ribbon label red">Rédigé par :  {{author.username}} - <i class="icon clock"></i> {{post.created_at | dateToISO | date:'dd/MM/yyyy'}} </a>
 		
 		<div class="header-img" style="background-image: url('http://lorempixel.com/g/300/200/');">
 		</div>
 		<div class="ui hidden divider"></div>
 		<p>{{post.content}}</p>
-		<em>Rédigé par: {{post.user_id.username}}</em></br>
-		<em>Le: {{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</em></br>
-		<a twitter class="right aligned" data-lang="fr" data-count='horizontal' data-url='http://localhost/eLycee/public/#/post/25' data-size="medium" data-text='post.title'></a>
 	</div>
-
-	<comment comments="[{content:' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', name:'Didier', created_at:'1992-08-18 21:00:13'},{content: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', name:'Francis', created_at:'1975-06-26 21:00:13'}]"></comment>
+	<comment comments="post.comments" pid="post.id"></comment>
 
 	<!-- <div class="ui four cards">
 		<div class="card">

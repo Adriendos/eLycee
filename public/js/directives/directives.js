@@ -109,6 +109,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
                     scope.$parent.currentPage = page;
 
                 }
+                // @todo facto make a util of that
                 $('html, body').animate({
                     scrollTop: $('html').offset().top
                 }, 500);
@@ -119,17 +120,43 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
 
 app.directive('comment', function(DataAccess, ENTITY) {
     return {
-        resrict: 'E',
+        restrict: 'E',
         transclude: true,
         scope: {
-            postId: '=',
+            pid: '=',
             comments: '='
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.postComment = function() {
-                alert('mes burnes ! TODO: check if special field empty -> if yes post comment with dataAccess');
-            }
+            scope.specialField = '';
+            scope.comment = { name: 'test' , content: '', post_id: scope.pid};
+            console.log(scope);
+            scope.postComment = function(){
+                console.log(scope.comment);
+                DataAccess.create(ENTITY.comment, scope.comment).then(function(data){
+                    console.log('good');
+                });
+            };
         }
     };
 });
+
+app.directive('ckEditor', [function () {
+    return {
+        require: '?ngModel',
+        link: function ($scope, elm, attr, ngModel) {
+
+            var ck = CKEDITOR.replace(elm[0]);
+
+            ck.on('pasteState', function () {
+                $scope.$apply(function () {
+                    ngModel.$setViewValue(ck.getData());
+                });
+            });
+
+            ngModel.$render = function (value) {
+                ck.setData(ngModel.$modelValue);
+            };
+        }
+    };
+}]);

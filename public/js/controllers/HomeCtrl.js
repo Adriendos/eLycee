@@ -1,4 +1,5 @@
-app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY', function($scope, DataAccess, ENTITY) {
+app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY',
+    function($scope, DataAccess, ENTITY) {
 
         DataAccess.getAllData(ENTITY.post).then(
             function(posts) {
@@ -8,5 +9,6 @@ app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY', function($scope, Da
 
     $(document).ready(function(){
         $('.ui.dropdown').dropdown();
+        
     });
 }]);

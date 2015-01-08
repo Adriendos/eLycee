@@ -55,14 +55,14 @@ describe('Controller: RootCtrl', function() {
     });
 
     it('should test if the past is an admin path', function() {
-        $location.path('/admin/articles');
+        $location.path('/admin/posts');
         expect(scope.isAdmin()).toBe(true);
         $location.path('/contact');
         expect(scope.isAdmin()).toBe(false);
     });
 
     it('should test if the go method sends us to the desired location', function() {
-        $location.path('/admin/articles');
+        $location.path('/admin/posts');
         scope.go('/news');
         expect($location.path()).toBe('/news');
     });
