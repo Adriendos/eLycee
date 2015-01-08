@@ -39,7 +39,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image' || $inputName == 'auth_token') { continue; }
+			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
@@ -79,7 +79,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image' || $inputName == '_method' || $inputName == 'auth_token') { continue; }
+			if($inputName == 'image' || $inputName == '_method') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 		$imgPath = $this->processImage($inputs, $model);
