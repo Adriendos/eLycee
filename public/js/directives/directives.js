@@ -128,7 +128,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route) {
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.comment = { name: 'test' , content: '', post_id: scope.postId};
+            scope.comment = { name: '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){
                 scope.comment.post_id = value;
             });
@@ -137,6 +137,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route) {
                 if(scope.specialField == '') {
                     DataAccess.create(ENTITY.comment, scope.comment).then(function (data) {
                         scope.$parent.reloadComments();
+                        scope.comment = { name: '' , content: '', post_id: scope.postId};
                     });
                 }
             };
