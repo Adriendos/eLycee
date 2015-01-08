@@ -3,16 +3,12 @@ app.controller('AdminPostEditCtrl',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams) {
       // init vars
     	$scope.entity = ENTITY.post;
-      $scope.currentPost = {}; 
-
-      // @todo remove that 
-      DataAccess.getDataById(ENTITY.post, 2).then( function(post) {
-        delete post.id;
-        $scope.currentPost = post;
-      });
+      $scope.currentPost = {};
+      $scope.errorimage = true; 
 
       if( $routeParams.id ) { // edit existing post
         $scope.mode = 'edit';
+        $scope.errorimage = false;
         DataAccess.getDataById(ENTITY.post, $routeParams.id).then( 
           function(post) {
             if( post.status == 'published') {
@@ -47,6 +43,7 @@ app.controller('AdminPostEditCtrl',
         // after image upload
         // @todo remove that and make process image form in directive l. 77
         $scope.uploader.onAfterAddingFile = function(fileItem) {
+          $scope.errors.image = false;
           $scope.imageFile = fileItem._file;
           var reader = new FileReader();
           reader.onloadend = function () {
@@ -60,20 +57,21 @@ app.controller('AdminPostEditCtrl',
         };
 
         $scope.submitForm = function() { // @todo loadee ...
+          // invalid postForm
+          if ( ! $scope.postForm.$valid) {
+            return;
+          }
           // remove url_thumbnail prop 
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
           $scope.currentPost.user_id = SessionService.getUser().id;
           if($scope.mode == 'create') {
-            console.info('before create Post', $scope.currentPost);
+
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
-              console.info('after create post data', data);
               closeForm();
             });
           } else {
-            console.info('before update Post', $scope.currentPost);
             DataAccess.update(ENTITY.post, $scope.currentPost).then( function(data) {
-              console.info('after update post data', data);
               closeForm();
             });
           }          
@@ -83,6 +81,12 @@ app.controller('AdminPostEditCtrl',
           $scope.isFormLoading = false;
           $location.path('/admin/posts');
         };
+
+        function _validInput(dataInputVal) {
+          if( ! dataInputVal) {
+
+          }
+        }
 
         $scope.reset = function() {
           $scope.currentPost = {};
