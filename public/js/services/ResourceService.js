@@ -47,8 +47,8 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                                 id: '@id'
                             },
                             {
-                                query: {method: 'GET', isArray: true, cache: true},
-                                save: { method:'POST'}
+                                query: {method: 'GET', isArray: true},
+                                save: { method:'POST', url:apiUrl + entityName }
                             }
 
                         );

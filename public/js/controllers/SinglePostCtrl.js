@@ -15,4 +15,13 @@ app.controller('SinglePostCtrl',
                 });
           }
       );
+
+        $scope.reloadComments = function() {
+            DataAccess.getAllData(ENTITY.comment, $scope.post.id).then(
+                function(comments) {
+                    console.log('je reload les posts !');
+                    console.log(comments);
+                    $scope.post.comments = comments;
+                });
+        };
 }]);
