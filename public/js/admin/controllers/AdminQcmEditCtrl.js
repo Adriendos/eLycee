@@ -1,6 +1,6 @@
 app.controller('AdminQcmEditCtrl',
-    ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService',
-        function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
+    ['$scope', '$compile', 'Utils','ENTITY', 'DataAccess', 'SessionService', '$location',
+        function($scope, $compile, Utils, ENTITY, DataAccess, SessionService, $location) {
             $scope.questions = {};
             $scope.nbQuestion = 1;
             $scope.formError = false;
@@ -135,7 +135,7 @@ app.controller('AdminQcmEditCtrl',
                     $scope.currentQcm.questions.push(question);
                 });
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
-                    console.log(data);
+                    $location.path('/admin/dashboard');
                 });
             };
 

@@ -18,7 +18,7 @@
     <body ng-controller="RootCtrl">
 
         <!--NAV-->
-        <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar"></ng-include>
+        <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar" ng-controller="NavCtrl"></ng-include>
 
         <!-- LOADING SPINNER -->
         <div spinner class="loader-section">
