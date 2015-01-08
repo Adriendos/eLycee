@@ -4,17 +4,22 @@
 <div class="ui divider"></div>
 <div class="six wide column">
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
+	<!-- DEBUT DU FORMULAIRE -->
 	<div class="ui form segment">
 		<div class="two fields">
 			<div class="field">
 				<label>Prénom</label>
-				<input placeholder="Prénom" type="text">
+				<input placeholder="Prénom" type="text" required>
 			</div>
 			<div class="field">
 				<label>Nom</label>
-				<input placeholder="Nom" type="text">
+				<input placeholder="Nom" type="text" required>
 			</div>
 		</div>
+		<div class="field">
+				<label>Email</label>
+				<input type="email" placeholder="Email" required>
+			</div>
 		<div class="field">
 	      <label>Sexe</label>
 	      <div class="ui selection dropdown">
@@ -29,14 +34,17 @@
     </div>
 		<div class="field">
 			<label>Classe</label>
-			<input placeholder="Classe" type="text">
+			<input placeholder="Classe" type="text" required>
 		</div>
 		<div class="field">
 		    <label>Message</label>
-		    <textarea class="noResize"></textarea>
+		    <textarea class="noResize" required></textarea>
 		  </div>
 		<div class="ui positive button submit ">Envoyer</div>
 	</div>
+
+	<!-- FIN DU FORMULAIRE -->
+
 </div>
 <div class="ten wide column">
 	<h2><i class="marker icon"></i> Où nous trouver?</h2>
