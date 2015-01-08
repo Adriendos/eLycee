@@ -149,7 +149,10 @@ app.directive('ckEditor', [function () {
         transclude: true,
         scope: false,
         link: function ($scope, elm, attr, ngModel) {
+            if (!ngModel) return;
+
             var ck = CKEDITOR.replace(elm[0]);
+<<<<<<< HEAD
             // $scope.$apply(function () {
             //     ngModel.$setViewValue(ck.getData());
             // });
@@ -180,17 +183,19 @@ app.directive('ckEditor', [function () {
             });
 
             function updateModel() {
-              scope.$apply(function() {
-                  ngModel.$setViewValue(ck.getData());
-              });
+                $scope.$apply(function() {
+                    if ( ck.getData().length ) {
+                        ngModel.$setViewValue(ck.getData());
+                    }
+                });
             }
 
+            ck.on('pasteState', updateModel);
             ck.on('change', updateModel);
             ck.on('key', updateModel);
             ck.on('dataReady', updateModel);
-
-            ngModel.$render = function(value) {
-                ck.setData(ngModel.$viewValue);
+            ngModel.$render = function() {
+                ck.setData(ngModel.$modelValue);
             };
         }
     };
