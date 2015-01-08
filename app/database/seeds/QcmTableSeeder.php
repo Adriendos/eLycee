@@ -9,13 +9,14 @@ class QcmTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 30) as $index)
 		{
 			Qcm::create([
-				'title' => $faker->sentence(),
+				'title'       => $faker->sentence(),
 				'description' => implode(' ', $faker->sentences(6)),
-				'created_at'    => $faker->unixTime(),
-				'updated_at'    => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
+				'class_level' => $faker->randomElement(['first_class', 'final_class']),
+				'created_at'  => $faker->unixTime(),
+				'updated_at'  => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
 			]);
 		}
 	}

@@ -34,7 +34,7 @@
 
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
-        <textarea name="content" ck-editor ng-model="currentPost.content"  required></textarea>
+        <textarea name="content" ck-editor ng-model="currentPost.content" required></textarea>
       </div>
 
       <div class="field">
@@ -48,18 +48,22 @@
       <!-- errors -->
       <div ng-show="postForm.$submitted && ! postForm.$valid" class="ui error form" style="margin-bottom: 20px">
           <div class="ui error message">
+            <i class="close icon"></i>
             <div class="header">
-              <p ng-show="postForm.title.$error.required">
-              Veuillez entrer un titre pour l' article
-              </p>
-              <p ng-show="errorimage">Le champ image est requis</p>
-              <p ng-show="postForm.content.$error.required">
-                Veuillez entrer un contenu pour l' article
-              </p>
-              <p ng-show="postForm.excerpt.$error.required">
-                Veuillez entrer un extrait pour l' article
-              </p>
+              Problème formulaire
             </div>
+            <ul class="list">
+                <li ng-show="postForm.title.$error.required">
+                Veuillez entrer un titre pour l' article
+                </li>
+                <li ng-show="errorimage">Le champ image est requis</p>
+                <li ng-show="postForm.excerpt.$error.required">
+                  Veuillez entrer un extrait pour l' article
+                </li>
+                <li ng-show="postForm.content.$error.required">
+                  Veuillez entrer un contenu pour l' article
+                </li>
+            </ul>
           </div>  
       </div> <!-- /ui corner labeled input -->
 

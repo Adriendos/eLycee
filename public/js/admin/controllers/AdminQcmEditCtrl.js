@@ -10,7 +10,7 @@ app.controller('AdminQcmEditCtrl',
                 description: '',
                 class_level: ''
             };
-
+            console.info('$scope.formError', $scope.formError);
             $('#validateQcm').modal();
             $('select.dropdown').dropdown('setting', 'onChange' ,function() {
                 $scope.currentQcm.class_level = $(this).dropdown('get value')

@@ -2,20 +2,8 @@
 
 class QcmController extends \BaseController {
 
-	// /**
-	//  * filter auth token 
-	//  * @todo remove that 
-	//  */
-	// public function __construct()
- //    {
- //    	$this->beforeFilter('auth.token', 
- //    		['except' => ['index', 'getToken', 'show', 'store'] 
- //    	]);
- //    }
-
-	// extend le store
 	/**
-	 * Store a newly created resource in storage.
+	 * Extend store only for QCM resources
 	 *
 	 * @return json element created
 	 */
@@ -50,6 +38,7 @@ class QcmController extends \BaseController {
 			foreach ($tempAnswers as $key => $tempAnswer) {
 				$answer = new Answer();
 				$tempAnswer['question_id'] = $questionId;
+				
 				foreach ($tempAnswer as $inputName => $inputVal) {
 					$answer->$inputName = $inputVal;
 				}
@@ -58,22 +47,6 @@ class QcmController extends \BaseController {
 		}
 
 		return Response::json($qcm);
-
-		// extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		// $elem = new $model();
-
-		// foreach ($inputs as $inputName => $inputVal) {
-		// 	if($inputName == 'image' || $inputName == 'auth_token') { continue; }
-		// 	$elem->$inputName = $inputVal;
-		// }
-
-		// $imgPath = $this->processImage($inputs, $model);
-		// if($imgPath) {
-		// 	$elem->url_thumbnail = $imgPath;
-		// }
-		// $elem->save();
-		 
-		// return Response::json($elem);
     }
 
 }
