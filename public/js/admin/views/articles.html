@@ -45,8 +45,8 @@
             <div class="ui icon button primary" ng-click="go('/post/'+post.id)">
               <i class="eye icon"></i>
             </div>
-            <div class="ui icon button basic">
-              <i class="icon" ng-class="publicationState(post)"></i>
+            <div class="ui icon button basic" ng-click="updateStatus(post)">
+              <i class="icon" ng-class="getStatusClass(post)"></i>
             </div>
           </td>
         </tr>
@@ -70,8 +70,8 @@
   </div>
   <div class="content">
     <p>Voulez vous supprimer définitivement le Post suivant ?</p>
-    <p><b>Titre :</b> <em>{{currentPost.title}}</em></p>
-    <b>Status :</b><em>{{ currentPost.status }}</em>
+    <p><b>Titre : </b> <em>{{currentPost.title}}</em></p>
+    <p><b>Intro : </b> <em>{{currentPost.excerpt | htmlToPlaintext}}</em></p>
   </div>
   <div class="actions">
     <div class="ui negative button">

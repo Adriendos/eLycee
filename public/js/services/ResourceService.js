@@ -10,6 +10,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
         //Generic resource generator
         ResourceService.getResource = function(entityName) {
             var resource;
+            var authTokenHeader = { 'X-Auth-Token' : SessionService.getToken() };
 
             switch(entityName) {
                 case ENTITY.question :
@@ -47,8 +48,9 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         {
                             query: { method: 'GET', isArray: true, cache: true},
                             get: { method: 'GET', params: {id: '@id' }, isArray: false, cache : true},
-                            save: { method: 'POST', headers: { 'X-Auth-Token' : SessionService.getToken() } },
-                            update: { method:'PUT', headers: { 'X-Auth-Token' : SessionService.getToken() } }
+                            save: { method: 'POST', headers: authTokenHeader },
+                            update: { method:'PUT', headers: authTokenHeader },
+                            delete: { method:'DELETE', headers: authTokenHeader }
                         }
                     );
                     break;

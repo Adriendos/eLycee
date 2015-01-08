@@ -27,12 +27,12 @@ app.factory('DataAccess',
 
 		DataAccess.update = function(entityName, data) {
 			var resource = ResourceFactory.getResource(entityName);
-			return update(resource,entityName, data);
+			return update(resource, entityName, data);
 		};
 
 		DataAccess.delete = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
-			return remove(resource, id);
+			return remove(resource, entityName, id);
 		};
 
 		// Datas NEEDS to be an array !
