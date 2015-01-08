@@ -45,6 +45,7 @@ app.controller('AdminPostEditCtrl',
 
         // after image upload
         // @todo remove that and make process image form in directive l. 77
+
         $scope.uploader.onAfterAddingFile = function(fileItem) {
           $scope.errorimage = false;
           $scope.imageFile = fileItem._file;
@@ -61,9 +62,11 @@ app.controller('AdminPostEditCtrl',
 
         $scope.submitForm = function() { // @todo loadee ...
           // invalid postForm
+          // console.info('image post', $scope.currentPost);
           if ( ! $scope.postForm.$valid) {
             return;
           }
+
           // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
