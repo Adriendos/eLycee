@@ -61,7 +61,9 @@ app.controller('AdminPostEditCtrl',
 
         $scope.submitForm = function() { // @todo loadee ...
           // invalid postForm
-          if ( ! $scope.postForm.$valid) return;
+          if ( ! $scope.postForm.$valid) {
+            return;
+          }
           // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
