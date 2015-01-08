@@ -1,42 +1,48 @@
-<!-- <div class="sixteen wide column" style="background-color:yellow;">
-	<h1>TEMPLATE CONTACT</h1>
-</div> -->
 <div class="ui divider"></div>
 <div class="six wide column">
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
-	<div class="ui form segment">
-		<div class="two fields">
-			<div class="field">
-				<label>Prénom</label>
-				<input placeholder="Prénom" type="text">
+	<!-- DEBUT DU FORMULAIRE -->
+	<div ng-controller="ContactCtrl">
+	  <form novalidate class="simple-form">
+		  <div class="two fields">
+				<div class="field">
+					<label>Prénom</label>
+					<input placeholder="Prénom" type="text" required ng-model="contact.prenom">
+				</div>
+				<div class="field">
+					<label>Nom</label>
+					<input placeholder="Nom" type="text" required ng-model="contact.nom">
+				</div>
 			</div>
 			<div class="field">
-				<label>Nom</label>
-				<input placeholder="Nom" type="text">
+				<label>Email</label>
+				<input type="email" placeholder="Email" required ng-model="contact.mail">
 			</div>
-		</div>
-		<div class="field">
-	      <label>Sexe</label>
-	      <div class="ui selection dropdown">
-	        <input type="hidden" name="gender">
-	        <div class="default text">Sexe</div>
-	        <i class="dropdown icon"></i>
-	        <div class="menu">
-	          <div class="item" data-value="male">Homme</div>
-	          <div class="item" data-value="female">Femme</div>
-	        </div>
-	      </div>
-    </div>
-		<div class="field">
-			<label>Classe</label>
-			<input placeholder="Classe" type="text">
-		</div>
-		<div class="field">
-		    <label>Message</label>
-		    <textarea class="noResize"></textarea>
-		  </div>
-		<div class="ui positive button submit ">Envoyer</div>
+			<div class="field">
+		      <label>Sexe</label>
+		      <div class="ui selection dropdown">
+		        <input type="hidden" name="sexe" ng-model="contact.sexe">
+		        <div class="default text">Sexe</div>
+		        <i class="dropdown icon"></i>
+		        <div class="menu">
+		          <div class="item" data-value="male">Homme</div>
+		          <div class="item" data-value="female">Femme</div>
+		        </div> 
+		      </div>
+	    </div>
+			<div class="field">
+				<label>Classe</label>
+				<input placeholder="Classe" type="text" required ng-model="contact.classe">
+			</div>
+			<div class="field">
+			    <label>Message</label>
+			    <textarea class="noResize" required ng-model="contact.message"></textarea>
+			  </div>
+			<div class="ui positive button submit" ng-click="">Envoyer</div>
+	  </form>
 	</div>
+	<pre>form = {{contact | json}}</pre>
+	<!-- FIN DU FORMULAIRE -->
 </div>
 
 <div class="ten wide column">
