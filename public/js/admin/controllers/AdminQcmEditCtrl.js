@@ -60,6 +60,13 @@ app.controller('AdminQcmEditCtrl',
                                 '<i class="icon close"></i> &nbsp;Supprimer',
                             '</div>',
                         '<div class="invisible ui divider"></div>',
+                    '<div class="ui error form" ng-show="newQcm.$submitted && questions[\''+guid+'\'].noAnswer ">',
+                    '<div class="ui error small message">',
+                    '<div class="header">',
+                        'Veuillez renseigner au minimum une bonne réponse',
+                    '</div>',
+                    '</div>',
+                    '</div>',
                         '<div class="field" ng-class="{ error: newQcm.$submitted && questions[\''+guid+'\'].contentError }">',
                             '<label><i class="icon help"></i>Question</label>',
                             '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content" required>',
@@ -87,14 +94,6 @@ app.controller('AdminQcmEditCtrl',
 
 
                 var html = [
-                    '<div class="ui error message">',
-                    '<div class="header">',
-                    'Il ya eu une ou plusieurs erreurs lors de la validation du qcm:',
-                    '</div>',
-                    '<ul class="list">',
-                    '<li ng-show="error: newQcm.$submitted && questions[\''+questionGuid+'\'].noAnswer">Veuillez renseigner au moins une bonne réponse</li>',
-                    '</ul>',
-                    '</div>',
                     '<div class="two fields">',
                     '<div class="field" ng-class="{ error: newQcm.$submitted && questions[\''+questionGuid+'\'].answers[\''+guid+'\'].contentError }">',
                     '<label><i class="icon certificate"></i>Réponse</label>',
@@ -127,11 +126,17 @@ app.controller('AdminQcmEditCtrl',
 
             // Process validation qcm
             $scope.submitQcm = function() {
-
-                console.log($scope.currentQcm);
-                //DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
-                //    console.log(data);
-                //});
+                angular.forEach($scope.questions, function(question) {
+                    answers = question.answers;
+                    question.answers = [];
+                    angular.forEach(answers, function(answer) {
+                        question.answers.push(answer);
+                    });
+                    $scope.currentQcm.questions.push(question);
+                });
+                DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
+                    console.log(data);
+                });
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
@@ -144,31 +149,36 @@ app.controller('AdminQcmEditCtrl',
                     angular.forEach($scope.questions, function(question, guid) {
                         if(question.content == '') {
                             $scope.questions[guid].contentError = true;
+                            console.log('question has not content');
                             error =true;
                         }
+                        var noAnswer = true;
                         angular.forEach(question.answers, function(answer, answerGuid) {
-                            var noAnswer = true;
                             if(answer.content == '') {
                                 $scope.questions[guid].answers[answerGuid].contentError = true;
-                                error =true;
-                                if(answer.status = 1) { noAnswer = false;}
+                                console.log('answer has not content');
+                                error = true;
                             }
-                            if(noAnswer) { $scope.questions[guid].noAnswer = true }
+                            console.log(answer.status);
+                            if(answer.status == 1) {
+                                noAnswer = false;
+                            }
                         });
+                        if(noAnswer) {
+                            $scope.questions[guid].noAnswer = true;
+                            console.log('no right answers');
+                            error = true;
+                        }
                     });
+                    console.log(error);
 
                     if(error) {
+                        $('html, body').animate({
+                            scrollTop: $('.error').first().offset().top
+                        }, 1000);
                         return;
                     } else {
                         $scope.currentQcm.questions = [];
-                        angular.forEach($scope.questions, function(question) {
-                            answers = question.answers;
-                            question.answers = [];
-                            angular.forEach(answers, function(answer) {
-                                question.answers.push(answer);
-                            });
-                            $scope.currentQcm.questions.push(question);
-                        });
                         $('#validateQcm').modal('show');
 
                     }
