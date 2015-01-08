@@ -128,13 +128,20 @@ app.factory('DataAccess',
 			return d.promise;
 		};
 
+
 		function remove(resource, entityName, id) {
+			var d = $q.defer();
+
 			get(resource, id).then(function(entity) {
-				entity.$delete(function() {
+				var result = entity.$delete(function() {
 					$rootScope.notify('Suppression effectuée avec succès.');
+					clearCache(entityName);
 					clearCache(entityName, id);
+					d.resolve(result);
 				});
 			});
+
+			return d.promise;
 		};
 
 		function clearCache(entityName) {

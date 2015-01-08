@@ -25,8 +25,9 @@ app.controller('AdminPostsCtrl',
 
         $scope.deletePost = function() {
           console.info('id', $scope.currentPost.id);
-          DataAccess.delete(ENTITY.post, $scope.currentPost.id);
-          init();
+          DataAccess.delete(ENTITY.post, $scope.currentPost.id).then(function() {
+            init();
+          });
         };
 
         // Variable for table sorting
