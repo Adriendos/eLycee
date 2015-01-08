@@ -3,6 +3,7 @@ app.controller('AdminQcmEditCtrl',
         function($scope, $compile, Utils, ENTITY, DataAccess, SessionService) {
             $scope.questions = {};
             $scope.nbQuestion = 1;
+            $scope.formError = true;
             $scope.currentQcm = {
                 title: '',
                 description: '',
@@ -60,7 +61,7 @@ app.controller('AdminQcmEditCtrl',
                         '<div class="invisible ui divider"></div>',
                         '<div class="field">',
                             '<label><i class="icon help"></i>Question</label>',
-                            '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content">',
+                            '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content" required>',
                         '</div>',
                         '<div class="ui divider"></div>',
                          '<div class="field" id="answers'+guid+'">',
@@ -88,7 +89,7 @@ app.controller('AdminQcmEditCtrl',
                     '<div class="two fields">',
                     '<div class="field">',
                     '<label><i class="icon certificate"></i>Réponse</label>',
-                    '<input placeholder="Saisissez la réponse" type="text" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content">',
+                    '<input placeholder="Saisissez la réponse" type="text" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content" required>',
                     '</div>',
                     '<div class="field">',
                     '<label>Valeur</label>',
@@ -115,7 +116,13 @@ app.controller('AdminQcmEditCtrl',
 
             };
 
+            // Process validation qcm
             $scope.submitQcm = function() {
+               if($scope.newQcm.$valid){
+                       $scope.formError = true;
+               $scope.$digest();
+               };
+
                 $scope.currentQcm.questions = [];
                 angular.forEach($scope.questions, function(question) {
                     answers = question.answers;
@@ -124,13 +131,12 @@ app.controller('AdminQcmEditCtrl',
                         question.answers.push(answer);
                     });
                     $scope.currentQcm.questions.push(question);
-
                 });
 
                 console.log($scope.currentQcm);
-                DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
-                    console.log(data);
-                });
+                //DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
+                //    console.log(data);
+                //});
             };
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
