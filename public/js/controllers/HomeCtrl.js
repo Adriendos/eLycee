@@ -9,5 +9,6 @@ app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY',
 
     $(document).ready(function(){
         $('.ui.dropdown').dropdown();
+        
     });
 }]);
