@@ -28,38 +28,37 @@ app.controller('ContactCtrl',
         
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
-        if($scope.specialField == ''){
-            if (contactform.$valid){
-            $http({
+        if($scope.specialField == '') {
+            if (contactform.$valid) {
+                $http({
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    url: apiUrl + 'contact', // url api LARAVEL
+                    data: $scope.contact // données à envoyer -> utiliser $sanitize()
 
-                method  : 'POST',
-                url     : apiUrl + 'contact', // url api LARAVEL
-                params    : $scope.contact,  // données à envoyer -> utiliser $sanitize()
-                headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-            
-            }).success(function(data){
+                }).success(function (data) {
 
-                console.log(data);
-                
-                if (data.success){
-                    $scope.submitButtonDisabled = true;
-                    $scope.resultMessage = data.message;
-                    $scope.result='ui segment inverted green';
-                
-                }else{
-                
-                    $scope.submitButtonDisabled = false;
-                    $scope.resultMessage = data.message;
-                    $scope.result='ui segment inverted red';
-                }
-            });
+                    console.log(data);
 
-        }else{
-    
-            $scope.submitButtonDisabled = false;
-            $scope.resultMessage = 'Erreur! Verifier toutes les infos.';
-            $scope.result='ui segment inverted red';
-        }
+                    if (data.success) {
+                        $scope.submitButtonDisabled = true;
+                        $scope.resultMessage = data.message;
+                        $scope.result = 'ui segment inverted green';
+
+                    } else {
+
+                        $scope.submitButtonDisabled = false;
+                        $scope.resultMessage = data.message;
+                        $scope.result = 'ui segment inverted red';
+                    }
+                });
+
+            } else {
+
+                $scope.submitButtonDisabled = false;
+                $scope.resultMessage = 'Erreur! Verifier toutes les infos.';
+                $scope.result = 'ui segment inverted red';
+            }
         }
     }
 }]);

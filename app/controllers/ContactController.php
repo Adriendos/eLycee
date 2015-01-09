@@ -4,6 +4,7 @@ class ContactController extends Controller {
 	public function sendContactMail() 
 	{
 		$inputs = Input::All();
+		extract($inputs);
 		// envoi au webmaster
 		
 		/**
@@ -11,28 +12,28 @@ class ContactController extends Controller {
 		 * 		   2nd -> data to be passed  
 		 * 		   3rd -> function
 		 **/
-		Mail::send('email.contact', $data, function($m)
-		{
-		    $m->from($inputs['mail'], $inputs['nom']." ".$inputs['prenom']);
+// 		Mail::send('email.contact',$inputs, function($m)
+// 		{
+// 		    //$m->from($mail, $nom." ".$prenom);
 
-		    $m->to('dossantos.adrien18@gmail.com');
+// 		    $m->to(['dossantos.adrien18@gmail.com', 'clementpeyrabere@gmail.com', 'decuyperjeremie@gmail.com']);
 
-		    $m->subject($inputs['objet']);
+// 		    $m->subject('zizi');
 
-		    $m->body($inputs['message']);
-		});
+// 		    // $m->body('coucou');
+// 		});
 
-		// envoi à la personne ayant rempli le formulaire
-		Mail::send('email.contact', $data, function($m)
-		{
-		    $m->from('dossantos.adrien18@gmail.com');
+// 		// envoi à la personne ayant rempli le formulaire
+// 		Mail::send('email.contact', $inputs, function($m)
+// 		{
+// 		   // $m->from('dossantos.adrien18@gmail.com');
 
-		    $m->to($inputs['mail']);
+// 		   // $m->to($mail);
 
-		    $m->subject($inputs['objet']);
+// //		    $m->subject($objet);
 
-		    $m->body($inputs['message']);
-		});
+// //		    $m->body($message);
+// 		});
 
 
 		// si le mail ne s'est pas envoyé
