@@ -37,9 +37,9 @@ app.controller('ContactCtrl',
                 params    : $scope.contact,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
-            }).success(function(response){
+            }).success(function(data){
 
-                console.log(response);
+                console.log(data);
                 
                 if (data.success){
                     $scope.submitButtonDisabled = true;
