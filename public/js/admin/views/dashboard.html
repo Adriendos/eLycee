@@ -4,14 +4,14 @@
       <div class="ui basic horizontal segment center aligned">
         <div class="ui statistic">
           <div class="value">
-            <i class="icon file outline"></i> 5
+            <i class="icon file outline"></i> {{postsNumber}}
           </div>
           <div class="label">
             Articles
           </div>
         </div>
         <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
-          <div class="ui inverted button">
+          <div class="ui inverted button" ng-click="go('/admin/post/create');">
             <i class="plus icon"></i>
             Ajouter
           </div>
@@ -26,7 +26,7 @@
       <div class="ui basic horizontal segment center aligned ">
         <div class="ui statistic">
           <div class="value">
-            <i class="question icon"></i> 5
+            <i class="question icon"></i> {{qcmsNumber}}
           </div>
           <div class="label">
            Q.C.M.
@@ -48,7 +48,7 @@
       <div class="ui basic horizontal segment center aligned">
         <div class="ui statistic">
           <div class="value">
-            <i class="student icon"></i> 20
+            <i class="student icon"></i> {{usersNumber}}
           </div>
           <div class="label">
             Etudiants
