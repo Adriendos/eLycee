@@ -20,9 +20,8 @@ class BaseController extends Controller {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+		$ressources = $model::orderBy('created_at', 'DESC')->get();
 
-		$ressources = $model::with('users')->orderBy('created_at', 'DESC')->get();
-		
 		return Response::json($ressources);
 	}
 
