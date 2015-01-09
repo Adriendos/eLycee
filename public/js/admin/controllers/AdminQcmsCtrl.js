@@ -1,6 +1,6 @@
 app.controller('AdminQcmsCtrl',
-    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
-        function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
+        function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
 
             $scope.qcms;
             $scope.allQcms;
@@ -49,19 +49,19 @@ app.controller('AdminQcmsCtrl',
                     sort.descending = !sort.descending;
                     if(th.hasClass('ascending')) {
                         th.removeClass('ascending').addClass('descending');
-                        $scope.allQcms = Utils.sortDescending($scope.allPosts, column);
+                        $scope.allQcms = Utils.sortDescending($scope.allQcms, column);
                     } else {
                         th.removeClass('descending').addClass('ascending');
-                        $scope.allQcms = Utils.sortAscending($scope.allPosts, column);
+                        $scope.allQcms = Utils.sortAscending($scope.allQcms, column);
                     }
                 } else {
                     $('th').removeClass('descending').removeClass('ascending');
                     $($event.currentTarget).addClass('ascending');
                     sort.column = column;
                     sort.descending = false;
-                    $scope.allQcms = Utils.sortAscending($scope.allPosts, column);
+                    $scope.allQcms = Utils.sortAscending($scope.allQcms, column);
                 }
-                $scope.posts = DataAccess.getPage($scope.allQcms, 1);
+                $scope.qcms = DataAccess.getPage($scope.allQcms, 1);
 
 
             };
