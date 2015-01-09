@@ -75,12 +75,12 @@ app.controller('AdminQcmEditCtrl',
 
 
                 var html = [
-                    '<div class="two fields">',
-                    '<div class="field" ng-class="{ error: newQcm.$submitted && questions[\''+questionGuid+'\'].answers[\''+guid+'\'].contentError }">',
+                    '<div class="fields" id="'+guid+'">',
+                    '<div class="field six wide field" ng-class="{ error: newQcm.$submitted && questions[\''+questionGuid+'\'].answers[\''+guid+'\'].contentError }">',
                     '<label><i class="icon certificate"></i>Réponse</label>',
                     '<input placeholder="Saisissez la réponse" type="text"  ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content" required>',
                     '</div>',
-                    '<div class="field">',
+                    '<div class="field four wide field">',
                     '<label>Valeur</label>',
                     '<div class="ui radio checkbox">',
                     '<input type="radio" name="value'+guid+'" value="1">',
@@ -90,7 +90,12 @@ app.controller('AdminQcmEditCtrl',
                     '<input type="radio" name="value'+guid+'" value="0" checked="checked">',
                     '<label>Mauvaise réponse</label>',
                     '</div>',
+                    '</div>',
+                    '<div class="six wide field">',
+                    '<div class="ui button negative" ng-click="removeAnswer(\''+questionGuid+'\',\''+guid+'\' );" >Supprimer la réponse</div>',
+                    '</div>',
                     '</div>'
+
                 ].join('');
 
                 $('#answers'+questionGuid).prepend($compile(html)($scope));
@@ -175,6 +180,12 @@ app.controller('AdminQcmEditCtrl',
 
 
 
+
+            };
+
+            $scope.removeAnswer = function(questionGuid , answerGuid) {
+                delete $scope.questions[questionGuid].answers[answerGuid];
+                $('#'+answerGuid).remove();
 
             };
 
