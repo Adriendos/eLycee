@@ -3,17 +3,19 @@
 		<div class="ui fluid card raised segment">
 			<div class="ui top attached label red">A la une</div>
 			<div class="image">
-				<img src="{{firstPost.url_thumbnail}}">
+				<img ng-src="{{firstPost.url_thumbnail}}">
 			</div>
 			<div class="content">
-				<div class="header">{{firstPost.title}}</div>
+				<div class="header">
+					<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
+				</div>
 				<div class="meta">
 					<a class="group">{{firstPost.created_at}}</a>
 				</div>
-				<div class="description">{{firstPost.excerpt}}</div>
+				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
 			<div class="extra content">
-				<a class="right floated created">{{firstPost.users.username}}</a>
+				<a class="right floated created">Par {{firstPost.users.username}}</a>
 				<a class="ui tag red label">Dernière actualité</a>
 			</div>
 		</div>
@@ -27,13 +29,13 @@
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content">
-					<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
+					<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
 					<div class="meta">
 						<small>{{ post.created_at | dateToISO | date:'dd/MM/yyyy'}}</small>
 					</div>
 					<div class="description" ng-bind-html="post.excerpt | limitTo:25 | htmlToPlaintext"></div>
 					<div class="extra">
-						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> {{post.users.username}}
+						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar">Par {{post.users.username}}
 					</div>
 				</div>
 			</div>
