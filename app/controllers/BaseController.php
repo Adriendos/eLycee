@@ -8,7 +8,7 @@ class BaseController extends Controller {
 	public function __construct()
     {
     	$this->beforeFilter('auth.token', 
-    		['except' => ['index', 'getToken', 'show'] 
+    		['except' => ['index', 'getToken', 'show', 'getUser'] 
     	]);
     }
 
