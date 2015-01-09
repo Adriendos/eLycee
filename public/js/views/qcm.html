@@ -4,7 +4,7 @@
             <div class="ui top attached label">
                 <img src="http://lorempixel.com/100/100" class="ui avatar image">
                 <span style="font-size:1.8em; vertical-align: middle">
-                    <span class="color:black">{{ getUser().username}}</span>, inscrit le {{getUser().created_at | dateToISO | date:'dd/MM/yyyy' }}, {{ getUserClass()}}</span>
+                    <span class="color:black">{{user.username}}</span>, inscrit le {{user.created_at | dateToISO | date:'dd/MM/yyyy' }}, {{ getUserClass()}}</span>
             </div>
             <div class="ui divider"></div>
             <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
@@ -22,7 +22,7 @@
                     <div class="content">
                         <div class="header">{{qcm.title}}</div>
                         {{ qcm.description }}
-                        <div class="right floated compact ui button" ng-click="go('/qcm/1');">Commencer</div>
+                        <div class="right floated compact ui button" ng-click="go('/qcm/'+qcm.id);">Commencer</div>
                     </div>
                 </div>
             </div>

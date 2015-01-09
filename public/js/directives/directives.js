@@ -126,7 +126,16 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService) {
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.comment = { name: SessionService.getUser().username || '' , content: '', post_id: scope.postId};
+            scope.loggedUserName = '';
+            scope.$watch(function(){
+                return SessionService.SESS_INIT;
+            }, function (newValue) {
+                if (SessionService.SESS_INIT == true) {
+                    scope.loggedUserName = SessionService.getUser().name();
+                }
+            });
+
+            scope.comment = { name: scope.loggedUserName || '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){
                 scope.comment.post_id = value;
             });

@@ -3,7 +3,7 @@ var app;
 
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize', 
-     'LocalStorageModule', 'toastr', 'angularFileUpload',
+     'LocalStorageModule', 'cgNotify', 'angularFileUpload',
      'googlechart', 'djds4rce.angular-socialshare'
  ]);
 
@@ -34,51 +34,32 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
        .setNotify(true, true); 
 }]);
 
-// __ Config Toastr 
-app.config(function(toastrConfig) { 
-   angular.extend(toastrConfig, { 
-       allowHtml: true, 
-       closeButton: true, 
-       closeHtml: '<button>&times;</button>', 
-       containerId: 'toast-container', 
-       extendedTimeOut: 1000, 
-       iconClasses: { 
-           error: 'toast-error', 
-           info: 'toast-info', 
-           success: 'toast-success', 
-           warning: 'toast-warning' 
-       }, 
-       messageClass: 'toast-message', 
-       positionClass: 'toast-top-right', 
-       tapToDismiss: true, 
-       timeOut: 1000, 
-       titleClass: 'toast-title' 
-   }); 
-});
-
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
-app.run(['$rootScope','toastr', function($rootScope, toastr) { 
+app.run(['$rootScope', 'notify', function($rootScope, notify) {
+    //notify.config({templateUrl: 'js/views/templates/notification.html'});
+
    $rootScope.notify = function(message, level) { 
        switch(level) { 
-           case 'error': 
-               toastr.error(message,'Erreur'); 
+           case 'error':
+               notify({message:message, classes:'notify error' });
+
                break;
 
-           case 'success': 
-               toastr.success(message); 
+           case 'success':
+               notify({message:message, classes:'notify success' });
                break;
 
-           case 'info': 
-               toastr.info(message); 
+           case 'info':
+               notify({message:message, classes:'notify info' });
                break;
 
-           case 'warning': 
-               toastr.warning(message, 'Attention'); 
+           case 'warning':
+               notify({message:message, classes:'notify warning' });
                break;
 
-           default: 
-               toastr.info(message) 
+           default:
+               notify({message:message, classes:'notify info' });
                ; 
        } 
    }; 
@@ -86,35 +67,30 @@ app.run(['$rootScope','toastr', function($rootScope, toastr) {
 
 
 //Route Change interceptor 
-app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) { 
-   $rootScope.$on("$locationChangeStart", function () { 
-       if ($location.path().indexOf('/admin') >= 0) { 
-           if (SessionService.isLoggedUser() && SessionService.isUserAdmin()) { 
-               //Logged user and admin 
-               return; 
-           } else { 
-               //No user logged or user not admin 
-               SessionService.checkToken() 
-                   .then(function (data) { 
-                       if (data.role != 'teacher') { 
-                           $rootScope.notify("Vous n'avez pas accès à cette section.", 'error'); 
-                           $location.path('/'); 
-                       } 
-                   }, function (error) { 
-                       // promise rejected 
-                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error'); 
-                       SessionService.logout(); 
-                       $location.path('/'); 
-                   }); 
-           } 
-       } else { 
-           // Not on an admin route, checks token to inialize user session 
-           SessionService.checkToken() 
-               .then(function () { 
-                   return; 
-               }, function () { 
-                   return; 
-               }); 
-       } 
+app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) {
+   $rootScope.$on("$routeChangeStart", function (event, next, current) {
+       if(($location.path().indexOf('/admin') >= 0) || ($location.path().indexOf('/qcm') >= 0) ) {
+           SessionService.checkToken()
+               .then(function (data) {
+                   if (data.role != 'teacher' && ($location.path().indexOf('/admin') >= 0)) {
+                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                       $location.path('/');
+                   } else {
+
+                   }
+               }, function (error) {
+                   // promise rejected
+                   $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                   SessionService.logout();
+                   $location.path('/');
+               });
+       } else {
+           SessionService.checkToken()
+               .then(function (data) {
+
+               }, function (error) {
+
+               });
+       }
    }); 
 }]);

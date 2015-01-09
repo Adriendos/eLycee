@@ -11,12 +11,9 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
         DataAccess.getDataById(ENTITY.qcm, $routeParams.id).then(
             function(qcm) {
                 $scope.qcm = qcm;
+                $('.loading').removeClass('loading');
 
-                DataAccess.getAllData(ENTITY.question, qcm.id).then(
-                    function(questions) {
-                        console.log('yesss',questions);
-                    }
-                )
+
 
             }
         );

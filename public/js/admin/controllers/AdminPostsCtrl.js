@@ -2,14 +2,14 @@ app.controller('AdminPostsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
       function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
 
-        $scope.posts = [];
-        $scope.allPosts = [];
+        $scope.posts;
         $scope.modal = [];
         $scope.currentPage = 1;
         $scope.entity = ENTITY.post;
         $scope.currentPost = {};
 
         $('.ui.modal').modal();
+
         init();
         function init() {
           DataAccess.getAllData(ENTITY.post).then(
@@ -25,8 +25,10 @@ app.controller('AdminPostsCtrl',
         };
 
         $scope.deletePost = function() {
-          DataAccess.delete(ENTITY.post, $scope.currentPost.id);
-          init();
+          DataAccess.delete(ENTITY.post, $scope.currentPost.id).then(function(data) {
+            // $rootScope.notify('Article : ' + data.title + ' correctement supprimé');
+            init();
+          });
         };
 
         // Variable for table sorting
@@ -36,11 +38,22 @@ app.controller('AdminPostsCtrl',
         };
 
         // Check a post status
-        $scope.publicationState = function(post) {
+        $scope.getStatusClass = function(post) {
           if(post.status == 'published') {
             return 'unlock blue';
           }
           return 'lock red';
+        }
+
+        $scope.updateStatus = function(post) {
+          if(post.status == 'published') {
+            post.status = 'unpublished'
+          } else {
+            post.status = 'published'
+          }
+          DataAccess.update(ENTITY.post, post).then( function(data) {
+            console.info('update status', data);
+          });
         }
 
         // Function used to sort the table by clicking headers

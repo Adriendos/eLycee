@@ -10,15 +10,14 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
         //Generic resource generator
         ResourceService.getResource = function(entityName) {
             var resource;
+            var authTokenHeader = { 'X-Auth-Token' : SessionService.getToken() };
 
             switch(entityName) {
                 case ENTITY.question :
                     resource =  $resource(
                         apiUrl + "qcms/:id/questions",
-                        {
-                            id: '@id'
-                        },
-                        {
+                        { id: '@id' },
+                        { 
                             query: {method: 'GET', isArray: true, cache: true}
                         }
                     );
@@ -26,48 +25,39 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                 case ENTITY.answer :
                     resource =  $resource(
                         apiUrl + "questions/:id/answers",
-                        {
-                            id: '@id'
-                        },
+                        { id: '@id' },
                         {
                             query: {method: 'GET', isArray: true, cache: true}
                         }
-
                     );
                     break;
                 case ENTITY.comment :
                     resource =  $resource(
                         apiUrl + "posts/:id/comments",
-                        {
-                            id: '@id'
-                        },
+                        { id: '@id' },
                         {
                             query: {method: 'GET', isArray: true},
                             save: { method:'POST', url:apiUrl + entityName }
                         }
-
                     );
                     break;
                 default :
                     resource = $resource(
                         apiUrl + entityName + '/:id',
-                        {
-                            id: '@id'
-                        },
+                        { id: '@id' },
                         {
                             query: { method: 'GET', isArray: true, cache: true},
                             get: { method: 'GET', params: {id: '@id' }, isArray: false, cache : true},
-                            save: { method: 'POST', headers: { 'X-Auth-Token' : SessionService.getToken() } },
-                            update: { method:'PUT', headers: { 'X-Auth-Token' : SessionService.getToken() } }
+                            save: { method: 'POST', headers: authTokenHeader },
+                            update: { method:'PUT', headers: authTokenHeader },
+                            delete: { method:'DELETE', headers: authTokenHeader }
                         }
-
                     );
                     break;
             }
 
             return resource;
-
         };
 
         return ResourceService;
-}]);
+    }]);

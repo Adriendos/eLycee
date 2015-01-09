@@ -10,6 +10,11 @@ class Question extends Eloquent {
 	 */
 	protected $table = 'questions';
 
+	public function qcm()
+	{
+	  return $this->belongsTo('Qcm');
+	}
+
 	public function answers() 
 	{
 		return $this->hasMany('Answer');

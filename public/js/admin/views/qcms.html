@@ -36,14 +36,8 @@
                 <td>{{qcm.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
                 <td>{{qcm.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
                 <td>
-                    <div class="ui icon button positive" ng-click="openEditionModal(post)" data-content="Editer l'article">
-                        <i class="edit icon"></i>
-                    </div>
-                    <div class="ui icon button negative" ng-click="openDeletePostModal(post)">
+                    <div class="ui icon button negative" ng-click="openDeleteQcmModal(qcm)">
                         <i class="trash icon"></i>
-                    </div>
-                    <div class="ui icon button primary" ng-click="go('#/post/'+post.id)">
-                        <i class="eye icon"></i>
                     </div>
                 </td>
             </tr>
@@ -55,5 +49,28 @@
         <pagination class="pagination-wrapper center aligned" entity="entity" pages="nbPages" datas="allQcms" nb-pages="nbPages" current-page="currentPage"></pagination>
     </div>
 </div>
+
+<!-- DELETE POST MODAL -->
+<div id="deleteQcmModal" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Supprimer
+    </div>
+    <div class="content">
+        <p>Voulez vous supprimer définitivement le QCM suivant ?</p>
+        <p><b>Titre : </b> <em>{{currentQcm.title}}</em></p>
+        <p><b>Intro : </b> <em>{{currentQcm.description}}</em></p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            Non
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="deleteQcm()">
+            Oui
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+
 
 

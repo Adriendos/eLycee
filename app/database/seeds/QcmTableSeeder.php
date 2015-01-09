@@ -9,7 +9,7 @@ class QcmTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 30) as $index)
+		foreach(range(1, 80) as $index)
 		{
 			Qcm::create([
 				'title'       => $faker->sentence(),

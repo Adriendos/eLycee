@@ -9,7 +9,7 @@
 
         <!-- STYLESHEETS -->
         <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-        <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
+        <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.min.css">
 
         <link rel="stylesheet" href="bower_components/angular-socialshare/angular-socialshare.min.css"/>
         <link rel="stylesheet" href="dist/css/app.min.css">
@@ -18,7 +18,7 @@
     <body ng-controller="RootCtrl">
 
         <!--NAV-->
-        <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar"></ng-include>
+        <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar" ng-controller="NavCtrl"></ng-include>
 
         <!-- LOADING SPINNER -->
         <div spinner class="loader-section">
