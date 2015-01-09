@@ -3,7 +3,32 @@
 class QcmController extends \BaseController {
 
 	/**
-	 * Extend store only for QCM resources
+	 * Extend show
+	 * 
+	 * @return json element
+	 */
+	public function show($id)
+	{	
+		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
+
+		$qcm = $model::findOrFail($id);
+		$questions = $qcm->questions;
+
+		foreach($questions as $key => $question) {
+			$tmpId = $question->id;
+			$questions[$key]['answers'] = Question::findOrFail($tmpId)->answers;
+		}
+
+		$qcmData = [
+			'qcm'       => $qcm,
+			'questions' => $questions,
+		];
+
+		return Response::json($qcmData);
+	}
+
+	/**
+	 * Extend store only
 	 *
 	 * @return json element created
 	 */

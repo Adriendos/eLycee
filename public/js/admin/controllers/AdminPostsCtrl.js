@@ -25,7 +25,7 @@ app.controller('AdminPostsCtrl',
 
         $scope.deletePost = function() {
           DataAccess.delete(ENTITY.post, $scope.currentPost.id).then(function(data) {
-            $rootScope.notify('Article : ' + data.title + ' correctement supprimé');
+            // $rootScope.notify('Article : ' + data.title + ' correctement supprimé');
             init();
           });
         };
@@ -51,7 +51,7 @@ app.controller('AdminPostsCtrl',
             post.status = 'published'
           }
           DataAccess.update(ENTITY.post, post).then( function(data) {
-            $rootScope.notify('Status de l\' article : ' + data.title + ' correctement modifié');
+            console.info('update status', data);
           });
         }
 
