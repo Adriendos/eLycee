@@ -89,7 +89,10 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
                .then(function (data) {
 
                }, function (error) {
-
+                   if(($location.path().indexOf('/qcm') != -1)) {
+                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                       $location.path('/');
+                   }
                });
        }
    }); 

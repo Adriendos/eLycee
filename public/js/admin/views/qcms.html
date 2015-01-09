@@ -23,6 +23,7 @@
             <tr>
                 <th ng-click="changeSorting($event,'title')">Titre</th>
                 <th ng-click="changeSorting($event,'class_level')">Niveau</th>
+                <th ng-click="changeSorting($event,'user_id')">Auteur</th>
                 <th ng-click="changeSorting($event,'created_at')" class="descending">Crée le</th>
                 <th ng-click="changeSorting($event,'updated_at')">Edité le</th>
                 <th>Actions</th>
@@ -33,6 +34,7 @@
             <tr ng-repeat="qcm in qcms | limitTo: 10 | orderBy:sort.column:sort.descending | filter:searchText:strict">
                 <td>{{ qcm.title | limitTo : 75}} ...</td>
                 <td>{{ getLevel(qcm.class_level)}}</td>
+                <td>{{ qcm.users.username}}</td>
                 <td>{{qcm.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
                 <td>{{qcm.updated_at | dateToISO | date:'dd/MM/yyyy'}}</td>
                 <td>
