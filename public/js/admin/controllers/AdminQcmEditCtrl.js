@@ -177,10 +177,6 @@ app.controller('AdminQcmEditCtrl',
                         scrollTop: $('body').offset().top
                     }, 1000);
                 }
-
-
-
-
             };
 
             $scope.removeAnswer = function(questionGuid , answerGuid) {

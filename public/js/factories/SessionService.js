@@ -59,6 +59,7 @@ app.factory('SessionService',
             SESS = {};
             SESS.logged = false;
             $location.path('/');
+
           });
         };
 
