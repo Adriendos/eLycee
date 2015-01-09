@@ -1,6 +1,6 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory',//'ngProgress',
-	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory) { //, ngProgress
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory', 'ngProgress',
+	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory, ngProgress) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
