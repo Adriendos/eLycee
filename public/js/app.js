@@ -32,10 +32,11 @@ app.constant('angularMomentConfig', {
 });
 
 // __ Config du localStorage 
-app.config(['localStorageServiceProvider', function (localStorageServiceProvider) { 
-  localStorageServiceProvider 
+app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+  localStorageServiceProvider
     .setPrefix('eLycee') 
-    .setNotify(true, true); 
+    .setNotify(true, true);
+
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
@@ -51,7 +52,6 @@ app.run(['$rootScope', 'notify', function($rootScope, notify) {
        switch(level) { 
            case 'error':
                notify({message:message, classes:'notify error' });
-
                break;
 
            case 'success':
@@ -70,46 +70,17 @@ app.run(['$rootScope', 'notify', function($rootScope, notify) {
                notify({message:message, classes:'notify info' });
                ; 
        } 
-   }; 
+   };
 }]);
 
 app.run(function(amMoment) {
     amMoment.changeLocale('fr');
 });
 
-//Route Change interceptor 
-app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) {
-   $rootScope.$on("$routeChangeStart", function (event, next, current) {
-       if(($location.path().indexOf('/admin') >= 0) || ($location.path().indexOf('/qcm') >= 0) ) {
-           SessionService.checkToken()
-               .then(function (data) {
-                   if (data.role != 'teacher' && ($location.path().indexOf('/admin') >= 0)) {
-                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
-                       $location.path('/');
-                   } else {
 
-                   }
-               }, function (error) {
-                   // promise rejected
-                   $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
-                   SessionService.logout();
-                   $location.path('/');
-               });
-       } else {
-           if(($location.path().indexOf('/qcm') != -1)) {
-               SessionService.checkToken()
-                   .then(function (data) {
-                       if (data.role != 'first_class' && data.role != 'final_class') {
-                           $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
-                           $location.path('/');
-                       }
-                   }, function (error) {
-                       // promise rejected
-                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
-                       SessionService.logout();
-                       $location.path('/');
-                   });
-           }
-       }
-   }); 
-}]);
+
+
+
+
+
+
