@@ -30,25 +30,6 @@ app.controller('AdminQcmEditCtrl',
                 $scope.nbQuestion--;
             };
 
-            // Function used to sort the table by clicking headers
-            $scope.changeSorting = function($event, column) {
-                var sort = $scope.sort;
-                var th = $($event.currentTarget);
-                if (sort.column == column) {
-                    sort.descending = !sort.descending;
-                    if(th.hasClass('ascending')) {
-                        th.removeClass('ascending').addClass('descending');
-                    } else {
-                        th.removeClass('descending').addClass('ascending');
-                    }
-                } else {
-                    $('th').removeClass('descending').removeClass('ascending');
-                    $($event.currentTarget).addClass('ascending');
-                    sort.column = column;
-                    sort.descending = false;
-                }
-            };
-
             $scope.addQuestion = function() {
                 var guid = Utils.guid();
                 $scope.questions[guid] = { content : '', answers: {} };

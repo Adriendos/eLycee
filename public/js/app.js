@@ -89,7 +89,7 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
                .then(function (data) {
 
                }, function (error) {
-                  
+
                });
        }
    }); 

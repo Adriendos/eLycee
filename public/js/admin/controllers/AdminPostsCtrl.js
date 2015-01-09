@@ -9,6 +9,7 @@ app.controller('AdminPostsCtrl',
         $scope.currentPost = {};
 
         $('.ui.modal').modal();
+
         init();
         function init() {
           DataAccess.getAllData(ENTITY.post).then(
