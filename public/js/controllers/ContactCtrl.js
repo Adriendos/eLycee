@@ -3,7 +3,7 @@ app.controller('ContactCtrl',
     function($scope,$http, CONFIG) {
 
     var apiUrl = CONFIG.apiUrl;
-  
+    
 	$scope.master = {}; // juste pour des test de recuperation de données
 	
 	$scope.result = 'hidden';
@@ -37,7 +37,7 @@ app.controller('ContactCtrl',
 
                 method  : 'POST',
                 url     : apiUrl + 'contact', // url api LARAVEL
-                data    : $scope.contact,  // données à envoyer
+                data    : $scope.formData,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
             }).success(function(data){
