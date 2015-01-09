@@ -71,7 +71,8 @@ app.controller('AdminPostEditCtrl',
 
         $scope.submitForm = function() { 
           // invalid postForm
-          if ( ! $scope.postForm.$valid) { 
+          if ( ! $scope.postForm.$valid) {
+            $rootScope.notify('Erreur formulaire', 'error'); 
             $('html, body').animate({ scrollTop: $(document).height() }, 1000);
             return;
           }
