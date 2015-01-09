@@ -3,7 +3,7 @@ app.controller('ContactCtrl',
     function($scope,$http, CONFIG) {
 
     var apiUrl = CONFIG.apiUrl;
-
+    
 	$scope.master = {}; // juste pour des test de recuperation de données
 	
 	$scope.result = 'hidden';
@@ -33,7 +33,6 @@ app.controller('ContactCtrl',
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
         if (contactform.$valid){
-            
             $http({
 
                 method  : 'POST',
@@ -48,13 +47,13 @@ app.controller('ContactCtrl',
                 if (data.success){
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
-                    $scope.result='bg-success';
+                    $scope.result='ui segment positive';
                 
                 }else{
                 
                     $scope.submitButtonDisabled = false;
                     $scope.resultMessage = data.message;
-                    $scope.result='bg-danger';
+                    $scope.result='ui segment negative';
                 }
             });
 
@@ -62,7 +61,7 @@ app.controller('ContactCtrl',
     
             $scope.submitButtonDisabled = false;
             $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
-            $scope.result='bg-danger';
+            $scope.result='ui segment negative';
         }
     }
     
