@@ -134,6 +134,7 @@ app.controller('AdminQcmEditCtrl',
                     });
                     $scope.currentQcm.questions.push(question);
                 });
+                console.info('qcm data', $scope.currentQcm);
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
                     $location.path('/admin/dashboard');
                 });

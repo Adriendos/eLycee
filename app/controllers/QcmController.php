@@ -19,12 +19,9 @@ class QcmController extends \BaseController {
 			$questions[$key]['answers'] = Question::findOrFail($tmpId)->answers;
 		}
 
-		$qcmData = [
-			'qcm'       => $qcm,
-			'questions' => $questions,
-		];
+		$qcm['questions'] = $questions;
 
-		return Response::json($qcmData);
+		return Response::json($qcm);
 	}
 
 	/**
