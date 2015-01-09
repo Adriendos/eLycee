@@ -17,22 +17,18 @@ app.controller('ContactCtrl',
 	// TODO : do some nasty stuffs here ;)
 	});
 
-	$scope.sendMessage = function(contact) {
-		$scope.master = angular.copy(contact);
-		$scope.formData= angular.copy(contact);
-        // OK 
-	};
 
 	$scope.resetMessage = function() {
 		$scope.contact = {};
-
-        //OK
 	};	
 
+    $scope.resetMessage();
+
     $scope.submit = function(contactform) { 
+        
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
-        console.info('data form', $scope.contact);
+        
         if (contactform.$valid){
             $http({
 
@@ -65,8 +61,5 @@ app.controller('ContactCtrl',
             $scope.result='ui segment inverted red';
         }
     }
-    
-    $scope.resetMessage();
-
 }]);
 
