@@ -74,7 +74,9 @@ app.run(['$rootScope', 'notify', function($rootScope, notify) {
 }]);
 
 app.run(function(amMoment) {
-    amMoment.changeLocale('fr');
+  console.info('moment', amMoment);
+  amMoment.changeLocale('fr');
+  console.info('after fr moment', amMoment);
 });
 
 
