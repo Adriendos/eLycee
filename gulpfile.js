@@ -111,6 +111,7 @@ gulp.task('bs-reload', function () {
 
 gulp.task('default', ['css', 'compress-app', 'compress-vendors'], function () {
     gulp.watch("public/sass/*.scss", ['css']);
-    gulp.watch("public/js/**/*.js", ['compress-app']);
+    gulp.watch("public/js/**/*.js", ['compress-app']); // @todo add before MISEENPROD, 'compress-vendors'
+    //gulp.watch("public/*.html", ['bs-reload']);
 });
 

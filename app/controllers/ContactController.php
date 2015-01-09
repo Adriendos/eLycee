@@ -4,9 +4,13 @@ class ContactController extends Controller {
 	public function sendContactMail() 
 	{
 		$inputs = Input::All();
-		
 		// envoi au webmaster
-		Mail::send('email', $data, function($m)
+		/**
+		 * @params 1st -> body class in the mail
+		 * 		   2nd -> data to be passed ? 
+		 * 		   3rd -> function
+		 **/
+		Mail::send('email.contact', $data, function($m)
 		{
 		    $m->from($inputs['mail'], $inputs['nom']." ".$inputs['prenom']);
 
@@ -18,7 +22,7 @@ class ContactController extends Controller {
 		});
 
 		// envoi à la personne ayant rempli le formulaire
-		Mail::send('email', $data, function($m)
+		Mail::send('email.contact', $data, function($m)
 		{
 		    $m->from('dossantos.adrien18@gmail.com');
 
@@ -32,10 +36,10 @@ class ContactController extends Controller {
 
 		// si le mail ne s'est pas envoyé
 		/*if(!$sent) {
-	        $data = array('success' => false, 'message' => 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo);
+	        $data = array('success' => false, 'message' => 'Le message n'a pas pu être envoyé. Erreur: ' . $mail->ErrorInfo);
 	        exit;
 	    }else{
-	    	$data = array('success' => true, 'message' => 'Thanks! We have received your message.');
+	    	$data = array('success' => true, 'message' => 'Merci! Nous avons bien reçu votre message.');
 	    }*/
 
 		return Response::json($data);

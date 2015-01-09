@@ -26,6 +26,9 @@
 					<label>Message <i class="asterisk small icon"></i></label>
 					<textarea class="noResize" required ng-model="contact.message" placeholder="Votre message.."></textarea>
 				</div>
+				<div class="field" style="display:none">
+			        <input type="text" name="specialField" ng-model="specialField"/>
+			    </div>
 				<div class="field">
 					<label><i class="asterisk small icon"></i>Champs requis</label>
 				</div>
@@ -62,6 +65,7 @@
 	title="Hello!"
 	visible="true"></marker>
 	</map>
+	
 	<h2 style="margin-bottom: 50px;"><i class="marker icon"></i> Thanxx !</h2>
 	<div class="ui five column grid center aligned">
 		<div class="column">
