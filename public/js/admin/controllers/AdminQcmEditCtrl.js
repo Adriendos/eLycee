@@ -109,7 +109,6 @@ app.controller('AdminQcmEditCtrl',
 
             // Process validation qcm
             $scope.submitQcm = function() {
-                console.log('go submit qcm');
                 angular.forEach($scope.questions, function(question) {
                     answers = question.answers;
                     question.answers = [];
@@ -118,7 +117,9 @@ app.controller('AdminQcmEditCtrl',
                     });
                     $scope.currentQcm.questions.push(question);
                 });
+                $scope.currentQcm.user_id = SessionService.getUser().id;
                 console.info('qcm data', $scope.currentQcm);
+
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
                     //$location.path('/admin/dashboard');
                 });
