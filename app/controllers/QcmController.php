@@ -48,6 +48,7 @@ class QcmController extends \BaseController {
 
 		$tempQuestions = $inputs['questions'];
 		unset($inputs['questions']);
+		unset($inputs['users']);
 
 		$qcm = new Qcm();
 

@@ -37,7 +37,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image') { continue; }
+			if($inputName == 'image' || $inputName == 'users') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
