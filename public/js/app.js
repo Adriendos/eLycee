@@ -3,7 +3,7 @@ var app;
 
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize', 
-     'LocalStorageModule', 'toastr', 'angularFileUpload',
+     'LocalStorageModule', 'cgNotify', 'angularFileUpload',
      'googlechart', 'djds4rce.angular-socialshare'
  ]);
 
@@ -34,51 +34,32 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
        .setNotify(true, true); 
 }]);
 
-// __ Config Toastr
-app.config(function(toastrConfig) {
-   angular.extend(toastrConfig, {
-       allowHtml: true,
-       closeButton: true,
-       closeHtml: '<button>&times;</button>',
-       containerId: 'toast-container',
-       extendedTimeOut: 1000,
-       iconClasses: {
-           error: 'toast-error',
-           info: 'toast-info',
-           success: 'toast-success',
-           warning: 'toast-warning'
-       },
-       messageClass: 'toast-message',
-       positionClass: 'toast-top-right',
-       tapToDismiss: true,
-       timeOut: 1000,
-       titleClass: 'toast-title'
-   });
-});
-
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
-app.run(['$rootScope','toastr', function($rootScope, toastr) { 
+app.run(['$rootScope', 'notify', function($rootScope, notify) {
+    //notify.config({templateUrl: 'js/views/templates/notification.html'});
+
    $rootScope.notify = function(message, level) { 
        switch(level) { 
-           case 'error': 
-               toastr.error(message,'Erreur'); 
+           case 'error':
+               notify({message:message, classes:'notify error' });
+
                break;
 
-           case 'success': 
-               toastr.success(message); 
+           case 'success':
+               notify({message:message, classes:'notify success' });
                break;
 
-           case 'info': 
-               toastr.info(message); 
+           case 'info':
+               notify({message:message, classes:'notify info' });
                break;
 
-           case 'warning': 
-               toastr.warning(message, 'Attention'); 
+           case 'warning':
+               notify({message:message, classes:'notify warning' });
                break;
 
-           default: 
-               toastr.info(message) 
+           default:
+               notify({message:message, classes:'notify info' });
                ; 
        } 
    }; 
