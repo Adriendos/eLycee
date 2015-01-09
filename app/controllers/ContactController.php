@@ -5,9 +5,10 @@ class ContactController extends Controller {
 	{
 		$inputs = Input::All();
 		// envoi au webmaster
+		
 		/**
 		 * @params 1st -> body class in the mail
-		 * 		   2nd -> data to be passed ? 
+		 * 		   2nd -> data to be passed  
 		 * 		   3rd -> function
 		 **/
 		Mail::send('email.contact', $data, function($m)
@@ -35,9 +36,8 @@ class ContactController extends Controller {
 
 
 		// si le mail ne s'est pas envoyé
-		/*if(!$sent) {
-	        $data = array('success' => false, 'message' => 'Le message n'a pas pu être envoyé. Erreur: ' . $mail->ErrorInfo);
-	        exit;
+		/*if() {
+    		$data = array('success' => false, 'message' => 'Le message n\'a pas pu être envoyé.');
 	    }else{
 	    	$data = array('success' => true, 'message' => 'Merci! Nous avons bien reçu votre message.');
 	    }*/
