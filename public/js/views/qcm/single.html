@@ -20,22 +20,22 @@
             </div>
         </div>
         <div class="ui segment loading" ng-show="step == 1">
-            <div class="ui form">
-                <div class="grouped fields" ng-repeat="question in qcm.questions">
-                    <label for="fruit"><i class="icon question"></i>{{question.content}}</label>
+            <form class="ui form">
+                <div class="grouped fields" ng-repeat="question in qcm.questions" on-last-repeat>
+                    <label><i class="icon question"></i>{{question.content}}</label>
                     <div class="field" ng-repeat="answer in question.answers">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="fruit" checked="">
+                        <div class="ui checkbox" id="answer{{answer.id}}">
+                            <input type="checkbox" name="{{answer.id}}">
                             <label>{{answer.content}}</label>
                         </div>
                     </div>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui submit button positive" ng-click="calculateScore();">Voir mon score</div>
-            </div>
+            </form>
         </div>
         <div class="ui segment" ng-show="step == 2">
-            8/10 MA GEULE !
+            Votre score : {{score}} % de bonne réponses ! Well done !
             <div class="ui button" ng-click="go('/qcm');">Revenir au tableau des QCM</div>
         </div>
     </div>

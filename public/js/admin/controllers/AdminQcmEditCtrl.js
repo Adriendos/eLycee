@@ -86,8 +86,8 @@ app.controller('AdminQcmEditCtrl',
                     '<input type="radio" name="value'+guid+'" value="1">',
                     '<label>Bonne réponse</label>',
                     '</div>&nbsp;&nbsp;',
-                    '<div class="ui radio checkbox">',
-                    '<input type="radio" name="value'+guid+'" value="0" ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].status">',
+                    '<div class="ui radio checkbox checked">',
+                    '<input type="radio" name="value'+guid+'" value="0" checked="checked">',
                     '<label>Mauvaise réponse</label>',
                     '</div>',
                     '</div>'
@@ -96,6 +96,8 @@ app.controller('AdminQcmEditCtrl',
                 $('#answers'+questionGuid).prepend($compile(html)($scope));
                 $('.ui.radio.checkbox')
                     .checkbox('setting', 'onChange' ,function() {
+                        console.log('checkbox has changed for question' + questionGuid);
+                        console.log('value =>'+this[0].value);
                         $scope.setAnswerStatus(questionGuid, guid, this[0].value);
                     });
 
@@ -107,6 +109,7 @@ app.controller('AdminQcmEditCtrl',
 
             // Process validation qcm
             $scope.submitQcm = function() {
+                console.log('go submit qcm');
                 angular.forEach($scope.questions, function(question) {
                     answers = question.answers;
                     question.answers = [];
@@ -117,7 +120,7 @@ app.controller('AdminQcmEditCtrl',
                 });
                 console.info('qcm data', $scope.currentQcm);
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
-                    $location.path('/admin/dashboard');
+                    //$location.path('/admin/dashboard');
                 });
             };
 
@@ -152,7 +155,6 @@ app.controller('AdminQcmEditCtrl',
                             error = true;
                         }
                     });
-                    console.log(error);
 
                     if(error) {
                         $('html, body').animate({
