@@ -2,7 +2,8 @@
 <div class="six wide column">
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
 	<!-- DEBUT DU FORMULAIRE -->
-	  <form novalidate class="ui form segment">
+<div ng-controller="ContactCtrl" class="ui form segment">
+	  <form novalidate class="simple-form">
 		  <div class="two fields">
 				<div class="field">
 					<label>Prénom</label>
@@ -16,6 +17,7 @@
 			<div class="field">
 				<label>Email</label>
 				<input type="email" placeholder="Email" required ng-model="contact.mail">
+				<span class="error" ng-show="$error.mail">EMAIL NON VALIDE</span>
 			</div>
 			<div class="field">
 			  <label>Sexe</label>
@@ -28,15 +30,16 @@
 				  <div class="item" data-value="female">Femme</div>
 				</div>
 			  </div>
-		</div>
-		<div class="field">
-			<label>Message</label>
-			<textarea class="noResize" required ng-model="contact.message"></textarea>
-		 </div>
-		<div class="ui positive button submit" ng-click="">Envoyer</div>
+		    </div>
+			<div class="field">
+				<label>Message</label>
+				<textarea class="noResize" required ng-model="contact.message"></textarea>
+			</div>
+			<div class="ui negative button submit" ng-click="resetMessage()">Effacer</div>
+			<div class="ui positive button submit" ng-click="sendMessage(contact)">Envoyer</div>
+	  		<pre>SAISIE : {{contact | json}}</pre>
+			<pre>FORM : {{master | json}}</pre>
 	  </form>
-
-	<!-- FIN DU FORMULAIRE -->
 </div>
 
 <div class="ten wide column">
