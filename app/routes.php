@@ -96,7 +96,8 @@ Route::group(
 			['except' => ['create', 'edit'] 
 		]);
 		Route::get('search/{query}', 'SearchController@search');
-	}
+
+		Route::post('contact', 'ContactController@sendContactMail');
 );
 
 

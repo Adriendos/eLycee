@@ -20,10 +20,33 @@ class BaseController extends Controller {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		//$ressources = $model::paginate(10);
-		$ressources = $model::orderBy('created_at', 'DESC')->get();
-		//::all()->orderby;
 
+		// $ressources = $model::orderBy('created_at', 'DESC')->get();
+		$ressources = Post::with('user')->with('users')->get();
+
+		// $test = $model::with('User')->get();
+		// foreach ($ressources as $key => $resource) {
+		// 	foreach ($resource['attributes'] as $attribute => $attributeValue) {
+		// 		if( strpos($attribute, '_id') == true)
+		// 		{
+		// 			$nestedResourceId = $attributeValue;
+		// 			$nestedModel = ucfirst( str_replace('_id', '', $attribute) ); 
+		// 			// var_dump($resource);
+		// 			var_dump($nestedModel::findOrFail($nestedResourceId));
+		// 			// $resource->attributes['nested_resource'] = $nestedModel::findOrFail($nestedResourceId);
+		// 		}
+		// 	}
+		// }
+		// var_dump($ressources);
+		// $test = [];
+		// foreach ($ressources as $key => $resource) {
+		// 	// array_push($test, $resource->users());
+		// 	dd($resource->users->get();
+		// }
+
+		dd($ressources);
+
+		// return Response::json($test);
 		return Response::json($ressources);
 	}
 
