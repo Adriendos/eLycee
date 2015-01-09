@@ -9,7 +9,7 @@
 
         <!-- STYLESHEETS -->
         <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
-        <link rel="stylesheet" href="bower_components/ngprogress/ngProgress.css"/>
+
         <link rel="stylesheet" href="bower_components/angular-socialshare/angular-socialshare.min.css"/>
         <link rel="stylesheet" href="dist/css/app.min.css">
     </head>
@@ -18,16 +18,7 @@
 
         <!--NAV-->
         <ng-include style="margin-bottom: -5px" src="'js/views/navbar.html'" ng-hide="isAdmin()" id="navbar" ng-controller="NavCtrl"></ng-include>
-
-        <!-- LOADING SPINNER -->
-        <div spinner class="loader-section">
-            <div class="loader-wrapper">
-              <span class="loader-bar">
-                  <span></span>
-              </span>
-            </div>
-        </div>
-
+        
         <!-- NAV ADMIN -->
         <nav class="ui grid" ng-include src="'js/admin/views/navbar.html'" class="row" ng-show="isAdmin()"></nav>
 

@@ -87,11 +87,12 @@ app.factory('DataAccess',
 		function nestedQuery(resource, id) {
 			var d = $q.defer();
 			var start = new Date().getTime();
+			ngProgress.start();
 			var result = resource.query(
 				{id: id},
 				function(data) {
 					d.resolve(result);
-					console.log('nested query');
+					ngProgress.complete();
 					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
 				},function() {
 					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
@@ -102,9 +103,10 @@ app.factory('DataAccess',
 
 		function create(resource, entityName, data) {
 			var d = $q.defer();
-
+			ngProgress.start();
 			var entity = new resource(data);
 			var result = entity.$save(function() {
+				ngProgress.complete();
 				$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
 				clearCache(entityName);
 				d.resolve(result);
@@ -118,9 +120,10 @@ app.factory('DataAccess',
 		function update(resource, entityName, data) {
 			var id = data.id;
 			var d = $q.defer();
+			ngProgress.start();
 			get(resource, id).then(function(entity) {
 				angular.extend(entity, data); // Replaces entity fields by data fields
-
+				ngProgress.complete();
 				var result = entity.$update(function() {
 					clearCache(entityName, id);
 					d.resolve(result);
@@ -134,10 +137,10 @@ app.factory('DataAccess',
 
 		function remove(resource, entityName, id) {
 			var d = $q.defer();
-
-
+			ngProgress.start();
 			get(resource, id).then(function(entity) {
 				var result = entity.$delete(function() {
+					ngProgress.complete();
 					$rootScope.notify('Suppression effectuée avec succès.','success');
 					clearCache(entityName);
 					clearCache(entityName, id);

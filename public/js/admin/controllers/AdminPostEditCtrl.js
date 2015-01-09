@@ -4,9 +4,11 @@ app.controller('AdminPostEditCtrl',
       // init vars
       $scope.entity = ENTITY.post;
       $scope.currentPost = {};
-      $scope.errorimage = true; 
+      $scope.errorimage = true;
+
 
       if( $routeParams.id ) { // edit existing post
+
         $scope.mode = 'edit';
         $scope.errorimage = false;
         DataAccess.getDataById(ENTITY.post, $routeParams.id).then( 
@@ -17,6 +19,11 @@ app.controller('AdminPostEditCtrl',
             $scope.currentPost = post;
           });
       } else { // create a new post
+        $scope.$watch(SessionService.SESS_INIT, function(){
+          if(SessionService.SESS_INIT) {
+            $scope.currentPost.user_id = SessionService.getUser().id;
+          }
+        });
         $scope.mode = 'create';
         $scope.currentPost.status = 'unpublished';
       }
@@ -80,7 +87,6 @@ app.controller('AdminPostEditCtrl',
           // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
-          $scope.currentPost.user_id = SessionService.getUser().id;
 
           if($scope.mode == 'create') {
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
