@@ -24,4 +24,9 @@ class Post extends Eloquent {
 	{
 		return $this->hasMany('Comment');
 	}
+
+	public function users() 
+	{
+     return $this->belongsTo('User');
+   }
 }
