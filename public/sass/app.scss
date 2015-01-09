@@ -438,12 +438,13 @@ body {
 
 #ngProgress-container {
     top: 40px;
+    z-index:999;
 }
 
 #ngProgress {
     margin: 0;
     padding: 0;
-    z-index: 99998;
+    z-index: 999;
 }
 
 
