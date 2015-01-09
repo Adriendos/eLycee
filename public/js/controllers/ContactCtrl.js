@@ -17,22 +17,18 @@ app.controller('ContactCtrl',
 	// TODO : do some nasty stuffs here ;)
 	});
 
-	$scope.sendMessage = function(contact) {
-		$scope.master = angular.copy(contact);
-		$scope.formData= angular.copy(contact);
-        // OK 
-	};
 
 	$scope.resetMessage = function() {
 		$scope.contact = {};
-
-        //OK
 	};	
 
+    $scope.resetMessage();
+
     $scope.submit = function(contactform) { 
+        
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
-        console.info('data form', $scope.contact);
+        
         if (contactform.$valid){
             $http({
 
@@ -41,20 +37,20 @@ app.controller('ContactCtrl',
                 params    : $scope.contact,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
-            }).success(function(response){
+            }).success(function(data){
 
-                console.log(response);
+                console.log(data);
                 
                 if (data.success){
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
-                    $scope.result='ui segment positive';
+                    $scope.result='ui segment inverted green';
                 
                 }else{
                 
                     $scope.submitButtonDisabled = false;
                     $scope.resultMessage = data.message;
-                    $scope.result='ui segment negative';
+                    $scope.result='ui segment inverted red';
                 }
             });
 
@@ -62,11 +58,8 @@ app.controller('ContactCtrl',
     
             $scope.submitButtonDisabled = false;
             $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
-            $scope.result='ui segment negative';
+            $scope.result='ui segment inverted red';
         }
     }
-    
-    $scope.resetMessage();
-
 }]);
 
