@@ -2,11 +2,10 @@
 var app;
 
 app = angular.module('eLycee', [ 
-     'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize', 
+     'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
      'LocalStorageModule', 'cgNotify', 'angularFileUpload', 
      'googlechart', 'djds4rce.angular-socialshare', 'ngProgress','angularMoment'
  ]);
-// public/bower_components/moment
 app.constant('CONFIG', 
    { 
        mode: 'dev', 
@@ -27,16 +26,16 @@ app.constant('ENTITY',
    } 
 );
 
-// app.constant('angularMomentConfig', {
-//     preprocess: 'unix', // optional
-//     timezone: 'Europe/Paris' // optional
-// });
+app.constant('angularMomentConfig', {
+    preprocess: 'unix', // optional
+    timezone: 'Europe/Paris' // optional
+});
 
 // __ Config du localStorage 
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) { 
-   localStorageServiceProvider 
-       .setPrefix('eLycee') 
-       .setNotify(true, true); 
+  localStorageServiceProvider 
+    .setPrefix('eLycee') 
+    .setNotify(true, true); 
 }]);
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
@@ -74,9 +73,9 @@ app.run(['$rootScope', 'notify', function($rootScope, notify) {
    }; 
 }]);
 
-// app.run(function(amMoment) {
-//     amMoment.changeLocale('fr');
-// });
+app.run(function(amMoment) {
+    amMoment.changeLocale('fr');
+});
 
 //Route Change interceptor 
 app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) {
