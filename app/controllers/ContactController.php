@@ -3,8 +3,8 @@ class ContactController extends Controller {
 
 	public function sendContactMail() 
 	{
-		/*$inputs = Input::All();
-		var_dump($inputs);*/
+		$inputs = Input::All();
+		var_dump($inputs);
 
 		if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['objet']) && isset($_POST['message'])) {
 
@@ -14,7 +14,8 @@ class ContactController extends Controller {
 		        echo json_encode($data);
 		        exit;
 		    }else{
-		    	echo json_encode("done");
+		    	$data="done";
+		    	echo json_encode($data);
 		    }
 
 		    //create an instance of SwiftMailer
