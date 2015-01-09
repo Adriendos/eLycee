@@ -1,6 +1,6 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory', 'ngProgress',
-	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory, ngProgress) {
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory', 'ngProgress', '$timeout',
+	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory, ngProgress, $timeout) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
@@ -69,12 +69,10 @@ app.factory('DataAccess',
 		};
 
 		function query(resource) {
-			// ngProgress.start();
 			var d = $q.defer();
 			var start = new Date().getTime();
 			var result = resource.query(
 				function(data) {
-					ngProgress.complete();
 					d.resolve(result);
 					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
 				},function() {

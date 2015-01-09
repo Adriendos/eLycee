@@ -1,6 +1,6 @@
 app.controller('ContactCtrl', 
-    ['$scope','$http', 'CONFIG',
-    function($scope,$http, CONFIG) {
+    ['$scope','$http', '$sanitize', 'CONFIG',
+    function($scope, $http, $sanitize, CONFIG) {
 
     var apiUrl = CONFIG.apiUrl;
 
@@ -31,10 +31,10 @@ app.controller('ContactCtrl',
         if($scope.specialField == ''){
             if (contactform.$valid){
             $http({
-                
+
                 method  : 'POST',
                 url     : apiUrl + 'contact', // url api LARAVEL
-                params    : $scope.contact,  // données à envoyer
+                params    : $scope.contact,  // données à envoyer -> utiliser $sanitize()
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
             }).success(function(data){

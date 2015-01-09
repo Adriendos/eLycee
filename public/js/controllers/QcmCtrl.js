@@ -21,20 +21,15 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                             allScores = scores;
                             var userScores = _.filter(allScores, function(score){ return score.user_id == $scope.user.id });
                             if(userScores.length > 0) {
-                                console.log('User has scores !');
-                                console.log(userScores);
                                 var totalScore = 0;
                                 var nbScores = 0;
                                 angular.forEach(userScores, function(score){
                                     totalScore= totalScore + parseInt(score.score);
                                     nbScores ++;
                                 });
-                                console.log('totalScore', totalScore);
-                                console.log('nbScore', nbScores);
+
                                 averageScore = totalScore/nbScores;
                             }
-
-                            console.log(averageScore);
 
                             $scope.averageScore = averageScore;
                             angular.forEach(classQcms, function(qcm) {
