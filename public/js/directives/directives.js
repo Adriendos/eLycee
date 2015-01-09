@@ -116,7 +116,7 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
     }
 });
 
-app.directive('comment', function(DataAccess, ENTITY, $route, SessionService) {
+app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $sanitize) {
     return {
         restrict: 'E',
         transclude: true,
@@ -126,7 +126,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService) {
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.loggedUserName = '';
+            scope.loggedUserName = ''
             scope.$watch(function(){
                 return SessionService.SESS_INIT;
             }, function (newValue) {
@@ -141,9 +141,10 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService) {
             });
             scope.specialField = '';
             scope.postComment = function(){
-                if(scope.specialField == '') {
+                if(scope.specialField == '' && scope.newComment.$valid) {
                     DataAccess.create(ENTITY.comment, scope.comment).then(function (data) {
                         scope.$parent.reloadComments();
+                        scope.newComment.$setPristine(true)
                         scope.comment = { name: '' , content: '', post_id: scope.postId};
                     });
                 }
