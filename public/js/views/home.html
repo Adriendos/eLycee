@@ -3,18 +3,18 @@
 		<div class="ui fluid card raised segment">
 			<div class="ui top attached label red">A la une</div>
 			<div class="image">
-				<img src="http://lorempixel.com/g/300/200/">
+				<img src="{{firstPost.url_thumbnail}}">
 			</div>
 			<div class="content">
-				<div class="header">Actualité à la une !</div>
+				<div class="header">{{firstPost.title}}</div>
 				<div class="meta">
-					<a class="group">02/01/2015</a>
+					<a class="group">{{firstPost.created_at}}</a>
 				</div>
-				<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quidem, doloremque, deleniti ullam, maiores quas soluta similique dolorum vitae officia odit minima perferendis ea temporibus eos eum. Inventore, vero, totam!</div>
+				<div class="description">{{firstPost.excerpt}}</div>
 			</div>
 			<div class="extra content">
-				<a class="right floated created">Author name</a>
-				<a class="ui tag red label">New</a>
+				<a class="right floated created">{{firstPost.users.username}}</a>
+				<a class="ui tag red label">Dernière actualité</a>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<div class="ui segment raised items">
 			<div class="ui top attached label red">L'Actualité du lycée</div>
 			<!-- START LOOP -->
-			<div class="item" ng-repeat="post in posts | limitTo:3">
+			<div class="item" ng-repeat="post in posts | limitTo:4">
 				<div class="ui small image">
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
@@ -30,11 +30,10 @@
 					<a class="header" href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
 					<div class="meta">
 						<small>{{ post.created_at | dateToISO | date:'dd/MM/yyyy'}}</small>
-						<a>Category</a>
 					</div>
 					<div class="description" ng-bind-html="post.excerpt | limitTo:25 | htmlToPlaintext"></div>
 					<div class="extra">
-						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> Username
+						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"> {{post.users.username}}
 					</div>
 				</div>
 			</div>

@@ -17,16 +17,24 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                     $scope.unavailableQcms = [];
                     DataAccess.getAllData(ENTITY.score).then(
                         function(scores) {
+                            var averageScore = 0;
                             allScores = scores;
                             var userScores = _.filter(allScores, function(score){ return score.user_id == $scope.user.id });
-                            var totalScore = 0;
-                            var nbScores = 0;
-                            angular.forEach(userScores, function(score){
-                                totalScore= totalScore + score.score;
-                                nbScores ++;
-                            });
+                            if(userScores.length > 0) {
+                                console.log('User has scores !');
+                                console.log(userScores);
+                                var totalScore = 0;
+                                var nbScores = 0;
+                                angular.forEach(userScores, function(score){
+                                    totalScore= totalScore + score.score;
+                                    nbScores ++;
+                                });
+                                averageScore = totalScore/nbScores;
+                            }
 
-                            $scope.averageScore = totalScore/nbScores;
+                            console.log(averageScore);
+
+                            $scope.averageScore = averageScore;
                             angular.forEach(classQcms, function(qcm) {
                                 var score =_.find(scores, function(score){ return score.user_id == $scope.user.id && score.qcm_id == qcm.id ;});
                                 if(score) {

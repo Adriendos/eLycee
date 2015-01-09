@@ -46,10 +46,14 @@ app.controller('RootCtrl', ['$scope', '$location', 'SessionService', 'DataAccess
     };
 
     $scope.getUserClass= function() {
-      if(SessionService.getUser().role == 'first_class') {
+      if(SessionService.SESS_INIT && SessionService.getUser().role == 'first_class') {
         return "Première";
       } else {
-        return "Terminale";
+        if (SessionService.SESS_INIT) {
+          return "Terminale";
+        } else {
+          return '';
+        }
       }
     };
 
