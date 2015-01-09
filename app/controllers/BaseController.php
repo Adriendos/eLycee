@@ -21,8 +21,9 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 
-		// $ressources = $model::orderBy('created_at', 'DESC')->get();
-		$ressources = Post::with('user')->with('users')->get();
+		$ressources = $model::orderBy('created_at', 'DESC')->get();
+		// $ressources = Post::with('users')->get();
+
 
 		// $test = $model::with('User')->get();
 		// foreach ($ressources as $key => $resource) {
@@ -44,7 +45,7 @@ class BaseController extends Controller {
 		// 	dd($resource->users->get();
 		// }
 
-		dd($ressources);
+		// dd($ressources);
 
 		// return Response::json($test);
 		return Response::json($ressources);
