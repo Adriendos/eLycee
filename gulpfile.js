@@ -74,7 +74,7 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/moment/locale/fr.js',
         'public/bower_components/moment/moment.js',
         'public/bower_components/angular-moment/angular-moment.min.js',
-        'public/bower_components/ngprogress/ngProgress.min.js'
+        'public/bower_components/ngprogress/build/ngProgress.min.js',
         //Add future bower dependencies here ;)
     ])
         .pipe(concat('vendors.js'))
@@ -111,7 +111,7 @@ gulp.task('bs-reload', function () {
 
 gulp.task('default', ['css', 'compress-app', 'compress-vendors'], function () {
     gulp.watch("public/sass/*.scss", ['css']);
-    gulp.watch("public/js/**/*.js", ['compress-app', 'compress-vendors']);
+    gulp.watch("public/js/**/*.js", ['compress-app']);
     //gulp.watch("public/*.html", ['bs-reload']);
 });
 
