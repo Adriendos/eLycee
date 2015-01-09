@@ -71,13 +71,4 @@ class QcmController extends \BaseController {
 		return Response::json($qcm);
     }
 
-    public function show($id)
-    {
-		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$elem = Qcm::findOrFail($id)->toArray();
-
-		return Response::json($elem);
-
-	}
-
 }
