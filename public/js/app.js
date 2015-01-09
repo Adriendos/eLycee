@@ -89,15 +89,20 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
                    $location.path('/');
                });
        } else {
-           SessionService.checkToken()
-               .then(function (data) {
-
-               }, function (error) {
-                   if(($location.path().indexOf('/qcm') != -1)) {
+           if(($location.path().indexOf('/qcm') != -1)) {
+               SessionService.checkToken()
+                   .then(function (data) {
+                       if (data.role != 'first_class' && data.role != 'final_class') {
+                           $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                           $location.path('/');
+                       }
+                   }, function (error) {
+                       // promise rejected
                        $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                       SessionService.logout();
                        $location.path('/');
-                   }
-               });
+                   });
+           }
        }
    }); 
 }]);
