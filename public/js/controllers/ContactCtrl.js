@@ -47,13 +47,13 @@ app.controller('ContactCtrl',
                 if (data.success){
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
-                    $scope.result='ui segment green';
+                    $scope.result='ui segment inverted green';
                 
                 }else{
                 
                     $scope.submitButtonDisabled = false;
                     $scope.resultMessage = data.message;
-                    $scope.result='ui segment red';
+                    $scope.result='ui segment inverted red';
                 }
             });
 
@@ -61,7 +61,7 @@ app.controller('ContactCtrl',
     
             $scope.submitButtonDisabled = false;
             $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
-            $scope.result='ui segment red';
+            $scope.result='ui segment inverted red';
         }
     }
     
