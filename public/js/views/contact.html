@@ -2,46 +2,49 @@
 <div class="six wide column">
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
 	<!-- DEBUT DU FORMULAIRE -->
-<div ng-controller="ContactCtrl" class="ui form segment">
-	  <form novalidate class="simple-form">
-		  <div class="two fields">
-				<div class="field">
-					<label>Prénom</label>
-					<input placeholder="Prénom" type="text" required ng-model="contact.prenom">
+	<div ng-controller="ContactCtrl" class="ui form segment">
+		  <form novalidate class="simple-form" name="contactform" role="form">
+			  <div class="two fields">
+					<div class="field">
+						<label>Prénom <i class="asterisk icon red"></i></label>
+						<input placeholder="Prénom" type="text" required ng-model="contact.prenom">
+					</div>
+					<div class="field">
+						<label>Nom <i class="asterisk icon red"></i></label>
+						<input placeholder="Nom" type="text" required ng-model="contact.nom">
+					</div>
 				</div>
 				<div class="field">
-					<label>Nom</label>
-					<input placeholder="Nom" type="text" required ng-model="contact.nom">
+					<label>Email <i class="asterisk icon red"></i></label>
+					<input type="email" placeholder="Email" required ng-model="contact.mail">
 				</div>
-			</div>
-			<div class="field">
-				<label>Email</label>
-				<input type="email" placeholder="Email" required ng-model="contact.mail">
-				<span class="error" ng-show="$error.mail">EMAIL NON VALIDE</span>
-			</div>
-			<div class="field">
-			  <label>Sexe</label>
-			  <div class="ui selection dropdown">
-				<input type="hidden" name="sexe" ng-model="contact.sexe">
-				<div class="default text">Sexe</div>
-				<i class="dropdown icon"></i>
-				<div class="menu">
-				  <div class="item" data-value="male">Homme</div>
-				  <div class="item" data-value="female">Femme</div>
+				<div class="field">
+						<label>Objet du message <i class="asterisk icon red"></i></label>
+						<input placeholder="Objet" type="text" required ng-model="contact.objet">
 				</div>
-			  </div>
-		    </div>
-			<div class="field">
-				<label>Message</label>
-				<textarea class="noResize" required ng-model="contact.message"></textarea>
-			</div>
-			<div class="ui negative button submit" ng-click="resetMessage()">Effacer</div>
-			<div class="ui positive button submit" ng-click="sendMessage(contact)">Envoyer</div>
-	  		<pre>SAISIE : {{contact | json}}</pre>
-			<pre>FORM : {{master | json}}</pre>
-	  </form>
+				<div class="field">
+					<label>Message <i class="asterisk icon red"></i></label>
+					<textarea class="noResize" required ng-model="contact.message" placeholder="Votre message.."></textarea>
+				</div>
+				<div class="field">
+					<label><i class="asterisk icon red"></i>Champs requis</label>
+				</div>
+				<div class="two fluid ui inverted buttons">
+		            <button type="reset" class="ui red  button" ng-click="resetMessage()">
+		                <i class="remove icon"></i>
+		                Effacer
+		            </button>
+		            <button id="submit" ng-click="submit(contactform)" class="ui green button" ng-disabled="submitButtonDisabled">
+		                <i class="send icon"></i>
+		                Envoyer
+		            </button>
+		        </div>
+		  		<pre>SAISIE : {{contact | json}}</pre>
+				<pre>FORM : {{master | json}}</pre>
+				<p ng-class="result" style="padding: 15px; margin: 0;">{{ resultMessage }}</p>
+		  </form>
+	</div>
 </div>
-
 <div class="ten wide column">
 	<h2><i class="marker icon"></i> Où nous trouver?</h2>
 	<map zoom="12" 

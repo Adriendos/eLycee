@@ -13,50 +13,56 @@ app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
 	// TODO : do some nasty stuffs here ;)
 	});
 
-	$(document).ready(function(){
-	    $('.ui.dropdown').dropdown();
-	});
-
 	$scope.sendMessage = function(contact) {
 		$scope.master = angular.copy(contact);
 		$scope.formData= angular.copy(contact);
-		$scope.submit(contact);
+        // OK 
 	};
 
 	$scope.resetMessage = function() {
 		$scope.contact = {};
+
+        //OK
 	};	
 
-    $scope.submit = function(contact) {
-
+    $scope.submit = function(contactform) { 
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
-
         if (contactform.$valid){
+            
             $http({
+
                 method  : 'POST',
-                url     : 'contact-form.php', // url LARAVEL
-                data    : $.param($scope.formData),  // données à envoyer
+                url     : '/api/v1/contact/', // url api LARAVEL
+                data    : $scope.formData,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
+            
             }).success(function(data){
+
                 console.log(data);
+                
                 if (data.success){
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
                     $scope.result='bg-success';
+                
                 }else{
+                
                     $scope.submitButtonDisabled = false;
                     $scope.resultMessage = data.message;
                     $scope.result='bg-danger';
                 }
             });
+
         }else{
+    
             $scope.submitButtonDisabled = false;
             $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
             $scope.result='bg-danger';
         }
     }
+    
+    $scope.resetMessage();
 
-	$scope.resetMessage();
 }]);
 
