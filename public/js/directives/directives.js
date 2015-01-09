@@ -142,9 +142,11 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
             scope.specialField = '';
             scope.postComment = function(){
                 if(scope.specialField == '' && scope.newComment.$valid) {
+                    scope.comment.name = $sanitize(scope.comment.name);
+                    scope.comment.content = $sanitize(scope.comment.content);
                     DataAccess.create(ENTITY.comment, scope.comment).then(function (data) {
                         scope.$parent.reloadComments();
-                        scope.newComment.$setPristine(true)
+                        scope.newComment.$setPristine(true);
                         scope.comment = { name: '' , content: '', post_id: scope.postId};
                     });
                 }
