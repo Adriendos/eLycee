@@ -13,4 +13,9 @@ class Qcm extends \Eloquent {
 	{
 		return $this->hasMany('Question');
 	}
+	
+	public function users() 
+	{
+     return $this->belongsTo('User', 'user_id', 'id');
+   }
 }

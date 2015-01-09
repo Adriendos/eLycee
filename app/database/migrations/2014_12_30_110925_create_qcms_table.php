@@ -17,6 +17,8 @@ class CreateQcmsTable extends Migration {
 			$table->increments('id');
 			$table->string('title', 255);
 			$table->text('description')->nullable();
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->enum('class_level',['first_class','final_class'])->default('final_class');
 			$table->timestamps();
 		});

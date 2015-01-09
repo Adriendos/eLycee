@@ -21,33 +21,8 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 
-		$ressources = $model::orderBy('created_at', 'DESC')->get();
-		// $ressources = Post::with('users')->get();
-
-
-		// $test = $model::with('User')->get();
-		// foreach ($ressources as $key => $resource) {
-		// 	foreach ($resource['attributes'] as $attribute => $attributeValue) {
-		// 		if( strpos($attribute, '_id') == true)
-		// 		{
-		// 			$nestedResourceId = $attributeValue;
-		// 			$nestedModel = ucfirst( str_replace('_id', '', $attribute) ); 
-		// 			// var_dump($resource);
-		// 			var_dump($nestedModel::findOrFail($nestedResourceId));
-		// 			// $resource->attributes['nested_resource'] = $nestedModel::findOrFail($nestedResourceId);
-		// 		}
-		// 	}
-		// }
-		// var_dump($ressources);
-		// $test = [];
-		// foreach ($ressources as $key => $resource) {
-		// 	// array_push($test, $resource->users());
-		// 	dd($resource->users->get();
-		// }
-
-		// dd($ressources);
-
-		// return Response::json($test);
+		$ressources = $model::with('users')->orderBy('created_at', 'DESC')->get();
+		
 		return Response::json($ressources);
 	}
 
