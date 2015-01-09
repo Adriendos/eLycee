@@ -121,7 +121,7 @@ app.controller('AdminQcmEditCtrl',
                 console.info('qcm data', $scope.currentQcm);
 
                 DataAccess.create(ENTITY.qcm, $scope.currentQcm).then( function(data) {
-                    //$location.path('/admin/dashboard');
+                    $location.path('/admin/dashboard');
                 });
             };
 

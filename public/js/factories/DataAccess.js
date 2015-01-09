@@ -102,7 +102,7 @@ app.factory('DataAccess',
 
 			var entity = new resource(data);
 			var result = entity.$save(function() {
-				$rootScope.notify('Sauvegarde effectuée avec succès.');
+				$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
 				clearCache(entityName);
 				d.resolve(result);
 			},function() {
@@ -121,7 +121,7 @@ app.factory('DataAccess',
 				var result = entity.$update(function() {
 					clearCache(entityName, id);
 					d.resolve(result);
-					$rootScope.notify('Modification effectuée avec succès.');
+					$rootScope.notify('Modification effectuée avec succès.','success');
 				});
 			});
 			
@@ -134,7 +134,7 @@ app.factory('DataAccess',
 
 			get(resource, id).then(function(entity) {
 				var result = entity.$delete(function() {
-					$rootScope.notify('Suppression effectuée avec succès.');
+					$rootScope.notify('Suppression effectuée avec succès.','success');
 					clearCache(entityName);
 					clearCache(entityName, id);
 					d.resolve(result);

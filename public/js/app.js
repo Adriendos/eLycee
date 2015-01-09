@@ -34,10 +34,14 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
        .setNotify(true, true); 
 }]);
 
-
 // __ Fonction notify accessible depuis n'importe quel $scope 
 app.run(['$rootScope', 'notify', function($rootScope, notify) {
-    //notify.config({templateUrl: 'js/views/templates/notification.html'});
+
+    notify.config({
+        duration: 2000,
+        //position: 'right' => doesn't work
+
+    });
 
    $rootScope.notify = function(message, level) { 
        switch(level) { 

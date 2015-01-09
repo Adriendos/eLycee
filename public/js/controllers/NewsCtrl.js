@@ -8,10 +8,7 @@ function($scope, ENTITY, DataAccess) {
 
     DataAccess.getAllData(ENTITY.post).then(
         function(posts) {
-            angular.forEach(posts, function (post) {
-                post.id = parseInt(post.id); //We parse the post.id so that we can sort the table
-            });
-            $scope.allPosts = posts;
+            $scope.allPosts = _.filter(posts, function(post) { return post.status == 'published'});
             $scope.posts = DataAccess.getPage($scope.allPosts, 1);
             $scope.nbPages = DataAccess.getNbPage(posts);
         }

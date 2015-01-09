@@ -77,7 +77,7 @@ class BaseController extends Controller {
 		$inputs = Input::All();
 
 		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image' || $inputName == '_method') { continue; }
+			if($inputName == 'image' || $inputName == '_method' || $inputName == 'users')  { continue; }
 			$elem->$inputName = $inputVal;
 		}
 		$imgPath = $this->processImage($inputs, $model);
