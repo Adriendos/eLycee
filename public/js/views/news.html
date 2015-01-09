@@ -9,7 +9,9 @@
 			<div class="item" ng-repeat="post in posts ">
 				<div class="ui small image">
 					<!-- <a class="ui teal right ribbon label">{{post.created_at | dateToISO | date:'dd/MM/yyyy'}}</a> -->
-					<a am-time-ago="post.created_at" class="ui teal right ribbon label"></a>
+					<!-- <a am-time-ago="post.created_at" am-preprocess="unix" class="ui teal right ribbon label"></a> -->
+					<date class="ui teal right ribbon label">{{post.created_at}}</date>
+					<!-- {{post.created_at | amCalendar}} -->
 					<img src="{{post.url_thumbnail}}">
 				</div>
 				<div class="content">

@@ -3,6 +3,6 @@ app.filter('dateToISO', function() {
         if(!input) {
             return '';
         }
-        return new Date(input).toISOString();
+        return new Date(input).getTime();
     };
 });
