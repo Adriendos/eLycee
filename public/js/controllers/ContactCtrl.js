@@ -3,12 +3,12 @@ app.controller('ContactCtrl',
     function($scope,$http, CONFIG) {
 
     var apiUrl = CONFIG.apiUrl;
-    
+
 	$scope.master = {}; // juste pour des test de recuperation de données
 	
 	$scope.result = 'hidden';
     $scope.resultMessage;
-    $scope.formData; //formData pour stocker tous les elements du formulaire
+    $scope.contact; //formData pour stocker tous les elements du formulaire
     $scope.submitButtonDisabled = false;
     $scope.submitted = false;
 
@@ -32,17 +32,18 @@ app.controller('ContactCtrl',
     $scope.submit = function(contactform) { 
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
+        console.info('data form', $scope.contact);
         if (contactform.$valid){
             $http({
 
                 method  : 'POST',
                 url     : apiUrl + 'contact', // url api LARAVEL
-                data    : $scope.formData,  // données à envoyer
+                params    : $scope.contact,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
-            }).success(function(data){
+            }).success(function(response){
 
-                console.log(data);
+                console.log(response);
                 
                 if (data.success){
                     $scope.submitButtonDisabled = true;
