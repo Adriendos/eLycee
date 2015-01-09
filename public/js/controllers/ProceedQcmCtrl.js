@@ -11,22 +11,23 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
         DataAccess.getDataById(ENTITY.qcm, $routeParams.id).then(
             function(qcm) {
                 $scope.qcm = qcm;
+                console.log(qcm);
 
-                DataAccess.getAllData(ENTITY.question, qcm.id).then(
-                    function(questions) {
-                        _.each(questions, function(question) {
-                            DataAccess.getAllData(ENTITY.answer, question.id).then(
-                                function(answers) {
-                                    console.log(answers);
-                                    question.answers = answers;
-                                }
-                            );
-                        })
-                        $scope.qcm.questions = questions;
-                        $('.loading').removeClass('loading');
-                        console.log($scope.qcm);
-                    }
-                )
+                //DataAccess.getAllData(ENTITY.question, qcm.id).then(
+                //    function(questions) {
+                //        _.each(questions, function(question) {
+                //            DataAccess.getAllData(ENTITY.answer, question.id).then(
+                //                function(answers) {
+                //                    console.log(answers);
+                //                    question.answers = answers;
+                //                }
+                //            );
+                //        })
+                //        $scope.qcm.questions = questions;
+                //        $('.loading').removeClass('loading');
+                //        console.log($scope.qcm);
+                //    }
+                //)
 
             }
         );
