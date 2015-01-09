@@ -1,5 +1,9 @@
-app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
-  
+app.controller('ContactCtrl', 
+    ['$scope','$http', 'CONFIG',
+    function($scope,$http, CONFIG) {
+
+    var apiUrl = CONFIG.apiUrl;
+    
 	$scope.master = {}; // juste pour des test de recuperation de données
 	
 	$scope.result = 'hidden';
@@ -29,11 +33,10 @@ app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
         if (contactform.$valid){
-            
             $http({
 
                 method  : 'POST',
-                url     : '/api/v1/contact/', // url api LARAVEL
+                url     : apiUrl + 'contact', // url api LARAVEL
                 data    : $scope.formData,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
@@ -44,13 +47,13 @@ app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
                 if (data.success){
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
-                    $scope.result='bg-success';
+                    $scope.result='ui segment positive';
                 
                 }else{
                 
                     $scope.submitButtonDisabled = false;
                     $scope.resultMessage = data.message;
-                    $scope.result='bg-danger';
+                    $scope.result='ui segment negative';
                 }
             });
 
@@ -58,7 +61,7 @@ app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
     
             $scope.submitButtonDisabled = false;
             $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
-            $scope.result='bg-danger';
+            $scope.result='ui segment negative';
         }
     }
     
