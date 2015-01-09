@@ -12,7 +12,7 @@ app.controller('SinglePostCtrl',
                 $scope.author = author;
             });
 
-            DataAccess.getAllData(ENTITY.comment, post.id).then(
+            DataAccess.getAllNestedData(ENTITY.comment, post.id).then(
                 function(comments) {
                     $scope.post = post;
                     $scope.post.comments = comments;
@@ -21,7 +21,7 @@ app.controller('SinglePostCtrl',
       );
 
         $scope.reloadComments = function() {
-            DataAccess.getAllData(ENTITY.comment, $scope.post.id).then(
+            DataAccess.getAllNestedData(ENTITY.comment, $scope.post.id).then(
                 function(comments) {
                     $scope.post.comments = comments;
                 });

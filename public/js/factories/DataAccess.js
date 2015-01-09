@@ -10,7 +10,7 @@ app.factory('DataAccess',
 			return query(resource);
 		};
 
-		DataAccess.getAllData = function(entityName, id) {
+		DataAccess.getAllNestedData = function(entityName, id) {
 			var resource = ResourceFactory.getResource(entityName);
 			return nestedQuery(resource, id);
 		}
@@ -71,9 +71,11 @@ app.factory('DataAccess',
 		function query(resource) {
 			var d = $q.defer();
 			var start = new Date().getTime();
+			ngProgress.start();
 			var result = resource.query(
 				function(data) {
 					d.resolve(result);
+					ngProgress.complete();
 					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
 				},function() {
 					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
@@ -89,6 +91,7 @@ app.factory('DataAccess',
 				{id: id},
 				function(data) {
 					d.resolve(result);
+					console.log('nested query');
 					console.log('Time taken for request: ' + (new Date().getTime() - start) + 'ms'); //debug
 				},function() {
 					$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
