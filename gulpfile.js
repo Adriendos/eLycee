@@ -71,10 +71,11 @@ gulp.task('compress-vendors', function() {
         'public/bower_components/angular-google-chart/ng-google-chart.js',
         'public/bower_components/lodash/dist/lodash.min.js',
         'public/bower_components/angular-socialshare/angular-socialshare.min.js',
-        'public/bower_components/moment/locale/fr.js',
         'public/bower_components/moment/moment.js',
-        'public/bower_components/angular-moment/angular-moment.min.js',
-        'public/bower_components/ngprogress/ngProgress.min.js'
+        'public/bower_components/moment/locale/fr.js',
+        'public/bower_components/angular-moment/angular-moment.min.js'
+        
+        // 'public/bower_components/ngprogress/ngProgress.min.js'
         //Add future bower dependencies here ;)
     ])
         .pipe(concat('vendors.js'))
