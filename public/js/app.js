@@ -34,26 +34,26 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
        .setNotify(true, true); 
 }]);
 
-// __ Config Toastr 
-app.config(function(toastrConfig) { 
-   angular.extend(toastrConfig, { 
-       allowHtml: true, 
-       closeButton: true, 
-       closeHtml: '<button>&times;</button>', 
-       containerId: 'toast-container', 
-       extendedTimeOut: 1000, 
-       iconClasses: { 
-           error: 'toast-error', 
-           info: 'toast-info', 
-           success: 'toast-success', 
-           warning: 'toast-warning' 
-       }, 
-       messageClass: 'toast-message', 
-       positionClass: 'toast-top-right', 
-       tapToDismiss: true, 
-       timeOut: 1000, 
-       titleClass: 'toast-title' 
-   }); 
+// __ Config Toastr
+app.config(function(toastrConfig) {
+   angular.extend(toastrConfig, {
+       allowHtml: true,
+       closeButton: true,
+       closeHtml: '<button>&times;</button>',
+       containerId: 'toast-container',
+       extendedTimeOut: 1000,
+       iconClasses: {
+           error: 'toast-error',
+           info: 'toast-info',
+           success: 'toast-success',
+           warning: 'toast-warning'
+       },
+       messageClass: 'toast-message',
+       positionClass: 'toast-top-right',
+       tapToDismiss: true,
+       timeOut: 1000,
+       titleClass: 'toast-title'
+   });
 });
 
 
@@ -86,35 +86,25 @@ app.run(['$rootScope','toastr', function($rootScope, toastr) {
 
 
 //Route Change interceptor 
-app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) { 
-   $rootScope.$on("$locationChangeStart", function () { 
-       if ($location.path().indexOf('/admin') >= 0) { 
-           if (SessionService.isLoggedUser() && SessionService.isUserAdmin()) { 
-               //Logged user and admin 
-               return; 
-           } else { 
-               //No user logged or user not admin 
-               SessionService.checkToken() 
-                   .then(function (data) { 
-                       if (data.role != 'teacher') { 
-                           $rootScope.notify("Vous n'avez pas accès à cette section.", 'error'); 
-                           $location.path('/'); 
-                       } 
-                   }, function (error) { 
-                       // promise rejected 
-                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error'); 
-                       SessionService.logout(); 
-                       $location.path('/'); 
-                   }); 
-           } 
-       } else { 
-           // Not on an admin route, checks token to inialize user session 
-           SessionService.checkToken() 
-               .then(function () { 
-                   return; 
-               }, function () { 
-                   return; 
-               }); 
-       } 
+app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $location, SessionService) {
+   $rootScope.$on("$routeChangeStart", function (event, next, current) {
+       if(($location.path().indexOf('/admin') >= 0) || ($location.path().indexOf('/qcm') >= 0) ) {
+           SessionService.checkToken()
+               .then(function (data) {
+                   if (data.role != 'teacher' && ($location.path().indexOf('/admin') >= 0)) {
+                       $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                       $location.path('/');
+                   } else {
+
+                   }
+               }, function (error) {
+                   // promise rejected
+                   $rootScope.notify("Vous n'avez pas accès à cette section.", 'error');
+                   SessionService.logout();
+                   $location.path('/');
+               });
+       } else {
+           //
+       }
    }); 
 }]);

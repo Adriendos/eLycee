@@ -7,7 +7,7 @@
             <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
             <a class="red item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm">
                 <i class="icon student"></i>Q.C.M.
-                <div class="ui red label">3</div>
+                <div class="ui red label">{{userPendingsQcms}}</div>
             </a>
             <a class="ui dropdown item" ng-show="isUserAdmin();">
                 <i class="icon right arrow "></i>Administration<i class="dropdown icon"></i>

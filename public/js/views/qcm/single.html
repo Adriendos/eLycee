@@ -19,63 +19,18 @@
                 </div>
             </div>
         </div>
-        <div class="ui segment" ng-show="step == 1">
+        <div class="ui segment loading" ng-show="step == 1">
             <div class="ui form">
-                <div class="grouped fields">
+                <div class="grouped fields" ng-repeat="">
                     <label for="fruit"><i class="icon question"></i>Select your first favorite fruit:</label>
                     <div class="field">
-                        <div class="ui radio checkbox checked">
-                            <input type="radio" name="fruit" checked="">
+                        <div class="ui checkbox checked">
+                            <input type="checkbox" name="fruit" checked="">
                             <label>Apples</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Oranges</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Pears</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Grapefruit</label>
                         </div>
                     </div>
                 </div>
                 <div class="ui divider"></div>
-                <div class="grouped fields">
-                    <label for="fruit"><i class="icon question"></i>Select your second favorite fruit:</label>
-                    <div class="field">
-                        <div class="ui radio checkbox checked">
-                            <input type="radio" name="fruit" checked="">
-                            <label>Apples</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Oranges</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Pears</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="fruit">
-                            <label>Grapefruit</label>
-                        </div>
-                    </div>
-                </div>
                 <div class="ui submit button positive" ng-click="calculateScore();">Voir mon score</div>
             </div>
         </div>

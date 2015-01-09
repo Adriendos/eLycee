@@ -1,5 +1,5 @@
-app.controller('RootCtrl', ['$scope', '$location', 'SessionService',
-  function($scope, $location, SessionService) {
+app.controller('RootCtrl', ['$scope', '$location', 'SessionService', 'DataAccess', 'ENTITY','$rootScope',
+  function($scope, $location, SessionService, DataAccess, ENTITY, $rootScope) {
     $scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
       $('.ui.checkbox').checkbox('check');
@@ -47,9 +47,9 @@ app.controller('RootCtrl', ['$scope', '$location', 'SessionService',
 
     $scope.getUserClass= function() {
       if(SessionService.getUser().role == 'first_class') {
-        return "1ere"
+        return "Première";
       } else {
-        return "Terminale"
+        return "Terminale";
       }
     };
 

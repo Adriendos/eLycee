@@ -5,6 +5,8 @@ app.factory('SessionService',
             urlAuth = CONFIG.urlAuth,
             SessionService = {};
 
+        SessionService.SESS_INIT = false;
+
         //SESSION GLOBAL
         var SESS = {};
 
@@ -33,6 +35,8 @@ app.factory('SessionService',
                   $rootScope.notify('Bonjour '+data.user.username+' !', 'info');
                   SESS.user = data.user;
                   SESS.logged = true;
+                  SessionService.SESS_INIT = true;
+
                   if(SESS.user.role.toLowerCase()=="teacher"){
                     $location.path('/admin');
                   }
@@ -89,6 +93,7 @@ app.factory('SessionService',
                 if (typeof response.data === 'object') {
                   SESS.logged = true;
                   SESS.user = response.data;
+                  SessionService.SESS_INIT = true;
                   return response.data;
                 } else {
                   // invalid response
