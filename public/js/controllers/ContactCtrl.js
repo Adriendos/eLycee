@@ -1,5 +1,9 @@
-app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
-  
+app.controller('ContactCtrl', 
+    ['$scope','$http', 'CONFIG',
+    function($scope,$http, CONFIG) {
+
+    var apiUrl = CONFIG.apiUrl;
+
 	$scope.master = {}; // juste pour des test de recuperation de données
 	
 	$scope.result = 'hidden';
@@ -33,7 +37,7 @@ app.controller('ContactCtrl', ['$scope','$http', function($scope,$http) {
             $http({
 
                 method  : 'POST',
-                url     : '/api/v1/contact/', // url api LARAVEL
+                url     : apiUrl + 'contact', // url api LARAVEL
                 data    : $scope.formData,  // données à envoyer
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
             
