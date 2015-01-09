@@ -26,9 +26,11 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                                 var totalScore = 0;
                                 var nbScores = 0;
                                 angular.forEach(userScores, function(score){
-                                    totalScore= totalScore + score.score;
+                                    totalScore= totalScore + parseInt(score.score);
                                     nbScores ++;
                                 });
+                                console.log('totalScore', totalScore);
+                                console.log('nbScore', nbScores);
                                 averageScore = totalScore/nbScores;
                             }
 

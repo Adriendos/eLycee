@@ -40,6 +40,10 @@ app.factory('SessionService',
                   if(SESS.user.role.toLowerCase()=="teacher"){
                     $location.path('/admin');
                   }
+                  if(SESS.user.role.toLowerCase()=="first_class" || SESS.user.role.toLowerCase()=="final_class"){
+                    $location.path('/qcm');
+                  }
+
                   return;
 
                 })
