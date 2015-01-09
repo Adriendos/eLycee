@@ -1,6 +1,6 @@
 app.controller('AdminPostsCtrl',
-    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader',
-      function($rootScope, $scope, DataAccess, ENTITY, FileUploader) {
+    ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
+      function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
 
         $scope.posts;
         $scope.modal = [];

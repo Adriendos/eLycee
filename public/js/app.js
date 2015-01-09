@@ -85,7 +85,12 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
                    $location.path('/');
                });
        } else {
-           //
+           SessionService.checkToken()
+               .then(function (data) {
+
+               }, function (error) {
+                  
+               });
        }
    }); 
 }]);
