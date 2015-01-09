@@ -1,5 +1,5 @@
-app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTITY', 'SessionService',
-    function($scope, $routeParams, DataAccess, ENTITY, SessionService) {
+app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope',
+    function($scope, $routeParams, DataAccess, ENTITY, SessionService, $rootScope) {
         $scope.step = 1; //Initialize step to questions
         $scope.qcm;
 
@@ -23,6 +23,7 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
             $scope.score = Math.round((score/correctAnswers)*100);
             DataAccess.create(ENTITY.score, { score: $scope.score, user_id: SessionService.getUser().id, qcm_id:$scope.qcm.id}).then(function(data) {
                 $scope.step = 2;
+                $rootScope.$emit('completeQcm');
             });
         };
 
