@@ -63,6 +63,7 @@ Route::group(
 
 		// __ posts
 		Route::get('posts/limit/{limit}', 'PostController@getWithLimit');
+		Route::get('posts/{id}/user', 'PostController@getUser');
 
 		Route::resource('posts', 'PostController', 
 			['except' => ['create', 'edit'] 
