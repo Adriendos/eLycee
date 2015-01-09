@@ -5,7 +5,7 @@ app.controller('ContactCtrl',
     var apiUrl = CONFIG.apiUrl;
 
 	$scope.master = {}; // juste pour des test de recuperation de données
-	
+	scope.specialField = '';
 	$scope.result = 'hidden';
     $scope.resultMessage;
     $scope.contact; //formData pour stocker tous les elements du formulaire
@@ -28,8 +28,9 @@ app.controller('ContactCtrl',
         
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
-        
-        if (contactform.$valid){
+        if($scope.specialField == ''){
+            alert('yes');
+            if (contactform.$valid){
             $http({
 
                 method  : 'POST',
@@ -57,8 +58,9 @@ app.controller('ContactCtrl',
         }else{
     
             $scope.submitButtonDisabled = false;
-            $scope.resultMessage = 'Erreur :( Verifier toutes les infos.';
+            $scope.resultMessage = 'Erreur! Verifier toutes les infos.';
             $scope.result='ui segment inverted red';
+        }
         }
     }
 }]);
