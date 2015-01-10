@@ -69,32 +69,32 @@
   </div>
 </div>
 <div class="row">
-  <div class="siteen column wide ui segment">
+  <div class="sixteen column wide ui segment loading" id="feedWrapper">
     <div class="ui feed">
-      <h2><i class="icon feed"></i>Fil d'Actualité</h2>
+      <h2 class="teal header"><i class="icon feed teal"></i>Fil d'Actualité</h2>
       <div class="ui divider">
       </div>
       <div class="row centered">
-        <i class="big icon refresh"></i>
+        <ui class="ui icon button" ng-click="refreshFeed()"><i class="icon refresh"></i></ui>
       </div>
       <div class="event" ng-repeat="feed in newsFeed">
         <!-- POST -->
         <div class="label" ng-if="feed.type == 'post'">
           <!--<img src="{{feed.users.url_thumbnail}}"/>-->
-          <i class="send icon"></i>
+          <i class="send icon purple"></i>
         </div>
         <div class="content" ng-if="feed.type == 'post'">
           <div class="summary">
-            <a>{{feed.users.username}}</a> à posté un article.
+            <a>{{feed.users.username}}</a> à posté un article nommé '{{feed.title}}'
             <div class="date">
               {{ feed.updated_at | dateAgo }}
             </div>
           </div>
+          <div class="extra text">
+            "{{ feed.excerpt }}" <br/>
+          </div>
           <div class="extra images">
             <a><img src="{{feed.url_thumbnail}}"></a>
-          </div>
-          <div class="extra text">
-            {{ feed.title }}
           </div>
           <div class="meta">
             <a class="like">
@@ -107,7 +107,7 @@
         <!-- SCORE -->
         <div class="label" ng-if="feed.type == 'score'">
           <!--<img src="{{feed.users.url_thumbnail}}">-->
-          <i class="checkmark box icon"></i>
+          <i class="checkmark box icon orange"></i>
         </div>
         <div class="content" ng-if="feed.type == 'score'">
           <div class="summary">
@@ -123,7 +123,7 @@
 
         <!-- QCM -->
         <div class="label" ng-if="feed.type == 'qcm'">
-          <i class="pencil icon"></i>
+          <i class="pencil icon teal"></i>
         </div>
         <div class="content" ng-if="feed.type == 'qcm'">
           <div class="summary">
@@ -133,7 +133,8 @@
             </div>
           </div>
           <div class="extra text">
-            "{{ feed.title }}"
+            "{{ feed.title }}" <br/>
+            <small>{{feed.description}}</small>
           </div>
         </div>
         <!-- QCM -->

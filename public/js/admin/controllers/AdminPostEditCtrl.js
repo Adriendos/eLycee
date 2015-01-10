@@ -18,8 +18,8 @@ app.controller('AdminPostEditCtrl',
             $scope.currentPost = post;
           });
       } else { // create a new post
-        $scope.$watch(SessionService.SESS_INIT, function(){
-          if(SessionService.SESS_INIT) {
+        $scope.$watch(SessionService.SESS_INIT, function(newValue){
+          if(newValue) {  
             $scope.currentPost.user_id = SessionService.getUser().id;
           }
         });
