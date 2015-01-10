@@ -13,12 +13,22 @@
 	      {{post.excerpt}}
 	    </h3>
 		<p ng-bind-html="post.content"></p>
+		<ul ng-social-buttons
+			data-url="'test'"
+			data-title="'test'"
+			data-description="'test2'"
+			data-image="'test'">
+			<li>Share:</li>
+			<li class="ng-social-facebook">Facebook</li>
+			<li class="ng-social-google-plus">Google+</li>
+			<li class="ng-social-twitter">Twitter</li>
+			<li class="ng-social-pinterest">Pinterest</li>
+			<li class="ng-social-github" user="Clementp57" repository="eLycee">GitHub</li>
+			<li class="ng-social-github-forks" user="Clementp57" repository="eLycee">Forks</li>
+		</ul>
 	</div>
 
-	<comment comments="post.comments" post-id="post.id" ng-show="post.comments.length > 0"></comment>
-	<div class="ui segment" ng-hide="post.comments.length > 0">
-		Pas de commentaires pour l'instant
-	</div>
+	<comment comments="post.comments" post-id="post.id"></comment>
 </div>
 
 <div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>

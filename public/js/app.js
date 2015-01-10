@@ -4,9 +4,10 @@ var app;
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
      'LocalStorageModule', 'cgNotify', 'angularFileUpload', 
-     'googlechart', 'djds4rce.angular-socialshare', 'ngProgress'
+     'googlechart', 'ngProgress', 'ngSocial'
  ]);
-app.constant('CONFIG', 
+
+app.constant('CONFIG',
    { 
        mode: 'dev', 
        apiUrl : 'api/v1/', 
