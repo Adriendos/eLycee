@@ -3,11 +3,11 @@
     <div class="ui divided items">
         <div class="item" ng-repeat="comment in comments | limitTo: commentLimit">
             <a class="ui teal right ribbon label"><i class="icon clock"></i>{{comment.created_at | dateAgo}}</a>
-
-
             <p>{{comment.content}}</p>
-            <em>posté par: {{comment.name}}</em></br>
-            <em>le: {{comment.created_at | dateToISO | date:'dd/MM/yyyy'}}</em>
+            <em>Par : {{comment.name}}</em></br>
+            <div class="left floated">
+                <small><i>{{comment.created_at | dateAgo}}</i></small>
+            </div>
         </div>
         <div class="item" style="text-align: center;cursor:pointer;" ng-click="moreComments()" ng-show="commentLimit < comments.length">
             <i class="icon arrow down"></i><b>Plus de commentaires</b>

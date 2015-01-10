@@ -248,6 +248,16 @@ body {
 .pt10 {
     padding-top: 10px;
 }
+.mb40 {
+    margin-bottom: 40px; 
+}
+.pr {
+    position: relative;
+}
+.bottom-abs {
+    position: absolute;
+    bottom: 0;
+}
 .pagination-wrapper {
     padding-top: 15px;
     text-align: center;
@@ -415,8 +425,8 @@ body {
     opacity: .2;
 
     position: absolute;
-    top: 0px;
-    right: 3px;
+    top: 15px;
+    right: 20px;
     line-height: 15px;
 }
 
