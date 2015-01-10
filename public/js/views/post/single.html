@@ -1,7 +1,7 @@
 <div class="ui divider"></div>
 <div class="ui divider"></div>
 <div class="twelve wide column">
-	<div class="ui segment items">
+	<div class="ui segment" id="single-post">
 		<h1>{{post.title}}</h1>
 
 		<a class="ui ribbon label red">Rédigé par :  {{author.username}}</a>
@@ -13,9 +13,8 @@
 	      {{post.excerpt}}
 	    </h3>
 		<p ng-bind-html="post.content"></p>
-		<socials></socials>
+		<socials text="post.title"></socials>
 	</div>
-
 	<comment comments="post.comments" post-id="post.id"></comment>
 </div>
 

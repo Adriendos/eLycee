@@ -27,6 +27,9 @@ app.directive('twitterw', ['$location', function($location) {
 app.directive('socials', function() {
     return {
         restrict: 'E',
+        scope: {
+            text: '='
+        },
         templateUrl: 'js/directives/template/social-buttons.html'
     };
 });
