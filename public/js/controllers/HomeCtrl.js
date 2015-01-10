@@ -9,6 +9,7 @@ app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY',
 
                 $scope.firstPost = allPosts.shift();
                 $scope.posts = allPosts;
+                console.info('first', $scope.firstPost);
             }
         );
 

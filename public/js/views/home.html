@@ -7,7 +7,9 @@
 			</div>
 			<div class="content">
 				<div class="header">
-					<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
+					<h2>
+						<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
+					</h2>
 				</div>
 				<div class="meta">
 					<a class="group">{{firstPost.created_at | dateAgo}}</a>
@@ -15,7 +17,11 @@
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
 			<div class="extra content">
-				<a class="right floated created">Par {{firstPost.users.username}}</a>
+					<a class="ui teal circular label right floated created">
+
+						<img ng-src="{{firstPost.users.profile_picture}}" class="ui circular avatar"/>
+						Par {{firstPost.users.username}}
+					</a>
 				<a class="ui tag red label">Dernière actualité</a>
 			</div>
 		</div>
@@ -29,15 +35,15 @@
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content">
-					<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
+					<h3>
+						<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
+					</h3>
 					<div class="meta">
 						<small><i>{{ post.created_at | dateAgo}}</i></small>
 					</div>
 					<div class="description" ng-bind-html="post.excerpt | limitTo:200 | htmlToPlaintext"></div>
 					<div class="extra">
-						<a class="ui teal circular label">
-							<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"/>Par {{post.users.username}}
-						</a>
+						<img ng-src="{{post.users.profile_picture}}" class="ui circular avatar"/>Par {{post.users.username}}
 					</div>
 				</div>
 			</div>
