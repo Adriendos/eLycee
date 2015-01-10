@@ -52,10 +52,15 @@ app.controller('AdminDashboardCtrl',
                     }
                 });
                 $scope.newsFeed = feed;
+                console.log('removing');
                 $('#feedWrapper').removeClass('loading');
             };
 
             $scope.refreshFeed = function() {
+                DataAccess.clearCache(ENTITY.post);
+                DataAccess.clearCache(ENTITY.qcm);
+                DataAccess.clearCache(ENTITY.score);
+
                 $('#feedWrapper').addClass('loading');
                 init();
             };
