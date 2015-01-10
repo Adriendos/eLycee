@@ -2,7 +2,7 @@
     <div class="ui top attached label teal"><i class="icon comments"></i>Commentaires</div>
     <div class="ui divided items" id="commentsContainer">
         <div class="item" ng-repeat="comment in comments | limitTo: commentLimit">
-            <a class="ui teal right ribbon label"><i class="icon clock"></i>{{comment.created_at | dateAgo}}</a>
+            <a class="ui right ribbon label"><i class="icon clock"></i>{{comment.created_at | dateAgo}}</a>
             <p>{{comment.content}}</p>
             <div class="ui image label right floated">
                 <img ng-src="{{post.users.profile_picture}}"/>
