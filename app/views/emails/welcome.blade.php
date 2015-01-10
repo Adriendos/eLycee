@@ -6,20 +6,34 @@
 </head>
 <body>
 	<table>
+		<tr>
+			<td style="text-align: center; padding: 40px 0;">
+				<a href="#"><img src="http://i.imgur.com/4DfNqo8.png" title="Elycee" /></a>
+			</td>
+		</tr>
 		<tr style="font-size: 22px;">
 			<td>Vous avez recu un nouveau message de {{$firstname}}, {{$lastname}}</td>
 		</tr>
 
 		<tr>
-			<td>Son adresse email : {{ $email }}</td>
+			<td style="padding: 10px 30px;">
+				<i>Son adresse email :</i> 
+				<br>{{ $email }}
+			</td>
 		</tr>
 
 		<tr>
-			<td>objet du message {{ $object }}</td>
+			<td style="padding: 10px 30px;">
+				<i>Objet du message :</i> 
+				<br>{{ $object }}
+			</td>
 		</tr>
 
 		<tr>
-			<td>Contenu du message message de {{ $formMessage }}</td>
+			<td style="padding: 10px 30px;">
+				<i>Contenu du message :</i> 
+				<br> {{ $formMessag
+					e }}</td>
 		</tr>
 	</table>
 </body>

@@ -3,7 +3,7 @@
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
 	<!-- DEBUT DU FORMULAIRE -->
 	<div ng-controller="ContactCtrl" class="ui form segment">
-		  <form ng-init="contact" novalidate class="simple-form" name="contactform" role="form" ng-submit="submit()" >
+		  <form ng-init="contact" novalidate class="simple-form" name="contactform" role="form" ng-submit="submit()" ng-hide="hasAnswer">
 			  <div class="two fields">
 					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.firstname.$error.required }">
 						<label>Prénom</label>
@@ -82,8 +82,15 @@
 		                Envoyer
 		            </button>
 		        </div>
-				<p ng-class="result" style="padding: 15px; margin: 0;">{{ resultMessage }}</p>
 		  </form>
+
+			<div class="ui positive icon message" ng-show="hasAnswer" >
+				<div class="header">
+					<i class="inbox icon"></i>
+					{{ returnMessage }}
+				</div>
+				Nous avons bien reçu votre message !
+			</div>
 	</div>
 </div>
 <div class="ten wide column">

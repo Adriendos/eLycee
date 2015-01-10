@@ -1,6 +1,6 @@
 app.controller('ContactCtrl', 
-    ['$scope','$http', '$sanitize', 'CONFIG',
-    function($scope, $http, $sanitize, CONFIG) {
+    ['$rootScope', '$scope','$http', '$sanitize', 'CONFIG',
+    function($rootScope, $scope, $http, $sanitize, CONFIG) {
 
     var apiUrl = CONFIG.apiUrl;
 
@@ -37,8 +37,9 @@ app.controller('ContactCtrl',
             headers: {'Content-Type': 'application/json'},
             url: apiUrl + 'contact', // url api LARAVEL
             data: $scope.contact 
-        }).success(function (data) {
-            console.log('success', data);
+        }).success(function (result) {
+            $scope.hasAnswer = true;
+            $scope.returnMessage = 'Merci ' + $scope.contact.firstname;
         });
     }
 }]);
