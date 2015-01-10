@@ -6,7 +6,6 @@ app.controller('AdminPostEditCtrl',
       $scope.currentPost = {};
       $scope.errorimage = true;
 
-
       if( $routeParams.id ) { // edit existing post
 
         $scope.mode = 'edit';

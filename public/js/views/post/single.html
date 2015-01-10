@@ -1,12 +1,17 @@
 <div class="ui divider"></div>
 <div class="ui divider"></div>
 <div class="twelve wide column">
-	<div class="ui segment">
+	<div class="ui segment items">
 		<h1>{{post.title}}</h1>
-		<a class="ui ribbon label red">Rédigé par :  {{author.username}} - <i class="icon clock"></i> {{post.created_at | dateToISO | date:'dd/MM/yyyy'}} </a>
-		
+
+		<a class="ui ribbon label red">Rédigé par :  {{author.username}}</a>
+		<a class="ui red label fr"><i class="icon clock"></i> {{post.created_at | dateAgo}} </a>
+
 		<div class="header-img" style="background-image: url('{{post.url_thumbnail}}');"></div>
 		<div class="ui hidden divider"></div>
+		<h3>
+	      {{post.excerpt}}
+	    </h3>
 		<p ng-bind-html="post.content"></p>
 	</div>
 

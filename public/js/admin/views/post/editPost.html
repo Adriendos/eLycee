@@ -28,7 +28,7 @@
       <!-- @todo => president erreur field text angular -->
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
-        <textarea name="excerpt" ng-model="currentPost.excerpt" required></textarea>
+        <textarea name="excerpt" ng-model="currentPost.excerpt" required ng-maxlength="255"></textarea>
       </div>
 
 
