@@ -11,9 +11,9 @@ class NestedBaseController extends Controller {
 	{
 		$model = rtrim( ucfirst( Request::segment(2) ), 's');
 		$joined_table = Request::segment(4);
-		$elem = $model::findOrFail($id)->$joined_table;
-
-		return Response::json($elem);
+		$elem = $model::findOrFail($id);
+		$elems = $elem->$joined_table()->orderby('created_at', 'DESC')->get();
+		return Response::json($elems);
 	}
 
 	/**
