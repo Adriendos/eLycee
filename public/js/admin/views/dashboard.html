@@ -81,7 +81,7 @@
         <!-- POST -->
         <div class="label" ng-if="feed.type == 'post'">
           <!--<img src="{{feed.users.url_thumbnail}}"/>-->
-          <i class="send icon purple"></i>
+          <i class="send icon teal"></i>
         </div>
         <div class="content" ng-if="feed.type == 'post'">
           <div class="summary">
@@ -91,7 +91,7 @@
             </div>
           </div>
           <div class="extra text">
-            "{{ feed.excerpt }}" <br/>
+            "{{ feed.excerpt }}" <br/> <a href="#/post/{{feed.id}}">Voir le post</a>
           </div>
           <div class="extra images">
             <a><img src="{{feed.url_thumbnail}}"></a>
@@ -107,13 +107,13 @@
         <!-- SCORE -->
         <div class="label" ng-if="feed.type == 'score'">
           <!--<img src="{{feed.users.url_thumbnail}}">-->
-          <i class="checkmark box icon orange"></i>
+          <i class="checkmark box icon teal"></i>
         </div>
         <div class="content" ng-if="feed.type == 'score'">
           <div class="summary">
             <a class="user">
               {{feed.users.username}}
-            </a> à complété le qcm "{{ feed.qcms.title }}"  avec un taux de réussite de {{feed.score}}%
+            </a> à complété le qcm "{{ feed.qcms.title }}"  avec un taux de réussite de <label class="ui label compact" ng-class="{ red: feed.score < 30, orange: feed.score >30 && feed.score <70, green: feed.score > 70 }"> {{feed.score}}%</label>
             <div class="date">
               {{ feed.updated_at | dateAgo}}
             </div>

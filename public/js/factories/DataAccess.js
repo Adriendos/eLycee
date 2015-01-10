@@ -108,7 +108,7 @@ app.factory('DataAccess',
 			var result = entity.$save(function() {
 				ngProgress.complete();
 				$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
-				clearCache(entityName);
+				DataAccess.clearCache(entityName);
 				d.resolve(result);
 			},function() {
 				$rootScope.notify('La connexion avec le serveur à échouée. Essayez de recharger la page.','error');
@@ -125,7 +125,7 @@ app.factory('DataAccess',
 				angular.extend(entity, data); // Replaces entity fields by data fields
 				ngProgress.complete();
 				var result = entity.$update(function() {
-					clearCache(entityName, id);
+					DataAccess.clearCache(entityName, id);
 					d.resolve(result);
 					$rootScope.notify('Modification effectuée avec succès.','success');
 				});
@@ -142,8 +142,8 @@ app.factory('DataAccess',
 				var result = entity.$delete(function() {
 					ngProgress.complete();
 					$rootScope.notify('Suppression effectuée avec succès.','success');
-					clearCache(entityName);
-					clearCache(entityName, id);
+					DataAccess.clearCache(entityName);
+					DataAccess.clearCache(entityName, id);
 					d.resolve(result);
 				});
 			});
@@ -151,7 +151,7 @@ app.factory('DataAccess',
 			return d.promise;
 		};
 
-		function clearCache(entityName) {
+		DataAccess.clearCache = function(entityName) {
 			var $httpDefaultCache = $cacheFactory.get('$http');
 			$httpDefaultCache.remove(CONFIG.apiUrl+entityName);
 		};

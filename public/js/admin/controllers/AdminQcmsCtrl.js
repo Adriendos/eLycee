@@ -81,6 +81,7 @@ app.controller('AdminQcmsCtrl',
             };
 
             $scope.openDeleteQcmModal = function(qcm) {
+                console.log(qcm);
                 $scope.currentQcm = qcm;
                 $('#deleteQcmModal').modal('show');
             };
