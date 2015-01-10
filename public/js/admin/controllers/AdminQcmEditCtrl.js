@@ -82,11 +82,11 @@ app.controller('AdminQcmEditCtrl',
                     '</div>',
                     '<div class="field four wide field">',
                     '<label>Valeur</label>',
-                    '<div class="ui radio checkbox">',
+                    '<div class="ui radio checkbox status'+guid+'">',
                     '<input type="radio" name="value'+guid+'" value="1">',
                     '<label>Bonne réponse</label>',
                     '</div>&nbsp;&nbsp;',
-                    '<div class="ui radio checkbox checked">',
+                    '<div class="ui radio checkbox checked status'+guid+'">',
                     '<input type="radio" name="value'+guid+'" value="0" checked="checked">',
                     '<label>Mauvaise réponse</label>',
                     '</div>',
@@ -99,9 +99,9 @@ app.controller('AdminQcmEditCtrl',
                 ].join('');
 
                 $('#answers'+questionGuid).prepend($compile(html)($scope));
-                $('.ui.radio.checkbox')
+                $('.status'+guid)
                     .checkbox('setting', 'onChange' ,function() {
-                        console.log('checkbox has changed for question' + questionGuid);
+                        console.log('checkbox has changed for answer' + guid);
                         console.log('value =>'+this[0].value);
                         $scope.setAnswerStatus(questionGuid, guid, this[0].value);
                     });
@@ -132,6 +132,7 @@ app.controller('AdminQcmEditCtrl',
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
                 $scope.questions[questionGuid].answers[answerGuid].status = parseInt(val);
+                console.log('new status => '+$scope.questions[questionGuid].answers[answerGuid].status);
             };
 
             $scope.openValidateQcmModal = function() {
@@ -140,22 +141,20 @@ app.controller('AdminQcmEditCtrl',
                     angular.forEach($scope.questions, function(question, guid) {
                         if(question.content == '') {
                             $scope.questions[guid].contentError = true;
-                            console.log('question has not content');
                             error =true;
                         }
-                        var noAnswer = true;
+                        var noAnswer;
                         angular.forEach(question.answers, function(answer, answerGuid) {
+                            noAnswer = true;
                             if(answer.content == '') {
                                 $scope.questions[guid].answers[answerGuid].contentError = true;
-                                console.log('answer has not content');
                                 error = true;
                             }
-                            console.log(answer.status);
-                            if(answer.status == 1) {
+                            if(parseInt(answer.status) == 1) {
                                 noAnswer = false;
                             }
                         });
-                        if(noAnswer) {
+                        if(noAnswer == true) {
                             $scope.questions[guid].noAnswer = true;
                             console.log('no right answers');
                             error = true;

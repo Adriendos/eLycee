@@ -5,13 +5,16 @@
 		<h1>{{post.title}}</h1>
 		<a class="ui ribbon label red">Rédigé par :  {{author.username}} - <i class="icon clock"></i> {{post.created_at | dateToISO | date:'dd/MM/yyyy'}} </a>
 		
-		<div class="header-img" style="background-image: url('{{post.url_thumbnail}}');">
-		</div>
+		<div class="header-img" style="background-image: url('{{post.url_thumbnail}}');"></div>
 		<div class="ui hidden divider"></div>
-		<p ng-bind-hi{{post.content}}v>
-	<comment comments="post.comments" post-id="post.id"></comment>
-</div>
-<!
+		<p ng-bind-html="post.content"></p>
+	</div>
+
+	<comment comments="post.comments" post-id="post.id" ng-show="post.comments.length > 0"></comment>
+	<div class="ui segment" ng-hide="post.comments.length > 0">
+		Pas de commentaires pour l'instant
+	</div>
+
 
 	<!-- <div class="ui four cards">
 		<div class="card">
@@ -46,5 +49,6 @@
 				<div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
 			</div>
 		</div>
-	</div> -->-- SIDEBAR -->
+	</div> -->
+	</div>
 <div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>

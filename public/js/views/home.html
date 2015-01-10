@@ -17,11 +17,11 @@
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
 			<div class="extra content">
-					<a class="ui teal circular label right floated created">
-						<img ng-src="{{firstPost.users.profile_picture}}" class="ui circular avatar"/>
-						Par {{firstPost.users.username}}
-					</a>
-				<a class="ui tag red label">Dernière actualité</a>
+				<a class="ui teal circular label right floated created">
+					<img ng-src="{{firstPost.users.profile_picture}}" class="ui circular avatar"/>
+					Par {{firstPost.users.username}}
+				</a>
+				{{firstPost.comments.length}} <i class="icon comments"></i>
 			</div>
 		</div>
 	</div>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="content">
 					<div class="meta tar">
-						<small><i>{{ post.created_at | dateAgo}}</i></small>
+						<small><i>{{ post.created_at | dateAgo}}</i>/ {{post.comments.length}} <i class="icon comments"></i></small>
 					</div>
 					<h3>
 						<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
