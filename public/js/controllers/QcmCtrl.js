@@ -44,6 +44,9 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                                 }
                             });
                             $('.loading').removeClass('loading');
+                            $('.ui.accordion')
+                                .accordion()
+                            ;
                         }
                     );
 
