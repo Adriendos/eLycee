@@ -5,41 +5,66 @@
 	<div ng-controller="ContactCtrl" class="ui form segment">
 		  <form novalidate class="simple-form" name="contactform" role="form">
 			  <div class="two fields">
-					<div class="field">
-						<label>Prénom <i class="asterisk small icon"></i></label>
-						<input placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.prenom">
-						<div class="ui pointing label red">
+					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.firstname.$error.required }">
+						<label>Prénom</label>
+						<div class="pr">
+							<input name="firstname" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.prenom">
+							<div class="ui corner label">
+								<i class="asterisk icon"></i>
+							</div>
+						</div>
+						<div class="ui pointing label red" ng-show="postForm.$submitted && contactform.firstname.$error.required">
 					    	Veuillez entrez un prénom
 					    </div>
 					</div>
-					<div class="field">
-						<label>Nom <i class="asterisk small icon"></i></label>
-						<input placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.nom">
+					<div class="field ui">
+						<label>Nom</label>
+						<div class="pr">
+							<input placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.nom">
+							<div class="ui corner label">
+					            <i class="asterisk icon"></i>
+					        </div>
+						</div>
 						<div class="ui pointing label fr red">
 					    	Veuillez entrez un nom
 					    </div>
 					</div>
 				</div>
-				<div class="field">
-					<label>Email <i class="asterisk small icon"></i></label>
-					<input type="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.mail">
-					<div class="ui pointing label fr red">
+				<div class="field ui">
+					<label>Email</label>
+					<div class="pr">
+						<input type="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.mail">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red">
 				    	Veuillez entrez une adresse mail valide
 				    </div>
 				</div>
-				<div class="field">
-						<label>Objet du message <i class="asterisk small icon"></i></label>
-						<input placeholder="Objet" type="text" required ng-bind-html="snippet" ng-model="contact.objet">
-						<div class="ui pointing label fr red">
+				<div class="field ui">
+						<label>Objet du message</label>
+						<div class="pr">
+							<input placeholder="Objet" type="text" required ng-bind-html="snippet" ng-model="contact.objet">
+							<div class="ui corner label">
+								<i class="asterisk icon"></i>
+							</div>
+						</div>
+						<div class="ui pointing label red">
 					    	Veuillez entrez un objet
 					    </div>
 				</div>
-				<div class="field">
-					<label>Message <i class="asterisk small icon"></i></label>
-					<textarea class="noResize" required ng-bind-html="snippet" ng-model="contact.message" placeholder="Votre message.."></textarea>
-					<div class="ui pointing label fr red">
-					    	Veuillez entrez un message
-					    </div>
+				<div class="field ui">
+					<label>Message</label>
+					<div class="pr">
+						<textarea class="noResize" required ng-bind-html="snippet" ng-model="contact.message" placeholder="Votre message.."></textarea>
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red">
+				    	Veuillez entrez un message
+				    </div>
 				</div>
 				<div class="field" style="display:none">
 			        <input type="text" name="specialField" ng-model="specialField"/>
