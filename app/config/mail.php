@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'cpdev08elycee@gmail.com', 'name' => 'CPDEV08[eLycee][DEV]'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'JACeLycee',
 
 	/*
 	|--------------------------------------------------------------------------
