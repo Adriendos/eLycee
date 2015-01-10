@@ -1,21 +1,22 @@
-//app.directive('spinner', ['$rootScope', '$http', function($rootScope, $http) {
-//	return {
-//		link: function(scope, element, attrs) {
-//			scope.isLoading = function () {
-//                    return $http.pendingRequests.length > 0;
-//                };
-//
-//            scope.$watch(scope.isLoading, function (v)
-//            {
-//                if(v){
-//                    $(element).fadeIn('slow');
-//                }else{
-//                    $(element).fadeOut('slow');
-//                }
-//            });
-//		}
-//	}
-//}]);
+var INTEGER_REGEXP = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,50})$', 'i');
+app.directive('validemail', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$parsers.unshift(function (viewValue) {
+                if (INTEGER_REGEXP.test(viewValue)) {
+                    // it is valid
+                    ctrl.$setValidity('validemail', true);
+                    return viewValue;
+                } else {
+                    // it is invalid, return undefined (no model update)
+                    ctrl.$setValidity('validemail', false);
+                    return undefined;
+                }
+            });
+        }
+    };
+});
 
 app.directive('twitterw', ['$location', function($location) {
     return {

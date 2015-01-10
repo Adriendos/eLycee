@@ -13,7 +13,7 @@
 				</div>
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
-			<div class="extra content">
+			<div class="extra content" style="padding-top: 33px;">
 				<div class="ui image label right floated ">
 				  <img ng-src="{{firstPost.users.profile_picture}}"/>
 				  Par {{firstPost.users.username}}
@@ -35,15 +35,13 @@
 					<h3>
 						<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
 					</h3>
-					<div class="description mb40" ng-bind-html="post.excerpt | htmlToPlaintext"></div>
-					<div class="bottom-abs">
-						<div class="left floated">
-							<small><i>{{ post.created_at | dateAgo}}</i> / {{post.comments.length}} <i class="icon comments"></i></small>
-						</div>
-						<div class="ui image label right floated">
-							<img ng-src="{{post.users.profile_picture}}"/>
-							Par {{post.users.username}}
-						</div>
+					<div class="description mb40" ng-bind-html="post.excerpt | htmlToPlaintext | limitTo : 80"></div>
+					<div class="left floated" style="position: absolute; bottom: 0;">
+						<small><i>{{ post.created_at | dateAgo}}</i> / {{post.comments.length}} <i class="icon comments"></i></small>
+					</div>
+					<div class="ui image label right floated" style="position: absolute; bottom: 0; right: 0;">
+						<img ng-src="{{post.users.profile_picture}}"/>
+						Par {{post.users.username}}
 					</div>
 				</div>
 			</div>

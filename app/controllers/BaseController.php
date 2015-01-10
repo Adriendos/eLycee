@@ -3,6 +3,12 @@
 class BaseController extends Controller {
 
 	/**
+	 * Inputs value
+	 * 
+	 */
+	protected $inputs;
+
+	/**
 	 * filter auth token 
 	 */
 	public function __construct()
@@ -10,6 +16,8 @@ class BaseController extends Controller {
     	$this->beforeFilter('auth.token', 
     		['except' => ['index', 'getToken', 'show'] 
     	]);
+
+    	$this->inputs = Input::except('_method', 'users', 'comments', 'qcms');
     }
 
 	/**
@@ -34,14 +42,13 @@ class BaseController extends Controller {
 	{	
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = new $model();
-		$inputs = Input::All();
 
-		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image' || $inputName == 'users' || $inputName == 'comments' ) { continue; }
+		foreach ($this->inputs as $inputName => $inputVal) {
+			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
-		$imgPath = $this->processImage($inputs, $model);
+		$imgPath = $this->processImage($this->inputs, $model);
 		if($imgPath) {
 			$elem->url_thumbnail = $imgPath;
 		}
@@ -74,13 +81,12 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id);
-		$inputs = Input::All();
 
-		foreach ($inputs as $inputName => $inputVal) {
-			if($inputName == 'image' || $inputName == '_method' || $inputName == 'users' || $inputName == 'comments' )  { continue; }
+		foreach ($this->inputs as $inputName => $inputVal) {
+			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
-		$imgPath = $this->processImage($inputs, $model);
+		$imgPath = $this->processImage($this->inputs, $model);
 		if($imgPath) {
 			$elem->url_thumbnail = $imgPath;
 		}

@@ -33,18 +33,27 @@
 				    </div>
 				</div>
 			</div>
-			<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.email.$error.required }">
+			<div class="field ui" ng-class="{ error: contactform.$submitted && !contactform.uEmail.$valid }">
 				<label>Email</label>
 				<div class="pr">
-					<input type="email" name="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.email">
+					<input type="email" name="uEmail" placeholder="Email" 
+						   required ng-model="contact.email" 
+						   ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/">
 					<div class="ui corner label">
 						<i class="asterisk icon"></i>
 					</div>
 				</div>
-				<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.email.$error.required">
-			    	Veuillez entrez une adresse mail valide
+			    <div class="ui pointing label red" ng-show="contactform.$submitted && !contactform.uEmail.$valid">
+			      <span ng-show="contactform.uEmail.$error.required">Le champ mail est requis</span>
+			      <span ng-show="contactform.uEmail.$error.required || !contactform.uEmail.$valid">Veuillez entrez une adresse mail valide</span>
 			    </div>
-			</div>
+			</div><!-- 
+			<label>Email</label>
+			<input id="UserName" name="UserName" type="text" value="" data-ng-model="email" required="" cemail>
+			<span data-ng-show="form.UserName.$dirty && form.UserName.$invalid">
+			    <span data-ng-show="form.UserName.$error.required">Required</span>
+			    <span data-ng-show="form.UserName.$error.cemail">Invalid Email</span>
+			</span> -->
 			<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.object.$error.required }">
 					<label>Objet du message</label>
 					<div class="pr">

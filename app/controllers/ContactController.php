@@ -3,8 +3,7 @@ class ContactController extends Controller {
 
 	public function sendContactMail() 
 	{
-		$inputs = Input::All();
-		Mail::send('emails.welcome', $inputs, function($m)
+		Mail::send('emails.welcome', $this->inputs, function($m)
         {
         	$m->to(['dossantos.adrien18@gmail.com', 'clementpeyrabere@gmail.com', 'decuyperjeremie@gmail.com'])
         	  ->subject('Nouveau message @ [##eLycée##]');
