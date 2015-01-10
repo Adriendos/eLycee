@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="six wide column only computer">
-		<div class="ui segment raised items">
+		<div class="ui segment raised items divided"><!-- ui divided list -->
 			<div class="ui top attached label red">L'Actualité du lycée</div>
 			<!-- START LOOP -->
 			<div class="item" ng-repeat="post in posts | limitTo:4">
@@ -29,13 +29,15 @@
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content">
-					<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
+					<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
 					<div class="meta">
-						<small>{{ post.created_at | dateAgo}}</small>
+						<small><i>{{ post.created_at | dateAgo}}</i></small>
 					</div>
-					<div class="description" ng-bind-html="post.excerpt | limitTo:25 | htmlToPlaintext"></div>
+					<div class="description" ng-bind-html="post.excerpt | limitTo:200 | htmlToPlaintext"></div>
 					<div class="extra">
-						<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar">Par {{post.users.username}}
+						<a class="ui teal circular label">
+							<img src="http://lorempixel.com/100/100/sports" class="ui circular avatar"/>Par {{post.users.username}}
+						</a>
 					</div>
 				</div>
 			</div>
