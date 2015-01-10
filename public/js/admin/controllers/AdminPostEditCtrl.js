@@ -18,7 +18,16 @@ app.controller('AdminPostEditCtrl',
             $scope.currentPost = post;
           });
       } else { // create a new post
-        $scope.currentPost.user_id = SessionService.getUser().id;
+        if(SessionService.getUser()) {
+          $scope.currentPost.user_id = SessionService.getUser().id;
+        } else {
+          $scope.$watch(SessionService.SESS_INIT, function(newVal, oldVal) {
+            if( newVal ) {
+              console.log(SessionService.getUser().id);
+              $scope.currentPost.user_id = SessionService.getUser().id;
+            }
+          });
+        }
         $scope.mode = 'create';
         $scope.currentPost.status = 'unpublished';
       }
