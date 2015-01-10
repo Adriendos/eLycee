@@ -6,13 +6,13 @@
 				<img ng-src="{{firstPost.url_thumbnail}}">
 			</div>
 			<div class="content">
+				<div class="meta tar">
+					<small><i>{{firstPost.created_at | dateAgo}}</i></small>
+				</div>
 				<div class="header">
 					<h2>
 						<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
 					</h2>
-				</div>
-				<div class="meta tar">
-					<small><i>{{firstPost.created_at | dateAgo}}</i></small>
 				</div>
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
@@ -34,12 +34,12 @@
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content">
+					<div class="meta tar">
+						<small><i>{{ post.created_at | dateAgo}}</i></small>
+					</div>
 					<h3>
 						<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
 					</h3>
-					<div class="meta">
-						<small><i>{{ post.created_at | dateAgo}}</i></small>
-					</div>
 					<div class="description" ng-bind-html="post.excerpt | limitTo:200 | htmlToPlaintext"></div>
 					<div class="extra">
 						<img ng-src="{{post.users.profile_picture}}" class="ui circular avatar"/>Par {{post.users.username}}
