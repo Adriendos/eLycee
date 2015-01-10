@@ -16,8 +16,8 @@ class QcmTableSeeder extends Seeder {
 				'description' => implode(' ', $faker->sentences(6)),
 				'user_id'     => $faker->numberBetween(1, 10),
 				'class_level' => $faker->randomElement(['first_class', 'final_class']),
-				'created_at'  => $faker->unixTime(),
-				'updated_at'  => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			]);
 		}
 	}

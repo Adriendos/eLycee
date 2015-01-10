@@ -15,8 +15,6 @@ app.controller('AdminDashboardCtrl',
                 _getDatasAndSetNumber(resources[i]);
             };
 
-
-
             /**
              * private methods
              **/
@@ -45,8 +43,4 @@ app.controller('AdminDashboardCtrl',
                     });
                 });
             };
-
-
-
-
         }]);
