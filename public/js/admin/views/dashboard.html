@@ -29,19 +29,19 @@
             <i class="question icon"></i> {{qcmsNumber}}
           </div>
           <div class="label">
-           Q.C.M.
+            Q.C.M.
           </div>
         </div>
         <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
-        <div class="ui inverted button" ng-click="go('/admin/qcm/create')">
-          <i class="plus icon"></i>
-          Ajouter
+          <div class="ui inverted button" ng-click="go('/admin/qcm/create')">
+            <i class="plus icon"></i>
+            Ajouter
+          </div>
+          <div class="ui inverted button" ng-click="go('/admin/qcm')">
+            <i class="eye icon"></i>
+            Parcourir
+          </div>
         </div>
-        <div class="ui inverted button" ng-click="go('/admin/qcm')">
-          <i class="eye icon"></i>
-          Parcourir
-        </div>
-      </div>
       </div>
     </div>
     <div class="column fixed">
@@ -51,7 +51,7 @@
             <i class="checkMark icon"></i> {{scoresNumber}}
           </div>
           <div class="label">
-            Qcms répondu
+            Qcms complétés
           </div>
         </div>
         <div class="ui vertical basic inverted labeled icon buttons" style="margin-left: 20px;vertical-align: middle">
@@ -71,137 +71,66 @@
 <div class="row">
   <div class="siteen column wide ui segment">
     <div class="ui feed">
-      <div class="event"  ng-repeat="feed in newsFeed">
-        {{feed.updated_at}}
-      </div>
-    </div>
-    <h2>Récemment</h2>
-    <div class="ui feed">
-      <div class="event">
-        <div class="label">
-          <img src="/images/avatar/small/elliot.jpg">
+      <h2>Fil d'Actualité</h2>
+      <div class="event" ng-repeat="feed in newsFeed">
+
+        <!-- POST -->
+        <div class="label" ng-if="feed.type == 'post'">
+          <img src="{{feed.users.url_thumbnail}}"/>
         </div>
-        <div class="content">
+        <div class="content" ng-if="feed.type == 'post'">
           <div class="summary">
-            <a class="user">
-              Elliot Fu
-            </a> added you as a friend
+            <a>{{feed.users.username}}</a> à posté un article.
             <div class="date">
-              1 Hour Ago
+              {{ feed.updated_at | dateAgo }}
             </div>
+          </div>
+          <div class="extra images">
+            <a><img src="{{feed.url_thumbnail}}"></a>
+          </div>
+          <div class="extra text">
+            {{ feed.title }}
           </div>
           <div class="meta">
             <a class="like">
-              <i class="like icon"></i> 4 Likes
+              <i class="comments icon"></i> {{feed.comments.length}}
             </a>
           </div>
         </div>
-      </div>
-      <div class="event">
-        <div class="label">
+        <!--POST-->
+
+        <!-- SCORE -->
+        <div class="label" ng-if="feed.type == 'score'">
+          <img src="{{feed.users.url_thumbnail}}">
+        </div>
+        <div class="content" ng-if="feed.type == 'score'">
+          <div class="summary">
+            <a class="user">
+              {{feed.users.username}}
+            </a> à complété un qcm avec un taux de réussite de {{feed.score}}%
+            <div class="date">
+              {{ feed.updated_at | dateAgo}}
+            </div>
+          </div>
+        </div>
+        <!--SCORE-->
+
+        <!-- QCM -->
+        <div class="label" ng-if="feed.type == 'qcm'">
           <i class="pencil icon"></i>
         </div>
-        <div class="content">
+        <div class="content" ng-if="feed.type == 'qcm'">
           <div class="summary">
-            You submitted a new post to the page
+            {{ feed.users.username }} à crée un nouveau QCM
             <div class="date">
-              3 days ago
+              {{ feed.updated_at | dateAgo }}
             </div>
           </div>
           <div class="extra text">
-            I'm having a BBQ this weekend. Come by around 4pm if you can.
-          </div>
-          <div class="meta">
-            <a class="like">
-              <i class="like icon"></i> 11 Likes
-            </a>
+            "{{ feed.title }}"
           </div>
         </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/images/avatar/small/helen.jpg">
-        </div>
-        <div class="content">
-          <div class="date">
-            4 days ago
-          </div>
-          <div class="summary">
-            <a>Helen Troy</a> added <a>2 new illustrations</a>
-          </div>
-          <div class="extra images">
-            <a><img src="/images/wireframe/image.png"></a>
-            <a><img src="/images/wireframe/image.png"></a>
-          </div>
-          <div class="meta">
-            <a class="like">
-              <i class="like icon"></i> 1 Like
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/images/avatar/small/jenny.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a class="user">
-              Jenny Hess
-            </a> added you as a friend
-            <div class="date">
-              2 Days Ago
-            </div>
-          </div>
-          <div class="meta">
-            <a class="like">
-              <i class="like icon"></i> 8 Likes
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/images/avatar/small/joe.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a>Joe Henderson</a> posted on his page
-            <div class="date">
-              3 days ago
-            </div>
-          </div>
-          <div class="extra text">
-            Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
-          </div>
-          <div class="meta">
-            <a class="like">
-              <i class="like icon"></i> 5 Likes
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/images/avatar/small/justen.jpg">
-        </div>
-        <div class="content">
-          <div class="date">
-            4 days ago
-          </div>
-          <div class="summary">
-            <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-          </div>
-          <div class="extra images">
-            <a><img src="/images/wireframe/image.png"></a>
-            <a><img src="/images/wireframe/image.png"></a>
-          </div>
-          <div class="meta">
-            <a class="like">
-              <i class="like icon"></i> 41 Likes
-            </a>
-          </div>
-        </div>
+        <!-- QCM -->
       </div>
     </div>
   </div>
