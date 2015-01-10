@@ -25,7 +25,7 @@ app.controller('ContactCtrl',
     $scope.resetMessage();
 
     $scope.submit = function(contactform) { 
-        
+        console.info('contact', contactform);
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
         if($scope.specialField == '') {
