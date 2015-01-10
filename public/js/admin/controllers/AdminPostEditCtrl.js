@@ -109,6 +109,10 @@ app.controller('AdminPostEditCtrl',
           $location.path('/admin/posts');
         };
 
+        $scope.scrollTo = function(target) {
+          return Utils.scrollToStr(target);
+        };
+
         $scope.reset = function() {
           $scope.currentPost = {};
           $('html, body').animate({

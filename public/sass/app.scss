@@ -172,6 +172,9 @@ body {
     }
 
 }
+.ui.message ul.list li {
+    cursor: pointer;
+}
 
 @keyframes grow {
     0% {

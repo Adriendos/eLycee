@@ -6,7 +6,7 @@
     <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
       <input type="hidden" ng-model="currentPost.id">
 
-      <div class="field" ng-class="{ error: postForm.$submitted && postForm.title.$error.required }">
+      <div id="title" class="field" ng-class="{ error: postForm.$submitted && postForm.title.$error.required }">
         <label>Titre</label>
         <div class="ui corner labeled input">
           <input type="text" name="title" placeholder="Titre de l'article" ng-model="currentPost.title" required>
@@ -26,7 +26,7 @@
       </div><!-- .field image -->
 
       <!-- @todo => president erreur field text angular -->
-      <div class="ui corner labeled input field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
+      <div id="excerpt" class="ui corner labeled input field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
         <div class="pr">
           <textarea name="excerpt" ng-model="currentPost.excerpt" required ng-maxlength="255"></textarea>
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
+      <div id="content" class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
         <textarea name="content" ck-editor ng-model="currentPost.content" required></textarea>
       </div>
@@ -55,15 +55,15 @@
             <div class="header">
               Problème formulaire
             </div>
-            <ul class="list">
-                <li ng-show="postForm.title.$error.required">
+            <ul class="list list-ancors">
+                <li ng-show="postForm.title.$error.required" ng-click="scrollTo('title')">
                 Veuillez entrer un titre pour l' article
                 </li>
-                <li ng-show="errorimage">Le champ image est requis</p>
-                <li ng-show="postForm.excerpt.$error.required">
+                <li ng-show="errorimage" ng-click="scrollTo('image-uploader')">Le champ image est requis</p>
+                <li ng-show="postForm.excerpt.$error.required" ng-click="scrollTo('excerpt')">
                   Veuillez entrer un extrait pour l' article
                 </li>
-                <li ng-show="postForm.content.$error.required">
+                <li ng-show="postForm.content.$error.required" ng-click="scrollTo('content')">
                   Veuillez entrer un contenu pour l' article
                 </li>
             </ul>
