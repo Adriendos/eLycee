@@ -71,11 +71,17 @@
 <div class="row">
   <div class="siteen column wide ui segment">
     <div class="ui feed">
-      <h2>Fil d'Actualité</h2>
+      <h2><i class="icon feed"></i>Fil d'Actualité</h2>
+      <div class="ui divider">
+      </div>
+      <div class="row centered">
+        <i class="big icon refresh"></i>
+      </div>
       <div class="event" ng-repeat="feed in newsFeed">
         <!-- POST -->
         <div class="label" ng-if="feed.type == 'post'">
-          <img src="{{feed.users.url_thumbnail}}"/>
+          <!--<img src="{{feed.users.url_thumbnail}}"/>-->
+          <i class="send icon"></i>
         </div>
         <div class="content" ng-if="feed.type == 'post'">
           <div class="summary">
@@ -100,7 +106,8 @@
 
         <!-- SCORE -->
         <div class="label" ng-if="feed.type == 'score'">
-          <img src="{{feed.users.url_thumbnail}}">
+          <!--<img src="{{feed.users.url_thumbnail}}">-->
+          <i class="checkmark box icon"></i>
         </div>
         <div class="content" ng-if="feed.type == 'score'">
           <div class="summary">
