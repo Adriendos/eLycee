@@ -26,11 +26,15 @@
       </div><!-- .field image -->
 
       <!-- @todo => president erreur field text angular -->
-      <div class="field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
+      <div class="ui corner labeled input field" ng-class="{ error: postForm.$submitted && postForm.excerpt.$error.required }">
         <label>Introduction</label>
-        <textarea name="excerpt" ng-model="currentPost.excerpt" required ng-maxlength="255"></textarea>
+        <div class="pr">
+          <textarea name="excerpt" ng-model="currentPost.excerpt" required ng-maxlength="255"></textarea>
+          <div class="ui corner label">
+            <i class="asterisk icon"></i>
+          </div>
+        </div>
       </div>
-
 
       <div class="field" ng-class="{ error: postForm.$submitted && postForm.content.$error.required }">
         <label>Contenu</label>
