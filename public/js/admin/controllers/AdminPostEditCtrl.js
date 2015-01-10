@@ -18,11 +18,16 @@ app.controller('AdminPostEditCtrl',
             $scope.currentPost = post;
           });
       } else { // create a new post
-        $scope.$watch(SessionService.SESS_INIT, function(newValue){
-          if(newValue) {  
-            $scope.currentPost.user_id = SessionService.getUser().id;
-          }
-        });
+        if(SessionService.getUser()) {
+          $scope.currentPost.user_id = SessionService.getUser().id;
+        } else {
+          $scope.$watch(SessionService.SESS_INIT, function(newVal, oldVal) {
+            if( newVal ) {
+              console.log(SessionService.getUser().id);
+              $scope.currentPost.user_id = SessionService.getUser().id;
+            }
+          });
+        }
         $scope.mode = 'create';
         $scope.currentPost.status = 'unpublished';
       }
@@ -75,7 +80,7 @@ app.controller('AdminPostEditCtrl',
           }
         });
 
-        $scope.submitForm = function() { 
+        $scope.submitForm = function() {
           // invalid postForm
           if ( ! $scope.postForm.$valid) {
             $rootScope.notify('Erreur formulaire', 'error'); 
@@ -88,6 +93,7 @@ app.controller('AdminPostEditCtrl',
           $scope.isFormLoading = true;
 
           if($scope.mode == 'create') {
+            if(!$scope.currentPost.user_id) console.log('Gonna fail cause no user id...');
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
               closeForm();
             });
