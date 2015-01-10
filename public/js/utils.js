@@ -42,5 +42,11 @@ app.factory('Utils', [function() {
         }, 500);
     };
 
+    Utils.scrollToStr = function() {
+        $('html, body').animate({
+            scrollTop: $element.offset().top-50
+        }, 500);
+    };
+
     return Utils;
 }]);
