@@ -8,8 +8,13 @@
 		<div class="header-img" style="background-image: url('{{post.url_thumbnail}}');"></div>
 		<div class="ui hidden divider"></div>
 		<p ng-bind-html="post.content"></p>
-		<comment comments="post.comments" post-id="post.id"></comment>
 	</div>
+
+	<comment comments="post.comments" post-id="post.id" ng-show="post.comments.length > 0"></comment>
+	<div class="ui segment" ng-hide="post.comments.length > 0">
+		Pas de commentaires pour l'instant
+	</div>
+
 
 	<!-- <div class="ui four cards">
 		<div class="card">

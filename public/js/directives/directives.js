@@ -134,6 +134,11 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
                     scope.loggedUserName = SessionService.getUser().name();
                 }
             });
+            scope.commentLimit = 5;
+
+            scope.moreComments = function() {
+                scope.commentLimit+= 5;
+            }
 
             scope.comment = { name: scope.loggedUserName || '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){

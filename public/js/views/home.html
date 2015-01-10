@@ -21,7 +21,7 @@
 					<img ng-src="{{firstPost.users.profile_picture}}" class="ui circular avatar"/>
 					Par {{firstPost.users.username}}
 				</a>
-				10 <i class="icon comments"></i>
+				{{firstPost.comments.length}} <i class="icon comments"></i>
 			</div>
 		</div>
 	</div>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="content">
 					<div class="meta tar">
-						<small><i>{{ post.created_at | dateAgo}}</i></small>
+						<small><i>{{ post.created_at | dateAgo}}</i>/ {{post.comments.length}} <i class="icon comments"></i></small>
 					</div>
 					<h3>
 						<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 45 }}</a>
