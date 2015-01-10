@@ -8,7 +8,7 @@ app.controller('ContactCtrl',
 	$scope.specialField = '';
 	$scope.result = 'hidden';
     $scope.resultMessage;
-    // $scope.contact; //formData pour stocker tous les elements du formulaireulaire
+    $scope.contact = {};
 
 	$scope.$on('mapInitialized', function(event, map) {
 	// TODO : do some nasty stuffs here ;)
@@ -18,8 +18,6 @@ app.controller('ContactCtrl',
 	$scope.resetMessage = function() {
 		$scope.contact = {};
 	};	
-
-    $scope.resetMessage();
 
     $scope.submit = function() { 
         if( $scope.specialField != '') return;

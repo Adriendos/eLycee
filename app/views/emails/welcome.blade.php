@@ -32,8 +32,7 @@
 		<tr>
 			<td style="padding: 10px 30px;">
 				<i>Contenu du message :</i> 
-				<br> {{ $formMessag
-					e }}</td>
+				<br> {{ $formMessage }}</td>
 		</tr>
 	</table>
 </body>
