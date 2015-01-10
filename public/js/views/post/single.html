@@ -8,9 +8,43 @@
 		<div class="header-img" style="background-image: url('{{post.url_thumbnail}}');">
 		</div>
 		<div class="ui hidden divider"></div>
-		<p ng-bind-html="post.content"></p>
-	</div>
+		<p ng-bind-hi{{post.content}}v>
 	<comment comments="post.comments" post-id="post.id"></comment>
 </div>
-<!-- SIDEBAR -->
+<!
+
+	<!-- <div class="ui four cards">
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/">
+			</div>
+			<div class="extra">
+				Titre du post
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/nature">
+			</div>
+			<div class="extra">
+				<div data-rating="2" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon"></i><i class="icon"></i></div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/sports">
+			</div>
+			<div class="extra">
+				<div data-rating="3" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon"></i></div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="http://lorempixel.com/g/300/200/nightlife">
+			</div>
+			<div class="extra">
+				<div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
+			</div>
+		</div>
+	</div> -->-- SIDEBAR -->
 <div class="four wide column" ng-include src="'js/views/sidebar.html'" ></div>

@@ -8,7 +8,7 @@ app.controller('SinglePostCtrl',
       DataAccess.getDataById(ENTITY.post, $routeParams.id).then(
           function(post) {
 
-            DataAccess.getDataById(ENTITY.user, post.id).then(function(author) {
+            DataAccess.getDataById(ENTITY.user, post.user_id).then(function(author) {
                 $scope.author = author;
             });
 
