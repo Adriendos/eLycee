@@ -15,11 +15,12 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
                        }
                     } else {
                         if($('#answer'+answer.id).hasClass('checked')) {
-                            //bad answer checked
+                            score--;
                         }
                     }
                 });
             });
+            if($scope.score < 0) $scope.score = 0;
             $scope.score = Math.round((score/correctAnswers)*100);
             DataAccess.create(ENTITY.score, { score: $scope.score, user_id: SessionService.getUser().id, qcm_id:$scope.qcm.id}).then(function(data) {
                 $scope.step = 2;
