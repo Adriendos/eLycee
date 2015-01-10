@@ -28,7 +28,7 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                                     nbScores ++;
                                 });
 
-                                averageScore = totalScore/nbScores;
+                                averageScore = Math.round(totalScore/nbScores);
                             }
 
                             $scope.averageScore = averageScore;
@@ -36,7 +36,7 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
                                 var score =_.find(scores, function(score){ return score.user_id == $scope.user.id && score.qcm_id == qcm.id ;});
                                 if(score) {
                                     //unavailable qcm
-                                    qcm.score = score.score;
+                                    qcm.score = score;
                                     $scope.unavailableQcms.push(qcm);
                                 } else {
                                     //available qcm
