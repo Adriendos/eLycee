@@ -4,7 +4,7 @@ app.controller('AdminQcmEditCtrl',
             $scope.questions = {};
             $scope.nbQuestion = 1;
             $scope.formError = false;
-            $scope.formErrors = { questions : { answers : {} } };
+            $scope.formErrors = {};
             $scope.currentQcm = {
                 title: '',
                 description: '',
@@ -12,8 +12,11 @@ app.controller('AdminQcmEditCtrl',
             };
             console.info('$scope.formError', $scope.formError);
             $('#validateQcm').modal();
-            $('select.dropdown').dropdown('setting', 'onChange' ,function() {
-                $scope.currentQcm.class_level = $(this).dropdown('get value')
+
+            $("#classDropdown").dropdown({
+                onChange: function (val) {
+                    $scope.currentQcm.class_level = val;
+                }
             });
 
             $('.ui.modal').modal();
@@ -23,7 +26,6 @@ app.controller('AdminQcmEditCtrl',
                 var id = segment.data('id');
 
                 delete $scope.questions[id];
-                console.log($scope.questions);
 
                 segment.fadeOut().remove();
 
@@ -101,8 +103,6 @@ app.controller('AdminQcmEditCtrl',
                 $('#answers'+questionGuid).prepend($compile(html)($scope));
                 $('.status'+guid)
                     .checkbox('setting', 'onChange' ,function() {
-                        console.log('checkbox has changed for answer' + guid);
-                        console.log('value =>'+this[0].value);
                         $scope.setAnswerStatus(questionGuid, guid, this[0].value);
                     });
 
@@ -115,9 +115,12 @@ app.controller('AdminQcmEditCtrl',
             // Process validation qcm
             $scope.submitQcm = function() {
                 angular.forEach($scope.questions, function(question) {
-                    answers = question.answers;
+                    var answers = question.answers;
                     question.answers = [];
+                    delete question.contentError;
+                    delete question.noAnswer;
                     angular.forEach(answers, function(answer) {
+                        delete answer.contentError;
                         question.answers.push(answer);
                     });
                     $scope.currentQcm.questions.push(question);
@@ -132,32 +135,38 @@ app.controller('AdminQcmEditCtrl',
 
             $scope.setAnswerStatus = function(questionGuid, answerGuid, val) {
                 $scope.questions[questionGuid].answers[answerGuid].status = parseInt(val);
-                console.log('new status => '+$scope.questions[questionGuid].answers[answerGuid].status);
             };
 
             $scope.openValidateQcmModal = function() {
-                if($scope.newQcm.$valid){
+                if($scope.newQcm.$valid && $scope.currentQcm.class_level != ''){
+                    $scope.formErrors.classlevel = false;
                     var error = false;
-                    angular.forEach($scope.questions, function(question, guid) {
+                    var noAnswer;
+                    _.each($scope.questions, function(question, guid) {
                         if(question.content == '') {
                             $scope.questions[guid].contentError = true;
-                            error =true;
+                            error = true;
+                        } else {
+                            $scope.questions[guid].contentError = false;
                         }
-                        var noAnswer;
-                        angular.forEach(question.answers, function(answer, answerGuid) {
-                            noAnswer = true;
+                        noAnswer = true;
+                        _.each(question.answers, function(answer, answerGuid) {
                             if(answer.content == '') {
                                 $scope.questions[guid].answers[answerGuid].contentError = true;
                                 error = true;
+                            } else {
+                                $scope.questions[guid].answers[answerGuid].contentError = false;
                             }
                             if(parseInt(answer.status) == 1) {
                                 noAnswer = false;
+
                             }
                         });
-                        if(noAnswer == true) {
+                        if(noAnswer) {
                             $scope.questions[guid].noAnswer = true;
-                            console.log('no right answers');
                             error = true;
+                        } else {
+                            $scope.questions[guid].noAnswer = false;
                         }
                     });
 
@@ -172,6 +181,9 @@ app.controller('AdminQcmEditCtrl',
 
                     }
                 } else {
+                    if($scope.currentQcm.class_level == '') {
+                        $scope.formErrors.classlevel = true;
+                    }
                     $('html, body').animate({
                         scrollTop: $('body').offset().top
                     }, 1000);

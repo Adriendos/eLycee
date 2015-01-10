@@ -3,14 +3,14 @@
         <h1><i class="write icon"></i> Création d'un nouveau QCM</h1>
         <form class="ui form segment" name="newQcm" ng-submit="openValidateQcmModal()" novalidate>
             <h2>Description du QCM</h2>
-            <div class="ui error form" ng-show="formError || (newQcm.$invalid && newQcm.$submitted) ">
+            <div class="ui error form" ng-show="formErrors.classlevel == true || (newQcm.$invalid && newQcm.$submitted) ">
                 <div class="ui error message">
                     <div class="header">
                         Il ya eu une ou plusieurs erreurs lors de la validation du qcm:
                     </div>
                     <ul class="list">
                         <li ng-show="newQcm.title.$error.required">Veuillez renseigner le titre du qcm</li>
-                        <li ng-show="newQcm['classe_level'].required">Veuillez renseigner la classe du qcm</li>
+                        <li ng-show="formErrors.classlevel">Veuillez renseigner la classe du qcm</li>
                         <li ng-show="newQcm.description.$error.required">Veuillez renseigner la description du qcm</li>
                     </ul>
                 </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="field">
                 <label>Classe</label>
-                <select class="ui dropdown" id="classDropdown" name="class_level" required ng-model="currentQcm.class_level" required>
+                <select class="ui dropdown" id="classDropdown" name="class_level" required>
                     <option value="">Classe</option>
                     <option value="first_class">Premiere</option>
                     <option value="final_class">Terminale</option>

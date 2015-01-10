@@ -18,7 +18,7 @@
             <div class="ui top attached label green">
                 <i class="icon radio"></i>QCM disponibles
             </div>
-            <div class="ui   accordion">
+            <div class="ui accordion">
                 <div ng-repeat="qcm in availableQcms">
                     <div class="title">
                         <i class="dropdown icon"></i>
@@ -35,11 +35,11 @@
             <div class="ui top attached label blue">
                 <i class="icon radio"></i>QCM répondus
             </div>
-            <div class="ui styled accordion">
+            <div class="ui accordion">
                 <div ng-repeat="qcm in unavailableQcms">
                     <div class="title">
                         <i class="dropdown icon"></i>
-                        {{qcm.title}} <div class="right floated compact ui label" ng-class="{ red: qcm.score < 30, orange: qcm.score >30 && qcm.score <70, green: qcm.score > 70 }">{{qcm.score}}% de réussite</div>
+                        {{qcm.title}}  <small>{{qcm.score.created_at | dateAgo}}</small><div class="right compact ui label" ng-class="{ red: qcm.score.score < 30, orange: qcm.score.score >30 && qcm.score.score <70, green: qcm.score.score > 70 }">{{qcm.score.score}}% de réussite</div>
 
                     </div>
                     <div class="content">
