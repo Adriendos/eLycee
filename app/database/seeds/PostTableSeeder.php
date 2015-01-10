@@ -18,8 +18,8 @@ class PostTableSeeder extends Seeder {
 				'url_thumbnail' => $faker->imageUrl(),
 				'status'        => 'published',
 				'user_id'       => $faker->numberBetween(1, 10),
-				'created_at'    => $faker->unixTime(),
-				'updated_at'    => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			]);
 		}
 	}

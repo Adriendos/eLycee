@@ -16,8 +16,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('Alexandre'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => 'teacher',
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
 				'username'        => 'admin',
@@ -25,8 +25,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('password'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => 'teacher',
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
 				'username'        => 'student1',
@@ -34,8 +34,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('password'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => 'first_class',
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
 				'username'        => 'student2',
@@ -43,8 +43,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('password'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => 'final_class',
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
 				'username'        => 'Abel',
@@ -52,8 +52,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('Abel'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => $faker->randomElement(['first_class', 'final_class']),
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
 				'username'        => 'Al',
@@ -61,8 +61,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('Al'),
 				'profile_picture' => $faker->imageUrl(640, 480), 
 				'role'            => $faker->randomElement(['first_class', 'final_class']),
-				'created_at'      => \Carbon\Carbon::createFromDate(2014,02,03)->toDateTimeString(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,03,03)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			]
 		]);
 		
@@ -74,8 +74,8 @@ class UserTableSeeder extends Seeder {
 				'password'        => Hash::make('password'),
 				'profile_picture' => $faker->imageUrl(640, 480),
 				'role'            => $faker->randomElement(['first_class', 'final_class']),
-				'created_at'      => $faker->unixTime(),
-				'updated_at'      => \Carbon\Carbon::createFromDate(2014,10,10)->toDateTimeString(),
+				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
+				'updated_at'      => $faker->dateTimeThisMonth(),
 			]);
 		}
 	}
