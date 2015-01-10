@@ -30,5 +30,17 @@ app.factory('Utils', [function() {
 
     };
 
+    Utils.scrollTop = function() {
+        $('html, body').animate({
+            scrollTop: $('html').offset().top
+        }, 500);
+    };
+
+    Utils.scrollTo = function($element) {
+        $('html, body').animate({
+            scrollTop:$element.offset().top-50
+        }, 500);
+    };
+
     return Utils;
 }]);

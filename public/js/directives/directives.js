@@ -80,7 +80,7 @@ app.directive('imgUploader', [ function() {
     };
 }]);
 
-app.directive('pagination',  function(DataAccess, ENTITY) {
+app.directive('pagination',  function(DataAccess, ENTITY, Utils) {
     return {
         restrict: 'E',
         transclude: true,
@@ -107,16 +107,13 @@ app.directive('pagination',  function(DataAccess, ENTITY) {
                     scope.$parent.currentPage = page;
 
                 }
-                // @todo facto make a util of that
-                $('html, body').animate({
-                    scrollTop: $('html').offset().top
-                }, 500);
+                Utils.scrollTop();
             };
         }
     }
 });
 
-app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $sanitize) {
+app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $sanitize, Utils) {
     return {
         restrict: 'E',
         transclude: true,
@@ -138,7 +135,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
 
             scope.moreComments = function() {
                 scope.commentLimit+= 5;
-            }
+            };
 
             scope.comment = { name: scope.loggedUserName || '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){
@@ -153,6 +150,8 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
                         scope.$parent.reloadComments();
                         scope.newComment.$setPristine(true);
                         scope.comment = { name: '' , content: '', post_id: scope.postId};
+
+                        Utils.scrollTo($('#commentsContainer'));
                     });
                 }
             };
