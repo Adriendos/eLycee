@@ -98,6 +98,7 @@ Route::group(
 		Route::get('search/{query}', 'SearchController@search');
 
 		Route::post('contact', 'ContactController@sendContactMail');
+
 });
 
 
