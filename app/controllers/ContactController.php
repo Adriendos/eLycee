@@ -4,15 +4,11 @@ class ContactController extends Controller {
 	public function sendContactMail() 
 	{
 		$inputs = Input::All();
-		extract($inputs); 
 
-		Mail::send('emails.welcome', array('test' => 'test'), function($message)
+		Mail::send('emails.welcome', $inputs, function($m)
         {
-            $message->to('clementpeyrabere@gmail.com')->subject('Welcome!');
-            $m->from($mail, $nom." ".$prenom);
-		    $m->to(['dossantos.adrien18@gmail.com', 'clementpeyrabere@gmail.com', 'decuyperjeremie@gmail.com']);
-		    $m->subject('zizi');
-		    $m->body('coucou');
+        	$m->to(['dossantos.adrien18@gmail.com', 'clementpeyrabere@gmail.com', 'decuyperjeremie@gmail.com'])
+        	  ->subject('Nouveau message @ [##eLycée##]');
         });
 
 		// si le mail ne s'est pas envoyé

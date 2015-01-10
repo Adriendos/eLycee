@@ -3,12 +3,12 @@
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
 	<!-- DEBUT DU FORMULAIRE -->
 	<div ng-controller="ContactCtrl" class="ui form segment">
-		  <form novalidate class="simple-form" name="contactform" role="form" ng-submit="submit(contactform)" >
+		  <form ng-init="contact" novalidate class="simple-form" name="contactform" role="form" ng-submit="submit()" >
 			  <div class="two fields">
 					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.firstname.$error.required }">
 						<label>Prénom</label>
 						<div class="pr">
-							<input name="firstname" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.prenom">
+							<input name="firstname" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.firstname">
 							<div class="ui corner label">
 								<i class="asterisk icon"></i>
 							</div>
@@ -20,7 +20,7 @@
 					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.lastname.$error.required }">
 						<label>Nom</label>
 						<div class="pr">
-							<input name="lastname" placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.nom">
+							<input name="lastname" placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.lastname">
 							<div class="ui corner label">
 					            <i class="asterisk icon"></i>
 					        </div>
@@ -33,7 +33,7 @@
 				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.email.$error.required }">
 					<label>Email</label>
 					<div class="pr">
-						<input type="email" name="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.mail">
+						<input type="email" name="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.email">
 						<div class="ui corner label">
 							<i class="asterisk icon"></i>
 						</div>
@@ -45,7 +45,7 @@
 				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.object.$error.required }">
 						<label>Objet du message</label>
 						<div class="pr">
-							<input placeholder="Objet" type="text" name="object" required ng-bind-html="snippet" ng-model="contact.objet">
+							<input placeholder="Objet" type="text" name="object" required ng-bind-html="snippet" ng-model="contact.object">
 							<div class="ui corner label">
 								<i class="asterisk icon"></i>
 							</div>
@@ -57,7 +57,7 @@
 				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.message.$error.required }">
 					<label>Message</label>
 					<div class="pr">
-						<textarea class="noResize" name="message" required ng-bind-html="snippet" ng-model="contact.message" placeholder="Votre message.."></textarea>
+						<textarea class="noResize" name="message" required ng-bind-html="snippet" ng-model="contact.formMessage" placeholder="Votre message.."></textarea>
 						<div class="ui corner label">
 							<i class="asterisk icon"></i>
 						</div>
@@ -82,7 +82,6 @@
 		                Envoyer
 		            </button>
 		        </div>
-		  		<pre>SAISIE : {{contact | json}}</pre>
 				<p ng-class="result" style="padding: 15px; margin: 0;">{{ resultMessage }}</p>
 		  </form>
 	</div>

@@ -8,10 +8,7 @@ app.controller('ContactCtrl',
 	$scope.specialField = '';
 	$scope.result = 'hidden';
     $scope.resultMessage;
-    $scope.contact; //formData pour stocker tous les elements du formulaire
-    $scope.submitButtonDisabled = false;
-    $scope.submitted = false;
-
+    // $scope.contact; //formData pour stocker tous les elements du formulaireulaire
 
 	$scope.$on('mapInitialized', function(event, map) {
 	// TODO : do some nasty stuffs here ;)
@@ -24,42 +21,25 @@ app.controller('ContactCtrl',
 
     $scope.resetMessage();
 
-    $scope.submit = function(contactform) { 
-        console.info('contact', contactform);
-        $scope.submitted = true;
-        $scope.submitButtonDisabled = true;
-        if($scope.specialField == '') {
-            if (contactform.$valid) {
-                $http({
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    url: apiUrl + 'contact', // url api LARAVEL
-                    data: $scope.contact // données à envoyer -> utiliser $sanitize()
+    $scope.submit = function() { 
+        if( $scope.specialField != '') return;
 
-                }).success(function (data) {
+        $sanitize($scope.contact.firstname);
+        $sanitize($scope.contact.lastname);
+        $sanitize($scope.contact.email);
+        $sanitize($scope.contact.object);
+        $sanitize($scope.contact.formMessage);
 
-                    console.log(data);
+        console.info('contact', $scope.contact);
 
-                    if (data.success) {
-                        $scope.submitButtonDisabled = true;
-                        $scope.resultMessage = data.message;
-                        $scope.result = 'ui segment inverted green';
-
-                    } else {
-
-                        $scope.submitButtonDisabled = false;
-                        $scope.resultMessage = data.message;
-                        $scope.result = 'ui segment inverted red';
-                    }
-                });
-
-            } else {
-
-                $scope.submitButtonDisabled = false;
-                $scope.resultMessage = 'Erreur! Verifier toutes les infos.';
-                $scope.result = 'ui segment inverted red';
-            }
-        }
+        $http({
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            url: apiUrl + 'contact', // url api LARAVEL
+            data: $scope.contact 
+        }).success(function (data) {
+            console.log('success', data);
+        });
     }
 }]);
 
