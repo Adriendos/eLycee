@@ -2,43 +2,38 @@ app.controller('ContactCtrl',
     ['$rootScope', '$scope','$http', '$sanitize', 'CONFIG',
     function($rootScope, $scope, $http, $sanitize, CONFIG) {
 
-    var apiUrl = CONFIG.apiUrl;
+        var apiUrl = CONFIG.apiUrl;
 
-	$scope.master = {}; // juste pour des test de recuperation de données
-	$scope.specialField = '';
-	$scope.result = 'hidden';
-    $scope.resultMessage;
-    $scope.contact = {};
+    	$scope.specialField = '';
+        $scope.contact = {};
+        $scope.result = 'hidden';
+        $scope.resultMessage;
+        $scope.isSending = false; 
 
-	$scope.$on('mapInitialized', function(event, map) {
-	// TODO : do some nasty stuffs here ;)
-	});
+    	$scope.resetMessage = function() {
+    		$scope.contact = {};
+    	};	
 
+        $scope.submit = function() { 
+            if( $scope.specialField != '') return;
+            $scope.isSending = true;
 
-	$scope.resetMessage = function() {
-		$scope.contact = {};
-	};	
+            $sanitize($scope.contact.firstname);
+            $sanitize($scope.contact.lastname);
+            $sanitize($scope.contact.email);
+            $sanitize($scope.contact.object);
+            $sanitize($scope.contact.formMessage);
 
-    $scope.submit = function() { 
-        if( $scope.specialField != '') return;
-
-        $sanitize($scope.contact.firstname);
-        $sanitize($scope.contact.lastname);
-        $sanitize($scope.contact.email);
-        $sanitize($scope.contact.object);
-        $sanitize($scope.contact.formMessage);
-
-        console.info('contact', $scope.contact);
-
-        $http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            url: apiUrl + 'contact', // url api LARAVEL
-            data: $scope.contact 
-        }).success(function (result) {
-            $scope.hasAnswer = true;
-            $scope.returnMessage = 'Merci ' + $scope.contact.firstname;
-        });
-    }
-}]);
+            $http({
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                url: apiUrl + 'contact', // url api LARAVEL
+                data: $scope.contact 
+            }).success(function (result) {
+                $scope.hasAnswer = true;
+                $scope.isSending = false;
+                $scope.returnMessage = 'Merci ' + $scope.contact.firstname;
+            });
+        }
+    }]);
 

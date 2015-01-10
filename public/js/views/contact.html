@@ -3,94 +3,99 @@
 	<h2><i class="send icon"></i> Formulaire de contact</h2>
 	<!-- DEBUT DU FORMULAIRE -->
 	<div ng-controller="ContactCtrl" class="ui form segment">
-		  <form ng-init="contact" novalidate class="simple-form" name="contactform" role="form" ng-submit="submit()" ng-hide="hasAnswer">
-			  <div class="two fields">
-					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.firstname.$error.required }">
-						<label>Prénom</label>
-						<div class="pr">
-							<input name="firstname" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.firstname">
-							<div class="ui corner label">
-								<i class="asterisk icon"></i>
-							</div>
-						</div>
-						<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.firstname.$error.required">
-					    	Veuillez entrez un prénom
-					    </div>
-					</div>
-					<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.lastname.$error.required }">
-						<label>Nom</label>
-						<div class="pr">
-							<input name="lastname" placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.lastname">
-							<div class="ui corner label">
-					            <i class="asterisk icon"></i>
-					        </div>
-						</div>
-						<div class="ui pointing label fr red" ng-show="contactform.$submitted && contactform.lastname.$error.required" >
-					    	Veuillez entrez un nom
-					    </div>
-					</div>
-				</div>
-				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.email.$error.required }">
-					<label>Email</label>
-					<div class="pr">
-						<input type="email" name="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.email">
-						<div class="ui corner label">
-							<i class="asterisk icon"></i>
-						</div>
-					</div>
-					<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.email.$error.required">
-				    	Veuillez entrez une adresse mail valide
-				    </div>
-				</div>
-				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.object.$error.required }">
-						<label>Objet du message</label>
-						<div class="pr">
-							<input placeholder="Objet" type="text" name="object" required ng-bind-html="snippet" ng-model="contact.object">
-							<div class="ui corner label">
-								<i class="asterisk icon"></i>
-							</div>
-						</div>
-						<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.object.$error.required">
-					    	Veuillez entrez un objet
-					    </div>
-				</div>
-				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.message.$error.required }">
-					<label>Message</label>
-					<div class="pr">
-						<textarea class="noResize" name="message" required ng-bind-html="snippet" ng-model="contact.formMessage" placeholder="Votre message.."></textarea>
-						<div class="ui corner label">
-							<i class="asterisk icon"></i>
-						</div>
-					</div>
-					<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.message.$error.required">
-				    	Veuillez entrez un message
-				    </div>
-				</div>
-				<div class="field" style="display:none">
-			        <input type="text" name="specialField" ng-model="specialField"/>
-			    </div>
-				<div class="field">
-					<label><i class="asterisk small icon"></i>Champs requis</label>
-				</div>
-				<div class="two fluid ui inverted buttons">
-		            <button type="reset" class="ui red  button" ng-click="resetMessage()">
-		                <i class="remove icon"></i>
-		                Effacer
-		            </button>
-		            <button id="submit" class="ui green button" ng-disabled="submitButtonDisabled">
-		                <i class="send icon"></i>
-		                Envoyer
-		            </button>
-		        </div>
-		  </form>
+		<form novalidate class="simple-form" 
+		      name="contactform" role="form" ng-submit="submit()" 
+		      ng-hide="hasAnswer" ng-class="{ loading: isSending }">
 
-			<div class="ui positive icon message" ng-show="hasAnswer" >
+		  	<div class="two fields">
+				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.firstname.$error.required }">
+					<label>Prénom</label>
+					<div class="pr">
+						<input name="firstname" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="contact.firstname">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.firstname.$error.required">
+				    	Veuillez entrez un prénom
+				    </div>
+				</div>
+				<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.lastname.$error.required }">
+					<label>Nom</label>
+					<div class="pr">
+						<input name="lastname" placeholder="Nom" type="text" required ng-bind-html="snippet" ng-model="contact.lastname">
+						<div class="ui corner label">
+				            <i class="asterisk icon"></i>
+				        </div>
+					</div>
+					<div class="ui pointing label fr red" ng-show="contactform.$submitted && contactform.lastname.$error.required" >
+				    	Veuillez entrez un nom
+				    </div>
+				</div>
+			</div>
+			<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.email.$error.required }">
+				<label>Email</label>
+				<div class="pr">
+					<input type="email" name="email" placeholder="Email" required ng-bind-html="snippet" ng-model="contact.email">
+					<div class="ui corner label">
+						<i class="asterisk icon"></i>
+					</div>
+				</div>
+				<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.email.$error.required">
+			    	Veuillez entrez une adresse mail valide
+			    </div>
+			</div>
+			<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.object.$error.required }">
+					<label>Objet du message</label>
+					<div class="pr">
+						<input placeholder="Objet" type="text" name="object" required ng-bind-html="snippet" ng-model="contact.object">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.object.$error.required">
+				    	Veuillez entrez un objet
+				    </div>
+			</div>
+			<div class="field ui" ng-class="{ error: contactform.$submitted && contactform.message.$error.required }">
+				<label>Message</label>
+				<div class="pr">
+					<textarea class="noResize" name="message" required ng-bind-html="snippet" ng-model="contact.formMessage" placeholder="Votre message.."></textarea>
+					<div class="ui corner label">
+						<i class="asterisk icon"></i>
+					</div>
+				</div>
+				<div class="ui pointing label red" ng-show="contactform.$submitted && contactform.message.$error.required">
+			    	Veuillez entrez un message
+			    </div>
+			</div>
+			<div class="field" style="display:none">
+		        <input type="text" name="specialField" ng-model="specialField"/>
+		    </div>
+			<div class="field">
+				<label><i class="asterisk small icon"></i>Champs requis</label>
+			</div>
+			<div class="two fluid ui inverted buttons">
+		        <button type="reset" class="ui red  button" ng-click="resetMessage()">
+		            <i class="remove icon"></i>
+		            Effacer
+		        </button>
+		        <button id="submit" class="ui green button" ng-disabled="submitButtonDisabled">
+		            <i class="send icon"></i>
+		            Envoyer
+		        </button>
+		    </div>
+		</form>
+
+		<div class="ui positive icon message"  ng-show="hasAnswer" >
+			<i class="inbox icon"></i>
+			<div class="content">
 				<div class="header">
-					<i class="inbox icon"></i>
 					{{ returnMessage }}
 				</div>
-				Nous avons bien reçu votre message !
+				<p>Nous avons bien reçu votre message !</p>
 			</div>
+		</div>
 	</div>
 </div>
 <div class="ten wide column">
