@@ -12,12 +12,11 @@
 					<img src="{{post.url_thumbnail}}">
 				</div>
 				<div class="content">
-					
 					<h3>
 						<a class="header" href="#/post/{{post.id}}">{{ post.title }}</a>
 					</h3>
 					<div class="description">
-						<p style="margin-bottom: 25px;" ng-bind-html="post.content"></p>
+						<p style="margin-bottom: 25px;" ng-bind-html="post.excerpt"></p>
 						<div class="ui blue labels">
 						    <a class="ui label" href="#/post/{{post.id}}">
 						    	<i class="icon angle double right"></i> Lire la suite
