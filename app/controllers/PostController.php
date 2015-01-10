@@ -10,7 +10,7 @@ class PostController extends \BaseController {
 	public function index()
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
-		$ressources = $model::with('users')->orderBy('created_at', 'DESC')->get();
+		$ressources = $model::with('users', 'comments')->orderBy('created_at', 'DESC')->get();
 
 		return Response::json($ressources);
 	}
