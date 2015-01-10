@@ -4,7 +4,7 @@ var app;
 app = angular.module('eLycee', [ 
      'ngRoute','ngResource','ngMap', 'ngAnimate', 'ngSanitize',
      'LocalStorageModule', 'cgNotify', 'angularFileUpload', 
-     'googlechart', 'ngProgress', 'ngSocial'
+     'googlechart', 'ngProgress', '720kb.socialshare'
  ]);
 
 app.constant('CONFIG',
@@ -34,6 +34,8 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
     .setNotify(true, true);
 
 }]);
+
+
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
 app.run(['$rootScope', 'notify', function($rootScope, notify) {

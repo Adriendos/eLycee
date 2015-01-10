@@ -24,6 +24,12 @@ app.directive('twitterw', ['$location', function($location) {
     };
 }]);
 
+app.directive('socials', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'js/directives/template/social-buttons.html'
+    };
+});
 app.directive('ngThumb', ['$window', function($window) {
     var helper = {
         support: !!($window.FileReader && $window.CanvasRenderingContext2D),
