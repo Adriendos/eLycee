@@ -46,18 +46,18 @@ app.controller('AdminQcmEditCtrl',
                     '<div class="ui error form" ng-show="newQcm.$submitted && questions[\''+guid+'\'].noAnswer ">',
                     '<div class="ui error small message">',
                     '<div class="header">',
-                        'Veuillez renseigner au minimum une bonne réponse',
+                        'Veuillez renseigner au minimum deux réponses dont une bonne réponse',
                     '</div>',
                     '</div>',
                     '</div>',
                         '<div class="field" ng-class="{ error: newQcm.$submitted && questions[\''+guid+'\'].contentError }">',
                             '<label><i class="icon help"></i>Question</label>',
-                            '<input type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content" required>',
+                            '<input id="question'+guid+'" type="text" placeholder="Entrez ici la question" required ng-model="questions[\''+guid+'\'].content" required>',
                         '</div>',
-                        '<div class="ui divider"></div>',
                          '<div class="field" id="answers'+guid+'">',
                             '<div class="ui button tiny positive" ng-click="addAnswer(\''+guid+'\')">Ajouter une réponse</div>',
                         '</div>',
+                    '<div class="ui invisible divider"></div>',
                     '</div>'
                 ].join('');
 
@@ -65,6 +65,7 @@ app.controller('AdminQcmEditCtrl',
 
                 // pre compile for ng-click working in injected html
                 $('#questions').append($compile(html)($scope));
+                $('#question'+guid).focus();
                 $('html, body').animate({
                     scrollTop: $('#addQuestionButton').offset().top
                 }, 1000);
@@ -80,7 +81,7 @@ app.controller('AdminQcmEditCtrl',
                     '<div class="fields" id="'+guid+'">',
                     '<div class="field six wide field" ng-class="{ error: newQcm.$submitted && questions[\''+questionGuid+'\'].answers[\''+guid+'\'].contentError }">',
                     '<label><i class="icon certificate"></i>Réponse</label>',
-                    '<input placeholder="Saisissez la réponse" type="text"  ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content" required>',
+                    '<input id="answer'+guid+'" placeholder="Saisissez la réponse" type="text"  ng-model="questions[\''+questionGuid+'\'].answers[\''+guid+'\'].content" required>',
                     '</div>',
                     '<div class="field four wide field">',
                     '<label>Valeur</label>',
@@ -100,11 +101,13 @@ app.controller('AdminQcmEditCtrl',
 
                 ].join('');
 
-                $('#answers'+questionGuid).prepend($compile(html)($scope));
+                $('#answers'+questionGuid).append($compile(html)($scope));
                 $('.status'+guid)
                     .checkbox('setting', 'onChange' ,function() {
                         $scope.setAnswerStatus(questionGuid, guid, this[0].value);
                     });
+
+                $('#answer'+guid).focus();
 
                 $('html, body').animate({
                     scrollTop: $('#answers'+questionGuid).offset().top
@@ -141,7 +144,7 @@ app.controller('AdminQcmEditCtrl',
                 if($scope.newQcm.$valid && $scope.currentQcm.class_level != ''){
                     $scope.formErrors.classlevel = false;
                     var error = false;
-                    var noAnswer;
+                    var noRightAnswer;
                     _.each($scope.questions, function(question, guid) {
                         if(question.content == '') {
                             $scope.questions[guid].contentError = true;
@@ -149,7 +152,7 @@ app.controller('AdminQcmEditCtrl',
                         } else {
                             $scope.questions[guid].contentError = false;
                         }
-                        noAnswer = true;
+                        noRightAnswer = true;
                         _.each(question.answers, function(answer, answerGuid) {
                             if(answer.content == '') {
                                 $scope.questions[guid].answers[answerGuid].contentError = true;
@@ -158,11 +161,16 @@ app.controller('AdminQcmEditCtrl',
                                 $scope.questions[guid].answers[answerGuid].contentError = false;
                             }
                             if(parseInt(answer.status) == 1) {
-                                noAnswer = false;
-
+                                noRightAnswer = false;
                             }
                         });
-                        if(noAnswer) {
+
+                        var nbAnswers =0;
+                        _.each(question.answers, function() {
+                            nbAnswers ++;
+                        });
+                        console.log('nbAnswers',nbAnswers);
+                        if(noRightAnswer || nbAnswers < 2) {
                             $scope.questions[guid].noAnswer = true;
                             error = true;
                         } else {
