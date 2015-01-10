@@ -7,7 +7,7 @@ app.controller('AdminQcmsCtrl',
             $scope.modal = [];
             $scope.currentPage = 1;
             $scope.entity = ENTITY.qcm;
-            $scope.currentQcm= {};
+            $scope.currentQcm;
 
 
             $('.ui.modal').modal();
