@@ -10,7 +10,7 @@
 					<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
 				</div>
 				<div class="meta">
-					<a class="group">{{firstPost.created_at}}</a>
+					<a class="group">{{firstPost.created_at | dateAgo}}</a>
 				</div>
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
@@ -31,7 +31,7 @@
 				<div class="content">
 					<a class="header" ng-href="#/post/{{post.id}}">{{ post.title | limitTo : 35 }}...</a>
 					<div class="meta">
-						<small>{{ post.created_at | dateToISO | date:'dd/MM/yyyy'}}</small>
+						<small>{{ post.created_at | dateAgo}}</small>
 					</div>
 					<div class="description" ng-bind-html="post.excerpt | limitTo:25 | htmlToPlaintext"></div>
 					<div class="extra">

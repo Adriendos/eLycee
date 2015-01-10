@@ -11,7 +11,6 @@
     "ckeditor": "#full/stable",
     "lodash": "~2.4.1",
     "angular-notify": "~2.0.2",
-    "angular-moment": "~0.8.3",
     "moment": "~2.9.0"
   },
   "devDependencies": {
