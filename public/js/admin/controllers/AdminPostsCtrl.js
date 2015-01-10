@@ -84,6 +84,7 @@ app.controller('AdminPostsCtrl',
         };
         
         $scope.openDeletePostModal = function(post) {
+          console.log(post);
           $scope.currentPost = post;
           $('#deletePostModal').modal('show');
         };
