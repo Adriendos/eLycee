@@ -11,14 +11,13 @@
 						<a ng-href="#/post/{{firstPost.id}}" style="color: black;">{{firstPost.title}}</a>
 					</h2>
 				</div>
-				<div class="meta">
-					<a class="group">{{firstPost.created_at | dateAgo}}</a>
+				<div class="meta tar">
+					<small><i>{{firstPost.created_at | dateAgo}}</i></small>
 				</div>
 				<div class="description" ng-bind-html="firstPost.excerpt | htmlToPlaintext"></div>
 			</div>
 			<div class="extra content">
 					<a class="ui teal circular label right floated created">
-
 						<img ng-src="{{firstPost.users.profile_picture}}" class="ui circular avatar"/>
 						Par {{firstPost.users.username}}
 					</a>
