@@ -26,6 +26,9 @@ app.controller('AdminDashboardCtrl',
                             $scope.scoresNumber = Object.keys(scores).length - 2; // prop promises
                             tenFirsts = _.first(scores, 10);
                             feed = _.union(feed, tenFirsts);
+                            feed = _.sortBy(feed, function(feedEvent){
+                                return new Date(feedEvent.updated_at);
+                            }).reverse();
 
                             initNewsFeed(feed);
                         });
@@ -36,14 +39,11 @@ app.controller('AdminDashboardCtrl',
             function initNewsFeed(feed) {
                 _.each(feed, function(feed) {
                     if(feed.qcm_id) {
-                        console.log('score');
                         feed.type = 'score';
                     } else {
                         if(!feed.excerpt) {
-                            console.log('qcm');
                             feed.type = 'qcm';
                         } else {
-                            console.log('post');
                             feed.type = 'post';
                         }
                     }
@@ -51,4 +51,7 @@ app.controller('AdminDashboardCtrl',
                 $scope.newsFeed = feed;
             };
 
+            $scope.buildUrl = function(feedType) {
+                return "js/admin/views/feed/"+feedType+"Event.html";
+            }
         }]);

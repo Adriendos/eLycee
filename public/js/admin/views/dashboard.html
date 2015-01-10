@@ -73,7 +73,6 @@
     <div class="ui feed">
       <h2>Fil d'Actualité</h2>
       <div class="event" ng-repeat="feed in newsFeed">
-
         <!-- POST -->
         <div class="label" ng-if="feed.type == 'post'">
           <img src="{{feed.users.url_thumbnail}}"/>
@@ -107,7 +106,7 @@
           <div class="summary">
             <a class="user">
               {{feed.users.username}}
-            </a> à complété le qcm  avec un taux de réussite de {{feed.score}}%
+            </a> à complété le qcm "{{ feed.qcms.title }}"  avec un taux de réussite de {{feed.score}}%
             <div class="date">
               {{ feed.updated_at | dateAgo}}
             </div>
