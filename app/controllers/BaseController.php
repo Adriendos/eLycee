@@ -17,7 +17,7 @@ class BaseController extends Controller {
     		['except' => ['index', 'getToken', 'show'] 
     	]);
 
-    	$this->inputs = Input::except('_method', 'users', 'comments', 'qcms');
+    	// $this->inputs = Input::except('_method', 'users', 'comments', 'qcms');
     }
 
 	/**
@@ -43,12 +43,14 @@ class BaseController extends Controller {
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = new $model();
 
-		foreach ($this->inputs as $inputName => $inputVal) {
+		$inputs = Input::except('_method', 'users', 'comments', 'qcms');
+
+		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
 
-		$imgPath = $this->processImage($this->inputs, $model);
+		$imgPath = $this->processImage($inputs, $model);
 		if($imgPath) {
 			$elem->url_thumbnail = $imgPath;
 		}
@@ -81,12 +83,12 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id);
-
-		foreach ($this->inputs as $inputName => $inputVal) {
+		$inputs = Input::except('_method', 'users', 'comments', 'qcms');
+		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') { continue; }
 			$elem->$inputName = $inputVal;
 		}
-		$imgPath = $this->processImage($this->inputs, $model);
+		$imgPath = $this->processImage($inputs, $model);
 		if($imgPath) {
 			$elem->url_thumbnail = $imgPath;
 		}
