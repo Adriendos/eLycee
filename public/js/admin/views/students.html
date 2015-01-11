@@ -66,22 +66,22 @@
     </div>
 </div>
 
-<!-- DELETE POST MODAL -->
-<div id="deletePostModal" class="ui small modal">
+<!-- DELETE STUDENT MODAL -->
+<div id="deleteStudentModal" class="ui small modal">
     <i class="close icon"></i>
     <div class="header">
         Supprimer
     </div>
     <div class="content">
-        <p>Voulez vous supprimer définitivement le Post suivant ?</p>
-        <p><b>Titre : </b> <em>{{currentPost.title}}</em></p>
-        <p><b>Intro : </b> <em>{{currentPost.excerpt | htmlToPlaintext}}</em></p>
+        <p>Voulez vous supprimer définitivement l'élève suivant ?</p>
+        <p><b>Nom : </b> <em>{{currentStudent.username}}</em></p>
+        <p><b>Email : </b> <em>{{currentStudent.email}}</em></p>
     </div>
     <div class="actions">
         <div class="ui negative button">
             Non
         </div>
-        <div class="ui positive right labeled icon button" ng-click="deletePost(currentPost)">
+        <div class="ui positive right labeled icon button" ng-click="deleteStudent(currentStudent)">
             Oui
             <i class="checkmark icon"></i>
         </div>
