@@ -1,7 +1,7 @@
 app.controller('NavCtrl', ['$scope', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope',
     function($scope, DataAccess, ENTITY, SessionService, $rootScope){
         init();
-
+        $('.ui.dropdown').dropdown();
         function init() {
             $scope.$watch(function(){
                 return SessionService.SESS_INIT;

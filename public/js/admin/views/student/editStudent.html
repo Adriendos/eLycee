@@ -47,7 +47,9 @@
 			</div><!-- .field image -->
 
 			<div class="two fields">
-				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
+				<div class="field ui" 
+					 ng-class="{ error: userForm.$submitted && userForm.username.$error.required }"
+					 ng-show="isUserAdmin()">
 					<label>Role</label>
 
 					<div id="studentRole" class="ui fluid search selection dropdown visible pr">

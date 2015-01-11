@@ -2,7 +2,7 @@ app.controller('SidebarCtrl', ['$scope', '$http', 'CONFIG', 'tweetsWidgetService
     $('.left.sidebar').first()
         .sidebar('attach events', '#sidebar-button')
     ;
-
+    $('.ui.dropdown').dropdown();
     $scope.search = function() {
         var searchQuery = $('#searchField').val();
         $http.get(CONFIG.apiUrl+'search/'+searchQuery).

@@ -42,11 +42,13 @@ class BaseController extends Controller {
 	{	
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = new $model();
-
-		$inputs = Input::except('_method', 'users', 'comments', 'qcms');
+		$inputs = Input::except('_method', 'users', 'comments', 'qcms', 'url_thumbnail', 'profile_picture');
 
 		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') { continue; }
+			if($inputName == 'password') { 
+				$elem->$inputName = Hash::make($inputVal);
+			}
 			$elem->$inputName = $inputVal;
 		}
 
@@ -83,9 +85,12 @@ class BaseController extends Controller {
 	{
 		extract( $this->getModelNameAndVarsName(__FUNCTION__) );
 		$elem = $model::findOrFail($id);
-		$inputs = Input::except('_method', 'users', 'comments', 'qcms');
+		$inputs = Input::except('_method', 'users', 'comments', 'qcms', 'url_thumbnail', 'profile_picture');
 		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') { continue; }
+			if($inputName == 'password') { 
+				$elem->$inputName = Hash::make($inputVal);
+			}
 			$elem->$inputName = $inputVal;
 		}
 		$imgPath = $this->processImage($inputs, $model);

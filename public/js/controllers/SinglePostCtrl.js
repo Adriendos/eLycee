@@ -1,10 +1,7 @@
 app.controller('SinglePostCtrl',
   ['$scope','ENTITY', 'DataAccess', '$routeParams',
 	function($scope, ENTITY, DataAccess, $routeParams) {
-        $(document).ready(function(){
-            $('.ui.dropdown').dropdown();
-        });
-
+      $('.ui.dropdown').dropdown();
       DataAccess.getDataById(ENTITY.post, $routeParams.id).then(
           function(post) {
 

@@ -1,5 +1,6 @@
 app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope',
     function($scope, $routeParams, DataAccess, ENTITY, SessionService, $rootScope) {
+        $('.ui.dropdown').dropdown();
         $scope.step = 1; //Initialize step to questions
         $scope.qcm;
         $scope.calculateScore = function() {

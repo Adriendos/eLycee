@@ -35,7 +35,7 @@
                             <div class="header">
                                 Actions
                             </div>
-                            <div class="item" ng-click="go('admin/student/edit/'+activeUser.id)">
+                            <div class="item" ng-show="isUserAdmin()" ng-click="go('admin/student/edit/'+activeUser.id)">
                                 <i class="edit icon"></i>
                                 Edition de mon profil
                             </div>
