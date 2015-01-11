@@ -87,7 +87,9 @@ app.controller('AdminPostEditCtrl',
             $('html, body').animate({ scrollTop: $(document).height() }, 1000);
             return;
           }
-          
+
+          // remove url_thumbnail prop
+          delete $scope.currentPost.url_thumbnail;
           $scope.isFormLoading = true;
 
           if($scope.mode == 'create') {

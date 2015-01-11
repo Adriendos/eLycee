@@ -82,9 +82,9 @@ app.controller('AdminStudentEditCtrl',
             $('html, body').animate({ scrollTop: $(document).height() }, 1000);
             return;
         }
-
-        console.info('before delete', $scope.currentPost);
-
+        // remove url_thumbnail prop
+        delete $scope.currentPost.url_thumbnail;
+        console.info('user after dl', $scope.currentPost);
         $scope.isFormLoading = true;
 
         if($scope.mode == 'create') {
