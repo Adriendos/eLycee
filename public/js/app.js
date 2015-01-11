@@ -110,9 +110,8 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
            } else {
                SessionService.checkToken()
                    .then(function (data) {
+
                    }, function (error) {
-                       SessionService.logout();
-                       $location.path('/');
                    });
            }
        }
