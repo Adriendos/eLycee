@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 		$this->call('UserTableSeeder');
 		$this->call('PostTableSeeder');
-		$this->call('CommentTableSeeder');
-		$this->call('QcmTableSeeder');
-		$this->call('QuestionTableSeeder');
-		$this->call('AnswerTableSeeder');
-		$this->call('ScoreTableSeeder');
+		// $this->call('CommentTableSeeder');
+		// $this->call('QcmTableSeeder');
+		// $this->call('QuestionTableSeeder');
+		// $this->call('AnswerTableSeeder');
+		// $this->call('ScoreTableSeeder');
 	}
 }
