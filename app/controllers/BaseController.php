@@ -6,7 +6,7 @@ class BaseController extends Controller {
 	 * Inputs value
 	 * 
 	 */
-	protected $inputs;
+	public $inputs;
 
 	/**
 	 * filter auth token 

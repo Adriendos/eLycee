@@ -8,7 +8,10 @@ app.controller('ContactCtrl',
         $scope.contact = {};
         $scope.result = 'hidden';
         $scope.resultMessage;
-        $scope.isSending = false; 
+        $scope.isSending = false;
+
+        // @todo remove
+        $scope.contact = {firstname: "jeremie", lastname: "test", email: "test@test.fr", object: "test", formMessage: "message test email"}; 
 
     	$scope.resetMessage = function() {
     		$scope.contact = {};
@@ -23,6 +26,8 @@ app.controller('ContactCtrl',
             $sanitize($scope.contact.email);
             $sanitize($scope.contact.object);
             $sanitize($scope.contact.formMessage);
+
+            console.info('info log', $scope.contact);
 
             $http({
                 method: 'POST',
