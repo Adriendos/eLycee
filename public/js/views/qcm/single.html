@@ -19,7 +19,17 @@
                 </div>
             </div>
         </div>
-        <div class="ui segment loading" ng-show="step == 1">
+        <div class="ui segment loading center aligned">
+            <div class="ui dimmer" id="scoreDimmer">
+                <div class="content">
+                    <div class="center">
+                        <h2 class="ui inverted icon header">
+                            <i class="icon" ng-class="{frown: score <29, meh: score>= 29 && score <69, smile: score>=70 }"></i>
+                            <label class="red" style="font-size:1.5em;">{{score}} % </label> de bonne réponses !
+                        </h2>
+                    </div>
+                </div>
+            </div>
             <form class="ui form">
                 <div class="grouped fields" ng-repeat="question in qcm.questions" on-last-repeat>
                     <label><i class="icon question"></i>{{question.content}}</label>
@@ -29,14 +39,11 @@
                             <label>{{answer.content}}</label>
                         </div>
                     </div>
+                    <div class="ui divider"></div>
                 </div>
                 <div class="ui divider"></div>
-                <div class="ui submit button positive" ng-click="calculateScore();">Voir mon score</div>
+                <div class="ui submit button positive" id="calculateScoreBtn" ng-click="calculateScore();">Voir mon score</div>
             </form>
-        </div>
-        <div class="ui segment" ng-show="step == 2">
-            Votre score : <label class="red" style="font-size:4em;">{{score}} % </label> de bonne réponses !
-            <div class="ui button" ng-click="go('/qcm');">Revenir au tableau des QCM</div>
         </div>
     </div>
 </div>
