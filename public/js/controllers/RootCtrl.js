@@ -1,7 +1,7 @@
 app.controller('RootCtrl', ['$scope', '$location', 'SessionService', 'DataAccess', 'ENTITY','$rootScope',
   function($scope, $location, SessionService, DataAccess, ENTITY, $rootScope) {
     $('.ui.dropdown').dropdown();
-    
+
     $scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
       $('.ui.checkbox').checkbox('check');
