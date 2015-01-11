@@ -10,7 +10,9 @@ app.controller('AdminQcmEditCtrl',
                 description: '',
                 class_level: ''
             };
-            console.info('$scope.formError', $scope.formError);
+            $('#logout').dropdown({
+                action: 'nothing'
+            });
             $('#validateQcm').modal();
 
             $("#classDropdown").dropdown({

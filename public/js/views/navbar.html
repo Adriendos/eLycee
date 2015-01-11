@@ -21,12 +21,6 @@
                 </div>
             </a>
             <div class="right menu">
-                <div class="item" id="connexion-btn" ng-click="showConnectModal()" ng-hide="isLoggedUser()">
-                    <div class="ui basic positive button">
-                        <i class="icon sign in"></i>
-                        Connexion
-                    </div>
-                </div>
                 <div class="item">
                     <div id="user-btn" class="ui floating labeled icon dropdown basic button user-btn" ng-show="isLoggedUser()">
                         <i class="user icon"></i>
@@ -39,12 +33,18 @@
                                 <i class="edit icon"></i>
                                 Edition de mon profil
                             </div>
-                            <div class="item" ng-click="logout()" id="deconnexion-btn">
+                            <div class="item" ng-click="logout()" id="logout-btn">
                                 <i class="icon remove Circle"></i>
                                 Déconnexion
                             </div>
                         </div>
                     </div>
+                    <div id="connexion-btn" class="ui floating labeled icon dropdown basic button user-btn" 
+                         ng-click="showConnectModal()" ng-hide="isLoggedUser()">
+                        <i class="user icon"></i>
+                        <span class="text">Connexion</span>
+                    </div>
+                </div>
                 </div>
                 <a class="ui circular aligned facebook icon button tiny" target="_blank" href="https://www.facebook.com/pages/Cpdev08elycee/744260765642204?fref=ts">
                     <i class="facebook icon"></i>

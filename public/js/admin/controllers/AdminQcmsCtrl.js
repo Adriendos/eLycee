@@ -2,6 +2,11 @@ app.controller('AdminQcmsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
         function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
             $('.ui.dropdown').dropdown();
+            $('#logout').dropdown({
+                action: 'nothing'
+            });
+            $('.ui.modal').modal();
+            
             $scope.qcms;
             $scope.allQcms;
             $scope.modal = [];
@@ -9,8 +14,6 @@ app.controller('AdminQcmsCtrl',
             $scope.entity = ENTITY.qcm;
             $scope.currentQcm;
 
-
-            $('.ui.modal').modal();
             init();
             function init() {
                 DataAccess.getAllData(ENTITY.qcm).then(

@@ -7,6 +7,9 @@ app.controller('AdminPostsCtrl',
         $scope.currentPage = 1;
         $scope.entity = ENTITY.post;
         $scope.currentPost;
+        $('#logout').dropdown({
+              action: 'nothing'
+          });
 
         $('.ui.modal').modal();
 

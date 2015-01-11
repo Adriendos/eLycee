@@ -4,6 +4,9 @@ app.controller('AdminUsersCtrl', ['$scope','DataAccess', 'ENTITY', function($sco
     $scope.finalClassStudents;
     $scope.currentStudent;
     $('.ui.dropdown').dropdown();
+    $('#logout').dropdown({
+        action: 'nothing'
+    });
     var allStudents;
     init();
     function init() {

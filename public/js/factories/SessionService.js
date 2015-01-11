@@ -58,7 +58,7 @@ app.factory('SessionService',
             SESS = {};
             SESS.logged = false;
             $location.path('/');
-            $rootScope.notify('Aurevoir et merci !', 'info');
+            $rootScope.notify('Déconnexion réussis !', 'info');
           });
         };
 

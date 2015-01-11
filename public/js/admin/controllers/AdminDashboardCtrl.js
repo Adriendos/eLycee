@@ -3,6 +3,9 @@ app.controller('AdminDashboardCtrl',
         function($rootScope, $scope, DataAccess, ENTITY, $filter) {
             $('.ui.dropdown').dropdown();
             init();
+            $('#logout').dropdown({
+                action: 'nothing'
+            });
             function init() {
                 $scope.newsFeed = [];
 

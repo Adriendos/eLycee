@@ -1,6 +1,6 @@
 app.controller('AdminNavCtrl', ['$scope', 
 	function($scope) {
-		$('#deconnexion').dropdown({
+		$('#logout').dropdown({
             action: 'nothing'
         });
 	}]);
