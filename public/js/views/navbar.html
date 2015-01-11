@@ -2,14 +2,14 @@
     <div class="computer tablet only row">
         <div class="ui large fixed menu navbar page grid">
             <a href="#/" class="brand item"><b>e<span style="color:red;">L</span>ycee</b> v1.0</a>
-            <a href="#/" class="item red" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
-            <a href="#/news" class="item red" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
-            <a href="#/contact" class="item red" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-            <a class="red item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm">
+            <a href="#/" class="item teal" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
+            <a href="#/news" class="item teal" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
+            <a href="#/contact" class="item teal" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
+            <a class="teal item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm">
                 <i class="icon student"></i>Q.C.M.
                 <div class="ui red label">{{userPendingsQcms}}</div>
             </a>
-            <a class="ui dropdown item" ng-show="isUserAdmin();">
+            <a class="ui dropdown item teal" ng-show="isUserAdmin();">
                 <i class="icon right arrow "></i>Administration<i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item" ng-click="go('/admin')"><i class="dashboard icon"></i>Dashboard</div>

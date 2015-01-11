@@ -1,6 +1,6 @@
 <div class="row" style="padding-top:50px;">
     <div class="six wide column">
-        <div class="ui segment">
+        <div class="ui segment loading">
             <div class="ui top attached label">
                 <img src="http://lorempixel.com/100/100" class="ui avatar image">
                 <span style="font-size:1.8em; vertical-align: middle">
@@ -10,7 +10,19 @@
             Taux de réussite moyen aux QCMS :
             <div class="ui label" ng-class="{ red: averageScore < 30, orange: averageScore >30 && averageScore <70, green: averageScore > 70 }">{{averageScore}}% de réussite</div>
             <div class="ui divider"></div>
-            <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
+            <div class="ui accordion">
+                <i class="icon checked radio"></i>QCM répondus
+                <div ng-repeat="qcm in unavailableQcms">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        {{qcm.title}}  <small>{{qcm.score.created_at | dateAgo}}</small><div class="right compact ui label" ng-class="{ red: qcm.score.score < 30, orange: qcm.score.score >30 && qcm.score.score <70, green: qcm.score.score > 70 }">{{qcm.score.score}}% de réussite</div>
+
+                    </div>
+                    <div class="content">
+                        <p>{{qcm.description}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="six wide column">
@@ -27,23 +39,6 @@
                     <div class="content">
                         <p>{{ qcm.description }}</p>
                         <div class="right compact ui button" ng-click="go('/qcm/'+qcm.id);">Commencer</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui segment loading">
-            <div class="ui top attached label blue">
-                <i class="icon radio"></i>QCM répondus
-            </div>
-            <div class="ui accordion">
-                <div ng-repeat="qcm in unavailableQcms">
-                    <div class="title">
-                        <i class="dropdown icon"></i>
-                        {{qcm.title}}  <small>{{qcm.score.created_at | dateAgo}}</small><div class="right compact ui label" ng-class="{ red: qcm.score.score < 30, orange: qcm.score.score >30 && qcm.score.score <70, green: qcm.score.score > 70 }">{{qcm.score.score}}% de réussite</div>
-
-                    </div>
-                    <div class="content">
-                        <p>{{qcm.description}}</p>
                     </div>
                 </div>
             </div>
