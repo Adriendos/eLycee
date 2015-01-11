@@ -6,18 +6,11 @@ app.controller('AdminStudentEditCtrl',
       $scope.currentUser = {};
       $scope.errorimage = true;
 
-      if( $routeParams.id ) { // edit existing post
+      if( $routeParams.id ) { // edit existing user
 
         $scope.mode = 'edit';
         $scope.errorimage = false;
-        DataAccess.getDataById(ENTITY.post, $routeParams.id).then( 
-          function(post) {
-            if( post.status == 'published') {
-              $('.ui.checkbox').checkbox('check');
-            }
-            $scope.currentUser = post;
-          });
-      } else { // create a new post
+      } else { // create a new user
         if(SessionService.getUser()) {
           $scope.currentUser.user_id = SessionService.getUser().id;
         } else {
@@ -29,7 +22,6 @@ app.controller('AdminStudentEditCtrl',
           });
         }
         $scope.mode = 'create';
-        $scope.currentUser.status = 'unpublished';
       }
 
       // Checkbox published
@@ -68,21 +60,21 @@ app.controller('AdminStudentEditCtrl',
           reader.readAsDataURL($scope.imageFile);
         };
 
-        $scope.$watch('postForm.$valid', function(newVal, oldVal) {
+        $scope.$watch('userForm.$valid', function(newVal, oldVal) {
           if( newVal && $scope.errorimage ) {
-            $scope.postForm.$valid = false;
+            $scope.userForm.$valid = false;
           }
         });
 
         $scope.$watch('errorimage', function(newVal, oldVal) {
           if( !newVal ) {
-            $scope.postForm.$valid = true;
+            $scope.userForm.$valid = true;
           }
         });
 
         $scope.submitForm = function() {
-          // invalid postForm
-          if ( $scope.postForm.$invalid) {
+          // invalid userForm
+          if ( $scope.userForm.$invalid) {
             $rootScope.notify('Erreur formulaire', 'error'); 
             $('html, body').animate({ scrollTop: $(document).height() }, 1000);
             return;
@@ -94,11 +86,11 @@ app.controller('AdminStudentEditCtrl',
 
           if($scope.mode == 'create') {
             if(!$scope.currentUser.user_id) console.log('Gonna fail cause no user id...');
-            DataAccess.create(ENTITY.post, $scope.currentUser).then( function(data) {
+            DataAccess.create(ENTITY.user, $scope.currentUser).then( function(data) {
               closeForm();
             });
           } else {
-            DataAccess.update(ENTITY.post, $scope.currentUser).then( function(data) {
+            DataAccess.update(ENTITY.user, $scope.currentUser).then( function(data) {
               closeForm();
             });
           }          
@@ -106,7 +98,7 @@ app.controller('AdminStudentEditCtrl',
 
         function closeForm() {
           $scope.isFormLoading = false;
-          $location.path('/admin/posts');
+          $location.path('/admin/users');
         };
 
         $scope.scrollTo = function(target) {

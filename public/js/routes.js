@@ -34,10 +34,22 @@ app.config(['$routeProvider',
       controller : 'AdminQcmEditCtrl',
       templateUrl : 'js/admin/views/qcm/editQcm.html'
     })
+    
+    // __students
     .when('/admin/students', {
       controller : 'AdminStudentsCtrl',
       templateUrl : 'js/admin/views/students.html'
     })
+    .when('/admin/student/create', {
+      controller : 'AdminStudentEditCtrl',
+      templateUrl : 'js/admin/views/student/editStudent.html'
+    })
+    .when('/admin/student/edit/:id', {
+      controller : 'AdminStudentEditCtrl',
+      templateUrl : 'js/admin/views/student/editStudent.html'
+    })
+
+    // __ Posts
     .when('/admin/posts', {
         controller : 'AdminPostsCtrl',
         templateUrl : 'js/admin/views/articles.html'

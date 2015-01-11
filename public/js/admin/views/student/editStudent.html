@@ -6,15 +6,36 @@
     <form name="userForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
       <input type="hidden" ng-model="currentUser.id">
 
-      <div id="title" class="field" ng-class="{ error: userForm.$submitted && userForm.title.$error.required }">
-        <label>Titre</label>
-        <div class="ui corner labeled input">
-          <input type="text" name="title" placeholder="Titre de l'article" ng-model="currentUser.title" required>
-          <div class="ui corner label">
-            <i class="asterisk icon"></i>
-          </div>
-        </div> <!-- /ui corner labeled input -->
-      </div> <!-- Field title -->
+      	<div class="two fields">
+			<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
+				<label>Nom d' utilisateur</label>
+				<div class="pr">
+					<input name="username" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="currentUser.username">
+					<div class="ui corner label">
+						<i class="asterisk icon"></i>
+					</div>
+				</div>
+				<div class="ui pointing label red" ng-show="userForm.$submitted && userForm.username.$error.required">
+			    	Veuillez entrez un nom d' utilisateur
+			    </div>
+			</div>
+
+			<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.email.$error.required }">
+			    <label>Email</label>
+				<div class="pr">
+					<input type="email" name="uEmail" placeholder="Email" 
+						   required ng-model="contact.email" 
+						   ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/">
+					<div class="ui corner label">
+						<i class="asterisk icon"></i>
+					</div>
+				</div>
+			    <div class="ui pointing label red" ng-show="userForm.$submitted && !userForm.uEmail.$valid">
+			      <span ng-show="userForm.uEmail.$error.required">Le champ mail est requis</span>
+			      <span ng-show="userForm.uEmail.$error.required || !userForm.uEmail.$valid">Veuillez entrez une adresse mail valide</span>
+			    </div>
+			</div>
+		</div>
 
       <!-- Image manager -->
       <div id="image-uploader" class="field" ng-class="{ error: userForm.$submitted && errorimage }">
