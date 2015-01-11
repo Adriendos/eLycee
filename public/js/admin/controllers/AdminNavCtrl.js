@@ -1,6 +1,6 @@
 app.controller('AdminNavCtrl', ['$scope', 
 	function($scope) {
-		$('#logout').dropdown({
+		$('#user-btn').dropdown({
             action: 'nothing'
         });
 	}]);

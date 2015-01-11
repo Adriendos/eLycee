@@ -6,7 +6,7 @@ app.controller('AdminPostEditCtrl',
       $scope.currentPost = {};
       $scope.errorimage = true;
       $('.ui.dropdown').dropdown();
-      $('#logout').dropdown({
+      $('#user-btn').dropdown({
               action: 'nothing'
           });
 

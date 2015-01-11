@@ -2,7 +2,7 @@ app.controller('AdminQcmsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
         function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
             $('.ui.dropdown').dropdown();
-            $('#logout').dropdown({
+            $('#user-btn').dropdown({
                 action: 'nothing'
             });
             $('.ui.modal').modal();

@@ -10,7 +10,7 @@ app.controller('AdminQcmEditCtrl',
                 description: '',
                 class_level: ''
             };
-            $('#logout').dropdown({
+            $('#user-btn').dropdown({
                 action: 'nothing'
             });
             $('#validateQcm').modal();
