@@ -89,21 +89,27 @@
             <div class="date">
               {{ feed.updated_at | dateAgo }}
             </div>
-          </div>
-          <div class="extra text">
-            "{{ feed.excerpt }}"
-          </div>
-         
-          <div class="ui icon message">
-            <i class="inbox icon"></i>
-            <div class="content">
-              <div class="header">
-                 <a href="#/post/{{feed.id}}">Voir le post</a>
+            <div class="extra text oh">
+              <div class="extra images">
+                <a><img src="{{feed.url_thumbnail}}"></a>
+              </div>
+              "{{ feed.excerpt }}"
+              <div class="ui cards fr">
+                <div class="card">
+                  <div class="content">
+                  <div class="header">
+                    <a href="#/post/{{feed.id}}" class="ui icon tac">
+                      <i class="unhide icon"></i><br>
+                      <div class="content">
+                        <div class="header tac">
+                          Voir le post
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="extra images">
-            <a><img src="{{feed.url_thumbnail}}"></a>
           </div>
           <div class="meta">
             <a class="like">

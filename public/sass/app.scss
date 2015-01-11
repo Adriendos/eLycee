@@ -439,7 +439,13 @@ body {
 }
 
 .fr {
-    float: right;
+    float: right !important;
+}
+.oh {
+    overflow: hidden;
+}
+.tac {
+    text-align: center !important;
 }
 .cg-notify-close:hover, .cg-notify-close:focus {
     color: #000;
