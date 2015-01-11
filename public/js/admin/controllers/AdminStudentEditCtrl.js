@@ -6,7 +6,8 @@ app.controller('AdminStudentEditCtrl',
     $scope.currentPost = {};
     $scope.errorimage = true;
 
-    $('#studentRole').dropdown({
+    var studentDropdown = $('#studentRole');
+    studentDropdown.dropdown({
         onChange: function(value, html) {
             $scope.currentPost.role = value;
         }
@@ -19,6 +20,7 @@ app.controller('AdminStudentEditCtrl',
             function(user) {
                 $scope.currentPost = user;
                 $scope.currentPost.url_thumbnail = $scope.currentPost.profile_picture;
+                studentDropdown.dropdown('set selected', $scope.currentPost.role);
             });
     } else { // create a new user
         if(SessionService.getUser()) {
@@ -73,27 +75,33 @@ app.controller('AdminStudentEditCtrl',
     });
 
     $scope.submitForm = function() {
-    // invalid userForm
-    if ( $scope.userForm.$invalid) {
-        $rootScope.notify('Erreur formulaire', 'error'); 
-        $('html, body').animate({ scrollTop: $(document).height() }, 1000);
-        return;
-    }
+        
+        // invalid userForm
+        if ( $scope.userForm.$invalid) {
+            $rootScope.notify('Erreur formulaire', 'error'); 
+            $('html, body').animate({ scrollTop: $(document).height() }, 1000);
+            return;
+        }
 
-    // remove url_thumbnail prop
-    delete $scope.currentPost.url_thumbnail;
-    $scope.isFormLoading = true;
+        console.info('before delete', $scope.currentPost);
+        // remove url_thumbnail prop
+        delete $scope.currentPost.url_thumbnail;
+        delete $scope.currentPost.profile_picture;
+        console.info('after delete', $scope.currentPost);
 
-    if($scope.mode == 'create') {
-        if(!$scope.currentPost.user_id) console.log('Gonna fail cause no user id...');
-        DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
-            closeForm();
-        });
-    } else {
-        DataAccess.update(ENTITY.user, $scope.currentPost).then( function(data) {
-            closeForm();
-        });
-    }          
+        $scope.isFormLoading = true;
+        
+        if($scope.mode == 'create') {
+            if(!$scope.currentPost.user_id) {
+                DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
+                    closeForm();
+                });
+            }
+        } else {
+            DataAccess.update(ENTITY.user, $scope.currentPost).then( function(data) {
+                closeForm();
+            });
+        }          
     };
 
     function closeForm() {
