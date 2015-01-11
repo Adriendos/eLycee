@@ -5,11 +5,11 @@
             <a href="#/" class="item teal" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
             <a href="#/news" class="item teal" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
             <a href="#/contact" class="item teal" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-            <a class="teal item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm" ng-show="userPendingsQcms > 0">
+            <a class="teal item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent()" href="#/qcm" ng-show="userPendingsQcms > 0">
                 <i class="icon student"></i>Q.C.M.
                 <div class="ui teal label">{{userPendingsQcms}}</div>
             </a>
-            <a class="ui dropdown item teal" ng-show="isUserAdmin();">
+            <a class="ui dropdown item teal" ng-show="isUserAdmin()">
                 <i class="icon right arrow "></i>Administration<i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item" ng-click="go('/admin')"><i class="dashboard icon"></i>Dashboard</div>
@@ -21,6 +21,24 @@
                 </div>
             </a>
             <div class="right menu">
+                <div class="ui floating labeled icon dropdown button" ng-show="isUserAdmin() || isUserStudent()">
+                    <i class="add user icon"></i>
+                    <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+                    <span class="text">Nom utilisateur</span>
+                    <div class="menu">
+                        <div class="header">
+                            Profil
+                        </div>
+                        <div class="item">
+                            <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+                            Jenny Hess
+                        </div>
+                        <div class="item">
+                            <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
+                            Elliot Fu
+                        </div>
+                    </div>
+                </div>
 
                 <div class="item" id="connexion-btn" ng-click="showConnectModal()" ng-hide="isLoggedUser()">
                     <div class="ui basic positive button">
