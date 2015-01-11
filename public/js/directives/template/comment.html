@@ -3,6 +3,9 @@
     <div class="ui divided items" id="commentsContainer">
         <div class="item" ng-repeat="comment in comments | limitTo: commentLimit">
             <a class="ui right ribbon label"><i class="icon clock"></i>{{comment.created_at | dateAgo}}</a>
+            <div class="ui button icon right floated negative" ng-click="openDeleteCommentModal(comment)" ng-show="isUserAdmin()">
+                <i class="icon trash"></i>
+            </div>
             <p>{{comment.content}}</p>
             <div class="ui image label right floated">
                 <img ng-src="{{post.users.profile_picture}}"/>
@@ -32,3 +35,26 @@
     </div>
     <input ng-submit type="submit" value="Publier" class="ui green button"/>
 </form>
+
+<!-- DELETE COMMENT MODAL -->
+<div id="deleteCommentModal" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Supprimer
+    </div>
+    <div class="content">
+        <p>Voulez vous supprimer le commentaire suivant ?</p>
+        <p><b>Auteur : </b> <em>{{currentComment.name}}</em></p>
+        <p><b>Email : </b> <em>{{currentComment.content}}</em></p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            Non
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="deleteComment(currentComment)">
+            Oui
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+

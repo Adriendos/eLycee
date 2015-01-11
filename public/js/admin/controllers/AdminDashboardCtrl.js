@@ -1,7 +1,7 @@
 app.controller('AdminDashboardCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', '$filter',
         function($rootScope, $scope, DataAccess, ENTITY, $filter) {
-
+            $('.ui.dropdown').dropdown();
             init();
             function init() {
                 $scope.newsFeed = [];

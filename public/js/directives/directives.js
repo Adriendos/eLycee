@@ -133,12 +133,13 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
+            $('.ui.modal').modal();
             var name = "";
             if(SessionService.SESS_INIT) {
                 name = SessionService.getUser().username;
             }
             scope.comment = { name: name , content: '', post_id: scope.postId};
-
+            scope.currentComment;
             scope.commentLimit = 5;
 
             scope.moreComments = function() {
@@ -167,6 +168,21 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
                         scope.comment = { name: name , content: '', post_id: scope.postId};
                     });
                 }
+            };
+
+            scope.deleteComment = function() {
+                DataAccess.delete(ENTITY.comment, scope.currentComment.id).then(function() {
+                    scope.$parent.reloadComments();
+                });
+            };
+
+            scope.isUserAdmin = function(){
+                return scope.$parent.isUserAdmin();
+            };
+
+            scope.openDeleteCommentModal = function(comment) {
+                scope.currentComment = comment;
+                $('#deleteCommentModal').modal('show');
             };
         }
     };

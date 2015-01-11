@@ -1,7 +1,7 @@
 app.controller('AdminQcmsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
         function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
-
+            $('.ui.dropdown').dropdown();
             $scope.qcms;
             $scope.allQcms;
             $scope.modal = [];

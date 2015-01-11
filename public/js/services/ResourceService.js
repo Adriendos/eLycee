@@ -36,8 +36,10 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         apiUrl + "posts/:id/comments",
                         { id: '@id' },
                         {
+                            get: { url:apiUrl + entityName+'/:id' , method: 'GET', params: {id: '@id' }, isArray: false},
                             query: {method: 'GET', isArray: true},
-                            save: { method:'POST', url:apiUrl + entityName }
+                            save: { method:'POST', url:apiUrl + entityName },
+                            delete: { method:'DELETE', url:apiUrl+entityName+'/:id', headers: authTokenHeader }
                         }
                     );
                     break;

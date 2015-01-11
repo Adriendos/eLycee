@@ -201,7 +201,6 @@ app.controller('AdminQcmEditCtrl',
             $scope.removeAnswer = function(questionGuid , answerGuid) {
                 delete $scope.questions[questionGuid].answers[answerGuid];
                 $('#'+answerGuid).remove();
-
             };
 
         }]);

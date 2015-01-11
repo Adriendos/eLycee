@@ -3,7 +3,7 @@ app.controller('AdminStudentsCtrl', ['$scope','DataAccess', 'ENTITY', function($
     $scope.firstClassStudents;
     $scope.finalClassStudents;
     $scope.currentStudent;
-
+    $('.ui.dropdown').dropdown();
     var allStudents;
     init();
     function init() {
