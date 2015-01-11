@@ -154,6 +154,7 @@ app.factory('DataAccess',
 		DataAccess.clearCache = function(entityName) {
 			var $httpDefaultCache = $cacheFactory.get('$http');
 			$httpDefaultCache.remove(CONFIG.apiUrl+entityName);
+			//Maybe resolve cache immediately here
 		};
 
 	    return DataAccess;
