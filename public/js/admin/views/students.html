@@ -1,69 +1,63 @@
 <div class="row" style="margin-top:50px;">
     <div class="ui two column grid page segment">
+        <div class="ui small message page grid center aligned">
+            <h1 class="ui huge header">Administration des Eleves</h1>
+            <p><div class="ui blue button" ng-click="go('/admin/student/create');">Ajouter un nouvel élève</div></p>
+        </div>
         <div class="two column centered row">
             <div class="column">
+                <h4>Eleves de Première</h4>
                 <table class="ui table">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Notes</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Ajouté le</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="disabled">
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Requires call</td>
-                    </tr>
-                    <tr>
-                        <td>John</td>
-                        <td>Selected</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Requires call</td>
-                    </tr>
-                    <tr>
-                        <td class="disabled">Jill</td>
-                        <td>Approved</td>
-                        <td>None</td>
+                    <tr ng-repeat="student in firstClassStudents">
+                        <td>{{student.username}}</td>
+                        <td>{{student.email}}</td>
+                        <td>{{student.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+                        <td>
+                            <div class="ui icon button positive" ng-click="go('/admin/student/edit/'+student.id)" data-content="Editer l'élève">
+                                <i class="edit icon"></i>
+                            </div>
+                            <div class="ui icon button negative" ng-click="openDeleteStudentModal(student)">
+                                <i class="trash icon"></i>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="column">
+                <h4>Eleves de Terminale</h4>
                 <table class="ui table">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Notes</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Ajouté le</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="disabled">
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Requires call</td>
-                    </tr>
-                    <tr>
-                        <td>John</td>
-                        <td>Selected</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Requires call</td>
-                    </tr>
-                    <tr>
-                        <td class="disabled">Jill</td>
-                        <td>Approved</td>
-                        <td>None</td>
+                    <tr ng-repeat="student in finalClassStudents">
+                        <td>{{student.username}}</td>
+                        <td>{{student.email}}</td>
+                        <td>{{student.created_at | dateToISO | date:'dd/MM/yyyy'}}</td>
+                        <td>
+                            <div class="ui icon button positive" ng-click="go('/admin/student/edit/'+student.id)" data-content="Editer l'élève">
+                                <i class="edit icon"></i>
+                            </div>
+                            <div class="ui icon button negative" ng-click="openDeleteStudentModal(student)">
+                                <i class="trash icon"></i>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
