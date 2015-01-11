@@ -7,9 +7,6 @@ app.controller('AdminPostsCtrl',
         $scope.currentPage = 1;
         $scope.entity = ENTITY.post;
         $scope.currentPost;
-        $('#user-btn').dropdown({
-              action: 'nothing'
-          });
 
         $('.ui.modal').modal();
 

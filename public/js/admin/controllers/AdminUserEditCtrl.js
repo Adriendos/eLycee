@@ -5,10 +5,6 @@ app.controller('AdminUserEditCtrl',
     $scope.entity = ENTITY.user;
     $scope.currentPost = {};
     $scope.errorimage = true;
-    
-    $('#user-btn').dropdown({
-        action: 'nothing'
-    });
 
     var studentDropdown = $('#studentRole');
     studentDropdown.dropdown({

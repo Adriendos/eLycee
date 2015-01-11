@@ -10,9 +10,6 @@ app.controller('AdminQcmEditCtrl',
                 description: '',
                 class_level: ''
             };
-            $('#user-btn').dropdown({
-                action: 'nothing'
-            });
             $('#validateQcm').modal();
 
             $("#classDropdown").dropdown({
