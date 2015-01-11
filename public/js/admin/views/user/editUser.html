@@ -41,18 +41,18 @@
 			<!-- Image manager -->
 			<div id="image-uploader" class="field" ng-class="{ error: userForm.$submitted && errorimage }">
 				<label>Photo de profil</label>
-				<div class="ui right aligned grid">
+				<div class="ui right aligned grid"> 
 					<!-- UPLOAD IMAGE ZONE -->
 					<div img-uploader class="center aligned two columns row"></div>
 				</div>
-				<div class="ui pointing label red fr" ng-show="userForm.$submitted && errorimage">
+				<div class="ui pointing label red" ng-show="userForm.$submitted && errorimage">
 					<span ng-show="errorimage">Le champ photo de profil</span>
 				</div>
 			</div><!-- .field image -->
 
 			<div class="two fields">
 				<div class="field ui" 
-					 ng-class="{ error: userForm.$submitted && userForm.username.$error.required }"
+					 ng-class="{ error: userForm.$submitted && !userRole }"
 					 ng-show="isUserAdmin()">
 					<label>Role</label>
 
@@ -67,6 +67,9 @@
 							<div class="item" data-value="first_class"><i class="icon student"></i>Eleve de Premiere</div>
 							<div class="item" data-value="final_class"><i class="icon student"></i>Eleve de Terminale</div>
 						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="userForm.$submitted && !userRole">
+						<span ng-show="!userRole">Le champ role est requis</span>
 					</div>
 				</div>
 
