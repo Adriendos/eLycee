@@ -1,6 +1,6 @@
 app.factory('DataAccess',
-	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory', 'ngProgress', '$timeout',
-	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory, ngProgress, $timeout) {
+	['$http', '$resource', '$q', 'CONFIG', '$rootScope', 'ResourceFactory', 'SessionService', '$cacheFactory', 'ngProgress', '$timeout', 'ENTITY',
+	function($http, $resource, $q, CONFIG, $rootScope, ResourceFactory, SessionService, $cacheFactory, ngProgress, $timeout, ENTITY) {
 		var DataAccess = {},
 			apiUrl = CONFIG.apiUrl;
 
@@ -107,7 +107,9 @@ app.factory('DataAccess',
 			var entity = new resource(data);
 			var result = entity.$save(function() {
 				ngProgress.complete();
-				$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
+				if(! entityName == ENTITY.score) {
+					$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
+				}
 				DataAccess.clearCache(entityName);
 				d.resolve(result);
 			},function() {
