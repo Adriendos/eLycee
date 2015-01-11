@@ -38,15 +38,15 @@ app.config(['localStorageServiceProvider', function (localStorageServiceProvider
 
 
 // __ Fonction notify accessible depuis n'importe quel $scope 
-app.run(['$rootScope', 'notify', function($rootScope, notify) {
+app.run(
+  ['$rootScope', 'notify', 'localStorageService', 
+  function($rootScope, notify, localStorageService) {
 
     notify.config({
         duration: 2000,
-        //position: 'right' => doesn't work
-
     });
 
-   $rootScope.notify = function(message, level) { 
+    $rootScope.notify = function(message, level) { 
        switch(level) { 
            case 'error':
                notify({message:message, classes:'notify error' });
@@ -68,7 +68,7 @@ app.run(['$rootScope', 'notify', function($rootScope, notify) {
                notify({message:message, classes:'notify info' });
                ; 
        } 
-   };
+    };
 }]);
 
 //Route Change interceptor

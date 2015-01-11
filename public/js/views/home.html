@@ -3,6 +3,9 @@
 		<div class="ui fluid card raised segment">
 			<div class="ui top attached label red">A la une</div>
 			<div class="image">
+				<div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="go('admin/post/edit/'+firstPost.id)">
+					<i class="icon edit"></i>
+				</div>
 				<img ng-src="{{firstPost.url_thumbnail}}">
 			</div>
 			<div class="content">
@@ -15,8 +18,8 @@
 			</div>
 			<div class="extra content" style="padding-top: 33px;">
 				<div class="ui image label right floated ">
-				  <img ng-src="{{firstPost.users.profile_picture}}"/>
-				  Par {{firstPost.users.username}}
+					<img ng-src="{{firstPost.users.profile_picture}}"/>
+					Par {{firstPost.users.username}}
 				</div>
 				<small><i>{{firstPost.created_at | dateAgo}}</i></small> /
 				{{firstPost.comments.length}} <i class="icon comments"></i>
@@ -29,6 +32,9 @@
 			<!-- START LOOP -->
 			<div class="item" ng-repeat="post in posts | limitTo:4">
 				<div class="ui small image">
+					<div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="go('admin/post/edit/'+post.id)">
+						<i class="icon edit"></i>
+					</div>	
 					<img src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content pr">
