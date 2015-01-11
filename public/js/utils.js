@@ -44,6 +44,7 @@ app.factory('Utils', [function() {
 
     Utils.scrollToStr = function(stringAncor) {
         var $el = $('#'+stringAncor);
+        $('#'+stringAncor).find('input').focus();
         $('html, body').animate({
             scrollTop: $el.offset().top-50
         }, 500);
