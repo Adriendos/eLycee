@@ -93,19 +93,19 @@
                 {{ feed.updated_at | dateAgo }}
               </div>
             </div>
-            <div class="extra text oh">
-              <div class="extra images">
-                <a><img src="{{feed.url_thumbnail}}"></a>
+            <div class="extra massive text oh">
+              <div class="extra fl">
+                <a><img class="ui avatar image" src="{{feed.url_thumbnail}}"></a>
               </div>
-              "{{ feed.excerpt }}"
+              <h4 style="margin-top: 5px;">{{ feed.excerpt }}</h4>
               <div class="right floated compact ui button">
                 <a href="#/post/{{feed.id}}" class="ui icon tac">
-                  <i class="unhide icon"></i><br>
-                  <div class="content">
+                  <i class="unhide icon" style="font-size: 2.5em;"></i>
+                  <!-- <div class="content"> -->
                     <div class="header tac">
                       Voir le post
                     </div>
-                  </div>
+                  <!-- </div> -->
                 </a>
               </div>
           </div>
