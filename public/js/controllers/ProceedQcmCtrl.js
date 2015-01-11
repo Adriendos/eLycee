@@ -1,6 +1,5 @@
-app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope',
-    function($scope, $routeParams, DataAccess, ENTITY, SessionService, $rootScope) {
-        $('.ui.dropdown').dropdown();
+app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope', '$timeout',
+    function($scope, $routeParams, DataAccess, ENTITY, SessionService, $rootScope, $timeout) {
         $scope.step = 1; //Initialize step to questions
         $scope.qcm;
         $scope.calculateScore = function() {
@@ -12,8 +11,17 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
                     if(answer.status == 1) {
                         correctAnswers ++;
                        if($('#answer'+answer.id).hasClass('checked')) {
+                           $('#answer'+answer.id).addClass('read-only');
                            score++;
+                       } else {
+                           score--;
+                           $('#answer'+answer.id).closest('.field').addClass('error');
                        }
+                    } else {
+                        if($('#answer'+answer.id).hasClass('checked')) {
+                            score--;
+                            $('#answer'+answer.id).closest('.field').addClass('error');
+                        }
                     }
                 });
                 if(score == correctAnswers) {
@@ -22,7 +30,13 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
                 }
 
             });
-            $scope.score = Math.round((totalScore/$scope.qcm.questions.length)*100);
+            $('#calculateScoreBtn').remove();
+            var finalScore = Math.round((totalScore/$scope.qcm.questions.length)*100);
+
+            $scope.score= finalScore;
+
+
+            $('#scoreDimmer').dimmer('show');
 
             DataAccess.create(ENTITY.score, { score: $scope.score, user_id: SessionService.getUser().id, qcm_id:$scope.qcm.id}).then(function(data) {
                 $scope.step = 2;
