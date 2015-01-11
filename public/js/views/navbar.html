@@ -21,35 +21,29 @@
                 </div>
             </a>
             <div class="right menu">
-               <div class="ui floating labeled icon dropdown button" ng-show="isUserAdmin() || isUserStudent()">
-                    <i class="user icon"></i>
-                    <!-- <img class="add ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
-                    <span class="text">Nom utilisateur</span>
-                    <div class="menu">
-                        <div class="header">
-                            Profil
-                        </div>
-                        <div class="item">
-                            <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
-                            Jenny Hess
-                        </div>
-                        <div class="item">
-                            <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
-                            Elliot Fu
-                        </div>
-                    </div>
-                </div>
-
                 <div class="item" id="connexion-btn" ng-click="showConnectModal()" ng-hide="isLoggedUser()">
                     <div class="ui basic positive button">
                         <i class="icon sign in"></i>
                         Connexion
                     </div>
                 </div>
-                <div class="item" ng-click="logout()" ng-show="isLoggedUser();" id="deconnexion-btn">
-                    <div class="ui basic negative button">
-                        <i class="icon sign out"></i>
-                        Déconnexion
+                <div class="ui floating labeled icon dropdown button" ng-show="isLoggedUser()">
+                    <i class="user icon"></i>
+                    <!-- <img class="add ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                    <span class="text">Nom utilisateur</span>
+                    <div class="menu">
+                        <div class="header">
+                            Actions
+                        </div>
+                        <div class="item" ng-click="go()">
+                            <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                            <i class="edit icon"></i>
+                            Edition de mon profil
+                        </div>
+                        <div class="item" ng-click="logout()" id="deconnexion-btn">
+                            <i class="icon remove Circle"></i>
+                            Déconnexion
+                        </div>
                     </div>
                 </div>
                 <a class="ui circular aligned facebook icon button tiny" target="_blank" href="https://www.facebook.com/pages/Cpdev08elycee/744260765642204?fref=ts">
