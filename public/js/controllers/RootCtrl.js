@@ -1,5 +1,9 @@
 app.controller('RootCtrl', ['$scope', '$location', 'SessionService', 'DataAccess', 'ENTITY','$rootScope',
   function($scope, $location, SessionService, DataAccess, ENTITY, $rootScope) {
+
+    $scope.activeUser = SessionService.getUser();
+    console.info('user active', $scope.activeUser);
+
     $scope.showConnectModal = function() {
   		$('#connexionPopUp').modal('show');
       $('.ui.checkbox').checkbox('check');
