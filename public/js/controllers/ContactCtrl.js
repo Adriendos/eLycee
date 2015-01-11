@@ -1,6 +1,6 @@
 app.controller('ContactCtrl', 
-    ['$rootScope', '$scope','$http', '$sanitize', 'CONFIG',
-    function($rootScope, $scope, $http, $sanitize, CONFIG) {
+    ['$rootScope', '$scope','$http', '$sanitize', 'CONFIG', '$timeout',
+    function($rootScope, $scope, $http, $sanitize, CONFIG, $timeout) {
 
         var apiUrl = CONFIG.apiUrl;
 
@@ -36,6 +36,18 @@ app.controller('ContactCtrl',
                 $scope.isSending = false;
                 $scope.returnMessage = 'Merci ' + $scope.contact.firstname;
             });
+        };
+
+        $('.shape').shape();
+        console.info('shape initialized');
+
+        var flip = function() {
+            $('.shape').shape('flip right');
+
+            $timeout(flip, 2000);
         }
+
+        $timeout(flip, 2000);
+
     }]);
 
