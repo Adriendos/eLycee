@@ -20,9 +20,6 @@ app.controller('AdminStudentsCtrl', ['$scope','DataAccess', 'ENTITY', function($
                 $scope.finalClassStudents = _.filter(allStudents, function(student) {
                     return student.role == 'final_class';
                 });
-
-                console.log($scope.firstClassStudents);
-                console.log($scope.finalClassStudents);
             }
         );
     }
@@ -37,8 +34,4 @@ app.controller('AdminStudentsCtrl', ['$scope','DataAccess', 'ENTITY', function($
         $scope.currentStudent = student;
         $('#deleteStudentModal').modal('show');
     };
-
-
-
-
 }]);
