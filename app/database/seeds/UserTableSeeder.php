@@ -20,15 +20,6 @@ class UserTableSeeder extends Seeder {
 				'updated_at'      => $faker->dateTimeThisMonth(),
 			],
 			[
-				'username'        => 'Alexandre',
-				'email'           => $faker->email,
-				'password'        => Hash::make('Alexandre'),
-				'profile_picture' => $faker->imageUrl(640, 480), 
-				'role'            => 'teacher',
-				'created_at'      => $faker->dateTimeThisYear('2014-02-27 20:52:14') ,
-				'updated_at'      => $faker->dateTimeThisMonth(),
-			],
-			[
 				'username'        => 'clement',
 				'email'           => $faker->email,
 				'password'        => Hash::make('password'),
