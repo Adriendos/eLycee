@@ -12,7 +12,10 @@
 
 <!-- Image preVisu zone -->
 <div class="column">
-  <div id="previsu-image" class="ui segment">
+  <div id="previsu-image" class="ui segment pr">
+    <div class="ui corner label">
+      <i class="asterisk icon"></i>
+    </div>
     <img ng-src="{{currentPost.url_thumbnail}}" alt="{{currentPost.title}}" width="200" ng-show="currentPost.url_thumbnail.length">
     <img ng-src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" ng-show="!currentPost.url_thumbnail.length">
   </div>
