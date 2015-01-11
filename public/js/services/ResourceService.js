@@ -18,7 +18,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         apiUrl + "qcms/:id/questions",
                         { id: '@id' },
                         { 
-                            query: {method: 'GET', isArray: true, cache: true}
+                            query: {method: 'GET', isArray: true}
                         }
                     );
                     break;
@@ -27,7 +27,7 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         apiUrl + "questions/:id/answers",
                         { id: '@id' },
                         {
-                            query: {method: 'GET', isArray: true, cache: true}
+                            query: {method: 'GET', isArray: true}
                         }
                     );
                     break;
@@ -46,8 +46,8 @@ app.factory('ResourceFactory', ['$resource', 'CONFIG', 'ENTITY', 'SessionService
                         apiUrl + entityName + '/:id',
                         { id: '@id' },
                         {
-                            query: { method: 'GET', isArray: true, cache: true},
-                            get: { method: 'GET', params: {id: '@id' }, isArray: false, cache : true},
+                            query: { method: 'GET', isArray: true},
+                            get: { method: 'GET', params: {id: '@id' }, isArray: false},
                             save: { method: 'POST', headers: authTokenHeader },
                             update: { method:'PUT', headers: authTokenHeader },
                             delete: { method:'DELETE', headers: authTokenHeader }
