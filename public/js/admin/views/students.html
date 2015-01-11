@@ -1,0 +1,93 @@
+<div class="row" style="margin-top:50px;">
+    <div class="ui two column grid page">
+        <div class="column">
+            <table class="ui table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="disabled">
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>Requires call</td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Selected</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>Requires call</td>
+                </tr>
+                <tr>
+                    <td class="disabled">Jill</td>
+                    <td>Approved</td>
+                    <td>None</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+            <table class="ui table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="disabled">
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>Requires call</td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Selected</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>Requires call</td>
+                </tr>
+                <tr>
+                    <td class="disabled">Jill</td>
+                    <td>Approved</td>
+                    <td>None</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE POST MODAL -->
+<div id="deletePostModal" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Supprimer
+    </div>
+    <div class="content">
+        <p>Voulez vous supprimer définitivement le Post suivant ?</p>
+        <p><b>Titre : </b> <em>{{currentPost.title}}</em></p>
+        <p><b>Intro : </b> <em>{{currentPost.excerpt | htmlToPlaintext}}</em></p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+            Non
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="deletePost(currentPost)">
+            Oui
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+

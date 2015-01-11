@@ -34,10 +34,15 @@ app.config(['$routeProvider',
       controller : 'AdminQcmEditCtrl',
       templateUrl : 'js/admin/views/qcm/editQcm.html'
     })
+    .when('/admin/students', {
+      controller : 'AdminStudentsCtrl',
+      templateUrl : 'js/admin/views/students.html'
+    })
     .when('/admin/posts', {
         controller : 'AdminPostsCtrl',
         templateUrl : 'js/admin/views/articles.html'
     })
+
     // @todo facto both create and edit are the same
     .when('/admin/post/create', {
       controller : 'AdminPostEditCtrl',
