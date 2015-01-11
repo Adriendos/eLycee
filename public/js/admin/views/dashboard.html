@@ -77,23 +77,20 @@
       <div class="row centered">
         <ui class="ui icon button" ng-click="refreshFeed()"><i class="icon refresh"></i></ui>
       </div>
-      <div class="event" ng-repeat="feed in newsFeed">
-        <!-- POST -->
-        <div class="label" ng-if="feed.type == 'post'">
-          <!--<img src="{{feed.users.url_thumbnail}}"/>-->
-          <i class="send icon teal"></i>
-        </div>
-        <div class="content" ng-if="feed.type == 'post'">
-          <div class="summary">
+      
+      <div class="ui feed"><!-- POSTS -->
+        <div class="event item" ng-repeat="feed in newsFeed"><!-- One POST -->
+          <div class="content extra text" ng-if="feed.type == 'post'">
             <div class="header">
-              <h3 class="dib">
+              <h3>
+                <i class="send icon teal" ng-if="feed.type == 'post'"></i>
                 <a>{{feed.users.username}}</a> à posté un article nommé '{{feed.title}}'
+                <i class="date fr dash-date">
+                  {{ feed.updated_at | dateAgo }}
+                </i>
               </h3>
-              <div class="date fr dib">
-                {{ feed.updated_at | dateAgo }}
-              </div>
             </div>
-            <div class="extra massive text oh">
+            <div class="extra text oh">
               <div class="extra fl">
                 <a><img class="ui avatar image" src="{{feed.url_thumbnail}}"></a>
               </div>
@@ -114,8 +111,9 @@
               <i class="comments icon"></i> {{feed.comments.length}}
             </a>
           </div>
-        </div>
-        <!--POST-->
+        </div><!-- ./ ONE POST -->
+        <div class="ui clearing divider"></div>  
+      </div><!-- ./ POSTS --> 
 
         <!-- SCORE -->
         <div class="label" ng-if="feed.type == 'score'">
