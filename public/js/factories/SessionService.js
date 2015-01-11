@@ -10,7 +10,6 @@ app.factory('SessionService',
         //SESSION GLOBAL
         var SESS = {};
 
-
         // LOGIN
         SessionService.login = function(userInfos) {
           csrfTokenService.get().then(function(csrfToken) {
@@ -59,7 +58,7 @@ app.factory('SessionService',
             SESS = {};
             SESS.logged = false;
             $location.path('/');
-
+            $rootScope.notify('Aurevoir et merci !', 'info');
           });
         };
 
