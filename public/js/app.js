@@ -93,7 +93,7 @@ app.run(['$rootScope', '$location', 'SessionService', function ($rootScope, $loc
            }
        } else {
            if(($location.path().indexOf('/qcm') != -1)) {
-               if(!(SessionService.SESS_INIT && (SessionService.getUser().role == 'first_class' ||SessionService.getUser().role == 'final_class' ))){
+               if(!(SessionService.SESS_INIT && (SessionService.getUser().role == 'first_class' || SessionService.getUser().role == 'final_class' ))){
                    SessionService.checkToken()
                        .then(function (data) {
                            if (data.role != 'first_class' && data.role != 'final_class') {
