@@ -160,6 +160,11 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
                         scope.comment = { name: '' , content: '', post_id: scope.postId};
 
                         Utils.scrollTo($('#commentsContainer'));
+                        name = "";
+                        if(SessionService.SESS_INIT) {
+                            name = SessionService.getUser().username;
+                        }
+                        scope.comment = { name: name , content: '', post_id: scope.postId};
                     });
                 }
             };
