@@ -99,6 +99,7 @@ app.factory('SessionService',
                   SESS.logged = true;
                   SESS.user = response.data;
                   SessionService.SESS_INIT = true;
+
                   return response.data;
                 } else {
                   // invalid response

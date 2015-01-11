@@ -133,21 +133,18 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
         },
         templateUrl: 'js/directives/template/comment.html',
         link: function(scope, element, attrs) {
-            scope.loggedUserName = ''
-            scope.$watch(function(){
-                return SessionService.SESS_INIT;
-            }, function (newValue) {
-                if (SessionService.SESS_INIT == true) {
-                    scope.loggedUserName = SessionService.getUser().name;
-                }
-            });
+            var name = "";
+            if(SessionService.SESS_INIT) {
+                name = SessionService.getUser().username;
+            }
+            scope.comment = { name: name , content: '', post_id: scope.postId};
+
             scope.commentLimit = 5;
 
             scope.moreComments = function() {
                 scope.commentLimit+= 5;
             };
 
-            scope.comment = { name: scope.loggedUserName || '' , content: '', post_id: scope.postId};
             scope.$parent.$watch('post.id', function(value){
                 scope.comment.post_id = value;
             });
