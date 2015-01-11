@@ -33,10 +33,11 @@ app.controller('ProceedQcmCtrl', [ '$scope', '$routeParams', 'DataAccess', 'ENTI
             $('#calculateScoreBtn').remove();
             var finalScore = Math.round((totalScore/$scope.qcm.questions.length)*100);
 
+
             $scope.score= finalScore;
-
-
+            //$scope.score = 0;
             $('#scoreDimmer').dimmer('show');
+
 
             DataAccess.create(ENTITY.score, { score: $scope.score, user_id: SessionService.getUser().id, qcm_id:$scope.qcm.id}).then(function(data) {
                 $scope.step = 2;

@@ -6,7 +6,7 @@
 				<div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="go('admin/post/edit/'+firstPost.id)">
 					<i class="icon edit"></i>
 				</div>
-				<img ng-src="{{firstPost.url_thumbnail}}">
+				<img style="cursor:pointer;" ng-click="go('post/'+firstPost.id)" ng-src="{{firstPost.url_thumbnail}}">
 			</div>
 			<div class="content">
 				<div class="header">
@@ -35,7 +35,7 @@
 					<div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="go('admin/post/edit/'+post.id)">
 						<i class="icon edit"></i>
 					</div>	
-					<img src="{{post.url_thumbnail}}" width="300">
+					<img style="cursor:pointer;" ng-click="go('post/'+post.id)" src="{{post.url_thumbnail}}" width="300">
 				</div>
 				<div class="content pr">
 					<h3>
