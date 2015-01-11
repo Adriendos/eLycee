@@ -38,9 +38,9 @@ app.config(['$routeProvider',
     // __students
     .when('/admin/users', {
       controller : 'AdminUsersCtrl',
-      templateUrl : 'js/admin/views/students.html'
+      templateUrl : 'js/admin/views/users.html'
     })
-    .when('/admin/users/create', {
+    .when('/admin/user/create', {
       controller : 'AdminUserEditCtrl',
       templateUrl : 'js/admin/views/user/editUser.html'
     })

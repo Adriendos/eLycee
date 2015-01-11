@@ -3,7 +3,7 @@
     <h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Article" : "Edition de l'article" }}</h1>
   </div>
   <div class="content ui form segment">
-    <form name="postForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
+    <form name="postForm" class="ui form" ng-submit="submitForm()" novalidate>
       <input type="hidden" ng-model="currentPost.id">
 
       <div id="title" class="field" ng-class="{ error: postForm.$submitted && postForm.title.$error.required }">

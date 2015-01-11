@@ -3,7 +3,7 @@
 		<h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Utilisateur" : "Edition de l'utilisateur" }}</h1>
 	</div>
 	<div class="content ui form segment">
-		<form name="userForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
+		<form name="userForm" class="ui form" ng-submit="submitForm()" novalidate>
 			<input type="hidden" ng-model="currentPost.id">
 
 			<div class="two fields">
@@ -20,7 +20,7 @@
 					</div>
 				</div>
 
-				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.email.$error.required }">
+				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.uEmail.$error.required }">
 					<label>Email</label>
 					<div class="pr">
 						<input type="email" name="uEmail" placeholder="Email" 
@@ -30,7 +30,8 @@
 							<i class="asterisk icon"></i>
 						</div>
 					</div>
-					<div class="ui pointing label red" ng-show="userForm.$submitted && !userForm.uEmail.$valid">
+
+					<div class="ui pointing label red fr" ng-show="userForm.$submitted && !userForm.uEmail.$valid">
 						<span ng-show="userForm.uEmail.$error.required">Le champ mail est requis</span>
 						<span ng-show="userForm.uEmail.$error.required || !userForm.uEmail.$valid">Veuillez entrez une adresse mail valide</span>
 					</div>
@@ -39,16 +40,19 @@
 
 			<!-- Image manager -->
 			<div id="image-uploader" class="field" ng-class="{ error: userForm.$submitted && errorimage }">
-				<label>Image de couverture</label>
-				<div class="ui right aligned grid">
+				<label>Photo de profil</label>
+				<div class="ui right aligned grid"> 
 					<!-- UPLOAD IMAGE ZONE -->
 					<div img-uploader class="center aligned two columns row"></div>
+				</div>
+				<div class="ui pointing label red" ng-show="userForm.$submitted && errorimage">
+					<span ng-show="errorimage">Le champ photo de profil</span>
 				</div>
 			</div><!-- .field image -->
 
 			<div class="two fields">
 				<div class="field ui" 
-					 ng-class="{ error: userForm.$submitted && userForm.username.$error.required }"
+					 ng-class="{ error: userForm.$submitted && !userRole }"
 					 ng-show="isUserAdmin()">
 					<label>Role</label>
 
@@ -63,6 +67,9 @@
 							<div class="item" data-value="first_class"><i class="icon student"></i>Eleve de Premiere</div>
 							<div class="item" data-value="final_class"><i class="icon student"></i>Eleve de Terminale</div>
 						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="userForm.$submitted && !userRole">
+						<span ng-show="!userRole">Le champ role est requis</span>
 					</div>
 				</div>
 

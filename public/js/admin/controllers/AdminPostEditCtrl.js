@@ -6,9 +6,6 @@ app.controller('AdminPostEditCtrl',
       $scope.currentPost = {};
       $scope.errorimage = true;
       $('.ui.dropdown').dropdown();
-      $('#user-btn').dropdown({
-              action: 'nothing'
-          });
 
       if( $routeParams.id ) { // edit existing post
 

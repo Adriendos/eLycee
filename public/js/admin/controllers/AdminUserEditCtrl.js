@@ -5,15 +5,13 @@ app.controller('AdminUserEditCtrl',
     $scope.entity = ENTITY.user;
     $scope.currentPost = {};
     $scope.errorimage = true;
-    
-    $('#user-btn').dropdown({
-        action: 'nothing'
-    });
+    $scope.userRole = false;
 
     var studentDropdown = $('#studentRole');
     studentDropdown.dropdown({
         onChange: function(value, html) {
             $scope.currentPost.role = value;
+            $scope.userRole = true;
         }
     });
 
@@ -78,7 +76,6 @@ app.controller('AdminUserEditCtrl',
     });
 
     $scope.submitForm = function() {
-        
         // invalid userForm
         if ( $scope.userForm.$invalid) {
             $rootScope.notify('Erreur formulaire', 'error'); 
@@ -87,6 +84,7 @@ app.controller('AdminUserEditCtrl',
         }
         // remove url_thumbnail prop
         delete $scope.currentPost.url_thumbnail;
+        delete $scope.currentPost.user_id;
 
         if($scope.mode == 'create') {
             DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
