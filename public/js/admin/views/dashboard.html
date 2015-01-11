@@ -85,31 +85,29 @@
         </div>
         <div class="content" ng-if="feed.type == 'post'">
           <div class="summary">
-            <a>{{feed.users.username}}</a> à posté un article nommé '{{feed.title}}'
-            <div class="date">
-              {{ feed.updated_at | dateAgo }}
+            <div class="header">
+              <h3 class="dib">
+                <a>{{feed.users.username}}</a> à posté un article nommé '{{feed.title}}'
+              </h3>
+              <div class="date fr dib">
+                {{ feed.updated_at | dateAgo }}
+              </div>
             </div>
             <div class="extra text oh">
               <div class="extra images">
                 <a><img src="{{feed.url_thumbnail}}"></a>
               </div>
               "{{ feed.excerpt }}"
-              <div class="ui cards fr">
-                <div class="card">
+              <div class="right floated compact ui button">
+                <a href="#/post/{{feed.id}}" class="ui icon tac">
+                  <i class="unhide icon"></i><br>
                   <div class="content">
-                  <div class="header">
-                    <a href="#/post/{{feed.id}}" class="ui icon tac">
-                      <i class="unhide icon"></i><br>
-                      <div class="content">
-                        <div class="header tac">
-                          Voir le post
-                        </div>
-                      </div>
-                    </a>
+                    <div class="header tac">
+                      Voir le post
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
-            </div>
           </div>
           <div class="meta">
             <a class="like">

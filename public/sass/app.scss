@@ -447,6 +447,12 @@ body {
 .tac {
     text-align: center !important;
 }
+.dib {
+    display: inline-block;
+}
+.ui.feed>.event>.content .extra.text {
+    max-width: 100%;
+}
 .cg-notify-close:hover, .cg-notify-close:focus {
     color: #000;
     text-decoration: none;
