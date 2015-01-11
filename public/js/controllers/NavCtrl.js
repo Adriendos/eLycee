@@ -7,8 +7,8 @@ app.controller('NavCtrl', ['$scope', 'DataAccess', 'ENTITY', 'SessionService', '
                 return SessionService.SESS_INIT;
             }, function (newValue) {
                 if (newValue == true) {
-                    $scope.activeUser = SessionService.getUser();
-                    
+                    $rootScope.activeUser = SessionService.getUser();
+
                     DataAccess.getAllData(ENTITY.qcm).then(
                         function (qcms) {
                             var allQcms = qcms;
@@ -34,7 +34,6 @@ app.controller('NavCtrl', ['$scope', 'DataAccess', 'ENTITY', 'SessionService', '
         }
 
         $rootScope.$on('completeQcm', function() {
-            console.log('reloading pastille');
             init();
         });
 

@@ -8,23 +8,25 @@
             <a href="#/admin/students" class="red item" ng-class="{ active: isActive('/admin/students')}"><i class="icon student"></i>Eleves</a>
 
             <div class="right menu">
-                <div class="ui floating labeled icon dropdown button basic user-btn" id="deconnexion" ng-show="isLoggedUser()">
-                    <i class="user icon"></i>
-                    <span class="text">{{activeUser.username}}</span>
-                    <div class="menu">
-                        <div class="header">
-                            Actions
+                <div class="item">
+                    <div class="ui floating labeled icon dropdown button basic user-btn" id="deconnexion" ng-show="isLoggedUser()">
+                        <i class="user icon"></i>
+                        <span class="text">{{activeUser.username}}</span>
+                        <div class="menu">
+                            <div class="header">
+                                Actions
+                            </div>
+                            <div class="item" ng-click="go()">
+                                <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                                <i class="edit icon"></i>
+                                Edition de mon profil
+                            </div>
+                            <div class="item" ng-click="logout()">
+                                <i class="icon remove Circle"></i>
+                                Déconnexion
+                            </div>
                         </div>
-                        <div class="item" ng-click="go()">
-                            <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
-                            <i class="edit icon"></i>
-                            Edition de mon profil
-                        </div>
-                        <div class="item" ng-click="logout()">
-                            <i class="icon remove Circle"></i>
-                            Déconnexion
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
