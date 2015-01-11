@@ -30,14 +30,12 @@
                 <div class="item">
                     <div class="ui floating labeled icon dropdown basic button user-btn" ng-show="isLoggedUser()">
                         <i class="user icon"></i>
-                        <!-- <img class="add ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
                         <span class="text">{{activeUser.username}}</span>
                         <div class="menu">
                             <div class="header">
                                 Actions
                             </div>
-                            <div class="item" ng-click="go()">
-                                <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                            <div class="item" ng-click="go('admin/student/edit/'+activeUser.id)">
                                 <i class="edit icon"></i>
                                 Edition de mon profil
                             </div>
