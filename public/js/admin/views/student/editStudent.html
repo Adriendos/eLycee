@@ -1,101 +1,106 @@
 <div class="column padding-reset" style="margin-top:50px;" nv-file-drop uploader="uploader">
-  <div class="header">
-    <h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Utilisateur" : "Edition de l'utilisateur" }}</h1>
-  </div>
-  <div class="content ui form segment">
-    <form name="userForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
-      <input type="hidden" ng-model="currentUser.id">
+	<div class="header">
+		<h1><i class="write icon"></i> {{ mode == "create" ? "Création d'un nouvel Utilisateur" : "Edition de l'utilisateur" }}</h1>
+	</div>
+	<div class="content ui form segment">
+		<form name="userForm" class="ui form" ng-class="{ loading: isFormLoading }" ng-submit="submitForm()" novalidate>
+			<input type="hidden" ng-model="currentPost.id">
 
-      	<div class="two fields">
-			<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
-				<label>Nom d' utilisateur</label>
-				<div class="pr">
-					<input name="username" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="currentUser.username">
-					<div class="ui corner label">
-						<i class="asterisk icon"></i>
+			<div class="two fields">
+				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
+					<label>Nom d' utilisateur</label>
+					<div class="pr">
+						<input name="username" placeholder="Prénom" type="text" required ng-bind-html="snippet" ng-model="currentPost.username">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="userForm.$submitted && userForm.username.$error.required">
+						Veuillez entrez un nom d' utilisateur
 					</div>
 				</div>
-				<div class="ui pointing label red" ng-show="userForm.$submitted && userForm.username.$error.required">
-			    	Veuillez entrez un nom d' utilisateur
-			    </div>
-			</div>
 
-			<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.email.$error.required }">
-			    <label>Email</label>
-				<div class="pr">
-					<input type="email" name="uEmail" placeholder="Email" 
-						   required ng-model="contact.email" 
-						   ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/">
-					<div class="ui corner label">
-						<i class="asterisk icon"></i>
+				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.email.$error.required }">
+					<label>Email</label>
+					<div class="pr">
+						<input type="email" name="uEmail" placeholder="Email" 
+						required ng-model="currentPost.email" 
+						ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+					</div>
+					<div class="ui pointing label red" ng-show="userForm.$submitted && !userForm.uEmail.$valid">
+						<span ng-show="userForm.uEmail.$error.required">Le champ mail est requis</span>
+						<span ng-show="userForm.uEmail.$error.required || !userForm.uEmail.$valid">Veuillez entrez une adresse mail valide</span>
 					</div>
 				</div>
-			    <div class="ui pointing label red" ng-show="userForm.$submitted && !userForm.uEmail.$valid">
-			      <span ng-show="userForm.uEmail.$error.required">Le champ mail est requis</span>
-			      <span ng-show="userForm.uEmail.$error.required || !userForm.uEmail.$valid">Veuillez entrez une adresse mail valide</span>
-			    </div>
 			</div>
+
+			<!-- Image manager -->
+			<div id="image-uploader" class="field" ng-class="{ error: userForm.$submitted && errorimage }">
+				<label>Image de couverture</label>
+				<div class="ui right aligned grid">
+					<!-- UPLOAD IMAGE ZONE -->
+					<div img-uploader class="center aligned two columns row"></div>
+				</div>
+			</div><!-- .field image -->
+
+			<div class="two fields">
+				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
+					<label>Role</label>
+
+					<div id="studentRole" class="ui fluid search selection dropdown visible pr">
+						<input type="hidden" name="role">
+						<div class="ui corner label">
+							<i class="asterisk icon"></i>
+						</div>
+						<input class="search" tabindex="0"><div class="default text">Definir role</div>
+						<div class="menu transition" tabindex="-1">
+							<div class="item" active data-value="teacher"><i class="icon world"></i>Professeur</div>
+							<div class="item" data-value="first_class"><i class="icon student"></i>Eleve de Premiere</div>
+							<div class="item" data-value="final_class"><i class="icon student"></i>Eleve de Terminale</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="field ui">
+					<label>Mot de passe</label>
+					<div class="pr">
+						<input type="password" name="password" placeholder="Votre mot de passe" 
+						ng-model="currentPost.password">
+					</div>
+					<div class="ui pointing label blue fr">
+						<span>En remplissant ce champ vous écraserez votre ancien mot de passe</span>
+					</div>
+				</div>
+			</div>
+			<!-- errors -->
+			<div ng-show="userForm.$submitted && ! userForm.$valid" class="ui error form" style="margin-bottom: 20px">
+				<div class="ui error message">
+					<div class="header">
+						Problème formulaire
+					</div>
+					<ul class="list list-ancors">
+						<li ng-show="userForm.title.$error.required" ng-click="scrollTo('title')">
+							Veuillez entrer un titre pour l' article
+						</li>
+						<li ng-show="errorimage" ng-click="scrollTo('image-uploader')">Le champ image est requis</p>
+							<li ng-show="userForm.excerpt.$error.required" ng-click="scrollTo('excerpt')">
+								Veuillez entrer un extrait pour l' article
+							</li>
+							<li ng-show="userForm.content.$error.required" ng-click="scrollTo('content')">
+								Veuillez entrer un contenu pour l' article
+							</li>
+						</ul>
+					</div>  
+				</div> <!-- /ui corner labeled input -->
+
+				<div class="ui buttons">
+					<input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
+					<div class="or"></div>
+					<div class="ui button negative reset" ng-click="reset()">Annuler</div>
+				</div>
+			</form>
 		</div>
-
-      <!-- Image manager -->
-      <div id="image-uploader" class="field" ng-class="{ error: userForm.$submitted && errorimage }">
-        <label>Image de couverture</label>
-        <div class="ui right aligned grid">
-          <!-- UPLOAD IMAGE ZONE -->
-          <div img-uploader class="center aligned two columns row"></div>
-        </div>
-      </div><!-- .field image -->
-
-      <!-- @todo => president erreur field text angular -->
-      <div id="excerpt" class="ui corner labeled input field" ng-class="{ error: userForm.$submitted && userForm.excerpt.$error.required }">
-        <label>Introduction</label>
-        <div class="pr">
-          <textarea name="excerpt" ng-model="currentUser.excerpt" required ng-maxlength="255"></textarea>
-          <div class="ui corner label">
-            <i class="asterisk icon"></i>
-          </div>
-        </div>
-      </div>
-
-      <div id="content" class="field" ng-class="{ error: userForm.$submitted && userForm.content.$error.required }">
-        <label>Contenu</label>
-        <textarea name="content" ck-editor ng-model="currentUser.content" required></textarea>
-      </div>
-
-      <div class="field">
-        <div class="ui toggle checkbox" >
-          <input type="checkbox"
-                 value="{{currentUser.status}}">
-          <label>Publier</label>
-        </div>
-      </div>
-
-      <!-- errors -->
-      <div ng-show="userForm.$submitted && ! userForm.$valid" class="ui error form" style="margin-bottom: 20px">
-          <div class="ui error message">
-            <div class="header">
-              Problème formulaire
-            </div>
-            <ul class="list list-ancors">
-                <li ng-show="userForm.title.$error.required" ng-click="scrollTo('title')">
-                Veuillez entrer un titre pour l' article
-                </li>
-                <li ng-show="errorimage" ng-click="scrollTo('image-uploader')">Le champ image est requis</p>
-                <li ng-show="userForm.excerpt.$error.required" ng-click="scrollTo('excerpt')">
-                  Veuillez entrer un extrait pour l' article
-                </li>
-                <li ng-show="userForm.content.$error.required" ng-click="scrollTo('content')">
-                  Veuillez entrer un contenu pour l' article
-                </li>
-            </ul>
-          </div>  
-      </div> <!-- /ui corner labeled input -->
-
-      <div class="ui buttons">
-        <input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
-        <div class="or"></div>
-        <div class="ui button negative reset" ng-click="reset()">Annuler</div>
-      </div>
-    </form>
-  </div>
-</div>
+	</div>
