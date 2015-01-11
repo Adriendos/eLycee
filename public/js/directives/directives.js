@@ -138,7 +138,7 @@ app.directive('comment', function(DataAccess, ENTITY, $route, SessionService, $s
                 return SessionService.SESS_INIT;
             }, function (newValue) {
                 if (SessionService.SESS_INIT == true) {
-                    scope.loggedUserName = SessionService.getUser().name();
+                    scope.loggedUserName = SessionService.getUser().name;
                 }
             });
             scope.commentLimit = 5;
