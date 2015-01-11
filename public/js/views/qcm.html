@@ -10,7 +10,7 @@
             Taux de réussite moyen aux QCMS :
             <div class="ui label" ng-class="{ red: averageScore < 30, orange: averageScore >30 && averageScore <70, green: averageScore > 70 }">{{averageScore}}% de réussite</div>
             <div class="ui divider"></div>
-            <div class="ui accordion">
+            <div class="ui styled accordion">
                 <i class="icon checked radio"></i>QCM répondus
                 <div ng-repeat="qcm in unavailableQcms">
                     <div class="title">
@@ -30,7 +30,7 @@
             <div class="ui top attached label green">
                 <i class="icon radio"></i>QCM disponibles
             </div>
-            <div class="ui accordion">
+            <div class="ui styled accordion">
                 <div ng-repeat="qcm in availableQcms">
                     <div class="title">
                         <i class="dropdown icon"></i>
