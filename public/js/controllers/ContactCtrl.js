@@ -10,9 +10,6 @@ app.controller('ContactCtrl',
         $scope.resultMessage;
         $scope.isSending = false;
 
-        // @todo remove
-        $scope.contact = {firstname: "jeremie", lastname: "test", email: "test@test.fr", object: "test", formMessage: "message test email"}; 
-
     	$scope.resetMessage = function() {
     		$scope.contact = {};
     	};	
