@@ -452,6 +452,27 @@ body {
 }
 .dib {
     display: inline-block;
+    vertical-align: top;
+}
+.big-avatar {
+    width: 5em !important;
+    height: 5em !important;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.ml40 {
+    margin-left: 32px !important;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+.dash-feed-icon {
+    width: 6%;
+    font-size: 3em;
+}
+.dash-feed-content {
+    width: 93.2%;
 }
 .dash-date {
     font-size: 0.7em !important; 
