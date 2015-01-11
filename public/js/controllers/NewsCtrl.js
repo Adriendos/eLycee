@@ -1,6 +1,6 @@
 app.controller('NewsCtrl', ['$scope', 'ENTITY', 'DataAccess',
 function($scope, ENTITY, DataAccess) {
-
+    $('.ui.dropdown').dropdown();
     $scope.posts;
     $scope.modal = [];
     $scope.currentPage = 1;

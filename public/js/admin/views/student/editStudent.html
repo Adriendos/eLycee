@@ -47,7 +47,9 @@
 			</div><!-- .field image -->
 
 			<div class="two fields">
-				<div class="field ui" ng-class="{ error: userForm.$submitted && userForm.username.$error.required }">
+				<div class="field ui" 
+					 ng-class="{ error: userForm.$submitted && userForm.username.$error.required }"
+					 ng-show="isUserAdmin()">
 					<label>Role</label>
 
 					<div id="studentRole" class="ui fluid search selection dropdown visible pr">
@@ -70,37 +72,17 @@
 						<input type="password" name="password" placeholder="Votre mot de passe" 
 						ng-model="currentPost.password">
 					</div>
-					<div class="ui pointing label blue fr">
-						<span>En remplissant ce champ vous écraserez votre ancien mot de passe</span>
+					<div class="ui pointing label blue fr" ng-show="mode == 'edit'">
+						<span>En remplissant ce champ vous écraserez l' ancien mot de passe</span>
 					</div>
 				</div>
 			</div>
-			<!-- errors -->
-			<div ng-show="userForm.$submitted && ! userForm.$valid" class="ui error form" style="margin-bottom: 20px">
-				<div class="ui error message">
-					<div class="header">
-						Problème formulaire
-					</div>
-					<ul class="list list-ancors">
-						<li ng-show="userForm.title.$error.required" ng-click="scrollTo('title')">
-							Veuillez entrer un titre pour l' article
-						</li>
-						<li ng-show="errorimage" ng-click="scrollTo('image-uploader')">Le champ image est requis</p>
-							<li ng-show="userForm.excerpt.$error.required" ng-click="scrollTo('excerpt')">
-								Veuillez entrer un extrait pour l' article
-							</li>
-							<li ng-show="userForm.content.$error.required" ng-click="scrollTo('content')">
-								Veuillez entrer un contenu pour l' article
-							</li>
-						</ul>
-					</div>  
-				</div> <!-- /ui corner labeled input -->
 
-				<div class="ui buttons">
-					<input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
-					<div class="or"></div>
-					<div class="ui button negative reset" ng-click="reset()">Annuler</div>
-				</div>
-			</form>
-		</div>
+			<div class="ui buttons">
+				<input type="submit" value="{{ modal.mode == 'create' ? 'Creer' : 'Enregistrer les modifications' }}" class="ui submit positive button"/>
+				<div class="or"></div>
+				<div class="ui button negative reset" ng-click="reset()">Annuler</div>
+			</div>
+		</form>
 	</div>
+</div>

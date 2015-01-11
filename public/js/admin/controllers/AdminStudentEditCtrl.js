@@ -82,15 +82,11 @@ app.controller('AdminStudentEditCtrl',
             $('html, body').animate({ scrollTop: $(document).height() }, 1000);
             return;
         }
-
-        console.info('before delete', $scope.currentPost);
         // remove url_thumbnail prop
         delete $scope.currentPost.url_thumbnail;
-        delete $scope.currentPost.profile_picture;
-        console.info('after delete', $scope.currentPost);
-
+        console.info('user after dl', $scope.currentPost);
         $scope.isFormLoading = true;
-        
+
         if($scope.mode == 'create') {
             if(!$scope.currentPost.user_id) {
                 DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
@@ -106,7 +102,8 @@ app.controller('AdminStudentEditCtrl',
 
     function closeForm() {
         $scope.isFormLoading = false;
-        $location.path('/admin/users');
+        SessionService.checkToken();
+        $location.path('/admin');
     };
 
     $scope.scrollTo = function(target) {

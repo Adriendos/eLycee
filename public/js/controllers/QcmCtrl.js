@@ -3,7 +3,7 @@ app.controller('QcmCtrl',['$scope', 'ENTITY', 'DataAccess', 'SessionService',
     var self = this;
     var allQcms = {};
     var allScores = {};
-
+    $('.ui.dropdown').dropdown();
     $scope.$watch(function(){
         return SessionService.SESS_INIT;
     }, function (newValue) {
