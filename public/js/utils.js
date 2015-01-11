@@ -42,9 +42,10 @@ app.factory('Utils', [function() {
         }, 500);
     };
 
-    Utils.scrollToStr = function() {
+    Utils.scrollToStr = function(stringAncor) {
+        var $el = $('#'+stringAncor);
         $('html, body').animate({
-            scrollTop: $element.offset().top-50
+            scrollTop: $el.offset().top-50
         }, 500);
     };
 
