@@ -1,6 +1,6 @@
 app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY',
     function($scope, DataAccess, ENTITY) {
-
+        $('.ui.dropdown').dropdown();
         DataAccess.getAllData(ENTITY.post).then(
             function(posts) {
                 var allPosts = _.filter(posts, function(post) { return post.status == 'published'});
@@ -8,8 +8,4 @@ app.controller('HomeCtrl',['$scope', 'DataAccess', 'ENTITY',
                 $scope.posts = allPosts;
             }
         );
-
-        $(document).ready(function(){
-            $('.ui.dropdown').dropdown();
-        });
     }]);

@@ -180,6 +180,12 @@ body {
     cursor: pointer;
 }
 
+.user-btn {
+    margin-right: 20px;
+    margin-right: 20px !important; //top: 5px;
+    padding-top: 0.65em !important; padding-bottom: 0.65em !important;
+}
+
 @keyframes grow {
     0% {
         transform: scaleY(0);

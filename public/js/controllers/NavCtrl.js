@@ -1,11 +1,14 @@
 app.controller('NavCtrl', ['$scope', 'DataAccess', 'ENTITY', 'SessionService', '$rootScope',
     function($scope, DataAccess, ENTITY, SessionService, $rootScope){
         init();
+
         function init() {
             $scope.$watch(function(){
                 return SessionService.SESS_INIT;
             }, function (newValue) {
                 if (newValue == true) {
+                    $scope.activeUser = SessionService.getUser();
+                    
                     DataAccess.getAllData(ENTITY.qcm).then(
                         function (qcms) {
                             var allQcms = qcms;

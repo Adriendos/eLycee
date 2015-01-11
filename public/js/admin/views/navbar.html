@@ -8,9 +8,9 @@
             <a href="#/admin/students" class="red item" ng-class="{ active: isActive('/admin/students')}"><i class="icon student"></i>Eleves</a>
 
             <div class="right menu">
-                <div class="ui floating labeled icon dropdown button" id="deconnexion" ng-show="isLoggedUser()">
+                <div class="ui floating labeled icon dropdown button basic user-btn" id="deconnexion" ng-show="isLoggedUser()">
                     <i class="user icon"></i>
-                    <span class="text">Nom utilisateur</span>
+                    <span class="text">{{activeUser.username}}</span>
                     <div class="menu">
                         <div class="header">
                             Actions
