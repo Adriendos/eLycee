@@ -43,7 +43,6 @@ app.controller('AdminStudentEditCtrl',
     // __ image process
     $scope.uploader = new FileUploader({autoUpload:true});
     $scope.imageFile = false;
-    $scope.isFormLoading = false;
 
     // after image upload
     // @todo remove that and make process image form in directive l. 77
@@ -84,26 +83,21 @@ app.controller('AdminStudentEditCtrl',
         }
         // remove url_thumbnail prop
         delete $scope.currentPost.url_thumbnail;
-        console.info('user after dl', $scope.currentPost);
-        $scope.isFormLoading = true;
 
         if($scope.mode == 'create') {
-            if(!$scope.currentPost.user_id) {
-                DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
-                    closeForm();
-                });
-            }
+            DataAccess.create(ENTITY.user, $scope.currentPost).then( function(data) {
+                closeForm();
+            });      
         } else {
             DataAccess.update(ENTITY.user, $scope.currentPost).then( function(data) {
                 closeForm();
             });
-        }          
+        }
+         $location.path('/admin');          
     };
 
     function closeForm() {
-        $scope.isFormLoading = false;
         SessionService.checkToken();
-        $location.path('/admin');
     };
 
     $scope.scrollTo = function(target) {

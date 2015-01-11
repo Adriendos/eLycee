@@ -46,10 +46,10 @@ class BaseController extends Controller {
 
 		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') { continue; }
-			if($inputName == 'password') { 
+			if($inputName == 'password') 
 				$elem->$inputName = Hash::make($inputVal);
-			}
-			$elem->$inputName = $inputVal;
+			else
+				$elem->$inputName = $inputVal;
 		}
 		$imgPath = $this->processImage($inputs, $model);
 		if($imgPath) {
@@ -90,9 +90,10 @@ class BaseController extends Controller {
 		$inputs = Input::except('_method', 'users', 'comments', 'qcms', 'url_thumbnail', 'profile_picture');
 		foreach ($inputs as $inputName => $inputVal) {
 			if($inputName == 'image') continue; 
-			if($inputName == 'password') $elem->$inputName = Hash::make($inputVal);
-
-			$elem->$inputName = $inputVal;
+			if($inputName == 'password') 
+				$elem->$inputName = Hash::make($inputVal);
+			else
+				$elem->$inputName = $inputVal;
 		}
 		$imgPath = $this->processImage($inputs, $model);
 		if($imgPath) {

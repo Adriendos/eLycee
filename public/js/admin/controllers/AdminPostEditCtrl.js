@@ -49,11 +49,9 @@ app.controller('AdminPostEditCtrl',
         // __ image process
         $scope.uploader = new FileUploader({autoUpload:true});
         $scope.imageFile = false;
-        $scope.isFormLoading = false;
 
         // after image upload
         // @todo remove that and make process image form in directive l. 77
-
         $scope.uploader.onAfterAddingFile = function(fileItem) {
           $scope.errorimage = false;
           $scope.imageFile = fileItem._file;
@@ -90,10 +88,8 @@ app.controller('AdminPostEditCtrl',
 
           // remove url_thumbnail prop
           delete $scope.currentPost.url_thumbnail;
-          $scope.isFormLoading = true;
 
           if($scope.mode == 'create') {
-            if(!$scope.currentPost.user_id) console.log('Gonna fail cause no user id...');
             DataAccess.create(ENTITY.post, $scope.currentPost).then( function(data) {
               closeForm();
             });
@@ -105,8 +101,8 @@ app.controller('AdminPostEditCtrl',
         };
 
         function closeForm() {
-          $scope.isFormLoading = false;
           $location.path('/admin/posts');
+          $('html, body').animate({ scrollTop: 0 }, 1000);
         };
 
         $scope.scrollTo = function(target) {
