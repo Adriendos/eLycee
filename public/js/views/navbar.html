@@ -5,7 +5,7 @@
             <a href="#/" class="item teal" ng-class="{ active: isActive('/')}"> <i class="icon home"></i>Accueil</a>
             <a href="#/news" class="item teal" ng-class="{ active: isActive('/news')}"><i class="icon feed"></i>Actualités</a>
             <a href="#/contact" class="item teal" ng-class="{ active: isActive('/contact')}"><i class="help circle icon"></i>Contact</a>
-            <a class="teal item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm" ng-show="{userPendingsQcms > 0}">
+            <a class="teal item" ng-class="{ active: isActive('/qcm')}" ng-show="isUserStudent();" href="#/qcm" ng-show="userPendingsQcms > 0">
                 <i class="icon student"></i>Q.C.M.
                 <div class="ui teal label">{{userPendingsQcms}}</div>
             </a>
