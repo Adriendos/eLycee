@@ -5,7 +5,7 @@
             <a href="#/admin" class="red item" ng-class="{ active: isActive('/admin')}"> <i class="icon dashboard"></i>Dashboard</a>
             <a href="#/admin/posts" class="red item" ng-class="{ active: isActive('/admin/posts')}"> <i class="icon ticket"></i>Articles</a>
             <a href="#/admin/qcm" class="red item" ng-class="{ active: isActive('/admin/qcm')}"> <i class="icon question"></i>QCM</a>
-            <a href="#/admin/students" class="red item" ng-class="{ active: isActive('/admin/students')}"><i class="icon student"></i>Eleves</a>
+            <a href="#/admin/users" class="red item" ng-class="{ active: isActive('/admin/students')}"><i class="icon student"></i>Eleves</a>
 
             <div class="right menu">
                 <div class="item">
@@ -16,7 +16,7 @@
                             <div class="header">
                                 Actions
                             </div>
-                            <div class="item" ng-show="isUserAdmin()" ng-click="go('admin/student/edit/'+activeUser.id)">
+                            <div class="item" ng-show="isUserAdmin()" ng-click="go('admin/user/edit/'+activeUser.id)">
                                 <i class="edit icon"></i>
                                 Edition de mon profil
                             </div>

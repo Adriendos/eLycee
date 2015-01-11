@@ -36,17 +36,17 @@ app.config(['$routeProvider',
     })
     
     // __students
-    .when('/admin/students', {
-      controller : 'AdminStudentsCtrl',
+    .when('/admin/users', {
+      controller : 'AdminUsersCtrl',
       templateUrl : 'js/admin/views/students.html'
     })
-    .when('/admin/student/create', {
-      controller : 'AdminStudentEditCtrl',
-      templateUrl : 'js/admin/views/student/editStudent.html'
+    .when('/admin/users/create', {
+      controller : 'AdminUserEditCtrl',
+      templateUrl : 'js/admin/views/user/editUser.html'
     })
-    .when('/admin/student/edit/:id', {
-      controller : 'AdminStudentEditCtrl',
-      templateUrl : 'js/admin/views/student/editStudent.html'
+    .when('/admin/user/edit/:id', {
+      controller : 'AdminUserEditCtrl',
+      templateUrl : 'js/admin/views/user/editUser.html'
     })
 
     // __ Posts

@@ -1,4 +1,4 @@
-app.controller('AdminStudentEditCtrl',
+app.controller('AdminUserEditCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', '$location', 'SessionService', '$routeParams', 'Utils',
     function($rootScope, $scope, DataAccess, ENTITY, FileUploader, $location, SessionService, $routeParams, Utils) {
     // init vars

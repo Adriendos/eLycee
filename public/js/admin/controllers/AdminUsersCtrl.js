@@ -1,4 +1,4 @@
-app.controller('AdminStudentsCtrl', ['$scope','DataAccess', 'ENTITY', function($scope, DataAccess, ENTITY) {
+app.controller('AdminUsersCtrl', ['$scope','DataAccess', 'ENTITY', function($scope, DataAccess, ENTITY) {
 
     $scope.firstClassStudents;
     $scope.finalClassStudents;
