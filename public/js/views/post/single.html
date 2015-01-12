@@ -17,7 +17,7 @@
 	      {{post.excerpt}}
 	    </h3>
 		<p ng-bind-html="post.content"></p>
-		<socials text="post.title"></socials>
+		<socials text="post.title" link="buildLink(post.id);"></socials>
 	</div>
 	<comment comments="post.comments" post-id="post.id"></comment>
 </div>

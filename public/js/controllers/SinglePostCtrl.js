@@ -23,4 +23,8 @@ app.controller('SinglePostCtrl',
                     $scope.post.comments = comments;
                 });
         };
+
+        $scope.buildLink = function(id) {
+            return 'http://elycee.creativecode.fr/#/post/'+id;
+        }
 }]);

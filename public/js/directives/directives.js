@@ -29,7 +29,8 @@ app.directive('socials', function() {
     return {
         restrict: 'E',
         scope: {
-            text: '='
+            text: '=',
+            link: '='
         },
         templateUrl: 'js/directives/template/social-buttons.html'
     };
