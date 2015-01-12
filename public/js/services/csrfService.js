@@ -14,4 +14,3 @@ app.service('csrfTokenService',
         return csrfTokenService;
     }
 ]);
- 
