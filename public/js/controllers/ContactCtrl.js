@@ -1,7 +1,7 @@
 app.controller('ContactCtrl', 
     ['$rootScope', '$scope','$http', '$sanitize', 'CONFIG', '$timeout',
     function($rootScope, $scope, $http, $sanitize, CONFIG, $timeout) {
-
+        $('.ui.dropdown').dropdown();
         var apiUrl = CONFIG.apiUrl;
 
     	$scope.specialField = '';
