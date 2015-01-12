@@ -6,7 +6,7 @@
             <div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="openDeleteCommentModal(comment)">
                 <i class="icon trash"></i>
             </div>  
-            <p>{{comment.content}}</p>
+            <p ng-bind-html="comment.content"></p>
             <div class="ui image label right floated">
                 <img ng-src="{{post.users.profile_picture}}"/>
                 Par : {{comment.name}}

@@ -1,12 +1,11 @@
 <div class="row" style="padding-top:50px;">
     <div class="six wide column">
-        <div class="ui segment loading">
+        <div class="ui segment loading" style="padding-top:70px !important;">
             <div class="ui top attached label">
                 <img src="http://lorempixel.com/100/100" class="ui avatar image">
                 <span style="font-size:1.8em; vertical-align: middle">
                     <span class="color:black">{{user.username}}</span>, inscrit le {{user.created_at | dateToISO | date:'dd/MM/yyyy' }}, {{ getUserClass()}}</span>
             </div>
-            <div class="ui divider"></div>
             Taux de réussite moyen aux QCMS :
             <div class="ui label fr" ng-class="{ red: averageScore < 30, orange: averageScore >30 && averageScore <70, green: averageScore > 70 }">
                 {{averageScore}}% de réussite
