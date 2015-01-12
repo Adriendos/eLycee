@@ -98,8 +98,8 @@
                   <a><img class="ui big-avatar avatar image" src="{{feed.url_thumbnail}}"></a>
                 </div>
                 <i class="dib" style="width: 70%; margin-top: 5px;">{{ feed.excerpt }}</i>
-                <div class="dib compact ui button fr">
-                  <a href="#/post/{{feed.id}}" class="ui icon tac">
+                <div class="dib compact ui button fr" ng-click="go('/post/'+feed.id)">
+                  <a class="ui icon tac">
                     <i class="unhide icon" style="font-size: 2.5em;"></i>
                     <div class="header" style="position: relative; top: 10px;">
                       Voir le post
