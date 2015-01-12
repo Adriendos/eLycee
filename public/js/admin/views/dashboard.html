@@ -122,6 +122,7 @@
             </div>
             <div class="content dib dash-feed-content">
               <div class="summary">
+                <img class="ui avatar circular rounded image" ng-src="{{feed.users.profile_picture}}">
                 <a class="user">
                   {{feed.users.username}}
                 </a> à complété le QCM <i>{{ feed.qcms.title | limitTo : 100}}</i>  avec un taux de réussite de <label class="ui label compact" ng-class="{ red: feed.score < 30, orange: feed.score >30 && feed.score <70, green: feed.score > 70 }"> {{feed.score}}%</label>
@@ -137,6 +138,7 @@
             </div>
             <div class="content dib dash-feed-content">
               <div class="summary">
+                <img class="ui avatar circular rounded image" ng-src="{{feed.users.profile_picture}}">
                 <a class="user">
                   {{ feed.users.username }}
                 </a> 
