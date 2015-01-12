@@ -2,6 +2,9 @@
 
 //////////////////////////////////  CONFIG   //////////////////////////////////
 
+.clear {
+    clear: both;
+}
 ::selection {
     background-color: rgba(#103F57,.8);
     color: white;
