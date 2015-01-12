@@ -63,6 +63,9 @@
                 <li ng-show="postForm.excerpt.$error.required" ng-click="scrollTo('excerpt')">
                   Veuillez entrer un extrait pour l' article
                 </li>
+                 <li ng-show="postForm.excerpt.$error" ng-click="scrollTo('excerpt')">
+                  Longueur maximum de l extrait 255 caractères
+                </li>
                 <li ng-show="postForm.content.$error.required" ng-click="scrollTo('content')">
                   Veuillez entrer un contenu pour l' article
                 </li>

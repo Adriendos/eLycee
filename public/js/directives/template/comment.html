@@ -1,11 +1,11 @@
 <div class="ui segment" ng-show="comments.length > 0">
     <div class="ui top attached label teal"><i class="icon comments"></i>Commentaires</div>
     <div class="ui divided items" id="commentsContainer">
-        <div class="item" ng-repeat="comment in comments | limitTo: commentLimit">
+        <div class="item pr" ng-repeat="comment in comments | limitTo: commentLimit">
             <a class="ui right ribbon label"><i class="icon clock"></i>{{comment.created_at | dateAgo}}</a>
-            <div class="ui button icon right floated negative" ng-click="openDeleteCommentModal(comment)" ng-show="isUserAdmin()">
+            <div ng-show="isUserAdmin()" class="ui corner label cp" ng-click="openDeleteCommentModal(comment)">
                 <i class="icon trash"></i>
-            </div>
+            </div>  
             <p>{{comment.content}}</p>
             <div class="ui image label right floated">
                 <img ng-src="{{post.users.profile_picture}}"/>
