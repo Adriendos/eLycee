@@ -35,6 +35,7 @@ app.factory('SessionService',
                   SESS.user = data.user;
                   SESS.logged = true;
                   SessionService.SESS_INIT = true;
+                  $rootScope.activeUser = data.user;
 
                   if(SESS.user.role.toLowerCase()=="teacher"){
                     $location.path('/admin');
@@ -59,6 +60,7 @@ app.factory('SessionService',
             SESS.logged = false;
             $location.path('/');
             $rootScope.notify('Déconnexion réussie !', 'info');
+            $rootScope.activeUser = {};
           });
         };
 
