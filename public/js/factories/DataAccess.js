@@ -107,9 +107,7 @@ app.factory('DataAccess',
 			var entity = new resource(data);
 			var result = entity.$save(function() {
 				ngProgress.complete();
-				if(! entityName == ENTITY.score) {
-					$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
-				}
+				$rootScope.notify('Sauvegarde effectuée avec succès.', 'success');
 				DataAccess.clearCache(entityName);
 				d.resolve(result);
 			},function() {
