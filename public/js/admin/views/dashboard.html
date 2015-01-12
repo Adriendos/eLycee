@@ -87,6 +87,7 @@
             <div class="content dib dash-feed-content">
               <div class="header">
                 <div class="summary">
+                  <img class="ui avatar circular rounded image" ng-src="{{feed.users.profile_picture}}">
                   <a>{{feed.users.username}}</a> à posté un article nommé <i>{{ feed.title | limitTo : 100 }}</i>
                   <i class="date fr dash-date">
                     {{ feed.updated_at | dateAgo }}

@@ -12,6 +12,11 @@
     padding: 0;
 }
 
+.rounded {
+    width: 20px !important; height: 20px !important;
+    border-radius: 50% !important;  
+}
+
 body{
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 60px;
