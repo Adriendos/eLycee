@@ -7,6 +7,11 @@ app.controller('AdminUserEditCtrl',
     $scope.errorimage = true;
     $scope.userRole = false;
 
+    // $('#user-btn').dropdown('restore defaults');
+    $('.ui.dropdown').dropdown({
+        action: 'nothing'
+    });
+
     var studentDropdown = $('#studentRole');
     studentDropdown.dropdown({
         onChange: function(value, html) {
