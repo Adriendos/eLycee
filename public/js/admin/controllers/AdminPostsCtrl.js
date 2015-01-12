@@ -1,7 +1,9 @@
 app.controller('AdminPostsCtrl',
     ['$rootScope', '$scope', 'DataAccess', 'ENTITY', 'FileUploader', 'Utils',
       function($rootScope, $scope, DataAccess, ENTITY, FileUploader, Utils) {
-        $('.ui.dropdown').dropdown();
+        $('.ui.dropdown').dropdown({
+          action: 'nothing'
+        });
         $scope.posts;
         $scope.modal = [];
         $scope.currentPage = 1;
