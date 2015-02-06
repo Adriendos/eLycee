@@ -1,12 +1,9 @@
 app.filter('dateAgo', function() {
     return function(input) {
         if(!input) return;
-        var url = window.location.href;
 
-        if( (url.match(/dev/g) || []).length )
-            console.log('dev');
-        else
-            console.log('prod');
+        if( ENV === 'prod' )
+            return moment( new Date(input) ).add(30, 'seconds').utc().fromNow();
 
 		return moment( new Date(input) ).utc().fromNow();
     };

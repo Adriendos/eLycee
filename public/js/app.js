@@ -27,27 +27,36 @@ app.constant('ENTITY',
    } 
 );
 
-// __ Config du localStorage 
+// __ Environment test
+
+if( (window.location.href.match(/dev/g) || []).length )
+    var envConst = 'dev';
+else
+    var envConst = 'prod';
+
+app.constant('ENV', envConst);
+
+// __ Config du localStorage
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-  localStorageServiceProvider
-    .setPrefix('eLycee') 
-    .setNotify(true, true);
+    localStorageServiceProvider
+        .setPrefix('eLycee')
+        .setNotify(true, true);
 
 }]);
 
 
 
-// __ Fonction notify accessible depuis n'importe quel $scope 
+// __ Fonction notify accessible depuis n'importe quel $scope
 app.run(
-  ['$rootScope', 'notify', 'localStorageService', 
+  ['$rootScope', 'notify', 'localStorageService',
   function($rootScope, notify, localStorageService) {
 
     notify.config({
         duration: 2000,
     });
 
-    $rootScope.notify = function(message, level) { 
-       switch(level) { 
+    $rootScope.notify = function(message, level) {
+       switch(level) {
            case 'error':
                notify({message:message, classes:'notify error' });
                break;
@@ -66,8 +75,8 @@ app.run(
 
            default:
                notify({message:message, classes:'notify info' });
-               ; 
-       } 
+               ;
+       }
     };
 }]);
 
