@@ -1,4 +1,4 @@
-app.filter('dateAgo', function() {
+app.filter('dateAgo', ['ENV', function(ENV) {
     return function(input) {
         if(!input) return;
 
@@ -7,4 +7,4 @@ app.filter('dateAgo', function() {
 
 		return moment( new Date(input) ).utc().fromNow();
     };
-});
+}]);
