@@ -99,6 +99,7 @@ app.factory('SessionService',
                 if (typeof response.data === 'object') {
                   SESS.logged = true;
                   SESS.user = response.data;
+                  $rootScope.activeUser = response.data.user;
                   SessionService.SESS_INIT = true;
 
                   return response.data;
@@ -106,6 +107,7 @@ app.factory('SessionService',
                   // invalid response
                   SESS.logged = false;
                   SESS.user = {};
+                  $rootScope.activeUser = {};
                   return $q.reject(response.data);
                 }
 

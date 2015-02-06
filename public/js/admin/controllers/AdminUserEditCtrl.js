@@ -23,6 +23,7 @@ app.controller('AdminUserEditCtrl',
     if( $routeParams.id ) { // edit existing user
         $scope.mode = 'edit';
         $scope.errorimage = false;
+        $scope.userRole = true;
         DataAccess.getDataById($scope.entity, $routeParams.id).then( 
             function(user) {
                 $scope.currentPost = user;
