@@ -9,7 +9,7 @@ class PostTableSeeder extends Seeder {
 
 		$faker = Faker::create();
  
-		for ($i = 0; $i < 100; $i++)
+		for ($i = 0; $i < 10000; $i++)
 		{
 			$post = Post::create( [
 				'title'         => $faker->text(180),

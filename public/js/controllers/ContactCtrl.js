@@ -48,14 +48,5 @@ app.controller('ContactCtrl',
 
         $timeout(flip, 3000);
 
-
-
-        //var flip = function() {
-        //
-        //    $timeout(flip, 3000);
-        //}
-
-        //$timeout(flip, 3000);
-
     }]);
 
